@@ -6,107 +6,88 @@
  * @flow strict-local
  */
 
-import React from 'react';
-import type {Node} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
+ import React from 'react';
+ import {
+   SafeAreaView,
+   ScrollView,
+   StatusBar,
+   StyleSheet,
+   Text,
+   useColorScheme,
+   View,
+ } from 'react-native';
+ import { NavigationContainer } from '@react-navigation/native';
+ import { createStackNavigator } from "@react-navigation/stack";
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
 
-const Section = ({children, title}): Node => {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.white,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.dark : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
-};
+ import SplashScreen from './src/screens/Splash/Splash';
+//  import MainPage from './src/screens/MainPage';
+ import Login from './src/screens/Login/Login';
 
-const App: () => Node = () => {
-  const isDarkMode = useColorScheme() === 'dark';
+//  import {store, persist} from './store/redux/stores/store';
+//  import {Provider} from 'react-redux';
+//  import {PersistGate} from 'redux-persist/integration/react';
+ const Stack = createStackNavigator();
 
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
+ // const StackNavigator = () => {
 
-  return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.red,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.js</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
-  );
-};
+ //   return (
 
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
+ //     <Stack.Navigator screenOptions={{
+ //       headerShown: false
+ //     }}>
+ //       <Stack.Screen name="SplashScreen" component={SplashScreen} />
+ //       {/* <Stack.Screen name="MainTabScreen" component={MainTabScreen} /> */}
+ //       {/* <Stack.Screen name="AzanPrayer" component={AzanPrayer} /> */}
 
-export default App;
+ //     </Stack.Navigator>
+ //   );
+ // }
+
+ function App() {
+
+   return (
+
+ //       <NavigationContainer>
+ // <Stack.Navigator screenOptions={{
+ //       headerShown: false
+ //     }}>
+ //       <Stack.Screen name="SplashScreen" component={SplashScreen} />
+ //       <Stack.Screen name="Login" component={Login} />
+ //       <Stack.Screen name="MainPage" component={MainPage} />
+ //       <Stack.Screen name="AzmoonAbout" component={AzmoonAbout} />
+ //       <Stack.Screen name="AzmoonDetail" component={AzmoonDetail} />
+ //       <Stack.Screen name="AzmoonResult" component={AzmoonResult} />
+ //       {/* <Stack.Screen name="MainTabScreen" component={MainTabScreen} /> */}
+ //       {/* <Stack.Screen name="AzanPrayer" component={AzanPrayer} /> */}
+
+ //     </Stack.Navigator>
+ //      </NavigationContainer>
+//  <Provider store={store}>
+//  <PersistGate loading={null} persistor={persist}>
+        <NavigationContainer>
+  <Stack.Navigator screenOptions={{
+        headerShown: false
+     }}>
+       <Stack.Screen name="SplashScreen" component={SplashScreen} />
+       <Stack.Screen name="Login" component={Login} />
+       {/* <Stack.Screen name="MainPage" component={MainPage} />
+       <Stack.Screen name="AzmoonAbout" component={AzmoonAbout} />
+       <Stack.Screen name="AzmoonDetail" component={AzmoonDetail} />
+       <Stack.Screen name="AzmoonResult" component={AzmoonResult} />
+  */}
+
+     </Stack.Navigator>
+       </NavigationContainer>
+//        </PersistGate>
+//  </Provider>
+
+
+   );
+ };
+
+
+
+
+
+ export default App;
