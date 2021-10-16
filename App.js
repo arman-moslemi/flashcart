@@ -26,7 +26,7 @@
 
 //  import {store, persist} from './store/redux/stores/store';
 //  import {Provider} from 'react-redux';
-//  import {PersistGate} from 'redux-persist/integration/react';
+//  import {PersistGate} from 'redux-persist/integmration/react';
  const Stack = createStackNavigator();
 
  // const StackNavigator = () => {
