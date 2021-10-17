@@ -24,7 +24,7 @@ const SplashScreen = ({ navigation }) => {
     // }
     // else{
 
-      navigation.navigate('Login')
+      navigation.navigate('Login');
     // }
 
 
@@ -51,7 +51,7 @@ const SplashScreen = ({ navigation }) => {
 
     <View style={styles.container}>
       {/* <Loading icon={require("./assets/images/laoding/ezan-vakti.json")} size={60} marginTop={60} /> */}
-      <Text style={styles.txt}>FlashCart</Text>
+      <Text style={styles.txt}>FlashCard</Text>
       </View>
   );
 };
@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: Colors.appColor,
+    backgroundColor: Colors.splashcolor,
   },
   txt: {
     color: Colors.white,
