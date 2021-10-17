@@ -3,7 +3,7 @@ import {View, TextInput, Text, TouchableOpacity,TouchableWithoutFeedback} from '
 //import {create} from 'nahira-react-native-style-sheet';
 //import Icon from '@spark/assets/FontIcon';
 //import Modal from 'react-native-modal';
-import Icon from 'react-native-vector-icons/FontAwesome5';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 import { StyleSheet } from 'react-native';
 import { responsiveHeight, responsiveWidth } from 'react-native-responsive-dimensions';
 import { Colors } from '../assets/Colors';
@@ -71,7 +71,7 @@ export const Input = props => {
           editable={editable}
           value={value}
           placeholder={placeholder}
-          placeholderTextColor={placeColor}
+          placeholderTextColor={"#BCC0C8"}
           multiline={multiline}
           onChangeText={onChangeText}
           maxLength={maxLength}
@@ -137,8 +137,8 @@ const styles =StyleSheet.create({
     alignItems: 'center',
   },
   textInput: {
-    width: responsiveWidth(80),
-    height: responsiveHeight(7),
+    width: responsiveWidth(68),
+    height: responsiveHeight(5),
    borderWidth: 1,
     paddingHorizontal: 15,
     borderColor: Colors.appColor,
@@ -148,7 +148,7 @@ const styles =StyleSheet.create({
     marginTop: 10,
   //  color: '#000000',
 
-    borderRadius:10,
+    borderRadius:5,
     // backgroundColor:'#f3f3f3'
   },
 
@@ -187,7 +187,7 @@ const styles =StyleSheet.create({
     // },
     color: '#FF6161',
     marginTop: 4,
-    width: 312,
+    // width: 312,
   },
   errorContainer: {
     backgroundColor: '#FFF',
@@ -207,7 +207,7 @@ const styles =StyleSheet.create({
   },
   titleErrorStyle: {
     color: '#FF6161',
-    width: 312,
+    // width: 312,
   },
 });
 

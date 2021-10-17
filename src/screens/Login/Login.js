@@ -1,5 +1,5 @@
 import React, { useState,useEffect } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, TextInput,Image, AsyncStorage } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, TextInput,Image, AsyncStorage,KeyboardAvoidingView } from 'react-native';
 import { myFontStyle } from "../../assets/Constance";
 
 import { Colors } from '../../assets/Colors';
@@ -16,41 +16,43 @@ const [pass,setPass]=useState("");
 const [isLoading,setLoading]=useState(false);
 const [eror,SetEror]=useState(false);
 const [eror2,SetEror2]=useState(false);
+const keyboardVerticalOffset = responsiveHeight(5)
 
 
 
+      const  mutLogin=async()=> {
+        setLoading(true);
+if(user=="" || pass==""){
+        // alert("Please fill input")
+        SetEror(true)
+        setLoading(false);
 
-//       const  mutLogin=async()=> {
-//         setLoading(true);
-// if(user=="" || pass==""){
-//         alert("Please fill input")
-//         SetEror(true)
-// }
+}
 
-// else{
+else{
 
-//         if((user=="user1"&&pass=="pass1")||(user=="user2"&&pass=="pass2")){
-//                 setLoading(false);
-// AsyncStorage.setItem("user","true")
-//                 navigation.navigate("MainPage")
-//         }
-// else{
-//         setLoading(false);
-//          SetEror2(true)
-
-
-
-// }
+        if((user=="user1"&&pass=="pass1")||(user=="user2"&&pass=="pass2")){
+                setLoading(false);
+AsyncStorage.setItem("user","true")
+                navigation.navigate("MainPage")
+        }
+else{
+        setLoading(false);
+         SetEror2(true)
 
 
-// }
 
-//         };
+}
+
+
+}
+
+        };
 
 return (
   <View style={styles.container}>
 
-
+<KeyboardAvoidingView behavior='position' keyboardVerticalOffset={keyboardVerticalOffset}>
 <View style={styles.parent}>
 			<LinearGradient colors={['#16B2F5', '#0385BC']} style={styles.child}>
 
@@ -59,29 +61,41 @@ return (
         <Image source={require('../../assets/images/login.png')} style={styles.login}/>
         <Text style={styles.loginTitle}>ورود به حساب کاربری</Text>
         <View style={styles.loginView}>
-          <Input isIconLeft={"mobile-alt"} placeholder="شماره تماس خورد را وارد نمائید" containerStyle={styles.textInputLogin} />
-          <Input isPassword={true} placeholder="رمز عبور خود را را وارد نمائید" containerStyle={styles.textInputLogin} />
-        </View>
+          <Input  isIconLeft={"phone-android"} placeholder="شماره تماس خود را وارد نمائید" containerStyle={styles.textInputLogin} onChangeText={(ss)=>setUser(ss)} />
+          <Input isIconLeft={"remove-red-eye"} ErrorText={eror?"لطفا موارد را وارد نمائید":""} placeholder="رمز عبور خود را را وارد نمائید" onChangeText={(ss)=>setPass(ss)} containerStyle={styles.textInputLogin} />
+          <View style={{alignItems:'flex-end'}}>
+<TouchableOpacity style={styles.ViewFooter}>
 
+  <Text style={styles.forget} >فراموشی رمز عبور</Text>
+</TouchableOpacity>
         <Button
            // onPress={()=>navigation.navigate("Verification")}
-              // onPress={()=>mutLogin()}
+              onPress={()=>mutLogin()}
           isLoading={isLoading}
 
-           // onPress={()=>alert(number)}
+             // onPress={()=>alert(number)}
              buttonContainer={styles.button}
 
-             text={"Login"}
+             text={"ورود"}
 
 
              ></Button>
+             <TouchableOpacity style={styles.footer}>
+
+<Text style={styles.forget}>ثبت نام کنید</Text>
+<Text style={styles.forget2}>حساب کاربری ندارید؟</Text>
+</TouchableOpacity>
+</View>
+        </View>
+</KeyboardAvoidingView>
 </View>
 );
 };
 
 const styles = StyleSheet.create({
 
-  container: {flex:3,backgroundColor:"#fff"},
+  container: {flex:1,backgroundColor:"#fff"},
+  button:{marginTop:responsiveHeight(2)},
   parent : {
     height : responsiveHeight(55),
     width : '100%',
@@ -89,6 +103,36 @@ const styles = StyleSheet.create({
     borderBottomStartRadius : 800,
     borderBottomEndRadius : 800,
     overflow : 'hidden',
+},
+ViewFooter:{
+
+alignItems:"flex-start",
+width:'100%',
+
+},
+footer:{
+flexDirection:"row",
+alignItems:'flex-start',
+borderBottomColor:Colors.yellow,
+borderStyle:'dashed',
+
+},
+forget:{
+color:Colors.yellow,
+...myFontStyle.mediumBold,
+marginTop:responsiveHeight(2),
+borderBottomWidth:1,
+// width:'85%',
+borderColor:Colors.yellow,
+borderStyle:"dashed"
+
+},
+forget2:{
+color:Colors.yellow,
+...myFontStyle.mediumBold,
+marginTop:responsiveHeight(2),
+
+
 },
 child : {
     flex : 1,
@@ -113,7 +157,8 @@ loginTitle:{
 
 ...myFontStyle.largBold,
 marginTop:responsiveHeight(3),
-fontWeight:"bold",
+// fontWeight:"bold",
+fontFamily: "IranianSans",
 },
 loginView:{
   // width:responsiveWidth(80),

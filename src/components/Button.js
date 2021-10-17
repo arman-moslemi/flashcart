@@ -6,6 +6,7 @@ import { StyleSheet } from 'react-native';
 import { Colors } from '../assets/Colors';
 import { responsiveFontSize, responsiveHeight, responsiveWidth } from "react-native-responsive-dimensions";
 import Spinner from '../components/Spinner';
+import LinearGradient from 'react-native-linear-gradient';
 
 export const Button = props => {
   const {
@@ -41,7 +42,8 @@ export const Button = props => {
   const disableButtonText =
     buttonDisable && useDefaultDisableStyle === true ? {opacity: 0.5} : null;
   return (
-    <View
+    <LinearGradient colors={['#16B2F5', '#0385BC'] }start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }}
+
       style={[
        style.container,
         buttonContainer,
@@ -62,7 +64,8 @@ export const Button = props => {
           <Spinner size={spinnerSize} color={spinnerColor} />
         )}
       </TouchableOpacity>
-    </View>
+      </LinearGradient>
+
   );
 };
 
@@ -73,7 +76,7 @@ const style = StyleSheet.create({
     justifyContent: 'center',
     flexDirection: 'row',
     alignItems: 'center',
-    borderRadius:30
+    borderRadius:5
 
   },
   errorContainer: {
@@ -81,10 +84,10 @@ const style = StyleSheet.create({
   },
   container: {
     alignSelf: 'center',
-    backgroundColor: '#FAAA1A',
-    height: responsiveHeight(8),
-    width: responsiveWidth(75),
-    borderRadius:50,
+    // backgroundColor: '#FAAA1A',
+    height: responsiveHeight(5),
+    width: responsiveWidth(68),
+    borderRadius:5,
 
 
   },
@@ -94,9 +97,9 @@ const style = StyleSheet.create({
     //   weight: 'SemiBold',
     //   family: '$mainFontName',
     // },
-    fontSize:30,
+    fontSize:17,
     textAlign: 'center',
-    color: Colors.appColorDarker,
+    color: "#fff",
     justifyContent: 'center',
     alignItems: 'center',
     marginHorizontal: 4,
