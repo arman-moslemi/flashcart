@@ -71,7 +71,7 @@ export const Input = props => {
           editable={editable}
           value={value}
           placeholder={placeholder}
-          placeholderTextColor={placeColor}
+          placeholderTextColor={"#BCC0C8"}
           multiline={multiline}
           onChangeText={onChangeText}
           maxLength={maxLength}
@@ -187,7 +187,7 @@ const styles =StyleSheet.create({
     // },
     color: '#FF6161',
     marginTop: 4,
-    width: 312,
+    // width: 312,
   },
   errorContainer: {
     backgroundColor: '#FFF',
@@ -207,7 +207,7 @@ const styles =StyleSheet.create({
   },
   titleErrorStyle: {
     color: '#FF6161',
-    width: 312,
+    // width: 312,
   },
 });
 
