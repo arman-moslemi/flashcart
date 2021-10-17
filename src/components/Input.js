@@ -3,7 +3,7 @@ import {View, TextInput, Text, TouchableOpacity,TouchableWithoutFeedback} from '
 //import {create} from 'nahira-react-native-style-sheet';
 //import Icon from '@spark/assets/FontIcon';
 //import Modal from 'react-native-modal';
-import Icon from 'react-native-vector-icons/FontAwesome5';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 import { StyleSheet } from 'react-native';
 import { responsiveHeight, responsiveWidth } from 'react-native-responsive-dimensions';
 import { Colors } from '../assets/Colors';
@@ -137,8 +137,8 @@ const styles =StyleSheet.create({
     alignItems: 'center',
   },
   textInput: {
-    width: responsiveWidth(80),
-    height: responsiveHeight(7),
+    width: responsiveWidth(68),
+    height: responsiveHeight(5),
    borderWidth: 1,
     paddingHorizontal: 15,
     borderColor: Colors.appColor,
@@ -148,7 +148,7 @@ const styles =StyleSheet.create({
     marginTop: 10,
   //  color: '#000000',
 
-    borderRadius:10,
+    borderRadius:5,
     // backgroundColor:'#f3f3f3'
   },
 

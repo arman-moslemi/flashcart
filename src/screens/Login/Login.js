@@ -59,8 +59,8 @@ return (
         <Image source={require('../../assets/images/login.png')} style={styles.login}/>
         <Text style={styles.loginTitle}>ورود به حساب کاربری</Text>
         <View style={styles.loginView}>
-          <Input isIconLeft={"mobile-alt"} placeholder="شماره تماس خورد را وارد نمائید" containerStyle={styles.textInputLogin} />
-          <Input isPassword={true} placeholder="رمز عبور خود را را وارد نمائید" containerStyle={styles.textInputLogin} />
+          <Input  isIconLeft={"phone-android"} placeholder="شماره تماس خورد را وارد نمائید" containerStyle={styles.textInputLogin} />
+          <Input isIconLeft={"remove-red-eye"} placeholder="رمز عبور خود را را وارد نمائید" containerStyle={styles.textInputLogin} />
         </View>
 
         <Button
@@ -82,6 +82,7 @@ return (
 const styles = StyleSheet.create({
 
   container: {flex:3,backgroundColor:"#fff"},
+  button:{marginTop:responsiveHeight(5)},
   parent : {
     height : responsiveHeight(55),
     width : '100%',
