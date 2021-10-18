@@ -23,6 +23,7 @@
  import SplashScreen from './src/screens/Splash/Splash';
 //  import MainPage from './src/screens/MainPage';
  import Login from './src/screens/Login/Login';
+ import SignUp from './src/screens/Login/SignUp';
 
 //  import {store, persist} from './store/redux/stores/store';
 //  import {Provider} from 'react-redux';
@@ -71,6 +72,7 @@
      }}>
        <Stack.Screen name="SplashScreen" component={SplashScreen} />
        <Stack.Screen name="Login" component={Login} />
+       <Stack.Screen name="SignUp" component={SignUp} />
        {/* <Stack.Screen name="MainPage" component={MainPage} />
        <Stack.Screen name="AzmoonAbout" component={AzmoonAbout} />
        <Stack.Screen name="AzmoonDetail" component={AzmoonDetail} />

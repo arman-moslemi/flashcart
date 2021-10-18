@@ -10,7 +10,7 @@ import {Button} from '../../components/Button';
 
 
 // create a component
- const Login = ({navigation}) => {
+ const SignUp = ({navigation}) => {
 const [user,setUser]=useState("");
 const [pass,setPass]=useState("");
 const [isLoading,setLoading]=useState(false);
@@ -59,15 +59,15 @@ return (
       		</LinearGradient>
       	</View>
         <Image source={require('../../assets/images/login.png')} style={styles.login}/>
-        <Text style={styles.loginTitle}>ورود به حساب کاربری</Text>
+        <Text style={styles.loginTitle}>ثبت نام</Text>
         <View style={styles.loginView}>
+          <Input  isIconLeft={"person"} placeholder="نام خودرا وارد کنید" containerStyle={styles.textInputLogin} onChangeText={(ss)=>setUser(ss)} />
+          <Input  isIconLeft={"person"} placeholder="نام خانوادگی خود را واردکنید" containerStyle={styles.textInputLogin} onChangeText={(ss)=>setUser(ss)} />
+          <Input  isIconLeft={"credit-card"} placeholder="کدملی خود را واردکنید" containerStyle={styles.textInputLogin} onChangeText={(ss)=>setUser(ss)} />
           <Input  isIconLeft={"phone-android"} placeholder="شماره تماس خود را وارد نمائید" containerStyle={styles.textInputLogin} onChangeText={(ss)=>setUser(ss)} />
-          <Input isPassword={true} ErrorText={eror?"لطفا موارد را وارد نمائید":""} placeholder="رمز عبور خود را را وارد نمائید" onChangeText={(ss)=>setPass(ss)} containerStyle={styles.textInputLogin} />
+          <Input isIconLeft={"remove-red-eye"} ErrorText={eror?"لطفا موارد را وارد نمائید":""} placeholder="رمز عبور خود را را وارد نمائید" onChangeText={(ss)=>setPass(ss)} containerStyle={styles.textInputLogin} />
           <View style={{alignItems:'flex-end'}}>
-<TouchableOpacity style={styles.ViewFooter}>
 
-  <Text style={styles.forget} >فراموشی رمز عبور</Text>
-</TouchableOpacity>
         <Button
            // onPress={()=>navigation.navigate("Verification")}
               onPress={()=>mutLogin()}
@@ -76,15 +76,14 @@ return (
              // onPress={()=>alert(number)}
              buttonContainer={styles.button}
 
-             text={"ورود"}
+             text={"ایجاد حساب کاربری"}
 
 
              ></Button>
+             <TouchableOpacity style={styles.footer}>
 
-             <TouchableOpacity onPress={()=>  navigation.navigate("SignUp")} style={styles.footer}>
-
-<Text style={styles.forget}>ثبت نام کنید</Text>
-<Text style={styles.forget2}>حساب کاربری ندارید؟</Text>
+<Text style={styles.forget}>واردشوید</Text>
+<Text style={styles.forget2}>حساب کاربری دارید؟</Text>
 </TouchableOpacity>
 </View>
         </View>
@@ -98,7 +97,7 @@ const styles = StyleSheet.create({
   container: {flex:1,backgroundColor:"#fff"},
   button:{marginTop:responsiveHeight(2)},
   parent : {
-    height : responsiveHeight(55),
+    height : responsiveHeight(45),
     width : '100%',
     transform : [ { scaleX : 1.5 } ],
     borderBottomStartRadius : 800,
@@ -148,7 +147,7 @@ login:{
   position:"absolute",
   top:responsiveHeight(8),
   width:responsiveWidth(80),
-height:responsiveHeight(40),
+height:responsiveHeight(30),
   left:responsiveWidth(10),
   right:responsiveWidth(10),
 },
@@ -164,7 +163,7 @@ fontFamily: "IranianSans",
 loginView:{
   // width:responsiveWidth(80),
   // flex: 1,
-  marginTop:responsiveHeight(3),
+  marginTop:responsiveHeight(2),
 
   flexDirection: 'column',
   justifyContent: 'center',
@@ -178,6 +177,6 @@ textInputLogin:{
 }
   });
 
-  export default Login;
+  export default SignUp;
 
 //make this component available to the <app></app>

@@ -87,14 +87,16 @@ export const Input = props => {
         />
         {isPassword ? (
           <TouchableOpacity
-            style={styles.watchPasswordButton}
+            // style={styles.watchPasswordButton}
+            style={styles.watchPasswordButtonLeft}
+
             onPress={() => {
               setPasswordHidden(!isPasswordHidden);
             }}>
             <Icon
-              size={16}
-              name={isPasswordHidden === true ? 'eye-on' : 'eye-off'}
-              color="#bcbcbc"
+              size={25}
+              name={isPasswordHidden === true ? 'remove-red-eye' : 'eye-off'}
+              color={Colors.appColor}
             />
           </TouchableOpacity>
         ) : null}
@@ -149,6 +151,7 @@ const styles =StyleSheet.create({
   //  color: '#000000',
 
     borderRadius:5,
+    textAlign:'right'
     // backgroundColor:'#f3f3f3'
   },
 
