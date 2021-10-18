@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import {View, TextInput, Text, TouchableOpacity,TouchableWithoutFeedback} from 'react-native';
 //import {create} from 'nahira-react-native-style-sheet';
-//import Icon from '@spark/assets/FontIcon';
 //import Modal from 'react-native-modal';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { StyleSheet } from 'react-native';

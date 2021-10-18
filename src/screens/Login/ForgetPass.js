@@ -10,7 +10,7 @@ import {Button} from '../../components/Button';
 
 
 // create a component
- const Login = ({navigation}) => {
+ const ForgetPass = ({navigation}) => {
 const [user,setUser]=useState("");
 const [pass,setPass]=useState("");
 const [isLoading,setLoading]=useState(false);
@@ -59,33 +59,25 @@ return (
       		</LinearGradient>
       	</View>
         <Image source={require('../../assets/images/login.png')} style={styles.login}/>
-        <Text style={styles.loginTitle}>ورود به حساب کاربری</Text>
+        <Text style={styles.loginTitle}>شماره خود را وارد نمائید</Text>
         <View style={styles.loginView}>
           <Input  isIconLeft={"phone-android"} placeholder="شماره تماس خود را وارد نمائید" containerStyle={styles.textInputLogin} onChangeText={(ss)=>setUser(ss)} />
-          <Input isPassword={true} ErrorText={eror?"لطفا موارد را وارد نمائید":""} placeholder="رمز عبور خود را را وارد نمائید" onChangeText={(ss)=>setPass(ss)} containerStyle={styles.textInputLogin} />
           <View style={{alignItems:'flex-end'}}>
-<TouchableOpacity onPress={()=>  navigation.navigate("ForgetPass")} style={styles.ViewFooter}>
 
-  <Text style={styles.forget} >فراموشی رمز عبور</Text>
-</TouchableOpacity>
         <Button
-           // onPress={()=>navigation.navigate("Verification")}
-              onPress={()=>mutLogin()}
+           onPress={()=>navigation.navigate("ChangePass")}
+            //   onPress={()=>mutLogin()}
               isLoading={isLoading}
 
              // onPress={()=>alert(number)}
              buttonContainer={styles.button}
 
-             text={"ورود"}
+             text={"تائید"}
 
 
              ></Button>
 
-             <TouchableOpacity onPress={()=>  navigation.navigate("SignUp")} style={styles.footer}>
 
-<Text style={styles.forget}>ثبت نام کنید</Text>
-<Text style={styles.forget2}>حساب کاربری ندارید؟</Text>
-</TouchableOpacity>
 </View>
         </View>
 </KeyboardAvoidingView>
@@ -184,6 +176,6 @@ loginBTN:{
 }
   });
 
-  export default Login;
+  export default ForgetPass;
 
 //make this component available to the <app></app>

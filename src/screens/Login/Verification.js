@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState,useEffect,useRef } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, TextInput,Image, AsyncStorage,KeyboardAvoidingView } from 'react-native';
 import { myFontStyle } from "../../assets/Constance";
 
@@ -7,16 +7,19 @@ import { responsiveFontSize, responsiveHeight, responsiveScreenWidth, responsive
 import LinearGradient from 'react-native-linear-gradient';
 import {Input} from '../../components/Input';
 import {Button} from '../../components/Button';
+import CodeInputMain from '../../components/CodeInput';
 
 
 // create a component
- const Login = ({navigation}) => {
+ const Verification = ({navigation}) => {
 const [user,setUser]=useState("");
 const [pass,setPass]=useState("");
 const [isLoading,setLoading]=useState(false);
 const [eror,SetEror]=useState(false);
 const [eror2,SetEror2]=useState(false);
 const keyboardVerticalOffset = responsiveHeight(5)
+const CodeInputRef = useRef(null);
+const [validCode, setValidCode] = useState('');
 
 
 
@@ -58,16 +61,23 @@ return (
 
       		</LinearGradient>
       	</View>
-        <Image source={require('../../assets/images/login.png')} style={styles.login}/>
-        <Text style={styles.loginTitle}>ورود به حساب کاربری</Text>
+        <Image source={require('../../assets/images/verify.png')} style={styles.login}/>
+        <Text style={styles.loginTitle}>کد تائید ارسال شده را وارد نمائید</Text>
         <View style={styles.loginView}>
-          <Input  isIconLeft={"phone-android"} placeholder="شماره تماس خود را وارد نمائید" containerStyle={styles.textInputLogin} onChangeText={(ss)=>setUser(ss)} />
-          <Input isPassword={true} ErrorText={eror?"لطفا موارد را وارد نمائید":""} placeholder="رمز عبور خود را را وارد نمائید" onChangeText={(ss)=>setPass(ss)} containerStyle={styles.textInputLogin} />
-          <View style={{alignItems:'flex-end'}}>
-<TouchableOpacity onPress={()=>  navigation.navigate("ForgetPass")} style={styles.ViewFooter}>
+          {/* <Input  isIconLeft={"phone-android"} placeholder="شماره تماس خود را وارد نمائید" containerStyle={styles.textInputLogin} onChangeText={(ss)=>setUser(ss)} /> */}
 
-  <Text style={styles.forget} >فراموشی رمز عبور</Text>
-</TouchableOpacity>
+          <CodeInputMain
+            ref={CodeInputRef}
+            onCodeInputEnd={code => setValidCode(code)}
+            validCode={validCode}
+            // hasError={error}
+          />
+
+
+</View>
+
+          <View style={{alignItems:'flex-end',flex:1,marginTop:10}}>
+
         <Button
            // onPress={()=>navigation.navigate("Verification")}
               onPress={()=>mutLogin()}
@@ -76,18 +86,11 @@ return (
              // onPress={()=>alert(number)}
              buttonContainer={styles.button}
 
-             text={"ورود"}
+             text={"تائید"}
 
 
              ></Button>
-
-             <TouchableOpacity onPress={()=>  navigation.navigate("SignUp")} style={styles.footer}>
-
-<Text style={styles.forget}>ثبت نام کنید</Text>
-<Text style={styles.forget2}>حساب کاربری ندارید؟</Text>
-</TouchableOpacity>
-</View>
-        </View>
+                  </View>
 </KeyboardAvoidingView>
 </View>
 );
@@ -96,7 +99,7 @@ return (
 const styles = StyleSheet.create({
 
   container: {flex:1,backgroundColor:"#fff"},
-  button:{marginTop:responsiveHeight(2)},
+  button:{marginTop:responsiveHeight(10)},
   parent : {
     height : responsiveHeight(55),
     width : '100%',
@@ -164,8 +167,8 @@ marginTop:responsiveHeight(3),
 },
 loginView:{
   // width:responsiveWidth(80),
-  // flex: 1,
-  marginTop:responsiveHeight(3),
+  flex: 1,
+  marginTop:responsiveHeight(5),
 
   flexDirection: 'column',
   justifyContent: 'center',
@@ -184,6 +187,6 @@ loginBTN:{
 }
   });
 
-  export default Login;
+  export default Verification;
 
 //make this component available to the <app></app>

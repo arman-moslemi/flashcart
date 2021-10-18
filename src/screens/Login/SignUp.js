@@ -58,7 +58,7 @@ return (
 
       		</LinearGradient>
       	</View>
-        <Image source={require('../../assets/images/login.png')} style={styles.login}/>
+        <Image source={require('../../assets/images/register.png')} style={styles.login}/>
         <Text style={styles.loginTitle}>ثبت نام</Text>
         <View style={styles.loginView}>
           <Input  isIconLeft={"person"} placeholder="نام خودرا وارد کنید" containerStyle={styles.textInputLogin} onChangeText={(ss)=>setUser(ss)} />
@@ -69,8 +69,8 @@ return (
           <View style={{alignItems:'flex-end'}}>
 
         <Button
-           // onPress={()=>navigation.navigate("Verification")}
-              onPress={()=>mutLogin()}
+           onPress={()=>navigation.navigate("Verification")}
+            //   onPress={()=>mutLogin()}
               isLoading={isLoading}
 
              // onPress={()=>alert(number)}
@@ -80,7 +80,7 @@ return (
 
 
              ></Button>
-             <TouchableOpacity style={styles.footer}>
+             <TouchableOpacity onPress={()=>  navigation.navigate("Login")} style={styles.footer}>
 
 <Text style={styles.forget}>واردشوید</Text>
 <Text style={styles.forget2}>حساب کاربری دارید؟</Text>
@@ -94,88 +94,94 @@ return (
 
 const styles = StyleSheet.create({
 
-  container: {flex:1,backgroundColor:"#fff"},
-  button:{marginTop:responsiveHeight(2)},
-  parent : {
-    height : responsiveHeight(45),
-    width : '100%',
-    transform : [ { scaleX : 1.5 } ],
-    borderBottomStartRadius : 800,
-    borderBottomEndRadius : 800,
-    overflow : 'hidden',
-},
-ViewFooter:{
+    container: {flex:1,backgroundColor:"#fff"},
+    button:{marginTop:responsiveHeight(2)},
+    parent : {
+      height : responsiveHeight(40),
+      width : '100%',
+      transform : [ { scaleX : 1.5 } ],
+      borderBottomStartRadius : 800,
+      borderBottomEndRadius : 800,
+      overflow : 'hidden',
+  },
+  ViewFooter:{
 
-alignItems:"flex-start",
-width:'100%',
+  alignItems:"flex-start",
+  width:'100%',
 
-},
-footer:{
-flexDirection:"row",
-alignItems:'flex-start',
-borderBottomColor:Colors.yellow,
-borderStyle:'dashed',
+  },
+  footer:{
+  flexDirection:"row",
+  alignItems:'flex-start',
+  borderBottomColor:Colors.yellow,
+  borderStyle:'dashed',
 
-},
-forget:{
-color:Colors.yellow,
-...myFontStyle.mediumBold,
-marginTop:responsiveHeight(2),
-borderBottomWidth:1,
-// width:'85%',
-borderColor:Colors.yellow,
-borderStyle:"dashed"
-
-},
-forget2:{
-color:Colors.yellow,
-...myFontStyle.mediumBold,
-marginTop:responsiveHeight(2),
-
-
-},
-child : {
-    flex : 1,
-    transform : [ { scaleX : 1 } ],
-
-
-    alignItems : 'center',
-    justifyContent : 'center',
-
-},
-login:{
-  position:"absolute",
-  top:responsiveHeight(8),
-  width:responsiveWidth(80),
-height:responsiveHeight(30),
-  left:responsiveWidth(10),
-  right:responsiveWidth(10),
-},
-loginTitle:{
- textAlign:"center",
- color: Colors.splashcolor,
-
-...myFontStyle.largBold,
-marginTop:responsiveHeight(3),
-// fontWeight:"bold",
-fontFamily: "IranianSans",
-},
-loginView:{
-  // width:responsiveWidth(80),
-  // flex: 1,
+  },
+  forget:{
+  color:Colors.yellow,
+  ...myFontStyle.mediumBold,
   marginTop:responsiveHeight(2),
+  borderBottomWidth:1,
+  // width:'85%',
+  borderColor:Colors.yellow,
+  borderStyle:"dashed",
+  // fontFamily:"IRANSansBold",
 
-  flexDirection: 'column',
-  justifyContent: 'center',
-  alignItems: 'center',
-},
-textInputLogin:{
-// borderBottomColor:"#ffb921",
-// borderBottomWidth:2,
-// width:"100%",
+  },
+  forget2:{
+  color:Colors.yellow,
+  ...myFontStyle.mediumBold,
+  marginTop:responsiveHeight(2),
+  // fontFamily:"IRANSansBold",
 
-}
-  });
+  },
+  child : {
+      flex : 1,
+      transform : [ { scaleX : 1 } ],
+
+
+      alignItems : 'center',
+      justifyContent : 'center',
+
+  },
+  login:{
+    position:"absolute",
+    top:responsiveHeight(6),
+    width:responsiveWidth(60),
+  height:responsiveHeight(30),
+    left:responsiveWidth(20),
+    right:responsiveWidth(10),
+  },
+  loginTitle:{
+   textAlign:"center",
+   color: Colors.splashcolor,
+
+  ...myFontStyle.largBold,
+  marginTop:responsiveHeight(3),
+  // fontWeight:"bold",
+  // fontFamily: "IRANSansBold",
+  },
+  loginView:{
+    // width:responsiveWidth(80),
+    // flex: 1,
+    marginTop:responsiveHeight(1),
+
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  textInputLogin:{
+  // borderBottomColor:"#ffb921",
+  // borderBottomWidth:2,
+  // width:"100%",
+  // fontFamily:"IRANSans",
+  ...myFontStyle.largeRegular,
+
+  },
+  loginBTN:{
+    ...myFontStyle.largBold,
+  }
+    });
 
   export default SignUp;
 

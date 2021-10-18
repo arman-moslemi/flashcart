@@ -24,6 +24,9 @@
 //  import MainPage from './src/screens/MainPage';
  import Login from './src/screens/Login/Login';
  import SignUp from './src/screens/Login/SignUp';
+ import Verification from './src/screens/Login/Verification';
+ import ForgetPass from './src/screens/Login/ForgetPass';
+ import ChangePass from './src/screens/Login/ChangePass';
 
 import Home from './src/screens/Home/Home';
 //  import {store, persist} from './store/redux/stores/store';
@@ -74,12 +77,11 @@ import Home from './src/screens/Home/Home';
        <Stack.Screen name="SplashScreen" component={SplashScreen} />
        <Stack.Screen name="Login" component={Login} />
        <Stack.Screen name="SignUp" component={SignUp} />
+       <Stack.Screen name="Verification" component={Verification} />
+       <Stack.Screen name="ChangePass" component={ChangePass} />
+       <Stack.Screen name="ForgetPass" component={ForgetPass} />
        <Stack.Screen name="Home" component={Home} />
-       {/* <Stack.Screen name="MainPage" component={MainPage} />
-       <Stack.Screen name="AzmoonAbout" component={AzmoonAbout} />
-       <Stack.Screen name="AzmoonDetail" component={AzmoonDetail} />
-       <Stack.Screen name="AzmoonResult" component={AzmoonResult} />
-  */}
+
 
      </Stack.Navigator>
        </NavigationContainer>
