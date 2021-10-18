@@ -142,7 +142,7 @@ const styles =StyleSheet.create({
    borderWidth: 1,
     paddingHorizontal: 15,
     borderColor: Colors.appColor,
-
+    fontFamily:"IRANSans",
    // borderColor: '#CECECE',
     // backgroundColor: '#FFFFFF',
     marginTop: 10,

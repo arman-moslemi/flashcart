@@ -77,7 +77,7 @@ return (
              buttonContainer={styles.button}
 
              text={"ورود"}
-
+            
 
              ></Button>
              <TouchableOpacity style={styles.footer}>
@@ -124,14 +124,15 @@ marginTop:responsiveHeight(2),
 borderBottomWidth:1,
 // width:'85%',
 borderColor:Colors.yellow,
-borderStyle:"dashed"
+borderStyle:"dashed",
+fontFamily:"IRANSansBold",
 
 },
 forget2:{
 color:Colors.yellow,
 ...myFontStyle.mediumBold,
 marginTop:responsiveHeight(2),
-
+fontFamily:"IRANSansBold",
 
 },
 child : {
@@ -158,7 +159,7 @@ loginTitle:{
 ...myFontStyle.largBold,
 marginTop:responsiveHeight(3),
 // fontWeight:"bold",
-fontFamily: "IranianSans",
+fontFamily: "IRANSansBold",
 },
 loginView:{
   // width:responsiveWidth(80),
@@ -173,7 +174,10 @@ textInputLogin:{
 // borderBottomColor:"#ffb921",
 // borderBottomWidth:2,
 // width:"100%",
-
+fontFamily:"IRANSans",
+},
+loginBTN:{
+  fontFamily:"IRANSansBold",
 }
   });
 
