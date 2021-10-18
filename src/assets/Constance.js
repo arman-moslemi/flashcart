@@ -3,9 +3,9 @@ import { responsiveFontSize } from "react-native-responsive-dimensions";
 
 //myFonts
 const myFontFamily = {
-  Bold: "RadomirTinkov-Gilroy-Bold",
+  Bold: "IRANSansBold",
   regularItalic: "RadomirTinkov-Gilroy-RegularItalic",
-  MediumItalic: "RadomirTinkov-Gilroy-MediumItalic",
+  Medium: "IRANSans",
   UltraLight: "RadomirTinkov-Gilroy-UltraLight",
 }
 
@@ -27,20 +27,20 @@ export const myFontStyle = {
     fontFamily: myFontFamily.Bold,
     fontSize: responsiveFontSize(3),
   },
-  smallRegularItalic: {
+  smallRegular: {
     fontFamily: myFontFamily.regularItalic,
     fontSize: responsiveFontSize(1),
   },
-  mediumRegularItalic: {
-    fontFamily: myFontFamily.regularItalic,
+  mediumRegular: {
+    fontFamily: myFontFamily.Medium,
     fontSize: responsiveFontSize(1.5),
   },
-  normalRegularItalic: {
-    fontFamily: myFontFamily.regularItalic,
+  normalRegular: {
+    fontFamily: myFontFamily.Medium,
     fontSize: responsiveFontSize(1.75),
   },
-  largRegularItalic: {
-    fontFamily: myFontFamily.regularItalic,
+  largeRegular: {
+    fontFamily: myFontFamily.Medium,
     fontSize: responsiveFontSize(2),
   },
   smallUltraLight: {

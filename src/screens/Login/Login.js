@@ -77,7 +77,7 @@ return (
              buttonContainer={styles.button}
 
              text={"ورود"}
-            
+
 
              ></Button>
 
@@ -126,14 +126,14 @@ borderBottomWidth:1,
 // width:'85%',
 borderColor:Colors.yellow,
 borderStyle:"dashed",
-fontFamily:"IRANSansBold",
+// fontFamily:"IRANSansBold",
 
 },
 forget2:{
 color:Colors.yellow,
 ...myFontStyle.mediumBold,
 marginTop:responsiveHeight(2),
-fontFamily:"IRANSansBold",
+// fontFamily:"IRANSansBold",
 
 },
 child : {
@@ -160,7 +160,7 @@ loginTitle:{
 ...myFontStyle.largBold,
 marginTop:responsiveHeight(3),
 // fontWeight:"bold",
-fontFamily: "IRANSansBold",
+// fontFamily: "IRANSansBold",
 },
 loginView:{
   // width:responsiveWidth(80),
@@ -175,10 +175,12 @@ textInputLogin:{
 // borderBottomColor:"#ffb921",
 // borderBottomWidth:2,
 // width:"100%",
-fontFamily:"IRANSans",
+// fontFamily:"IRANSans",
+...myFontStyle.largeRegular,
+
 },
 loginBTN:{
-  fontFamily:"IRANSansBold",
+  ...myFontStyle.largBold,
 }
   });
 

@@ -24,7 +24,7 @@ const SplashScreen = ({ navigation }) => {
     // }
     // else{
 
-      navigation.navigate('Home');
+      navigation.navigate('Login');
     // }
 
 
