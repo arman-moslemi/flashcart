@@ -29,6 +29,7 @@
  import ChangePass from './src/screens/Login/ChangePass';
 
 import Home from './src/screens/Home/Home';
+import HomeTest from './src/screens/Home/HomeTest';
 //  import {store, persist} from './store/redux/stores/store';
 //  import {Provider} from 'react-redux';
 //  import {PersistGate} from 'redux-persist/integmration/react';
@@ -82,6 +83,12 @@ import Home from './src/screens/Home/Home';
        <Stack.Screen name="ForgetPass" component={ForgetPass} />
        <Stack.Screen name="Home" component={Home} />
 
+       <Stack.Screen name="HomeTest" component={HomeTest} />
+       {/* <Stack.Screen name="MainPage" component={MainPage} />
+       <Stack.Screen name="AzmoonAbout" component={AzmoonAbout} />
+       <Stack.Screen name="AzmoonDetail" component={AzmoonDetail} />
+       <Stack.Screen name="AzmoonResult" component={AzmoonResult} />
+  */}
 
      </Stack.Navigator>
        </NavigationContainer>
