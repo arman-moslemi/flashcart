@@ -25,9 +25,10 @@
  import Login from './src/screens/Login/Login';
  import SignUp from './src/screens/Login/SignUp';
 
+import Home from './src/screens/Home/Home';
 //  import {store, persist} from './store/redux/stores/store';
 //  import {Provider} from 'react-redux';
-//  import {PersistGate} from 'redux-persist/integration/react';
+//  import {PersistGate} from 'redux-persist/integmration/react';
  const Stack = createStackNavigator();
 
  // const StackNavigator = () => {
@@ -73,6 +74,7 @@
        <Stack.Screen name="SplashScreen" component={SplashScreen} />
        <Stack.Screen name="Login" component={Login} />
        <Stack.Screen name="SignUp" component={SignUp} />
+       <Stack.Screen name="Home" component={Home} />
        {/* <Stack.Screen name="MainPage" component={MainPage} />
        <Stack.Screen name="AzmoonAbout" component={AzmoonAbout} />
        <Stack.Screen name="AzmoonDetail" component={AzmoonDetail} />
