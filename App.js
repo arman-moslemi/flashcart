@@ -24,6 +24,7 @@
 //  import MainPage from './src/screens/MainPage';
  import Login from './src/screens/Login/Login';
 import Home from './src/screens/Home/Home';
+import HomeTest from './src/screens/Home/HomeTest';
 //  import {store, persist} from './store/redux/stores/store';
 //  import {Provider} from 'react-redux';
 //  import {PersistGate} from 'redux-persist/integmration/react';
@@ -72,6 +73,7 @@ import Home from './src/screens/Home/Home';
        <Stack.Screen name="SplashScreen" component={SplashScreen} />
        <Stack.Screen name="Login" component={Login} />
        <Stack.Screen name="Home" component={Home} />
+       <Stack.Screen name="HomeTest" component={HomeTest} />
        {/* <Stack.Screen name="MainPage" component={MainPage} />
        <Stack.Screen name="AzmoonAbout" component={AzmoonAbout} />
        <Stack.Screen name="AzmoonDetail" component={AzmoonDetail} />
