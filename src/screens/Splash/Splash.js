@@ -25,7 +25,7 @@ const SplashScreen = ({ navigation }) => {
     // else{
 
       // navigation.navigate('Login');
-      navigation.navigate('Home');
+      navigation.navigate('MainTabScreen');
     // }
 
 
