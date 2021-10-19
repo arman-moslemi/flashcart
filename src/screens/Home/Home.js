@@ -114,7 +114,7 @@ return (
      </View>
      <View style={styles.columnC}>
       <View style={styles.item1}>
-      <Image source={require('../../assets/images/slide3.png')} style={styles.miniImage}/>
+      <Image source={require('../../assets/images/slide2.png')} style={styles.miniImage}/>
       <LinearGradient
       colors={[
       'rgba(203, 203, 203, 0.2)',
