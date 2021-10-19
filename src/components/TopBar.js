@@ -12,7 +12,7 @@ import LinearGradient from 'react-native-linear-gradient';
 export const TopBar = props => {
  
   return (
-    <View style={styles.container}>
+    <View>
 
 
 

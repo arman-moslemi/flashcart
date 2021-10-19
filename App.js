@@ -32,6 +32,8 @@
 import Home from './src/screens/Home/Home';
 import HomeTest from './src/screens/Home/HomeTest';
 import MainTabScreen from './src/screens/customBottomTabs/MainTabScreen';
+import MainCategory from './src/screens/MainCategory/MainCategory';
+import SubCategory from './src/screens/SubCategory/SubCategory';
 //  import {store, persist} from './store/redux/stores/store';
 //  import {Provider} from 'react-redux';
 //  import {PersistGate} from 'redux-persist/integmration/react';
@@ -88,6 +90,8 @@ import MainTabScreen from './src/screens/customBottomTabs/MainTabScreen';
        {/* <Stack.Screen name="Home" component={Home} /> */}
 
        <Stack.Screen name="HomeTest" component={HomeTest} />
+       <Stack.Screen name="MainCategory" component={MainCategory} />
+       <Stack.Screen name="SubCategory" component={SubCategory} />
        {/* <Stack.Screen name="MainPage" component={MainPage} />
        <Stack.Screen name="AzmoonAbout" component={AzmoonAbout} />
        <Stack.Screen name="AzmoonDetail" component={AzmoonDetail} />

@@ -97,7 +97,7 @@ return (
       slideInterval = {5000}    //In Miliseconds
      />
      <View style={styles.customRowC}>
-     <Image source={require('../../assets/images/slide1.png')} style={styles.image}/>
+     <Image source={require('../../assets/images/slide4.png')} style={styles.image}/>
       <LinearGradient
       colors={[
       'rgba(203, 203, 203, 0.2)',
@@ -113,11 +113,37 @@ return (
       <Text style={styles.textOverlay}>پزشکی</Text>
      </View>
      <View style={styles.columnC}>
-      <View style={styles.item}>
+      <View style={styles.item1}>
       <Image source={require('../../assets/images/slide2.png')} style={styles.miniImage}/>
+      <LinearGradient
+      colors={[
+      'rgba(203, 203, 203, 0.2)',
+      'rgba(0, 0, 0, 0.2)',
+      ' rgba(0, 0, 0, 0.4)',
+      '#000'
+
+      ]}
+
+      style={styles.linearGradient2}
+      />
+      <Image source={require('../../assets/images/boardLogo.png')} style={styles.logoAbsolute2}/>
+      <Text style={styles.textOverlay2}>بورد</Text>
       </View>
-      <View style={styles.item}>
-      <Image source={require('../../assets/images/slide3.png')} style={styles.miniImage} />
+      <View style={styles.item2}>
+      <Image source={require('../../assets/images/slide2.png')} style={styles.miniImage} />
+      <LinearGradient
+      colors={[
+      'rgba(203, 203, 203, 0.2)',
+      'rgba(0, 0, 0, 0.2)',
+      ' rgba(0, 0, 0, 0.4)',
+      '#000'
+
+      ]}
+
+      style={styles.linearGradient2}
+      />
+       <Image source={require('../../assets/images/dentalLogo.png')} style={styles.logoAbsolute2}/>
+      <Text style={styles.textOverlay2}>دندان پزشکی</Text>
       </View>
 
      </View>
@@ -142,7 +168,7 @@ const styles = StyleSheet.create({
   container: {flex:3,backgroundColor:"#fff"},
   parent : {
     marginTop:responsiveHeight(-5),
-    height : responsiveHeight(23),
+    height : responsiveHeight(20),
     width : '100%',
     transform : [ { scaleX : 1.5 } ],
     borderBottomStartRadius : 800,
@@ -158,41 +184,11 @@ child : {
     justifyContent : 'center',
 
 },
-login:{
-  position:"absolute",
-  top:responsiveHeight(8),
-  width:responsiveWidth(80),
-height:responsiveHeight(40),
-  left:responsiveWidth(10),
-  right:responsiveWidth(10),
-},
-loginTitle:{
- textAlign:"center",
- color: Colors.splashcolor,
 
-...myFontStyle.largBold,
-marginTop:responsiveHeight(3),
-fontWeight:"bold",
-},
-loginView:{
-  // width:responsiveWidth(80),
-  // flex: 1,
-  marginTop:responsiveHeight(3),
-
-  flexDirection: 'column',
-  justifyContent: 'center',
-  alignItems: 'center',
-},
-textInputLogin:{
-// borderBottomColor:"#ffb921",
-// borderBottomWidth:2,
-// width:"100%",
-
-}
-,customRow:{
+customRow:{
   flex:1, flexDirection:"row-reverse",
   position:"absolute",
-  top:responsiveHeight(5),
+  top:responsiveHeight(3),
   paddingRight:20,
   paddingLeft:20,
 },customRow2:{
@@ -250,7 +246,7 @@ backgroundColor: 'transparent',
 position: 'absolute',
 bottom: 15
 },bodyC:{
- marginTop:responsiveHeight(3),
+ marginTop:responsiveHeight(1),
  alignContent:"center",
 
 },pic:{
@@ -270,28 +266,17 @@ bottom: 15
   marginTop:responsiveHeight(1),
   },  
   linearGradient2: {
-    width:responsiveWidth(90),
+    width:responsiveWidth(43),
     height: 180,
     position: 'absolute',
     top:responsiveHeight(0),
     paddingLeft:responsiveWidth(0),
    paddingRight:responsiveWidth(0),
-   marginLeft:responsiveWidth(5),
-    marginRight:responsiveWidth(5),
+   marginLeft:responsiveWidth(0),
+    marginRight:responsiveWidth(0),
     borderRadius:10,
-    marginTop:responsiveHeight(1),
-    },  linearGradient3: {
-      width:responsiveWidth(90),
-      height: 180,
-      position: 'absolute',
-      top:responsiveHeight(0),
-      paddingLeft:responsiveWidth(0),
-     paddingRight:responsiveWidth(0),
-     marginLeft:responsiveWidth(5),
-      marginRight:responsiveWidth(5),
-      borderRadius:10,
-      marginTop:responsiveHeight(1),
-      },
+    marginTop:responsiveHeight(0),
+    }, 
   image: {
   width: responsiveWidth(90),
   height: 180,
@@ -301,7 +286,7 @@ bottom: 15
   marginLeft:20,
   marginRight:20,
   borderRadius:10,
-  marginTop:responsiveHeight(1),
+  marginTop:responsiveHeight(0.5),
   }
   ,logoAbsolute:{
     position:'absolute',
@@ -314,23 +299,48 @@ bottom: 15
     color:"#fff",
     fontSize:25,
     position:'absolute',
-    right:responsiveWidth(75),
+    right:responsiveWidth(78),
+    top:responsiveHeight(18),
+  },logoAbsolute2:{
+    position:'absolute',
+    width:60,
+    height:78,
+    top:responsiveHeight(12),
+    left:responsiveWidth(2),
+  },textOverlay2:{
+    fontFamily:"IRANSansBold",
+    color:"#fff",
+    fontSize:20,
+    position:'absolute',
+    right:responsiveWidth(3),
     top:responsiveHeight(17),
-  },columnC:{
+  }
+  ,columnC:{
     flex: 1,
     flexDirection: 'row',
     flexWrap: 'wrap',
     alignItems: 'flex-start',
     alignContent:'space-between',
-    top:responsiveHeight(26),
+    top:responsiveHeight(25.5),
     paddingRight:responsiveWidth(5),
     paddingLeft:responsiveWidth(5), // if you want to fill rows left to right
   },
-  item: {
-    width: '48%', // is 50% of container width
+  item1: {
+    width: '47.5%',
+    textAlign:'right',
+    marginRight:'2%',
+    marginLeft:'0%',
+    // is 50% of container width
+  }, item2: {
+    width: '47.5%',
+    textAlign:'right',
+    marginRight:'0%',
+    marginLeft:'2%',
+    // is 50% of container width
   },miniImage:{
     width:'100%',
-    height:50,
+    height:180,
+    borderRadius:10,
 
   }
   
