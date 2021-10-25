@@ -25,7 +25,11 @@ const SplashScreen = ({ navigation }) => {
     // else{
 
       // navigation.navigate('Login');
+<<<<<<< HEAD
       navigation.navigate('SubCategory');
+=======
+      navigation.navigate('MainTabScreen');
+>>>>>>> f573792bff8af1cda22c55afa0d30581f9cd0fd0
     // }
 
 
