@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState,useEffect,useRef } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, TextInput,Image, AsyncStorage } from 'react-native';
 import { myFontStyle } from "../../assets/Constance";
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -8,8 +8,9 @@ import { responsiveFontSize, responsiveHeight, responsiveScreenWidth, responsive
 import LinearGradient from 'react-native-linear-gradient';
 import {Input} from '../../components/Input';
 import {Button} from '../../components/Button';
-
-import ViewSlider from 'react-native-view-slider'
+import DrawerContent from '../../components/drewerContent/DrawerContent';
+import Drawer from 'react-native-drawer'
+import ViewSlider from 'react-native-view-slider';
 // create a component
  const Home = ({navigation}) => {
 const [user,setUser]=useState("");
@@ -17,7 +18,7 @@ const [pass,setPass]=useState("");
 const [isLoading,setLoading]=useState(false);
 const [eror,SetEror]=useState(false);
 const [eror2,SetEror2]=useState(false);
-
+const drawers = useRef(null);
 
 
 //       const  mutLogin=async()=> {
@@ -48,20 +49,36 @@ const [eror2,SetEror2]=useState(false);
 //         };
 
 return (
+  <Drawer
+    // type="static"
+    type="overlay"
+    acceptDoubleTap ={true}
+        ref={drawers}
+        content={<DrawerContent />}
+        tapToClose={true}
+  openDrawerOffset={0.4} // 20% gap on the right side of drawer
+  panCloseMask={0.2}
+  closedDrawerOffset={-3}
+  styles={styles.drawerStyles}
+  tweenHandler={(ratio) => ({
+    main: { opacity:(2-ratio)/2 }
+  })}
+  side={"right"}
+        >
   <View style={styles.container}>
 
 
 <View style={styles.parent}>
 			<LinearGradient colors={['#16B2F5', '#0385BC']} style={styles.child}>
-  
+
       		</LinearGradient>
-          
+
       	</View>
-        <View style={styles.customRow}> 
+        <View style={styles.customRow}>
             <View style={{paddingLeft:20}}>
-             <TouchableOpacity>
+             <TouchableOpacity onPress={()=>drawers.current.open()}>
              <Icon name={"notes"} style={styles.menuIcon} size={50} color={"#fff"} style={{transform: [{rotateY: '180deg'}]}}/>
-              
+
              </TouchableOpacity>
              </View>
             <View style={{flex : 2,textAlign:"right"}}>
@@ -72,7 +89,7 @@ return (
                 <Icon name={"search"} color={"#16B2F5"} size={30}/>
               </TouchableOpacity>
               </View>
-           
+
        </View>
     <View style={styles.bodyC}>
     <ViewSlider style={{borderRadius:10}}
@@ -83,13 +100,13 @@ return (
             </View>
             <View style={styles.viewBox}><Image source={require('../../assets/images/slide1.png')} style={{borderRadius:10,height:180}}></Image></View>
             <View style={styles.viewBox}><Image source={require('../../assets/images/slide1.png')}style={{borderRadius:10,height:180}}></Image></View>
-          
+
          </>
       }
       style={styles.slider}     //Main slider container style
       height = {200}    //Height of your slider
       slideCount = {3}    //How many views you are adding to slide
-      dots = {true}     // Pagination dots visibility true for visibile 
+      dots = {true}     // Pagination dots visibility true for visibile
       dotActiveColor = '#FFCC00'     //Pagination dot active color
       dotInactiveColor = '#fff'    // Pagination do inactive color
       dotsContainerStyle={styles.dotContainer}     // Container style of the pagination dots
@@ -150,7 +167,7 @@ return (
 
     </View>
 
-    
+
 
 
 
@@ -160,6 +177,7 @@ return (
 
 
 </View>
+</Drawer>
 );
 };
 
@@ -184,7 +202,7 @@ child : {
     justifyContent : 'center',
 
 },
-
+drawerStyles: { shadowColor: '#000000', shadowOpacity: 0.8, shadowRadius: 3},
 customRow:{
   flex:1, flexDirection:"row-reverse",
   position:"absolute",
@@ -202,7 +220,7 @@ customRow:{
 
 }
 ,menuIcon:{
- 
+
 }
 ,menuTitle:{
   fontFamily:"IRANSansBold",
@@ -223,7 +241,7 @@ customRow:{
   shadowOffset: { width: 5, height: 2},
   shadowRadius: 50,
   elevation: 7,
-  
+
 } , viewBox: {
   paddingHorizontal: 20,
   justifyContent: 'center',
@@ -264,7 +282,7 @@ bottom: 15
   marginRight:responsiveWidth(5),
   borderRadius:10,
   marginTop:responsiveHeight(1),
-  },  
+  },
   linearGradient2: {
     width:responsiveWidth(43),
     height: 180,
@@ -276,7 +294,7 @@ bottom: 15
     marginRight:responsiveWidth(0),
     borderRadius:10,
     marginTop:responsiveHeight(0),
-    }, 
+    },
   image: {
   width: responsiveWidth(90),
   height: 180,
@@ -343,7 +361,7 @@ bottom: 15
     borderRadius:10,
 
   }
-  
+
   });
 
   export default Home;

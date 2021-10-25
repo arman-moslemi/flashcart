@@ -8,5 +8,7 @@ export const Colors = {
     InputText:"#fcfcfc",
     error:"#cc1111",
     splashcolor:"#0385BC",
+    black:"#000",
+    gray:"#B2B2B2"
 
   }

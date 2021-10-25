@@ -25,11 +25,11 @@ export const myFontStyle = {
   },
   largBold: {
     fontFamily: myFontFamily.Bold,
-    fontSize: responsiveFontSize(3),
+    fontSize: responsiveFontSize(2),
   },
   smallRegular: {
     fontFamily: myFontFamily.regularItalic,
-    fontSize: responsiveFontSize(1),
+    fontSize: responsiveFontSize(1.25),
   },
   mediumRegular: {
     fontFamily: myFontFamily.Medium,

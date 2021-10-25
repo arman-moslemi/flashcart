@@ -1,7 +1,7 @@
 import React, { Component, useEffect } from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
-import { BackHandler ,View} from 'react-native';
+import { BackHandler ,View,StyleSheet} from 'react-native';
 // import { Strings } from '../../assets/Strings';
 import Snackbar from 'react-native-snackbar';
 import { useFocusEffect } from '@react-navigation/core';
@@ -10,11 +10,12 @@ import { Colors } from '../../assets/Colors';
 
 // import { menu } from './../../Constance';
 import { responsiveHeight, responsiveWidth } from 'react-native-responsive-dimensions';
-import TabBar from './TabBar';
+// import TabBar from './TabBar';
 
 import SignUp from '../Login/SignUp';
 import ForgetPass from '../Login/ForgetPass';
 import Home from '../Home/Home';
+import PanelMain from '../UserPanel/PanelMain';
 // import { envelope, envelopeBlue, groupTools, home, homeBlue, setting, settingBlue, userProfile, userProfileBlue,groupToolsActive } from '../../Constance';
 import Verification from '../Login/Verification';
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -68,7 +69,8 @@ function MainTabScreen() {
 
 
   return (
-    <Tab.Navigator
+
+      <Tab.Navigator
         barStyle={{ backgroundColor: Colors.white }}
     initialRouteName={"Home"}
     // tabBar={props => <TabBar {...props} />}
@@ -82,10 +84,10 @@ function MainTabScreen() {
         <Tab.Screen
         // name="home"
         name={"Home"}
-        component={SignUp}
+        component={Home}
         options={{          tabBarLabel: '',          tabBarIcon: ({ color }) => (            <Icon name="home" color={Colors.appColor} size={26} />          ),        }}      />
       <Tab.Screen
-        name="Verification" component={Verification}
+        name="PanelMain" component={PanelMain}
         options={{          tabBarLabel: '',          tabBarIcon: ({ color }) => (          <Icon name="person-outline" color={Colors.appColor} size={26} />         ),        }}      />
 
  {/*
@@ -101,6 +103,30 @@ function MainTabScreen() {
 
 
     </Tab.Navigator>
+
+
   );
 }
-export default MainTabScreen
+const styles = StyleSheet.create({
+
+
+  parent2 : {
+    flex:1,
+
+    height : responsiveHeight(20),
+    width : '100%',
+    transform : [ { scaleX : 1.5 } ],
+    borderBottomStartRadius : 800,
+    borderBottomEndRadius : 800,
+    overflow : 'hidden',
+},
+child : {
+    flex : 1,
+    transform : [ { scaleX : 1 } ],
+
+
+    alignItems : 'center',
+    justifyContent : 'center',
+
+}  });
+export default MainTabScreen;

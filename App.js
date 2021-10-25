@@ -28,6 +28,7 @@
  import ForgetPass from './src/screens/Login/ForgetPass';
  import ChangePass from './src/screens/Login/ChangePass';
  import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+ import { createDrawerNavigator } from '@react-navigation/drawer';
 
 import Home from './src/screens/Home/Home';
 import HomeTest from './src/screens/Home/HomeTest';
@@ -38,6 +39,8 @@ import SubCategory from './src/screens/SubCategory/SubCategory';
 //  import {Provider} from 'react-redux';
 //  import {PersistGate} from 'redux-persist/integmration/react';
  const Stack = createStackNavigator();
+ const Drawer = createDrawerNavigator();
+
  const Tab = createBottomTabNavigator();
 
  // const StackNavigator = () => {
@@ -99,6 +102,7 @@ import SubCategory from './src/screens/SubCategory/SubCategory';
   */}
 
      </Stack.Navigator>
+
        </NavigationContainer>
 //        </PersistGate>
 //  </Provider>
