@@ -32,6 +32,7 @@ import Home from './src/screens/Home/Home';
 import HomeTest from './src/screens/Home/HomeTest';
 import MainCategory from './src/screens/MainCategory/MainCategory';
 import SubCategory from './src/screens/SubCategory/SubCategory';
+import FlashCardView from './src/screens/FlashCard/FlashCardView';
 //  import {store, persist} from './store/redux/stores/store';
 //  import {Provider} from 'react-redux';
 //  import {PersistGate} from 'redux-persist/integmration/react';
@@ -88,6 +89,7 @@ import SubCategory from './src/screens/SubCategory/SubCategory';
        <Stack.Screen name="HomeTest" component={HomeTest} />
        <Stack.Screen name="MainCategory" component={MainCategory} />
        <Stack.Screen name="SubCategory" component={SubCategory} />
+       <Stack.Screen name="FlashCardView" component={FlashCardView} />
        {/* <Stack.Screen name="MainPage" component={MainPage} />
        <Stack.Screen name="AzmoonAbout" component={AzmoonAbout} />
        <Stack.Screen name="AzmoonDetail" component={AzmoonDetail} />
