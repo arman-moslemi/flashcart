@@ -58,5 +58,8 @@ export const myFontStyle = {
   largUltraLight: {
     fontFamily: myFontFamily.UltraLight,
     fontSize: responsiveFontSize(2),
+  },btnBold:{
+    fontFamily:myFontFamily.Bold,
+    fontSize:responsiveFontSize(2),
   }
 }

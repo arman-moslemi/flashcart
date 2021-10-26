@@ -27,9 +27,11 @@
  import Verification from './src/screens/Login/Verification';
  import ForgetPass from './src/screens/Login/ForgetPass';
  import ChangePass from './src/screens/Login/ChangePass';
+ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import Home from './src/screens/Home/Home';
 import HomeTest from './src/screens/Home/HomeTest';
+import MainTabScreen from './src/screens/customBottomTabs/MainTabScreen';
 import MainCategory from './src/screens/MainCategory/MainCategory';
 import SubCategory from './src/screens/SubCategory/SubCategory';
 import FlashCardView from './src/screens/FlashCard/FlashCardView';
@@ -37,6 +39,7 @@ import FlashCardView from './src/screens/FlashCard/FlashCardView';
 //  import {Provider} from 'react-redux';
 //  import {PersistGate} from 'redux-persist/integmration/react';
  const Stack = createStackNavigator();
+ const Tab = createBottomTabNavigator();
 
  // const StackNavigator = () => {
 
@@ -79,12 +82,13 @@ import FlashCardView from './src/screens/FlashCard/FlashCardView';
         headerShown: false
      }}>
        <Stack.Screen name="SplashScreen" component={SplashScreen} />
+       <Stack.Screen name="MainTabScreen" component={MainTabScreen} />
        <Stack.Screen name="Login" component={Login} />
        <Stack.Screen name="SignUp" component={SignUp} />
        <Stack.Screen name="Verification" component={Verification} />
        <Stack.Screen name="ChangePass" component={ChangePass} />
        <Stack.Screen name="ForgetPass" component={ForgetPass} />
-       <Stack.Screen name="Home" component={Home} />
+       {/* <Stack.Screen name="Home" component={Home} /> */}
 
        <Stack.Screen name="HomeTest" component={HomeTest} />
        <Stack.Screen name="MainCategory" component={MainCategory} />
