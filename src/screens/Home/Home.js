@@ -1,5 +1,5 @@
 import React, { useState,useEffect,useRef } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, TextInput,Image, AsyncStorage } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, TextInput,Image, AsyncStorage ,I18nManager} from 'react-native';
 import { myFontStyle } from "../../assets/Constance";
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
@@ -19,6 +19,7 @@ const [isLoading,setLoading]=useState(false);
 const [eror,SetEror]=useState(false);
 const [eror2,SetEror2]=useState(false);
 const drawers = useRef(null);
+I18nManager.forceRTL(true);
 
 
 //       const  mutLogin=async()=> {
@@ -113,7 +114,7 @@ return (
       autoSlide = {true}    //The views will slide automatically
       slideInterval = {5000}    //In Miliseconds
      />
-     <View style={styles.customRowC}>
+     <TouchableOpacity onPress={()=>navigation.navigate("SubCategory")} style={styles.customRowC}>
      <Image source={require('../../assets/images/slide4.png')} style={styles.image}/>
       <LinearGradient
       colors={[
@@ -128,7 +129,7 @@ return (
       />
       <Image source={require('../../assets/images/pezeshkiLogo.png')} style={styles.logoAbsolute}/>
       <Text style={styles.textOverlay}>پزشکی</Text>
-     </View>
+     </TouchableOpacity>
      <View style={styles.columnC}>
       <View style={styles.item1}>
       <Image source={require('../../assets/images/slide2.png')} style={styles.miniImage}/>

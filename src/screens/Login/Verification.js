@@ -115,7 +115,7 @@ width:'100%',
 
 },
 footer:{
-flexDirection:"row",
+flexDirection:"row-reverse",
 alignItems:'flex-start',
 borderBottomColor:Colors.yellow,
 borderStyle:'dashed',

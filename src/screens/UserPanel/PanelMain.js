@@ -61,7 +61,7 @@ const PanelMain = ({navigation}) => {
 
               {/* <Image style={drawerStyles.avatar} source={avatarWoman} /> */}
               <Image style={styles.avatar} source={require("../../assets/images/profi.png")} />
-              <TouchableOpacity style={styles.viewIconEdit}>
+              <TouchableOpacity onPress={()=>navigation.navigate('EditProfile')} style={styles.viewIconEdit}>
 
               <Icon name="create" color={Colors.white} size={20} style={{margin:5}}/>
               </TouchableOpacity>
@@ -71,15 +71,20 @@ const PanelMain = ({navigation}) => {
     </View>
     <View style={styles.subViewRead}>
 
-<Icon name="chevron-left" size={30} color={Colors.yellow}/>
 <View style={{flexDirection:'row'}}>
-<Text style={{...myFontStyle.largBold,color:Colors.black}}>گزارش مطالعه</Text>
 <Image source={require('../../assets/images/motalee.png')} style={{height:26,width:38}}/>
+<Text style={{...myFontStyle.largBold,color:Colors.black}}>گزارش مطالعه</Text>
 </View>
+<Icon name="chevron-left" size={30} color={Colors.yellow}/>
     </View>
         <View>
 
 <View style={styles.viewRowCart}>
+
+<LinearGradient colors={['#F7BB37', '#F69D0D']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={styles.rowCart}>
+<Icon name="favorite" color={Colors.white} size={50} style={{margin:5}}/>
+  <Text style={{...myFontStyle.largBold,color:Colors.white}}>کارت های برگزیده</Text>
+  </LinearGradient>
   <TouchableOpacity onPress={()=>navigation.navigate('AzmoonList')}>
 
 <LinearGradient  colors={['#16B2F5', '#068DF6']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={styles.rowCart}>
@@ -88,23 +93,18 @@ const PanelMain = ({navigation}) => {
   <Text style={{...myFontStyle.largBold,color:Colors.white}}>آزمون آفلاین</Text>
 </LinearGradient>
   </TouchableOpacity>
-<LinearGradient colors={['#F7BB37', '#F69D0D']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={styles.rowCart}>
-<Icon name="favorite" color={Colors.white} size={50} style={{margin:5}}/>
-  <Text style={{...myFontStyle.largBold,color:Colors.white}}>کارت های برگزیده</Text>
-  </LinearGradient>
-
 </View>
 <TouchableOpacity onPress={()=>setModalVisible(true)} >
 
 
   <LinearGradient colors={['#F7397F', '#E82B63']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={styles.rowCart3}>
 
-<Icon name="chevron-left" size={30} color={Colors.white}/>
 <View style={{flexDirection:'row',alignItems:'center'}}>
 
-<Text style={{...myFontStyle.largBold,color:Colors.white}}>افزودن کارت جدید</Text>
 <Icon name="note-add" size={50} color={Colors.white}/>
+<Text style={{...myFontStyle.largBold,color:Colors.white}}>افزودن کارت جدید</Text>
 </View>
+<Icon name="chevron-left" size={30} color={Colors.white}/>
 
     </LinearGradient>
 </TouchableOpacity>
@@ -266,9 +266,14 @@ const styles = StyleSheet.create({
   justifyContent:'space-between',margin:responsiveWidth(3),flexDirection:'row'},
   viewBody:{backgroundColor:"#FAFAFB",flex:12},
   subViewBody:{backgroundColor:"#fff",
+  elevation:5,
+  shadowOpacity:1,
+  shadowRadius:10,
+  shadowOffset:5,
+  borderRadius:5,
   height:responsiveHeight(12)
   ,alignItems:'flex-end',
-  flexDirection:'row',
+  flexDirection:'row-reverse',
   justifyContent:'flex-end',
   paddingBottom:responsiveHeight(2)},
   subViewRead:{
@@ -285,7 +290,7 @@ const styles = StyleSheet.create({
   justifyContent:'space-between',
   padding:responsiveWidth(5),
   paddingBottom:responsiveHeight(2)},
-  viewProfText:{marginRight:5,marginTop:responsiveHeight(1),alignItems:'flex-end'},
+  viewProfText:{marginRight:5,marginTop:responsiveHeight(1),alignItems:'flex-start'},
 viewIconEdit:{position:"absolute",bottom:0,right:20,backgroundColor:Colors.yellow,borderRadius:50},
 textInputLogin:{
   height:responsiveHeight(15),

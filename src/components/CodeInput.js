@@ -36,7 +36,7 @@ const CodeInputMain = React.forwardRef((props, ref) => {
         codeLength={4}
         cellBorderWidth={styles.cellBorderWidth.height}
         containerStyle={styles.containerStyle}
-        inputPosition="left"
+        inputPosition="center"
         codeInputStyle={[styles.inputStyle, hasError && styles.inputErrorStyle]}
         onFulfill={code => onFinished(code)}
       />
@@ -49,6 +49,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignSelf: 'center',
     alignItems: 'center',
+    flexDirection:"row-reverse",
     marginBottom: responsiveHeight(5), //is needed cause of CodeInput package default margin
     height:responsiveHeight(5) ,
   },

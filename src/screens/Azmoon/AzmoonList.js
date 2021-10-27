@@ -31,17 +31,17 @@ const AzmoonList = ({navigation}) => {
    const classes =()=>{
    return(
     <View style={styles.container}>
-<Text style={{...myFontStyle.UltraBold,color:Colors.appColor,marginRight:responsiveWidth(5)}}>لیست آزمون ها</Text>
+<Text style={{...myFontStyle.UltraBold,color:Colors.appColor,marginLeft:responsiveWidth(5)}}>لیست آزمون ها</Text>
     {/* <View style={styles.viewBody}> */}
 
-    <TouchableOpacity style={styles.subViewRead}>
+    <TouchableOpacity onPress={()=>navigation.navigate("Question")} style={styles.subViewRead}>
 
 <Icon name="chevron-left" size={30} color={Colors.yellow}/>
-<View style={{flexDirection:'row',justifyContent:"space-between",alignItems:"center"}}>
+<View style={{flexDirection:'row-reverse',justifyContent:"space-between",alignItems:"center"}}>
 <Text style={{...myFontStyle.normalRegular,color:Colors.gray}}>نمره کسب شده:15</Text>
 <Text style={{...myFontStyle.normalRegular,color:Colors.gray,marginHorizontal:10}}>پزشکی:اطفال</Text>
 <Text style={{...myFontStyle.largBold,color:Colors.text}}>عنوان آزمون</Text>
-<Image source={require('../../assets/images/RectangleGreen.png')} style={{ height:responsiveHeight(10),width:5,marginLeft:responsiveWidth(3),marginBottom:responsiveHeight(0.5)}}/>
+<Image source={require('../../assets/images/RectangleGreen.png')} style={{ height:responsiveHeight(10),width:5,marginRight:responsiveWidth(3),marginBottom:responsiveHeight(0.5)}}/>
 </View>
     {/* </View> */}
 
@@ -49,20 +49,20 @@ const AzmoonList = ({navigation}) => {
 
           </TouchableOpacity>
 
-          <View style={styles.subViewRead}>
+          <TouchableOpacity onPress={()=>navigation.navigate("Question")} style={styles.subViewRead}>
 
 <Icon name="chevron-left" size={30} color={Colors.yellow}/>
-<View style={{flexDirection:'row',justifyContent:"space-between",alignItems:"center"}}>
+<View style={{flexDirection:'row-reverse',justifyContent:"space-between",alignItems:"center"}}>
 <Text style={{...myFontStyle.normalRegular,color:Colors.gray}}>نمره کسب شده:15</Text>
 <Text style={{...myFontStyle.normalRegular,color:Colors.gray,marginHorizontal:10}}>پزشکی:اطفال</Text>
 <Text style={{...myFontStyle.largBold,color:Colors.text}}>عنوان آزمون</Text>
-<Image source={require('../../assets/images/RectangleRed.png')} style={{ height:responsiveHeight(10),width:5,marginLeft:responsiveWidth(3),marginBottom:responsiveHeight(0.5)}}/>
+<Image source={require('../../assets/images/RectangleRed.png')} style={{ height:responsiveHeight(10),width:5,marginRight:responsiveWidth(3),marginBottom:responsiveHeight(0.5)}}/>
 </View>
     {/* </View> */}
 
 
 
-          </View>
+          </TouchableOpacity>
     </View>
    )
    }
@@ -139,7 +139,7 @@ const styles = StyleSheet.create({
     margin:responsiveHeight(2),
   height:responsiveHeight(10)
   ,alignItems:'center',
-  flexDirection:'row',
+  flexDirection:'row-reverse',
   justifyContent:'space-between',
   padding:responsiveWidth(5),
   paddingBottom:responsiveHeight(2)},

@@ -12,139 +12,143 @@ import {TopBar} from '../../components/TopBar';
 // create a component
  const SubCategory = ({navigation}) => {
 
+    const classes =()=>{
+        return(
+            <View style={styles.container}>
 
+            <View style={styles.pageBody}>
+            <Text style={styles.pageHeader}>زنان</Text>
+            <ScrollView>
+            <View style={{flexDirection:'row-reverse',flex:1,marginTop:responsiveHeight(2)}}>
+            <View style={styles.col1Mini}>
+                <TouchableOpacity onPress={()=>navigation.navigate("FlashCardView")} style={styles.miniTouch}>
+                    <Text style={styles.innerText}>رفرنس ها</Text>
+                    <Icon name={"chevron-left"} size={35} color={'#FFC444'} style={styles.leftIcon}></Icon>
+                </TouchableOpacity>
+                </View>
+                <View style={styles.col1Mini}>
+                <TouchableOpacity style={styles.miniTouch}>
+                    <Text style={styles.innerText}>فلش کارت ها</Text>
+                    <Icon name={"chevron-left"} size={35} color={'#FFC444'} style={styles.leftIcon}></Icon>
+                </TouchableOpacity>
+                </View>
+
+            </View>
+            <View style={{flexDirection:'row-reverse',flex:1,marginTop:responsiveHeight(2)}}>
+            <View style={styles.col1Mini}>
+                <TouchableOpacity style={styles.miniTouch}>
+                    <Text style={styles.innerText}>سوالات بورد</Text>
+                    <Icon name={"chevron-left"} size={35} color={'#FFC444'} style={styles.leftIcon}></Icon>
+                </TouchableOpacity>
+                </View>
+                <View style={styles.col1Mini}>
+                <TouchableOpacity style={styles.miniTouch}>
+                    <Text style={styles.innerText}>سوالات ارتقا</Text>
+                    <Icon name={"chevron-left"} size={35} color={'#FFC444'} style={styles.leftIcon}></Icon>
+                </TouchableOpacity>
+                </View>
+
+            </View>
+            <View style={{flexDirection:'row-reverse',flex:1,marginTop:responsiveHeight(2)}}>
+            <View style={styles.col1Mini}>
+                <TouchableOpacity style={styles.miniTouch}>
+                    <Text style={styles.innerText}>آزمون ها</Text>
+                    <Icon name={"chevron-left"} size={35} color={'#FFC444'} style={styles.leftIcon}></Icon>
+                </TouchableOpacity>
+                </View>
+                <View style={styles.col1Mini}>
+                <TouchableOpacity style={styles.miniTouch}>
+                    <Text style={styles.innerText}>پادکست</Text>
+                    <Icon name={"chevron-left"} size={35} color={'#FFC444'} style={styles.leftIcon}></Icon>
+                </TouchableOpacity>
+                </View>
+
+            </View>
+            <View style={{flexDirection:'row-reverse',flex:1,marginTop:responsiveHeight(2)}}>
+            <View style={styles.col1Mini}>
+                <TouchableOpacity style={styles.miniTouch}>
+                    <Text style={styles.innerText}>رفرنس ها</Text>
+                    <Icon name={"chevron-left"} size={35} color={'#FFC444'} style={styles.leftIcon}></Icon>
+                </TouchableOpacity>
+                </View>
+                <View style={styles.col1Mini}>
+                <TouchableOpacity style={styles.miniTouch}>
+                    <Text style={styles.innerText}>فلش کارت</Text>
+                    <Icon name={"chevron-left"} size={35} color={'#FFC444'} style={styles.leftIcon}></Icon>
+                </TouchableOpacity>
+                </View>
+
+            </View>
+            <View style={{flexDirection:'row-reverse',flex:1,marginTop:responsiveHeight(2)}}>
+            <View style={styles.col1Mini}>
+                <TouchableOpacity style={styles.miniTouch}>
+                    <Text style={styles.innerText}>رفرنس ها</Text>
+                    <Icon name={"chevron-left"} size={35} color={'#FFC444'} style={styles.leftIcon}></Icon>
+                </TouchableOpacity>
+                </View>
+                <View style={styles.col1Mini}>
+                <TouchableOpacity style={styles.miniTouch}>
+                    <Text style={styles.innerText}>فلش کارت ها</Text>
+                    <Icon name={"chevron-left"} size={35} color={'#FFC444'} style={styles.leftIcon}></Icon>
+                </TouchableOpacity>
+                </View>
+
+            </View>
+            <View style={{flexDirection:'row-reverse',flex:1,marginTop:responsiveHeight(2)}}>
+            <View style={styles.col1Mini}>
+                <TouchableOpacity style={styles.miniTouch}>
+                    <Text style={styles.innerText}>سوالات بورد</Text>
+                    <Icon name={"chevron-left"} size={35} color={'#FFC444'} style={styles.leftIcon}></Icon>
+                </TouchableOpacity>
+                </View>
+                <View style={styles.col1Mini}>
+                <TouchableOpacity style={styles.miniTouch}>
+                    <Text style={styles.innerText}>سوالات ارتقا</Text>
+                    <Icon name={"chevron-left"} size={35} color={'#FFC444'} style={styles.leftIcon}></Icon>
+                </TouchableOpacity>
+                </View>
+
+            </View>
+            <View style={{flexDirection:'row-reverse',flex:1,marginTop:responsiveHeight(2)}}>
+            <View style={styles.col1Mini}>
+                <TouchableOpacity style={styles.miniTouch}>
+                    <Text style={styles.innerText}>آزمون ها</Text>
+                    <Icon name={"chevron-left"} size={35} color={'#FFC444'} style={styles.leftIcon}></Icon>
+                </TouchableOpacity>
+                </View>
+                <View style={styles.col1Mini}>
+                <TouchableOpacity style={styles.miniTouch}>
+                    <Text style={styles.innerText}>پادکست</Text>
+                    <Icon name={"chevron-left"} size={35} color={'#FFC444'} style={styles.leftIcon}></Icon>
+                </TouchableOpacity>
+                </View>
+
+            </View>
+            <View style={{flexDirection:'row-reverse',flex:1,marginTop:responsiveHeight(2)}}>
+            <View style={styles.col1Mini}>
+                <TouchableOpacity style={styles.miniTouch}>
+                    <Text style={styles.innerText}>رفرنس ها</Text>
+                    <Icon name={"chevron-left"} size={35} color={'#FFC444'} style={styles.leftIcon}></Icon>
+                </TouchableOpacity>
+                </View>
+                <View style={styles.col1Mini}>
+                <TouchableOpacity style={styles.miniTouch}>
+                    <Text style={styles.innerText}>فلش کارت</Text>
+                    <Icon name={"chevron-left"} size={35} color={'#FFC444'} style={styles.leftIcon}></Icon>
+                </TouchableOpacity>
+                </View>
+
+            </View>
+            </ScrollView>
+
+            </View>
+            </View>
+        )
+        }
 
 return (
-  <View style={styles.container}>
+    <TopBar Classes={classes}/>
 
-<TopBar/>
-<View style={styles.pageBody}>
-<Text style={styles.pageHeader}>زنان</Text>
-<ScrollView>
-<View style={{flexDirection:'row-reverse',flex:1,marginTop:responsiveHeight(2)}}>
-<View style={styles.col1Mini}>
-    <TouchableOpacity style={styles.miniTouch}>
-        <Text style={styles.innerText}>رفرنس ها</Text>
-        <Icon name={"chevron-left"} size={35} color={'#FFC444'} style={styles.leftIcon}></Icon>
-    </TouchableOpacity>
-    </View>
-    <View style={styles.col1Mini}>
-    <TouchableOpacity style={styles.miniTouch}>
-        <Text style={styles.innerText}>فلش کارت ها</Text>
-        <Icon name={"chevron-left"} size={35} color={'#FFC444'} style={styles.leftIcon}></Icon>
-    </TouchableOpacity>
-    </View>
-    
-</View>
-<View style={{flexDirection:'row-reverse',flex:1,marginTop:responsiveHeight(2)}}>
-<View style={styles.col1Mini}>
-    <TouchableOpacity style={styles.miniTouch}>
-        <Text style={styles.innerText}>سوالات بورد</Text>
-        <Icon name={"chevron-left"} size={35} color={'#FFC444'} style={styles.leftIcon}></Icon>
-    </TouchableOpacity>
-    </View>
-    <View style={styles.col1Mini}>
-    <TouchableOpacity style={styles.miniTouch}>
-        <Text style={styles.innerText}>سوالات ارتقا</Text>
-        <Icon name={"chevron-left"} size={35} color={'#FFC444'} style={styles.leftIcon}></Icon>
-    </TouchableOpacity>
-    </View>
-    
-</View>
-<View style={{flexDirection:'row-reverse',flex:1,marginTop:responsiveHeight(2)}}>
-<View style={styles.col1Mini}>
-    <TouchableOpacity style={styles.miniTouch}>
-        <Text style={styles.innerText}>آزمون ها</Text>
-        <Icon name={"chevron-left"} size={35} color={'#FFC444'} style={styles.leftIcon}></Icon>
-    </TouchableOpacity>
-    </View>
-    <View style={styles.col1Mini}>
-    <TouchableOpacity style={styles.miniTouch}>
-        <Text style={styles.innerText}>پادکست</Text>
-        <Icon name={"chevron-left"} size={35} color={'#FFC444'} style={styles.leftIcon}></Icon>
-    </TouchableOpacity>
-    </View>
-    
-</View>
-<View style={{flexDirection:'row-reverse',flex:1,marginTop:responsiveHeight(2)}}>
-<View style={styles.col1Mini}>
-    <TouchableOpacity style={styles.miniTouch}>
-        <Text style={styles.innerText}>رفرنس ها</Text>
-        <Icon name={"chevron-left"} size={35} color={'#FFC444'} style={styles.leftIcon}></Icon>
-    </TouchableOpacity>
-    </View>
-    <View style={styles.col1Mini}>
-    <TouchableOpacity style={styles.miniTouch}>
-        <Text style={styles.innerText}>فلش کارت</Text>
-        <Icon name={"chevron-left"} size={35} color={'#FFC444'} style={styles.leftIcon}></Icon>
-    </TouchableOpacity>
-    </View>
-    
-</View>
-<View style={{flexDirection:'row-reverse',flex:1,marginTop:responsiveHeight(2)}}>
-<View style={styles.col1Mini}>
-    <TouchableOpacity style={styles.miniTouch}>
-        <Text style={styles.innerText}>رفرنس ها</Text>
-        <Icon name={"chevron-left"} size={35} color={'#FFC444'} style={styles.leftIcon}></Icon>
-    </TouchableOpacity>
-    </View>
-    <View style={styles.col1Mini}>
-    <TouchableOpacity style={styles.miniTouch}>
-        <Text style={styles.innerText}>فلش کارت ها</Text>
-        <Icon name={"chevron-left"} size={35} color={'#FFC444'} style={styles.leftIcon}></Icon>
-    </TouchableOpacity>
-    </View>
-    
-</View>
-<View style={{flexDirection:'row-reverse',flex:1,marginTop:responsiveHeight(2)}}>
-<View style={styles.col1Mini}>
-    <TouchableOpacity style={styles.miniTouch}>
-        <Text style={styles.innerText}>سوالات بورد</Text>
-        <Icon name={"chevron-left"} size={35} color={'#FFC444'} style={styles.leftIcon}></Icon>
-    </TouchableOpacity>
-    </View>
-    <View style={styles.col1Mini}>
-    <TouchableOpacity style={styles.miniTouch}>
-        <Text style={styles.innerText}>سوالات ارتقا</Text>
-        <Icon name={"chevron-left"} size={35} color={'#FFC444'} style={styles.leftIcon}></Icon>
-    </TouchableOpacity>
-    </View>
-    
-</View>
-<View style={{flexDirection:'row-reverse',flex:1,marginTop:responsiveHeight(2)}}>
-<View style={styles.col1Mini}>
-    <TouchableOpacity style={styles.miniTouch}>
-        <Text style={styles.innerText}>آزمون ها</Text>
-        <Icon name={"chevron-left"} size={35} color={'#FFC444'} style={styles.leftIcon}></Icon>
-    </TouchableOpacity>
-    </View>
-    <View style={styles.col1Mini}>
-    <TouchableOpacity style={styles.miniTouch}>
-        <Text style={styles.innerText}>پادکست</Text>
-        <Icon name={"chevron-left"} size={35} color={'#FFC444'} style={styles.leftIcon}></Icon>
-    </TouchableOpacity>
-    </View>
-    
-</View>
-<View style={{flexDirection:'row-reverse',flex:1,marginTop:responsiveHeight(2)}}>
-<View style={styles.col1Mini}>
-    <TouchableOpacity style={styles.miniTouch}>
-        <Text style={styles.innerText}>رفرنس ها</Text>
-        <Icon name={"chevron-left"} size={35} color={'#FFC444'} style={styles.leftIcon}></Icon>
-    </TouchableOpacity>
-    </View>
-    <View style={styles.col1Mini}>
-    <TouchableOpacity style={styles.miniTouch}>
-        <Text style={styles.innerText}>فلش کارت</Text>
-        <Icon name={"chevron-left"} size={35} color={'#FFC444'} style={styles.leftIcon}></Icon>
-    </TouchableOpacity>
-    </View>
-    
-</View>
-</ScrollView>
-
-</View>
-</View>
 );
 };
 
@@ -162,7 +166,7 @@ const styles = StyleSheet.create({
       paddingBottom:responsiveHeight(2),
       paddingLeft:responsiveWidth(6),
   },
- 
+
 
 innerText:{
     ...myFontStyle.normalRegular,
@@ -170,13 +174,13 @@ innerText:{
     fontSize:23,
 },miniBox:{
     backgroundColor:'#fff',
-  
-  
-   
+
+
+
 },col1Mini:{
     width:'48%',marginRight:'2%',
     flex:1,flexDirection:'column',
-  marginBottom:responsiveHeight(0.5),  
+  marginBottom:responsiveHeight(0.5),
 },
 miniTouch:{
     backgroundColor:'#fff',

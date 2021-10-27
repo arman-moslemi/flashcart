@@ -63,7 +63,7 @@ return (
         <View style={styles.loginView}>
           <Input  isIconLeft={"phone-android"} placeholder="شماره تماس خود را وارد نمائید" containerStyle={styles.textInputLogin} onChangeText={(ss)=>setUser(ss)} />
           <Input isPassword={true} ErrorText={eror?"لطفا موارد را وارد نمائید":""} placeholder="رمز عبور خود را را وارد نمائید" onChangeText={(ss)=>setPass(ss)} containerStyle={styles.textInputLogin} />
-          <View style={{alignItems:'flex-end'}}>
+          <View style={{alignItems:'flex-start'}}>
 <TouchableOpacity onPress={()=>  navigation.navigate("ForgetPass")} style={styles.ViewFooter}>
 
   <Text style={styles.forget} >فراموشی رمز عبور</Text>
@@ -112,7 +112,7 @@ width:'100%',
 
 },
 footer:{
-flexDirection:"row",
+flexDirection:"row-reverse",
 alignItems:'flex-start',
 borderBottomColor:Colors.yellow,
 borderStyle:'dashed',

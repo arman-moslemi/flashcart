@@ -66,7 +66,7 @@ return (
           <Input  isIconLeft={"credit-card"} placeholder="کدملی خود را واردکنید" containerStyle={styles.textInputLogin} onChangeText={(ss)=>setUser(ss)} />
           <Input  isIconLeft={"phone-android"} placeholder="شماره تماس خود را وارد نمائید" containerStyle={styles.textInputLogin} onChangeText={(ss)=>setUser(ss)} />
           <Input isIconLeft={"remove-red-eye"} ErrorText={eror?"لطفا موارد را وارد نمائید":""} placeholder="رمز عبور خود را را وارد نمائید" onChangeText={(ss)=>setPass(ss)} containerStyle={styles.textInputLogin} />
-          <View style={{alignItems:'flex-end'}}>
+          <View style={{alignItems:'flex-start'}}>
 
         <Button
            onPress={()=>navigation.navigate("Verification")}
@@ -111,8 +111,8 @@ const styles = StyleSheet.create({
 
   },
   footer:{
-  flexDirection:"row",
-  alignItems:'flex-start',
+  flexDirection:"row-reverse",
+  alignItems:'flex-end',
   borderBottomColor:Colors.yellow,
   borderStyle:'dashed',
 

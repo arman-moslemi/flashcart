@@ -13,151 +13,156 @@ import Box1 from '../../assets/images/box1';
 import Svg, { Path } from 'react-native-svg';
 // create a component
  const FlashCardView = ({navigation}) => {
- 
+
     const [isModalVisible, setModalVisible] = useState(false);
-  
+
     const toggleModal = () => {
      setModalVisible(!isModalVisible);
     };
-    
+
     const closeModal=()=>{
       setModalVisible(!isModalVisible);
     }
     const [isModalVisible2, setModalVisible2] = useState(false);
-  
+
     const toggleModal2 = () => {
      setModalVisible2(!isModalVisible2);
     };
-    
+
     const closeModal2=()=>{
       setModalVisible2(!isModalVisible2);
     }
-return (
-    
-  <View style={styles.container}>
-<TopBar/>
-<View style={{padding:10,flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',}}>
-    <View style={styles.flashCardBox}>
-    <View style={styles.yellowBox}>
-      <View style={{width:responsiveWidth(38),height:5}}>
-        <TouchableOpacity style={styles.nextBtn}  onPress={toggleModal}>
-          <Icon name={"chevron-right"} color={'#fff'} size={30} style={{position:'absolute'}}></Icon>
-          <Text style={styles.nextBtnText}>بعدی</Text>
-        </TouchableOpacity>
-        <Modal isVisible={isModalVisible} onBackdropPress={closeModal} style={{justifyContent:'center',alignItems:'center'}}>
-        <View style={styles.rateModal}>
-          <Text style={styles.modalTitle}>نظر خود را راجع به این سوال ثبت نمایید.</Text>
-          <Rating
-            type='star'
-            ratingCount={5}
-            imageSize={40}
-            showRating
-            ratingTextColor={'#fff'}
-            ratingColor={'#FFC444'}
-          />
-         
-          <View style={{flexDirection:'row-reverse',marginTop:responsiveHeight(3)}}>
-            <View style={{width:'70%'}}>
-            <LinearGradient colors={['#CC1111', '#F43535'] }start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={{borderRadius:3,padding:5}}>
-
-
-              <TouchableOpacity style={styles.notShowBtn}>
-                <Text style={styles.modalBtnText}>تمایلی به ثبت نظر ندارم،دیگر نمایش نده.</Text>
+    const classes =()=>{
+      return(
+        <View style={styles.container}>
+        <View style={{padding:10,flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',}}>
+            <View style={styles.flashCardBox}>
+            <View style={styles.yellowBox}>
+              <View style={{width:responsiveWidth(38),height:5}}>
+                <TouchableOpacity style={styles.nextBtn}  onPress={toggleModal}>
+                  <Icon name={"chevron-right"} color={'#fff'} size={30} style={{position:'absolute'}}></Icon>
+                  <Text style={styles.nextBtnText}>بعدی</Text>
                 </TouchableOpacity>
-                </LinearGradient>
+                <Modal isVisible={isModalVisible} onBackdropPress={closeModal} style={{justifyContent:'center',alignItems:'center'}}>
+                <View style={styles.rateModal}>
+                  <Text style={styles.modalTitle}>نظر خود را راجع به این سوال ثبت نمایید.</Text>
+                  <Rating
+                    type='star'
+                    ratingCount={5}
+                    imageSize={40}
+                    showRating
+                    ratingTextColor={'#fff'}
+                    ratingColor={'#FFC444'}
+                  />
+
+                  <View style={{flexDirection:'row-reverse',marginTop:responsiveHeight(3)}}>
+                    <View style={{width:'70%'}}>
+                    <LinearGradient colors={['#CC1111', '#F43535'] }start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={{borderRadius:3,padding:5}}>
+
+
+                      <TouchableOpacity style={styles.notShowBtn}>
+                        <Text style={styles.modalBtnText}>تمایلی به ثبت نظر ندارم،دیگر نمایش نده.</Text>
+                        </TouchableOpacity>
+                        </LinearGradient>
+                    </View>
+                    <View style={{width:'2%'}}></View>
+                   <View style={{width:'28%'}}>
+                   <LinearGradient colors={['#3AC3FE', '#0284BB'] }start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={{borderRadius:3,padding:5}}>
+
+
+          <TouchableOpacity style={styles.notShowBtn}>
+          <Text style={styles.modalBtnText}>ثبت نظر</Text>
+          </TouchableOpacity>
+          </LinearGradient>
+                    </View>
+                </View>
+                </View>
+              </Modal>
+              </View>
+              <View style={{justifyContent:'center',alignItems:'center'}}>
+                <TouchableOpacity style={styles.favoriteBtn}>
+                  <Icon name={"favorite-border"} size={40} color={'#ffc444'}></Icon>
+                </TouchableOpacity>
+              </View>
+              <View style={{width:responsiveWidth(38),height:5}}>
+              <TouchableOpacity style={styles.nextBtn}>
+                  <Icon name={"chevron-left"} color={'#fff'} size={30} style={{position:'absolute',right:responsiveWidth(3)}}></Icon>
+                  <Text style={styles.preBtnText}>قبلی</Text>
+                </TouchableOpacity>
+              </View>
             </View>
-            <View style={{width:'2%'}}></View>
-           <View style={{width:'28%'}}>
-           <LinearGradient colors={['#3AC3FE', '#0284BB'] }start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={{borderRadius:3,padding:5}}>
+            <View style={styles.textBoxCard}>
+            <Text style={styles.questionText}>
+            لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است  </Text>
 
-
-  <TouchableOpacity style={styles.notShowBtn}>
-  <Text style={styles.modalBtnText}>ثبت نظر</Text>
-  </TouchableOpacity>
-  </LinearGradient>
             </View>
-        </View>
-        </View>
-      </Modal>
-      </View>
-      <View style={{justifyContent:'center',alignItems:'center'}}>
-        <TouchableOpacity style={styles.favoriteBtn}>
-          <Icon name={"favorite-border"} size={40} color={'#ffc444'}></Icon>
-        </TouchableOpacity>
-      </View>
-      <View style={{width:responsiveWidth(38),height:5}}>
-      <TouchableOpacity style={styles.nextBtn}>
-          <Icon name={"chevron-left"} color={'#fff'} size={30} style={{position:'absolute',right:responsiveWidth(3)}}></Icon>
-          <Text style={styles.preBtnText}>قبلی</Text>
-        </TouchableOpacity>
-      </View>
-    </View>
-    <View style={styles.textBoxCard}>
-    <Text style={styles.questionText}>
-    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است  </Text>
-    
-    </View>
-   <View style={{position:'absolute',bottom:responsiveHeight(2),left:responsiveWidth(5)}}>
-   <TouchableOpacity style={styles.seeAnswerBtn}>
-      <Text style={styles.seeAnswer}>مشاهده پاسخ</Text>
-    </TouchableOpacity>
-   </View>
-    </View>
-   
-</View>
+           <View style={{position:'absolute',bottom:responsiveHeight(2),left:responsiveWidth(5)}}>
+           <TouchableOpacity style={styles.seeAnswerBtn}>
+              <Text style={styles.seeAnswer}>مشاهده پاسخ</Text>
+            </TouchableOpacity>
+           </View>
+            </View>
 
-<View style={{padding:10,flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',}}>
-    <View style={styles.flashCardBox2}>
-    <View style={styles.yellowBox}>
-      <View style={{width:responsiveWidth(90),height:5}}>
-
-         <Text style={styles.answerTitle}>پاسخ</Text>
-    
-      </View>
-   
-     
-    </View>
-    <View style={styles.textBoxCard}>
-    <Text style={styles.questionText}>
-    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است  </Text>
-    
-    </View>
-   <View style={{position:'absolute',bottom:responsiveHeight(2),right:responsiveWidth(5)}}>
-   <TouchableOpacity style={styles.seeAnswerBtn}>
-      <Text style={styles.seeAnswer}>توضیح بیشتر</Text>
-    </TouchableOpacity>
-   </View>
-    </View>
-   
-</View>
-<View style={{paddingRight:responsiveWidth(5),flexDirection:'row-reverse',marginTop:10}}>
-   <View style={{width:'50%'}}>
-   <TouchableOpacity style={styles.returnFirst2} onPress={toggleModal2}>
-   <Icon name={"add"} color={'#3AC3FE'} size={25} style={{position:'absolute',right:responsiveWidth(1)}}></Icon>
-     <Text style={styles.addLitnearText}>افزودن به جعبه لایتنر</Text>
-   
-   </TouchableOpacity>
-   <Modal isVisible={isModalVisible2} onBackdropPress={closeModal2} style={{justifyContent:'center',alignItems:'center'}}>
-        <View style={styles.rateModal}>
-          <Text style={styles.modalTitle}>نظر خود را راجع به این سوال ثبت نمایید.</Text>
-      
-        
         </View>
-      </Modal>
-  </View>
-   <View style={{width:'50%'}}>
-   <TouchableOpacity style={styles.returnFirst}>
-     
-     <Text style={styles.returnText}>بازگشت به اولین سوال</Text>
-     <Icon name={"chevron-left"} color={'#3AC3FE'} size={30} style={{position:'absolute'}}></Icon>
-   </TouchableOpacity>
-   </View>
-</View>
-</View>
+
+        <View style={{padding:10,flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',}}>
+            <View style={styles.flashCardBox2}>
+            <View style={styles.yellowBox}>
+              <View style={{width:responsiveWidth(90),height:5}}>
+
+                 <Text style={styles.answerTitle}>پاسخ</Text>
+
+              </View>
+
+
+            </View>
+            <View style={styles.textBoxCard}>
+            <Text style={styles.questionText}>
+            لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است  </Text>
+
+            </View>
+           <View style={{position:'absolute',bottom:responsiveHeight(2),right:responsiveWidth(5)}}>
+           <TouchableOpacity style={styles.seeAnswerBtn}>
+              <Text style={styles.seeAnswer}>توضیح بیشتر</Text>
+            </TouchableOpacity>
+           </View>
+            </View>
+
+        </View>
+        <View style={{paddingRight:responsiveWidth(5),flexDirection:'row-reverse',marginTop:10}}>
+           <View style={{width:'50%'}}>
+           <TouchableOpacity style={styles.returnFirst2} onPress={toggleModal2}>
+           <Icon name={"add"} color={'#3AC3FE'} size={25} style={{position:'absolute',right:responsiveWidth(1)}}></Icon>
+             <Text style={styles.addLitnearText}>افزودن به جعبه لایتنر</Text>
+
+           </TouchableOpacity>
+           <Modal isVisible={isModalVisible2} onBackdropPress={closeModal2} style={{justifyContent:'center',alignItems:'center'}}>
+                <View style={styles.rateModal}>
+                  <Text style={styles.modalTitle}>نظر خود را راجع به این سوال ثبت نمایید.</Text>
+
+
+                </View>
+              </Modal>
+          </View>
+           <View style={{width:'50%'}}>
+           <TouchableOpacity style={styles.returnFirst}>
+
+             <Text style={styles.returnText}>بازگشت به اولین سوال</Text>
+             <Icon name={"chevron-left"} color={'#3AC3FE'} size={30} style={{position:'absolute'}}></Icon>
+           </TouchableOpacity>
+           </View>
+        </View>
+        </View>
+      )
+      }
+return (
+
+  <TopBar Classes={classes}/>
+
 );
 };
 
@@ -167,7 +172,7 @@ const styles = StyleSheet.create({
   flashCardBox:{
     backgroundColor:'#fff',
     borderRadius:3,
-   
+
     height:responsiveHeight(30),
     width:responsiveWidth(90),
     shadowColor: '#878B92',
@@ -179,7 +184,7 @@ const styles = StyleSheet.create({
   }, flashCardBox2:{
     backgroundColor:'#fff',
     borderRadius:3,
-   
+
     height:responsiveHeight(30),
     width:responsiveWidth(90),
     shadowColor: '#878B92',
@@ -192,7 +197,7 @@ const styles = StyleSheet.create({
   yellowBox:{
     backgroundColor:'#FFC444',
     height:responsiveHeight(4),
-   
+
     flexDirection:'row-reverse',
   },favoriteBtn:{
     height:65,
@@ -210,7 +215,7 @@ const styles = StyleSheet.create({
     left:responsiveWidth(8),
     top:responsiveHeight(-0.8),
     color:'#fff',
-   
+
   },nextBtn:{
     flexDirection:'row-reverse',
   }
@@ -220,7 +225,7 @@ const styles = StyleSheet.create({
     right:responsiveWidth(12),
     top:responsiveHeight(-0.8),
     color:'#fff',
-    
+
   },questionText:{
     ...myFontStyle.normalRegular,
     position:'absolute',
@@ -231,7 +236,7 @@ const styles = StyleSheet.create({
   marginRight:10,
     textAlign:'right',
   },textBoxCard:{
-    
+
   },seeAnswerBtn:{
     backgroundColor:'#fff',
     borderStyle:"dashed",
@@ -244,7 +249,7 @@ const styles = StyleSheet.create({
     justifyContent:'center',
     textAlign:'center',
     alignContent:'center',
-   
+
   }
   ,seeAnswer:{
     ...myFontStyle.btnBold,
@@ -282,7 +287,7 @@ borderRadius:3,
     ...myFontStyle.btnBold,
     position:'absolute',
     left:responsiveWidth(8),
-    
+
   },answerTitle:{
     ...myFontStyle.largBold,
     position:'absolute',
@@ -294,7 +299,7 @@ borderRadius:3,
     ...myFontStyle.btnBold,
     position:'absolute',
     right:responsiveWidth(8),
-  
+
   },rateModal:{
     width:responsiveWidth(80),
     marginTop:responsiveHeight(-20),

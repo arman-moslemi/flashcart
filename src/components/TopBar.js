@@ -1,5 +1,5 @@
 import React, {useState,useRef} from 'react';
-import {View, TextInput, Text, TouchableOpacity,TouchableWithoutFeedback} from 'react-native';
+import {View, TextInput, Text, TouchableOpacity,TouchableWithoutFeedback,I18nManager} from 'react-native';
 //import {create} from 'nahira-react-native-style-sheet';
 //import Icon from '@spark/assets/FontIcon';
 //import Modal from 'react-native-modal';
@@ -14,7 +14,7 @@ import { myFontStyle } from "../assets/Constance";
 
 export const TopBar = ({Classes}) => {
   const drawers = useRef(null);
-
+  I18nManager.forceRTL(true);
   return (
     <Drawer
     // type="static"
@@ -30,7 +30,6 @@ export const TopBar = ({Classes}) => {
   tweenHandler={(ratio) => ({
     main: { opacity:(2-ratio)/2 }
   })}
-  side={"right"}
         >
     <View >
 
@@ -77,7 +76,7 @@ const styles =StyleSheet.create({
     page: {
     flexDirection: 'column',
   },customRow:{
-    flex:1, flexDirection:"row-reverse",
+    flex:1, flexDirection:"row",
     position:"absolute",
     top:responsiveHeight(0),
     paddingRight:20,

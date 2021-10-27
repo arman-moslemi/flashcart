@@ -176,11 +176,11 @@ const styles =StyleSheet.create({
     height: '100%',
     justifyContent: 'center',
     alignItems: 'center',
-    marginLeft: 10,
+    marginRight: 10,
     paddingTop: 10,
     position: 'absolute',
     bottom: 0,
-    left: 0,
+    right: 0,
   },
   errorTextStyle: {
     // font: {
