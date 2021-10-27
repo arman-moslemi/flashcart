@@ -27,6 +27,10 @@ export const myFontStyle = {
     fontFamily: myFontFamily.Bold,
     fontSize: responsiveFontSize(2),
   },
+  UltraBold: {
+    fontFamily: myFontFamily.Bold,
+    fontSize: responsiveFontSize(3),
+  },
   smallRegular: {
     fontFamily: myFontFamily.regularItalic,
     fontSize: responsiveFontSize(1.25),

@@ -1,6 +1,7 @@
 export const Colors = {
     appColor: "#16B1F4",
     appColorDarker: "#0385BC",
+    text: "#311944",
     yellow: "#FFC444",
     white: "#ffffff",
     medium: "#453413",

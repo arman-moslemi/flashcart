@@ -171,14 +171,14 @@ loginView:{
   justifyContent: 'center',
   alignItems: 'center',
 },
-textInputLogin:{
-// borderBottomColor:"#ffb921",
-// borderBottomWidth:2,
-// width:"100%",
-// fontFamily:"IRANSans",
-...myFontStyle.largeRegular,
+  textInputLogin:{
+  // borderBottomColor:"#ffb921",
+  // borderBottomWidth:2,
+  // width:"100%",
+  // fontFamily:"IRANSans",
+  ...myFontStyle.largeRegular,
 
-},
+  },
 loginBTN:{
   ...myFontStyle.largBold,
 }

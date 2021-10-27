@@ -8,9 +8,26 @@ import { responsiveFontSize, responsiveHeight, responsiveScreenWidth, responsive
 import LinearGradient from 'react-native-linear-gradient';
 import { ScrollView } from 'react-native-gesture-handler';
 import {TopBar} from '../../components/TopBar';
+import Modal from "react-native-modal";
+import DropDownPicker from 'react-native-dropdown-picker';
+import {Input} from '../../components/Input';
+import { Button } from '../../components/Button';
 
 // create a component
 const PanelMain = ({navigation}) => {
+  const [modalVisible, setModalVisible] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [value, setValue] = useState(null);
+  const [items, setItems] = useState([
+    {label: 'Apple', value: 'apple'},
+    {label: 'Banana', value: 'banana'}
+  ]);
+  const [open2, setOpen2] = useState(false);
+  const [value2, setValue2] = useState(null);
+  const [items2, setItems2] = useState([
+    {label: 'Apple', value: 'apple'},
+    {label: 'Banana', value: 'banana'}
+  ]);
    const classes =()=>{
    return(
     <View style={styles.container}>
@@ -25,7 +42,7 @@ const PanelMain = ({navigation}) => {
 
 
     <View style={styles.viewProfText}>
-      <Text style={{...myFontStyle.largBold}}>امیرحسین مفید</Text>
+      <Text style={{...myFontStyle.largBold,color:Colors.black}}>امیرحسین مفید</Text>
       <Text style={{...myFontStyle.mediumRegular,color:Colors.gray}}>09398277376</Text>
       <Text style={{...myFontStyle.smallRegular,color:Colors.gray}}>مدت زمان باقی مانده از اشتراک شما:21روز</Text>
 
@@ -52,9 +69,139 @@ const PanelMain = ({navigation}) => {
     </TouchableOpacity>
 
     </View>
-    <View style={{backgroundColor:"#fff"}}>
+    <View style={styles.subViewRead}>
 
+<Icon name="chevron-left" size={30} color={Colors.yellow}/>
+<View style={{flexDirection:'row'}}>
+<Text style={{...myFontStyle.largBold,color:Colors.black}}>گزارش مطالعه</Text>
+<Image source={require('../../assets/images/motalee.png')} style={{height:26,width:38}}/>
+</View>
     </View>
+        <View>
+
+<View style={styles.viewRowCart}>
+  <TouchableOpacity onPress={()=>navigation.navigate('AzmoonList')}>
+
+<LinearGradient  colors={['#16B2F5', '#068DF6']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={styles.rowCart}>
+
+  <Icon name="sticky-note-2" color={Colors.white} size={50} style={{margin:5}}/>
+  <Text style={{...myFontStyle.largBold,color:Colors.white}}>آزمون آفلاین</Text>
+</LinearGradient>
+  </TouchableOpacity>
+<LinearGradient colors={['#F7BB37', '#F69D0D']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={styles.rowCart}>
+<Icon name="favorite" color={Colors.white} size={50} style={{margin:5}}/>
+  <Text style={{...myFontStyle.largBold,color:Colors.white}}>کارت های برگزیده</Text>
+  </LinearGradient>
+
+</View>
+<TouchableOpacity onPress={()=>setModalVisible(true)} >
+
+
+  <LinearGradient colors={['#F7397F', '#E82B63']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={styles.rowCart3}>
+
+<Icon name="chevron-left" size={30} color={Colors.white}/>
+<View style={{flexDirection:'row',alignItems:'center'}}>
+
+<Text style={{...myFontStyle.largBold,color:Colors.white}}>افزودن کارت جدید</Text>
+<Icon name="note-add" size={50} color={Colors.white}/>
+</View>
+
+    </LinearGradient>
+</TouchableOpacity>
+
+<Modal
+        // animationType="slide"
+        // transparent={true}
+        visible={modalVisible}
+        // onRequestClose={() => {
+        //   setModalVisible(!modalVisible);
+        // }}
+
+         backdropColor="black"
+        //  hasBackdrop={false}
+        onBackdropPress={() => setModalVisible(false)}
+
+        >
+
+<View       style={styles.modal}>
+  <View style={{flexDirection:'row',justifyContent:"space-between"}}>
+  <Icon name="close" size={20} color={Colors.yellow}/>
+  <Text style={{...myFontStyle.largBold,color:Colors.text}}>افزودن سوال(نکته)جدید</Text>
+
+  </View>
+  <View style={{flexDirection:'row',alignItems:"center",justifyContent:"space-between",margin:5}}>
+    <View>
+<DropDownPicker
+      open={open}
+      value={value}
+      items={items}
+      setOpen={setOpen}
+      setValue={setValue}
+      setItems={setItems}
+      // width={100}
+      style={{
+        borderColor:'#F1F1F1',
+        borderWidth:2,
+        // margin:5,
+        width:responsiveWidth(30)
+      }}
+      placeholder="انتخاب کنید"
+      zIndex={1000}
+      dropDownContainerStyle={{
+        borderColor:'#F1F1F1',
+        borderWidth:2,
+      borderRadius:5}}
+    />
+    </View>
+      <Text style={{...myFontStyle.mediumBold,color:Colors.text}}>دسته بندی اصلی فلش کارت</Text>
+  </View>
+  <View style={{flexDirection:'row',alignItems:"center",justifyContent:"space-between",margin:5}}>
+    <View>
+<DropDownPicker
+      open={open2}
+      value={value2}
+      items={items2}
+      setOpen={setOpen2}
+      setValue={setValue2}
+      setItems={setItems2}
+      // width={100}
+      style={{
+        borderColor:'#F1F1F1',
+        borderWidth:2,
+
+        // margin:5,
+        width:responsiveWidth(30),
+      }}
+      placeholder="انتخاب کنید"
+      zIndex={500}
+      dropDownContainerStyle={{
+        borderColor:'#F1F1F1',
+        borderWidth:2,
+      borderRadius:5}}
+    />
+    </View>
+    <Text style={{...myFontStyle.mediumBold,color:Colors.text}}>دسته بندی فرعی (نام درس)</Text>
+  </View>
+<View style={{flexDirection:'row',justifyContent:'space-between'}}>
+<Input   placeholder="متن سوال را وارد کنید"         multiline={true}         numberOfLines={4} inputStyle={styles.textInputLogin}containerStyle={{alignItems:"flex-end"}} />
+<Text style={{...myFontStyle.mediumBold,color:Colors.text}}>متن سوال:</Text>
+
+</View>
+<View style={{flexDirection:'row',justifyContent:'space-between'}}>
+<Input   placeholder="پاسخ را وارد کنید"         multiline={true}         numberOfLines={4} inputStyle={styles.textInputLogin}containerStyle={{alignItems:"flex-end"}} />
+<Text style={{...myFontStyle.mediumBold,color:Colors.text}}>پاسخ:</Text>
+
+</View>
+<View style={styles.button}>
+      <Text style={{...myFontStyle.mediumBold,color:Colors.white}}>
+        ذخیره
+      </Text>
+    </View>
+             </View>
+</Modal>
+        </View>
+
+
           </View>
 
 
@@ -81,6 +228,14 @@ const styles = StyleSheet.create({
     marginRight:responsiveWidth(5)
 
   },
+  button:{marginTop:responsiveHeight(2),width:responsiveWidth(30)
+    ,height:responsiveHeight(4),backgroundColor:Colors.yellow,
+  borderRadius:5,
+  alignItems:'center',
+  justifyContent:'center'
+
+  },
+
   txtEdit: {
     color: Colors.white,
     ...myFontStyle.mediumRegular,
@@ -92,10 +247,54 @@ const styles = StyleSheet.create({
     backgroundColor:Colors.yellow
 
   },
+  modal:{
+    // alignSelf: "center",
+    // marginTop: responsiveHeight(30),
+     height: responsiveHeight(63),
+    width: responsiveWidth(90),
+    // justifyContent: 'center',
+    // alignItems: 'flex-start',
+    backgroundColor: Colors.white,
+    borderRadius: 20,
+    padding:  responsiveWidth(4),
+  },
+  viewRowCart:{flexDirection:'row',justifyContent:'space-between',paddingLeft:responsiveWidth(3),paddingRight:responsiveWidth(3) },
+  viewRowCart2:{flexDirection:'row',justifyContent:'space-between',paddingLeft:responsiveWidth(3),paddingRight:responsiveWidth(3) },
+  rowCart:{height:responsiveHeight(15),width:responsiveWidth(45),borderRadius:5,alignItems:"center",justifyContent:'center'},
+  rowCart2:{height:responsiveHeight(11),borderRadius:5,alignItems:"center",justifyContent:'center',margin:responsiveWidth(3)},
+  rowCart3:{height:responsiveHeight(11),borderRadius:5,alignItems:"center",
+  justifyContent:'space-between',margin:responsiveWidth(3),flexDirection:'row'},
   viewBody:{backgroundColor:"#FAFAFB",flex:12},
-  subViewBody:{backgroundColor:"#fff",height:responsiveHeight(12),alignItems:'flex-end',flexDirection:'row',justifyContent:'flex-end',paddingBottom:responsiveHeight(2)},
+  subViewBody:{backgroundColor:"#fff",
+  height:responsiveHeight(12)
+  ,alignItems:'flex-end',
+  flexDirection:'row',
+  justifyContent:'flex-end',
+  paddingBottom:responsiveHeight(2)},
+  subViewRead:{
+    backgroundColor:"#fff",
+    elevation:5,
+    shadowOpacity:1,
+    shadowRadius:10,
+    shadowOffset:5,
+    borderRadius:5,
+    margin:responsiveHeight(2),
+  height:responsiveHeight(10)
+  ,alignItems:'center',
+  flexDirection:'row',
+  justifyContent:'space-between',
+  padding:responsiveWidth(5),
+  paddingBottom:responsiveHeight(2)},
   viewProfText:{marginRight:5,marginTop:responsiveHeight(1),alignItems:'flex-end'},
-viewIconEdit:{position:"absolute",bottom:0,right:20,backgroundColor:Colors.yellow,borderRadius:50}
+viewIconEdit:{position:"absolute",bottom:0,right:20,backgroundColor:Colors.yellow,borderRadius:50},
+textInputLogin:{
+  height:responsiveHeight(15),
+  ...myFontStyle.mediumRegular,
+  borderColor:"#F1F1F1",
+  borderWidth:2,
+alignItems:'flex-end'
+
+  },
 });
 
   export default PanelMain;

@@ -16,11 +16,15 @@ import SignUp from '../Login/SignUp';
 import ForgetPass from '../Login/ForgetPass';
 import Home from '../Home/Home';
 import PanelMain from '../UserPanel/PanelMain';
+import AzmoonList from '../Azmoon/AzmoonList';
 // import { envelope, envelopeBlue, groupTools, home, homeBlue, setting, settingBlue, userProfile, userProfileBlue,groupToolsActive } from '../../Constance';
 import Verification from '../Login/Verification';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import { createStackNavigator } from "@react-navigation/stack";
 
 const Tab = createMaterialBottomTabNavigator();
+const Stack = createStackNavigator();
+
 let backCounter = 0;
 function MainTabScreen() {
   function isSelectionModeEnabled() {
@@ -66,13 +70,29 @@ function MainTabScreen() {
         BackHandler.removeEventListener('hardwareBackPress', onBackPress);
     }, [isSelectionModeEnabled])
   );
+const StackNavigators = () => {
 
+   return (
+
+     <Stack.Navigator screenOptions={{
+       headerShown: false
+     }}>
+       <Stack.Screen name="PanelMain" component={PanelMain} />
+       {/* <Stack.Screen name="AzmoonList" component={AzmoonList} /> */}
+       {/* <Stack.Screen name="MainTabScreen" component={MainTabScreen} /> */}
+       {/* <Stack.Screen name="AzanPrayer" component={AzanPrayer} /> */}
+
+     </Stack.Navigator>
+   );
+ }
 
   return (
 
       <Tab.Navigator
         barStyle={{ backgroundColor: Colors.white }}
     initialRouteName={"Home"}
+    shifting={false}
+
     // tabBar={props => <TabBar {...props} />}
     >
       <Tab.Screen
@@ -85,10 +105,13 @@ function MainTabScreen() {
         // name="home"
         name={"Home"}
         component={Home}
-        options={{          tabBarLabel: '',          tabBarIcon: ({ color }) => (            <Icon name="home" color={Colors.appColor} size={26} />          ),        }}      />
+        options={{          tabBarLabel: '',    tabBarIcon: ({ color }) => (            <Icon name="home" color={Colors.appColor} size={26} />          ),        }}      />
       <Tab.Screen
-        name="PanelMain" component={PanelMain}
-        options={{          tabBarLabel: '',          tabBarIcon: ({ color }) => (          <Icon name="person-outline" color={Colors.appColor} size={26} />         ),        }}      />
+        name="StackNavigators" component={StackNavigators}
+        options={{          tabBarLabel: '',    tabBarIcon: ({ color }) => (    <Icon name="person-outline" color={Colors.appColor} size={26} />         ),           }}      />
+          {/* <Tab.Screen
+        name="AzmoonList" component={AzmoonList} shifting={false} disable={true}
+        options={{          tabBarLabel: '',                }}      /> */}
 
  {/*
 

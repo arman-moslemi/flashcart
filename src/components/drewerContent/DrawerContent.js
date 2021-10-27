@@ -23,22 +23,22 @@ import LinearGradient from 'react-native-linear-gradient';
 // create a component
 const DrawerContent = ({ navigation }) => {
   const [Name,setName]=useState("User");
-  const [phone,setPhone]=useState("");
-  useEffect(() => {
-    // getDriverStatisticsList();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  // const [phone,setPhone]=useState("");
+  // useEffect(() => {
+  //   // getDriverStatisticsList();
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
 
   const txtDarawerItem = [
-    { title: "راهنمای استفاده از اپلیکیشن", icon: "lightbulb", navigateName: "About" },
-    { title: "تیکت ها و پشتیبانی", icon: "textsms", navigateName: "Privacy" },
-    { title: "تخفیف ها", icon: "people-alt", navigateName: "" },
+    {id:1, title: "راهنمای استفاده از اپلیکیشن", icon: "lightbulb", navigateName: "About" },
+    { id:2,title: "تیکت ها و پشتیبانی", icon: "textsms", navigateName: "Privacy" },
+    {id:3, title: "تخفیف ها", icon: "people-alt", navigateName: "" },
     // { title: Strings.inviteFriends, icon: invitefriends, navigateName: "" },
-    { title: "درباره ما", icon: "people-alt", navigateName: "" },
-    { title: "تماس با ما", icon: "call", navigateName: "" },
-    { title: "قوانین و مقررات", icon: "sticky-note-2", navigateName: "" },
-    { title: "به روز رسانی", icon: "cached", navigateName: "" },
-    { title: "خروج", icon: "exit", navigateName: "" },
+    {id:4, title: "درباره ما", icon: "people-alt", navigateName: "" },
+    {id:5, title: "تماس با ما", icon: "call", navigateName: "" },
+    {id:6, title: "قوانین و مقررات", icon: "sticky-note-2", navigateName: "" },
+    {id:7, title: "به روز رسانی", icon: "cached", navigateName: "" },
+    { id:8,title: "خروج", icon: "exit", navigateName: "" },
     // { title: Strings.signIn, icon: exit, navigateName: "" },
   ]
 
@@ -50,7 +50,7 @@ const DrawerContent = ({ navigation }) => {
 
 
     <TouchableOpacity
-
+key={item.id}
       onPress={() =>  navigation.navigate(item.navigateName)}
 
       style={drawerStyles.subBtn}>
