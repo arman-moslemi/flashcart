@@ -21,14 +21,126 @@ return (
 <View style={styles.pageBody}>
 <Text style={styles.pageHeader}>زنان</Text>
 <ScrollView>
-<View style={styles.categoryRow}>
-        <TouchableOpacity style={styles.categoryCol1}>
-        <View style={styles.miniBox}>
-            <Text style={styles.innerText}>زنان</Text>
-        </View>
-        </TouchableOpacity>
-       
-        </View>
+<View style={{flexDirection:'row-reverse',flex:1,marginTop:responsiveHeight(2)}}>
+<View style={styles.col1Mini}>
+    <TouchableOpacity style={styles.miniTouch}>
+        <Text style={styles.innerText}>رفرنس ها</Text>
+        <Icon name={"chevron-left"} size={35} color={'#FFC444'} style={styles.leftIcon}></Icon>
+    </TouchableOpacity>
+    </View>
+    <View style={styles.col1Mini}>
+    <TouchableOpacity style={styles.miniTouch}>
+        <Text style={styles.innerText}>فلش کارت ها</Text>
+        <Icon name={"chevron-left"} size={35} color={'#FFC444'} style={styles.leftIcon}></Icon>
+    </TouchableOpacity>
+    </View>
+    
+</View>
+<View style={{flexDirection:'row-reverse',flex:1,marginTop:responsiveHeight(2)}}>
+<View style={styles.col1Mini}>
+    <TouchableOpacity style={styles.miniTouch}>
+        <Text style={styles.innerText}>سوالات بورد</Text>
+        <Icon name={"chevron-left"} size={35} color={'#FFC444'} style={styles.leftIcon}></Icon>
+    </TouchableOpacity>
+    </View>
+    <View style={styles.col1Mini}>
+    <TouchableOpacity style={styles.miniTouch}>
+        <Text style={styles.innerText}>سوالات ارتقا</Text>
+        <Icon name={"chevron-left"} size={35} color={'#FFC444'} style={styles.leftIcon}></Icon>
+    </TouchableOpacity>
+    </View>
+    
+</View>
+<View style={{flexDirection:'row-reverse',flex:1,marginTop:responsiveHeight(2)}}>
+<View style={styles.col1Mini}>
+    <TouchableOpacity style={styles.miniTouch}>
+        <Text style={styles.innerText}>آزمون ها</Text>
+        <Icon name={"chevron-left"} size={35} color={'#FFC444'} style={styles.leftIcon}></Icon>
+    </TouchableOpacity>
+    </View>
+    <View style={styles.col1Mini}>
+    <TouchableOpacity style={styles.miniTouch}>
+        <Text style={styles.innerText}>پادکست</Text>
+        <Icon name={"chevron-left"} size={35} color={'#FFC444'} style={styles.leftIcon}></Icon>
+    </TouchableOpacity>
+    </View>
+    
+</View>
+<View style={{flexDirection:'row-reverse',flex:1,marginTop:responsiveHeight(2)}}>
+<View style={styles.col1Mini}>
+    <TouchableOpacity style={styles.miniTouch}>
+        <Text style={styles.innerText}>رفرنس ها</Text>
+        <Icon name={"chevron-left"} size={35} color={'#FFC444'} style={styles.leftIcon}></Icon>
+    </TouchableOpacity>
+    </View>
+    <View style={styles.col1Mini}>
+    <TouchableOpacity style={styles.miniTouch}>
+        <Text style={styles.innerText}>فلش کارت</Text>
+        <Icon name={"chevron-left"} size={35} color={'#FFC444'} style={styles.leftIcon}></Icon>
+    </TouchableOpacity>
+    </View>
+    
+</View>
+<View style={{flexDirection:'row-reverse',flex:1,marginTop:responsiveHeight(2)}}>
+<View style={styles.col1Mini}>
+    <TouchableOpacity style={styles.miniTouch}>
+        <Text style={styles.innerText}>رفرنس ها</Text>
+        <Icon name={"chevron-left"} size={35} color={'#FFC444'} style={styles.leftIcon}></Icon>
+    </TouchableOpacity>
+    </View>
+    <View style={styles.col1Mini}>
+    <TouchableOpacity style={styles.miniTouch}>
+        <Text style={styles.innerText}>فلش کارت ها</Text>
+        <Icon name={"chevron-left"} size={35} color={'#FFC444'} style={styles.leftIcon}></Icon>
+    </TouchableOpacity>
+    </View>
+    
+</View>
+<View style={{flexDirection:'row-reverse',flex:1,marginTop:responsiveHeight(2)}}>
+<View style={styles.col1Mini}>
+    <TouchableOpacity style={styles.miniTouch}>
+        <Text style={styles.innerText}>سوالات بورد</Text>
+        <Icon name={"chevron-left"} size={35} color={'#FFC444'} style={styles.leftIcon}></Icon>
+    </TouchableOpacity>
+    </View>
+    <View style={styles.col1Mini}>
+    <TouchableOpacity style={styles.miniTouch}>
+        <Text style={styles.innerText}>سوالات ارتقا</Text>
+        <Icon name={"chevron-left"} size={35} color={'#FFC444'} style={styles.leftIcon}></Icon>
+    </TouchableOpacity>
+    </View>
+    
+</View>
+<View style={{flexDirection:'row-reverse',flex:1,marginTop:responsiveHeight(2)}}>
+<View style={styles.col1Mini}>
+    <TouchableOpacity style={styles.miniTouch}>
+        <Text style={styles.innerText}>آزمون ها</Text>
+        <Icon name={"chevron-left"} size={35} color={'#FFC444'} style={styles.leftIcon}></Icon>
+    </TouchableOpacity>
+    </View>
+    <View style={styles.col1Mini}>
+    <TouchableOpacity style={styles.miniTouch}>
+        <Text style={styles.innerText}>پادکست</Text>
+        <Icon name={"chevron-left"} size={35} color={'#FFC444'} style={styles.leftIcon}></Icon>
+    </TouchableOpacity>
+    </View>
+    
+</View>
+<View style={{flexDirection:'row-reverse',flex:1,marginTop:responsiveHeight(2)}}>
+<View style={styles.col1Mini}>
+    <TouchableOpacity style={styles.miniTouch}>
+        <Text style={styles.innerText}>رفرنس ها</Text>
+        <Icon name={"chevron-left"} size={35} color={'#FFC444'} style={styles.leftIcon}></Icon>
+    </TouchableOpacity>
+    </View>
+    <View style={styles.col1Mini}>
+    <TouchableOpacity style={styles.miniTouch}>
+        <Text style={styles.innerText}>فلش کارت</Text>
+        <Icon name={"chevron-left"} size={35} color={'#FFC444'} style={styles.leftIcon}></Icon>
+    </TouchableOpacity>
+    </View>
+    
+</View>
 </ScrollView>
 
 </View>
@@ -40,42 +152,52 @@ const styles = StyleSheet.create({
 
   container: {flex:3,backgroundColor:"#FAFAFB"},
   pageHeader:{
-      fontFamily:'IRANSansBold',
+      ...myFontStyle.mediumBold,
       color:'#0384BC',
       fontSize:30,
   }
   ,pageBody:{
       paddingTop:responsiveHeight(2),
-      paddingRight:responsiveWidth(7),
+      paddingRight:responsiveWidth(6),
       paddingBottom:responsiveHeight(2),
-      paddingLeft:responsiveWidth(7),
+      paddingLeft:responsiveWidth(6),
   },
-  categoryRow:{
-    flex: 1,
-    flexDirection: "row-reverse",
-    flexWrap: 'wrap',
-    alignItems: 'flex-start',
-  marginRight:responsiveWidth(5),
-  marginLeft:responsiveWidth(5),
-width:responsiveWidth(90),
-},categoryCol1:{
-    width:'50%',
-    flexDirection: 'row', 
-    marginBottom:20,
-    justifyContent: 'flex-start',
+ 
 
-}, categoryCol2:{
-width:'50%', flexDirection: 'row',
-justifyContent: 'flex-end',
-},
-miniBox:{
+innerText:{
+    ...myFontStyle.normalRegular,
+    color:'#007FB5',
+    fontSize:23,
+},miniBox:{
     backgroundColor:'#fff',
-    height:10,
-    width:'95%',
-}
-,innerText:{
-    fontFamily:'IRANSans',
-    
+  
+  
+   
+},col1Mini:{
+    width:'48%',marginRight:'2%',
+    flex:1,flexDirection:'column',
+  marginBottom:responsiveHeight(0.5),  
+},
+miniTouch:{
+    backgroundColor:'#fff',
+    paddingRight:responsiveWidth(5),
+    paddingLeft:responsiveWidth(5),
+    paddingTop:responsiveHeight(1),
+    paddingBottom:responsiveHeight(1),
+    borderRightColor:'#FFC444',
+    borderRightWidth:3,
+    borderRadius:5,
+    shadowColor: '#DEE0E3',
+    shadowOpacity: 0.9,
+    shadowOffset: { width: 2, height: 0},
+    shadowRadius: 700,
+    elevation: 10,
+    flexDirection:'row-reverse',
+    flex:1,
+},leftIcon:{
+    position:'absolute',
+    right:responsiveWidth(0),
+    top:responsiveHeight(1),
 }
   });
 

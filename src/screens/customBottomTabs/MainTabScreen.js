@@ -11,6 +11,7 @@ import { Colors } from '../../assets/Colors';
 // import { menu } from './../../Constance';
 import { responsiveHeight, responsiveWidth } from 'react-native-responsive-dimensions';
 // import TabBar from './TabBar';
+//import TabBar from './TabBar';
 
 import SignUp from '../Login/SignUp';
 import ForgetPass from '../Login/ForgetPass';

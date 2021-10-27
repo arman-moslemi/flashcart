@@ -40,6 +40,7 @@ import { Colors } from './src/assets/Colors';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import PanelMain from './src/screens/UserPanel/PanelMain';
 import AzmoonList from './src/screens/Azmoon/AzmoonList';
+import FlashCardView from './src/screens/FlashCard/FlashCardView';
 //  import {store, persist} from './store/redux/stores/store';
 //  import {Provider} from 'react-redux';
 //  import {PersistGate} from 'redux-persist/integmration/react';
@@ -143,7 +144,12 @@ shifting={false}
        <Stack.Screen name="HomeTest" component={HomeTest} />
        <Stack.Screen name="MainCategory" component={MainCategory} />
        <Stack.Screen name="SubCategory" component={SubCategory} />
-
+       <Stack.Screen name="FlashCardView" component={FlashCardView} />
+       {/* <Stack.Screen name="MainPage" component={MainPage} />
+       <Stack.Screen name="AzmoonAbout" component={AzmoonAbout} />
+       <Stack.Screen name="AzmoonDetail" component={AzmoonDetail} />
+       <Stack.Screen name="AzmoonResult" component={AzmoonResult} />
+  */}
 
      </Stack.Navigator>
 
