@@ -14,8 +14,8 @@ import { TopBar } from '../../components/TopBar';
 return (
   <View style={styles.container}>
 
-<TopBar/>
-   
+{/* <TopBar/> */}
+
 </View>
 );
 };
@@ -23,7 +23,7 @@ return (
 const styles = StyleSheet.create({
 
   container: {flex:3,backgroundColor:"#fff"},
- 
+
 menuTitle:{
   fontFamily:"IRANSansBold",
   color:"#fff",
