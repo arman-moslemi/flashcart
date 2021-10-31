@@ -19,7 +19,7 @@ import {TopBar} from '../../components/TopBar';
             <View style={styles.pageBody}>
             <Text style={styles.pageHeader}>زنان</Text>
             <ScrollView>
-            <View style={{flexDirection:'row-reverse',flex:1,marginTop:responsiveHeight(2)}}>
+            <View style={{flexDirection:'row',flex:1,marginTop:responsiveHeight(2)}}>
             <View style={styles.col1Mini}>
                 <TouchableOpacity onPress={()=>navigation.navigate("FlashCardView")} style={styles.miniTouch}>
                     <Text style={styles.innerText}>رفرنس ها</Text>
@@ -34,7 +34,7 @@ import {TopBar} from '../../components/TopBar';
                 </View>
 
             </View>
-            <View style={{flexDirection:'row-reverse',flex:1,marginTop:responsiveHeight(2)}}>
+            <View style={{flexDirection:'row',flex:1,marginTop:responsiveHeight(2)}}>
             <View style={styles.col1Mini}>
                 <TouchableOpacity style={styles.miniTouch}>
                     <Text style={styles.innerText}>سوالات بورد</Text>
@@ -49,7 +49,7 @@ import {TopBar} from '../../components/TopBar';
                 </View>
 
             </View>
-            <View style={{flexDirection:'row-reverse',flex:1,marginTop:responsiveHeight(2)}}>
+            <View style={{flexDirection:'row',flex:1,marginTop:responsiveHeight(2)}}>
             <View style={styles.col1Mini}>
                 <TouchableOpacity style={styles.miniTouch}>
                     <Text style={styles.innerText}>آزمون ها</Text>
@@ -64,7 +64,7 @@ import {TopBar} from '../../components/TopBar';
                 </View>
 
             </View>
-            <View style={{flexDirection:'row-reverse',flex:1,marginTop:responsiveHeight(2)}}>
+            <View style={{flexDirection:'row',flex:1,marginTop:responsiveHeight(2)}}>
             <View style={styles.col1Mini}>
                 <TouchableOpacity style={styles.miniTouch}>
                     <Text style={styles.innerText}>رفرنس ها</Text>
@@ -79,7 +79,7 @@ import {TopBar} from '../../components/TopBar';
                 </View>
 
             </View>
-            <View style={{flexDirection:'row-reverse',flex:1,marginTop:responsiveHeight(2)}}>
+            <View style={{flexDirection:'row',flex:1,marginTop:responsiveHeight(2)}}>
             <View style={styles.col1Mini}>
                 <TouchableOpacity style={styles.miniTouch}>
                     <Text style={styles.innerText}>رفرنس ها</Text>
@@ -94,7 +94,7 @@ import {TopBar} from '../../components/TopBar';
                 </View>
 
             </View>
-            <View style={{flexDirection:'row-reverse',flex:1,marginTop:responsiveHeight(2)}}>
+            <View style={{flexDirection:'row',flex:1,marginTop:responsiveHeight(2)}}>
             <View style={styles.col1Mini}>
                 <TouchableOpacity style={styles.miniTouch}>
                     <Text style={styles.innerText}>سوالات بورد</Text>
@@ -109,7 +109,7 @@ import {TopBar} from '../../components/TopBar';
                 </View>
 
             </View>
-            <View style={{flexDirection:'row-reverse',flex:1,marginTop:responsiveHeight(2)}}>
+            <View style={{flexDirection:'row',flex:1,marginTop:responsiveHeight(2)}}>
             <View style={styles.col1Mini}>
                 <TouchableOpacity style={styles.miniTouch}>
                     <Text style={styles.innerText}>آزمون ها</Text>
@@ -124,7 +124,7 @@ import {TopBar} from '../../components/TopBar';
                 </View>
 
             </View>
-            <View style={{flexDirection:'row-reverse',flex:1,marginTop:responsiveHeight(2)}}>
+            <View style={{flexDirection:'row',flex:1,marginTop:responsiveHeight(2)}}>
             <View style={styles.col1Mini}>
                 <TouchableOpacity style={styles.miniTouch}>
                     <Text style={styles.innerText}>رفرنس ها</Text>
@@ -158,7 +158,7 @@ const styles = StyleSheet.create({
   pageHeader:{
       ...myFontStyle.mediumBold,
       color:'#0384BC',
-      fontSize:30,
+      fontSize:responsiveFontSize(4)
   }
   ,pageBody:{
       paddingTop:responsiveHeight(2),
@@ -169,9 +169,9 @@ const styles = StyleSheet.create({
 
 
 innerText:{
-    ...myFontStyle.normalRegular,
+    ...myFontStyle.textOnImg,
     color:'#007FB5',
-    fontSize:23,
+    fontSize:responsiveFontSize(2),
 },miniBox:{
     backgroundColor:'#fff',
 
@@ -196,12 +196,12 @@ miniTouch:{
     shadowOffset: { width: 2, height: 0},
     shadowRadius: 700,
     elevation: 10,
-    flexDirection:'row-reverse',
+    flexDirection:'row',
     flex:1,
 },leftIcon:{
     position:'absolute',
     right:responsiveWidth(0),
-    top:responsiveHeight(1),
+    top:responsiveHeight(0.5),
 }
   });
 

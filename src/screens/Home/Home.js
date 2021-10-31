@@ -76,7 +76,7 @@ return (
 
       	</View>
         <View style={styles.customRow}>
-            <View style={{paddingLeft:20}}>
+            <View style={{paddingLeft:0}}>
              <TouchableOpacity onPress={()=>drawers.current.open()}>
              <Icon name={"notes"} style={styles.menuIcon} size={50} color={"#fff"} style={{transform: [{rotateY: '180deg'}]}}/>
 
@@ -144,8 +144,9 @@ return (
 
       style={styles.linearGradient2}
       />
-      <Image source={require('../../assets/images/boardLogo.png')} style={styles.logoAbsolute2}/>
       <Text style={styles.textOverlay2}>بورد</Text>
+      <Image source={require('../../assets/images/boardLogo.png')} style={styles.logoAbsolute2}/>
+      
       </View>
       <View style={styles.item2}>
       <Image source={require('../../assets/images/slide2.png')} style={styles.miniImage} />
@@ -205,7 +206,7 @@ child : {
 },
 drawerStyles: { shadowColor: '#000000', shadowOpacity: 0.8, shadowRadius: 3},
 customRow:{
-  flex:1, flexDirection:"row-reverse",
+  flex:1, flexDirection:"row",
   position:"absolute",
   top:responsiveHeight(3),
   paddingRight:20,
@@ -216,7 +217,7 @@ customRow:{
   paddingRight:20,
   paddingLeft:20,
 },customRowC:{
-  flex:1, flexDirection:"row-reverse",
+  flex:1, flexDirection:"row",
 
 
 }
@@ -314,9 +315,9 @@ bottom: 15
     top:responsiveHeight(10),
     left:responsiveWidth(75),
   },textOverlay:{
-    fontFamily:"IRANSansBold",
+    
     color:"#fff",
-    fontSize:25,
+    ...myFontStyle.textOnImg,
     position:'absolute',
     right:responsiveWidth(78),
     top:responsiveHeight(18),
@@ -325,13 +326,13 @@ bottom: 15
     width:60,
     height:78,
     top:responsiveHeight(12),
-    left:responsiveWidth(2),
+    right:responsiveWidth(2),
   },textOverlay2:{
-    fontFamily:"IRANSansBold",
+   ...myFontStyle.textOnImg,
     color:"#fff",
-    fontSize:20,
+   
     position:'absolute',
-    right:responsiveWidth(3),
+    left:responsiveWidth(2),
     top:responsiveHeight(17),
   }
   ,columnC:{
