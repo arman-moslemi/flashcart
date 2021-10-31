@@ -41,8 +41,11 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import PanelMain from './src/screens/UserPanel/PanelMain';
 import AzmoonList from './src/screens/Azmoon/AzmoonList';
 import FlashCardView from './src/screens/FlashCard/FlashCardView';
+import FlashCardSearch from './src/screens/FlashCard/FlashCardSearch';
+import FlashCardList from './src/screens/FlashCard/FlashCardList';
 import Question from './src/screens/Azmoon/Question';
 import EditProfile from './src/screens/UserPanel/EditProfile';
+import UserReport from './src/screens/UserPanel/UserReport';
 //  import {store, persist} from './store/redux/stores/store';
 //  import {Provider} from 'react-redux';
 //  import {PersistGate} from 'redux-persist/integmration/react';
@@ -92,6 +95,7 @@ shifting={false}
       <Stack.Screen name="AzmoonList" component={AzmoonList} />
       <Stack.Screen name="Question" component={Question} />
       <Stack.Screen name="EditProfile" component={EditProfile} />
+      <Stack.Screen name="UserReport" component={UserReport} />
 
 
     </Stack.Navigator>
@@ -107,6 +111,8 @@ const StackNavigatorsHome = () => {
       <Stack.Screen name="Home" component={Home} />
       <Stack.Screen name="SubCategory" component={SubCategory} />
       <Stack.Screen name="FlashCardView" component={FlashCardView} />
+      <Stack.Screen name="FlashCardSearch" component={FlashCardSearch} />
+      <Stack.Screen name="FlashCardList" component={FlashCardList} />
       {/* <Stack.Screen name="MainTabScreen" component={MainTabScreen} /> */}
       {/* <Stack.Screen name="AzanPrayer" component={AzanPrayer} /> */}
 

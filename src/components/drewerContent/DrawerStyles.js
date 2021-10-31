@@ -73,7 +73,7 @@ export const drawerStyles = StyleSheet.create({
     resizeMode: "contain",
   },
   subBtn: {
-    flexDirection: "row",
+    flexDirection: "row-reverse",
     justifyContent: "space-between",
     alignItems: "center",
     width: responsiveWidth(50),

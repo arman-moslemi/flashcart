@@ -86,7 +86,7 @@ return (
               <Text style={styles.menuTitle}>نوآوران دانش(ماهان)</Text>
               </View>
             <View style={{flex :0.5}}>
-              <TouchableOpacity style={styles.searchBTN}>
+              <TouchableOpacity onPress={()=>navigation.navigate("FlashCardSearch")} style={styles.searchBTN}>
                 <Icon name={"search"} color={"#16B2F5"} size={30}/>
               </TouchableOpacity>
               </View>

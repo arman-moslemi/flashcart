@@ -69,14 +69,14 @@ const PanelMain = ({navigation}) => {
     </TouchableOpacity>
 
     </View>
-    <View style={styles.subViewRead}>
+    <TouchableOpacity onPress={()=>navigation.navigate('UserReport')} style={styles.subViewRead}>
 
 <View style={{flexDirection:'row'}}>
 <Image source={require('../../assets/images/motalee.png')} style={{height:26,width:38}}/>
 <Text style={{...myFontStyle.largBold,color:Colors.black}}>گزارش مطالعه</Text>
 </View>
 <Icon name="chevron-left" size={30} color={Colors.yellow}/>
-    </View>
+    </TouchableOpacity>
         <View>
 
 <View style={styles.viewRowCart}>
@@ -99,7 +99,7 @@ const PanelMain = ({navigation}) => {
 
   <LinearGradient colors={['#F7397F', '#E82B63']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={styles.rowCart3}>
 
-<View style={{flexDirection:'row',alignItems:'center'}}>
+<View style={{flexDirection:'row-reverse',alignItems:'center'}}>
 
 <Icon name="note-add" size={50} color={Colors.white}/>
 <Text style={{...myFontStyle.largBold,color:Colors.white}}>افزودن کارت جدید</Text>
@@ -124,12 +124,12 @@ const PanelMain = ({navigation}) => {
         >
 
 <View       style={styles.modal}>
-  <View style={{flexDirection:'row',justifyContent:"space-between"}}>
+  <View style={{flexDirection:'row-reverse',justifyContent:"space-between"}}>
   <Icon name="close" size={20} color={Colors.yellow}/>
   <Text style={{...myFontStyle.largBold,color:Colors.text}}>افزودن سوال(نکته)جدید</Text>
 
   </View>
-  <View style={{flexDirection:'row',alignItems:"center",justifyContent:"space-between",margin:5}}>
+  <View style={{flexDirection:'row-reverse',alignItems:"center",justifyContent:"space-between",margin:5}}>
     <View>
 <DropDownPicker
       open={open}
@@ -155,7 +155,7 @@ const PanelMain = ({navigation}) => {
     </View>
       <Text style={{...myFontStyle.mediumBold,color:Colors.text}}>دسته بندی اصلی فلش کارت</Text>
   </View>
-  <View style={{flexDirection:'row',alignItems:"center",justifyContent:"space-between",margin:5}}>
+  <View style={{flexDirection:'row-reverse',alignItems:"center",justifyContent:"space-between",margin:5}}>
     <View>
 <DropDownPicker
       open={open2}
@@ -182,12 +182,12 @@ const PanelMain = ({navigation}) => {
     </View>
     <Text style={{...myFontStyle.mediumBold,color:Colors.text}}>دسته بندی فرعی (نام درس)</Text>
   </View>
-<View style={{flexDirection:'row',justifyContent:'space-between'}}>
+<View style={{flexDirection:'row-reverse',justifyContent:'space-between'}}>
 <Input   placeholder="متن سوال را وارد کنید"         multiline={true}         numberOfLines={4} inputStyle={styles.textInputLogin}containerStyle={{alignItems:"flex-end"}} />
 <Text style={{...myFontStyle.mediumBold,color:Colors.text}}>متن سوال:</Text>
 
 </View>
-<View style={{flexDirection:'row',justifyContent:'space-between'}}>
+<View style={{flexDirection:'row-reverse',justifyContent:'space-between'}}>
 <Input   placeholder="پاسخ را وارد کنید"         multiline={true}         numberOfLines={4} inputStyle={styles.textInputLogin}containerStyle={{alignItems:"flex-end"}} />
 <Text style={{...myFontStyle.mediumBold,color:Colors.text}}>پاسخ:</Text>
 

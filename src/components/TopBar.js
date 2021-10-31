@@ -79,8 +79,8 @@ const styles =StyleSheet.create({
     flex:1, flexDirection:"row",
     position:"absolute",
     top:responsiveHeight(0),
-    paddingRight:20,
-    paddingLeft:20,
+    paddingRight:responsiveWidth(5),
+    paddingLeft:responsiveWidth(5),
   },
   drawerStyles: { shadowColor: '#000000', shadowOpacity: 0.8, shadowRadius: 3,zIndex:5},
 

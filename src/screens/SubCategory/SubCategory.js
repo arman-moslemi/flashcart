@@ -21,7 +21,7 @@ import {TopBar} from '../../components/TopBar';
             <ScrollView>
             <View style={{flexDirection:'row-reverse',flex:1,marginTop:responsiveHeight(2)}}>
             <View style={styles.col1Mini}>
-                <TouchableOpacity onPress={()=>navigation.navigate("FlashCardView")} style={styles.miniTouch}>
+                <TouchableOpacity onPress={()=>navigation.navigate("FlashCardList")} style={styles.miniTouch}>
                     <Text style={styles.innerText}>رفرنس ها</Text>
                     <Icon name={"chevron-left"} size={35} color={'#FFC444'} style={styles.leftIcon}></Icon>
                 </TouchableOpacity>
