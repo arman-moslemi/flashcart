@@ -17,7 +17,7 @@ function SvgComponent(props) {
       <Path
         d="M1 8.976V31h36V8.976m-36 0h8.182s5.227 5.558 9.818 5.238c4.076-.283 8.182-5.238 8.182-5.238H37m-36 0L7 1h24l6 7.976"
         stroke="#0385BC"
-        strokeWidth={3}
+        strokeWidth={2}
       />
     </Svg>
   )
