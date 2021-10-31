@@ -324,6 +324,7 @@ right:responsiveWidth(-2.5),
     ...myFontStyle.btnBold,
     color:'#FFC444',
     textAlign:'center',
+    fontSize:responsiveFontSize(2.5),
   }
   ,notShowBtn:{
    textAlign:'center',
@@ -333,6 +334,7 @@ right:responsiveWidth(-2.5),
     ...myFontStyle.mediumBold,
     color:'#fff',
     textAlign:'center',
+    fontSize:responsiveFontSize(1.5),
   }
   });
 
