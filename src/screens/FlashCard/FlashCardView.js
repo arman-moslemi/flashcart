@@ -57,7 +57,7 @@ import Svg, { Path } from 'react-native-svg';
                     ratingColor={'#FFC444'}
                   />
 
-                  <View style={{flexDirection:'row-reverse',marginTop:responsiveHeight(3)}}>
+                  <View style={{flexDirection:'row',marginTop:responsiveHeight(3)}}>
                     <View style={{width:'70%'}}>
                     <LinearGradient colors={['#CC1111', '#F43535'] }start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={{borderRadius:3,padding:5}}>
 
@@ -98,7 +98,7 @@ import Svg, { Path } from 'react-native-svg';
             لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است  </Text>
 
             </View>
-           <View style={{position:'absolute',bottom:responsiveHeight(2),left:responsiveWidth(5)}}>
+           <View style={{position:'absolute',bottom:responsiveHeight(2),right:responsiveWidth(5)}}>
            <TouchableOpacity style={styles.seeAnswerBtn}>
               <Text style={styles.seeAnswer}>مشاهده پاسخ</Text>
             </TouchableOpacity>
@@ -125,7 +125,7 @@ import Svg, { Path } from 'react-native-svg';
             لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است  </Text>
 
             </View>
-           <View style={{position:'absolute',bottom:responsiveHeight(2),right:responsiveWidth(5)}}>
+           <View style={{position:'absolute',bottom:responsiveHeight(2),left:responsiveWidth(5)}}>
            <TouchableOpacity style={styles.seeAnswerBtn}>
               <Text style={styles.seeAnswer}>توضیح بیشتر</Text>
             </TouchableOpacity>
@@ -133,11 +133,12 @@ import Svg, { Path } from 'react-native-svg';
             </View>
 
         </View>
-        <View style={{paddingRight:responsiveWidth(5),flexDirection:'row-reverse',marginTop:10}}>
+        <View style={{paddingleft:responsiveWidth(5),flexDirection:'row',marginTop:10}}>
            <View style={{width:'50%'}}>
            <TouchableOpacity style={styles.returnFirst2} onPress={toggleModal2}>
-           <Icon name={"add"} color={'#3AC3FE'} size={25} style={{position:'absolute',right:responsiveWidth(1)}}></Icon>
-             <Text style={styles.addLitnearText}>افزودن به جعبه لایتنر</Text>
+           <Text style={styles.addLitnearText}>افزودن به جعبه لایتنر</Text>
+           <Icon name={"add"} color={'#3AC3FE'} size={25} style={{position:'absolute',left:responsiveWidth(1)}}></Icon>
+            
 
            </TouchableOpacity>
            <Modal isVisible={isModalVisible2} onBackdropPress={closeModal2} style={{justifyContent:'center',alignItems:'center'}}>
@@ -152,7 +153,7 @@ import Svg, { Path } from 'react-native-svg';
            <TouchableOpacity style={styles.returnFirst}>
 
              <Text style={styles.returnText}>بازگشت به اولین سوال</Text>
-             <Icon name={"chevron-left"} color={'#3AC3FE'} size={30} style={{position:'absolute'}}></Icon>
+             <Icon name={"chevron-left"} color={'#3AC3FE'} size={30} style={{position:'absolute',right:responsiveWidth(0)}}></Icon>
            </TouchableOpacity>
            </View>
         </View>
@@ -198,7 +199,7 @@ const styles = StyleSheet.create({
     backgroundColor:'#FFC444',
     height:responsiveHeight(4),
 
-    flexDirection:'row-reverse',
+    flexDirection:'row',
   },favoriteBtn:{
     height:65,
     width:65,
@@ -215,9 +216,9 @@ const styles = StyleSheet.create({
     left:responsiveWidth(8),
     top:responsiveHeight(-0.8),
     color:'#fff',
-
+    fontSize:responsiveFontSize(3),
   },nextBtn:{
-    flexDirection:'row-reverse',
+    flexDirection:'row',
   }
   ,preBtnText:{
    ...myFontStyle.largBold,
@@ -225,7 +226,7 @@ const styles = StyleSheet.create({
     right:responsiveWidth(12),
     top:responsiveHeight(-0.8),
     color:'#fff',
-
+    fontSize:responsiveFontSize(3),
   },questionText:{
     ...myFontStyle.normalRegular,
     position:'absolute',
@@ -234,7 +235,7 @@ const styles = StyleSheet.create({
   marginLeft:10,
   marginTop:10,
   marginRight:10,
-    textAlign:'right',
+    textAlign:'left',
   },textBoxCard:{
 
   },seeAnswerBtn:{
@@ -253,7 +254,8 @@ const styles = StyleSheet.create({
   }
   ,seeAnswer:{
     ...myFontStyle.btnBold,
-    color:'#ffc444'
+    color:'#ffc444',
+    fontSize:responsiveFontSize(2),
   },returnFirst:{
 backgroundColor:'#fff',
 height:20,
@@ -262,11 +264,12 @@ shadowOpacity: 0.1,
 shadowOffset: { width: 2, height: 0},
 shadowRadius: 700,
 elevation: 20,
-width:responsiveWidth(40),
+width:responsiveWidth(43),
 paddingBottom:responsiveHeight(5),
 justifyContent:'center',
 alignContent:'center',
 borderRadius:3,
+right:responsiveWidth(-2.5),
   },returnFirst2:{
     backgroundColor:'#fff',
     height:20,
@@ -275,24 +278,25 @@ borderRadius:3,
     shadowOffset: { width: 2, height: 0},
     shadowRadius: 700,
     elevation: 20,
-    width:responsiveWidth(40),
+    width:responsiveWidth(43),
     paddingBottom:responsiveHeight(5),
     justifyContent:'center',
     alignContent:'center',
-   right:responsiveWidth(-2),
+   right:responsiveWidth(-6),
    borderRadius:3,
       }
   ,returnText:{
     color:'#3AC3FE',
     ...myFontStyle.btnBold,
     position:'absolute',
-    left:responsiveWidth(8),
+    left:responsiveWidth(2),
 
   },answerTitle:{
     ...myFontStyle.largBold,
     position:'absolute',
-    right:responsiveWidth(5),
-    top:responsiveHeight(-0.8),
+    left:responsiveWidth(5),
+    top:responsiveHeight(-0.2),
+    fontSize:responsiveFontSize(2.5),
     color:'#fff',
   },addLitnearText:{
     color:'#3AC3FE',
@@ -320,6 +324,7 @@ borderRadius:3,
     ...myFontStyle.btnBold,
     color:'#FFC444',
     textAlign:'center',
+    fontSize:responsiveFontSize(2.5),
   }
   ,notShowBtn:{
    textAlign:'center',
@@ -329,6 +334,7 @@ borderRadius:3,
     ...myFontStyle.mediumBold,
     color:'#fff',
     textAlign:'center',
+    fontSize:responsiveFontSize(1.5),
   }
   });
 
