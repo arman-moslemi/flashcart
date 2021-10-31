@@ -31,7 +31,7 @@ const DrawerContent = ({ navigation }) => {
 
   const txtDarawerItem = [
     {id:1, title: "راهنمای استفاده از اپلیکیشن", icon: "lightbulb", navigateName: "About" },
-    { id:2,title: "تیکت ها و پشتیبانی", icon: "textsms", navigateName: "Privacy" },
+    { id:2,title: "تیکت ها و پشتیبانی", icon: "textsms", navigateName: "Ticket" },
     {id:3, title: "تخفیف ها", icon: "people-alt", navigateName: "" },
     // { title: Strings.inviteFriends, icon: invitefriends, navigateName: "" },
     {id:4, title: "درباره ما", icon: "people-alt", navigateName: "" },
@@ -43,7 +43,7 @@ const DrawerContent = ({ navigation }) => {
   ]
 
 
-  const _renderMapView = (item, index) => (
+  const _renderMapView = (item, index,navigation) => (
 
 
 
@@ -106,7 +106,7 @@ onPress={() => navigation.navigate('Profile')}
 
         {txtDarawerItem.map((item, index) => (
 
-          _renderMapView(item, index)
+          _renderMapView(item, index,navigation)
 
         ))}
 

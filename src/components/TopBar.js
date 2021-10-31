@@ -12,7 +12,7 @@ import Drawer from 'react-native-drawer'
 import DrawerContent from './drewerContent/DrawerContent';
 import { myFontStyle } from "../assets/Constance";
 
-export const TopBar = ({Classes}) => {
+export const TopBar = ({Classes,navigation}) => {
   const drawers = useRef(null);
   I18nManager.forceRTL(true);
   return (
@@ -21,7 +21,7 @@ export const TopBar = ({Classes}) => {
     type="overlay"
     acceptDoubleTap ={true}
         ref={drawers}
-        content={<DrawerContent />}
+        content={<DrawerContent navigation={navigation} />}
         tapToClose={true}
   openDrawerOffset={0.4} // 20% gap on the right side of drawer
   panCloseMask={0.2}

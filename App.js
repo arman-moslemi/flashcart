@@ -46,6 +46,7 @@ import FlashCardList from './src/screens/FlashCard/FlashCardList';
 import Question from './src/screens/Azmoon/Question';
 import EditProfile from './src/screens/UserPanel/EditProfile';
 import UserReport from './src/screens/UserPanel/UserReport';
+import Ticket from './src/screens/Ticket/Ticket';
 //  import {store, persist} from './store/redux/stores/store';
 //  import {Provider} from 'react-redux';
 //  import {PersistGate} from 'redux-persist/integmration/react';
@@ -96,6 +97,7 @@ shifting={false}
       <Stack.Screen name="Question" component={Question} />
       <Stack.Screen name="EditProfile" component={EditProfile} />
       <Stack.Screen name="UserReport" component={UserReport} />
+      <Stack.Screen name="Ticket" component={Ticket} />
 
 
     </Stack.Navigator>

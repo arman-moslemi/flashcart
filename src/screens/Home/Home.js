@@ -55,7 +55,7 @@ return (
     type="overlay"
     acceptDoubleTap ={true}
         ref={drawers}
-        content={<DrawerContent />}
+        content={<DrawerContent navigation={navigation}/>}
         tapToClose={true}
   openDrawerOffset={0.4} // 20% gap on the right side of drawer
   panCloseMask={0.2}
@@ -64,7 +64,6 @@ return (
   tweenHandler={(ratio) => ({
     main: { opacity:(2-ratio)/2 }
   })}
-  side={"right"}
         >
   <View style={styles.container}>
 
@@ -146,7 +145,7 @@ return (
       />
       <Text style={styles.textOverlay2}>بورد</Text>
       <Image source={require('../../assets/images/boardLogo.png')} style={styles.logoAbsolute2}/>
-      
+
       </View>
       <View style={styles.item2}>
       <Image source={require('../../assets/images/slide2.png')} style={styles.miniImage} />
@@ -315,7 +314,7 @@ bottom: 15
     top:responsiveHeight(10),
     left:responsiveWidth(75),
   },textOverlay:{
-    
+
     color:"#fff",
     ...myFontStyle.textOnImg,
     position:'absolute',
@@ -330,7 +329,7 @@ bottom: 15
   },textOverlay2:{
    ...myFontStyle.textOnImg,
     color:"#fff",
-   
+
     position:'absolute',
     left:responsiveWidth(2),
     top:responsiveHeight(17),
