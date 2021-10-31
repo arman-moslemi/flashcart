@@ -10,6 +10,10 @@ import LinearGradient from 'react-native-linear-gradient';
 import { ScrollView } from 'react-native-gesture-handler';
 import {TopBar} from '../../components/TopBar';
 import Box1 from '../../assets/images/box1';
+import Box2 from '../../assets/images/box2';
+import Box3 from '../../assets/images/box3';
+import Box4 from '../../assets/images/box4';
+import Box5 from '../../assets/images/box5';
 import Svg, { Path } from 'react-native-svg';
 // create a component
  const FlashCardView = ({navigation}) => {
@@ -143,9 +147,14 @@ import Svg, { Path } from 'react-native-svg';
            </TouchableOpacity>
            <Modal isVisible={isModalVisible2} onBackdropPress={closeModal2} style={{justifyContent:'center',alignItems:'center'}}>
                 <View style={styles.rateModal}>
-                  <Text style={styles.modalTitle}>نظر خود را راجع به این سوال ثبت نمایید.</Text>
-
-
+                  <Text style={styles.modalTitle2}>جهت افزودن به جعبه لایتنر،درجه سختی کارت را انتخاب نمایید.</Text>
+                <View style={styles.boxRow}>
+                  <Box1 style={styles.inlineBox}/>
+                  <Box2 style={styles.inlineBox}/>
+                  <Box3 style={styles.inlineBox}/>
+                  <Box4 style={styles.inlineBox}/>
+                  <Box5 style={styles.inlineBox}/>
+                </View>
                 </View>
               </Modal>
           </View>
@@ -335,6 +344,16 @@ right:responsiveWidth(-2.5),
     color:'#fff',
     textAlign:'center',
     fontSize:responsiveFontSize(1.5),
+  },modalTitle2:{
+    ...myFontStyle.normalBold,
+    color:'#000',
+    fontSize:responsiveFontSize(1.7),
+    textAlign:'center',
+  },inlineBox:{
+      width:"25%",
+  }
+  ,boxRow:{
+    flexDirection:'row',
   }
   });
 
