@@ -139,18 +139,22 @@ const PanelMain = ({navigation}) => {
       setValue={setValue}
       setItems={setItems}
       // width={100}
+      ite
       style={{
         borderColor:'#F1F1F1',
         borderWidth:2,
         // margin:5,
-        width:responsiveWidth(30)
+        width:responsiveWidth(30),
+      
       }}
       placeholder="انتخاب کنید"
       zIndex={1000}
       dropDownContainerStyle={{
         borderColor:'#F1F1F1',
         borderWidth:2,
-      borderRadius:5}}
+      borderRadius:5,
+     
+    }}
     />
     </View>
       <Text style={{...myFontStyle.mediumBold,color:Colors.text}}>دسته بندی اصلی فلش کارت</Text>
