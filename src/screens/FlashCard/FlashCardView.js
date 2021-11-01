@@ -142,7 +142,7 @@ import Svg, { Path } from 'react-native-svg';
            <TouchableOpacity style={styles.returnFirst2} onPress={toggleModal2}>
            <Text style={styles.addLitnearText}>افزودن به جعبه لایتنر</Text>
            <Icon name={"add"} color={'#3AC3FE'} size={25} style={{position:'absolute',left:responsiveWidth(1)}}></Icon>
-            
+
 
            </TouchableOpacity>
            <Modal isVisible={isModalVisible2} onBackdropPress={closeModal2} style={{justifyContent:'center',alignItems:'center'}}>
@@ -235,7 +235,7 @@ const styles = StyleSheet.create({
     right:responsiveWidth(12),
     top:responsiveHeight(-0.8),
     color:'#fff',
-    fontSize:responsiveFontSize(3),
+    // fontSize:responsiveFontSize(3),
   },questionText:{
     ...myFontStyle.normalRegular,
     position:'absolute',
