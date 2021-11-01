@@ -15,6 +15,7 @@ import Box3 from '../../assets/images/box3';
 import Box4 from '../../assets/images/box4';
 import Box5 from '../../assets/images/box5';
 import Svg, { Path } from 'react-native-svg';
+import DropDownPicker from 'react-native-dropdown-picker';
 // create a component
  const FlashCardView = ({navigation}) => {
 
@@ -36,6 +37,16 @@ import Svg, { Path } from 'react-native-svg';
     const closeModal2=()=>{
       setModalVisible2(!isModalVisible2);
     }
+    const [open, setOpen] = useState(false);
+    const [value, setValue] = useState(null);
+    const [items, setItems] = useState([
+      {label: 'خیلی آسان', value: 'very easy'},
+      {label: 'آسان', value: 'easy'},
+      {label: 'متوسط', value: 'medium'},
+      {label: 'سخت', value: 'hard'},
+      {label: 'خیلی سخت', value: 'very hard'},
+      {label: 'راهنمایی از استاد', value: 'guide'},
+    ]);
     const classes =()=>{
       return(
         <View style={styles.container}>
@@ -149,11 +160,62 @@ import Svg, { Path } from 'react-native-svg';
                 <View style={styles.rateModal}>
                   <Text style={styles.modalTitle2}>جهت افزودن به جعبه لایتنر،درجه سختی کارت را انتخاب نمایید.</Text>
                 <View style={styles.boxRow}>
-                  <Box1 style={styles.inlineBox}/>
+                  <Box1 style={styles.inlineBox} />
                   <Box2 style={styles.inlineBox}/>
                   <Box3 style={styles.inlineBox}/>
                   <Box4 style={styles.inlineBox}/>
                   <Box5 style={styles.inlineBox}/>
+                </View>
+                <View style={{flexDirection:'row',marginTop:responsiveHeight(2)}}>
+                <View style={{width:'50%'}}>
+                <Text style={styles.modalTitle2}>درجه سختی این کارت:</Text>
+               
+                 </View>
+                 <View style={{width:'50%'}}>
+                 <DropDownPicker
+      open={open}
+      value={value}
+      items={items}
+      setOpen={setOpen}
+      setValue={setValue}
+      setItems={setItems}
+      // width={100}
+      style={{
+        borderColor:'#F1F1F1',
+        borderWidth:2,
+        // margin:5,
+        width:responsiveWidth(37)
+      }}
+      placeholder="انتخاب کنید"
+      zIndex={1000}
+      dropDownContainerStyle={{
+        borderColor:'#F1F1F1',
+        borderWidth:2,
+      borderRadius:5}}
+    />
+                   </View>
+                   </View>
+                   <View style={{flexDirection:'row',marginTop:responsiveHeight(3)}}>
+                   <View style={{width:'42%'}}></View>
+                    <View style={{width:'28%'}}>
+                    <LinearGradient colors={['#CC1111', '#F43535'] }start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={{borderRadius:3,padding:5}}>
+
+
+                      <TouchableOpacity style={styles.notShowBtn}>
+                        <Text style={styles.modalBtnText}>بستن</Text>
+                        </TouchableOpacity>
+                        </LinearGradient>
+                    </View>
+                    <View style={{width:'2%'}}></View>
+                   <View style={{width:'28%'}}>
+                   <LinearGradient colors={['#3AC3FE', '#0284BB'] }start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={{borderRadius:3,padding:5}}>
+
+
+          <TouchableOpacity style={styles.notShowBtn}>
+          <Text style={styles.modalBtnText}>افزودن به لایتنر</Text>
+          </TouchableOpacity>
+          </LinearGradient>
+                    </View>
                 </View>
                 </View>
               </Modal>
@@ -350,10 +412,14 @@ right:responsiveWidth(-2.5),
     fontSize:responsiveFontSize(1.7),
     textAlign:'center',
   },inlineBox:{
-      width:"25%",
+     margin:10,
   }
   ,boxRow:{
-    flexDirection:'row',
+    flexDirection:'row-reverse',
+    textAlign:'center',
+    alignContent:'center',
+    justifyContent:'center',
+    marginTop:responsiveHeight(2),
   }
   });
 
