@@ -6,6 +6,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import { StyleSheet } from 'react-native';
 import { responsiveHeight, responsiveWidth } from 'react-native-responsive-dimensions';
 import { Colors } from '../assets/Colors';
+import { myFontStyle } from "../assets/Constance";
 
 
 export const Input = props => {
@@ -143,13 +144,15 @@ const styles =StyleSheet.create({
    borderWidth: 1,
     paddingHorizontal: 15,
     borderColor: Colors.appColor,
-    fontFamily:"IRANSans",
+    // fontFamily:"IRANSans",
+...myFontStyle.mediumRegular,
    // borderColor: '#CECECE',
     // backgroundColor: '#FFFFFF',
     marginTop: 10,
-  //  color: '#000000',
+    color: '#000000',
 
     borderRadius:5,
+    paddingTop:10,
     textAlign:'right'
     // backgroundColor:'#f3f3f3'
   },
