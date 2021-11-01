@@ -31,7 +31,7 @@
  import { createDrawerNavigator } from '@react-navigation/drawer';
 
 import Home from './src/screens/Home/Home';
-import HomeTest from './src/screens/Home/HomeTest';
+import LitnearBox from './src/screens/Home/LitnearBox';
 import MainTabScreen from './src/screens/customBottomTabs/MainTabScreen';
 import MainCategory from './src/screens/MainCategory/MainCategory';
 import SubCategory from './src/screens/SubCategory/SubCategory';
@@ -68,8 +68,8 @@ shifting={false}
 >
   <Tab.Screen
         // name="home"
-        name={"HomeTest"}
-        component={HomeTest}
+        name={"LitnearBox"}
+        component={LitnearBox}
         options={{          tabBarLabel: '',          tabBarIcon: ({ color }) => (            <Icon name="how-to-vote" color={Colors.appColor} size={26} />          ),        }}      />
 
     <Tab.Screen
