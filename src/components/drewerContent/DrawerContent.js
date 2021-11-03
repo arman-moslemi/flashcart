@@ -34,7 +34,7 @@ const DrawerContent = ({ navigation }) => {
     { id:2,title: "تیکت ها و پشتیبانی", icon: "textsms", navigateName: "Ticket" },
     {id:3, title: "تخفیف ها", icon: "people-alt", navigateName: "" },
     // { title: Strings.inviteFriends, icon: invitefriends, navigateName: "" },
-    {id:4, title: "درباره ما", icon: "people-alt", navigateName: "" },
+    {id:4, title: "درباره ما", icon: "people-alt", navigateName: "AboutUs" },
     {id:5, title: "تماس با ما", icon: "call", navigateName: "" },
     {id:6, title: "قوانین و مقررات", icon: "sticky-note-2", navigateName: "" },
     {id:7, title: "به روز رسانی", icon: "cached", navigateName: "" },
