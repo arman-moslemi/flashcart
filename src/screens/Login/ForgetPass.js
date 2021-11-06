@@ -8,6 +8,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import {Input} from '../../components/Input';
 import {Button} from '../../components/Button';
 import axios from 'axios';
+import { apiUrl ,apiAsset} from "../../commons/inFormTypes";
 
 
 // create a component
@@ -31,7 +32,7 @@ if(user==""){
 
 else{
 
-  axios.post('https://appflashcard.ir//api/WebApi/InsertMobileForgetting',{Mobile:user})
+  axios.post(apiUrl+'InsertMobileForgetting',{Mobile:user})
   .then(function (response) {
     const message = response.data.Data;
     const result = response.data.result;
@@ -41,7 +42,7 @@ else{
       navigation.navigate("Verification",{mobile:user,verify:response.data.Data,type:'forget'})
                       }else{
                         setLoading(false);
-                        SetEror2(true);
+                        SetEror(true);
     }
   })
   .catch(function (error) {
@@ -68,7 +69,7 @@ return (
         <Image source={require('../../assets/images/login.png')} style={styles.login}/>
         <Text style={styles.loginTitle}>شماره خود را وارد نمائید</Text>
         <View style={styles.loginView}>
-          <Input  isIconLeft={"phone-android"} placeholder="شماره تماس خود را وارد نمائید" containerStyle={styles.textInputLogin} onChangeText={(ss)=>setUser(ss)} />
+          <Input  isIconLeft={"phone-android"} ErrorText={eror?"این شماره وجود ندارد":""}  placeholder="شماره تماس خود را وارد نمائید" containerStyle={styles.textInputLogin} onChangeText={(ss)=>setUser(ss)} />
           <View style={{alignItems:'flex-end'}}>
 
         <Button

@@ -8,6 +8,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import {Input} from '../../components/Input';
 import {Button} from '../../components/Button';
 import axios from 'axios';
+import { apiUrl ,apiAsset} from "../../commons/inFormTypes";
 
 
 // create a component
@@ -26,23 +27,25 @@ const {mobile} = route?.params ?? {};
         setLoading(true);
 if(pass1=="" || pass2=="" || pass1!=pass2){
         // alert("Please fill input")
-        SetEror(true)
+        SetEror2(true)
         setLoading(false);
 
 }
 
 else{
   console.log(545)
+  console.log(mobile)
     // if((user=="user1"&&pass=="pass1")||(user=="user2"&&pass=="pass2")){
             setLoading(false);
-            axios.post('https://appflashcard.ir//api/WebApi/Forgeeting',{Mobile:mobile})
+            axios.post(apiUrl+'Forgetting',{Mobile:mobile,Password:pass1})
             .then(function (response) {
               const message = response.data.Data;
               const result = response.data.result;
               console.log(result);
               console.log(message);
               if(result == "true"){
-                navigation.navigate("Verification",{mobile:mobile})
+                alert("باموفقیت انجام شد")
+                navigation.navigate("Login")
                                 }else{
                                   setLoading(false);
                                   SetEror2(true)
@@ -74,8 +77,8 @@ return (
         <Image source={require('../../assets/images/login.png')} style={styles.login}/>
         <Text style={styles.loginTitle}>رمز عبور جدید خود را وارد نمائید</Text>
         <View style={styles.loginView}>
-          <Input isPassword={true}  placeholder="رمز عبور جدید" onChangeText={(ss)=>setPass1(ss)} containerStyle={styles.textInputLogin} />
-          <Input isPassword={true} ErrorText={eror?"لطفا موارد را وارد نمائید":""} placeholder="تکرار رمز عبور" onChangeText={(ss)=>setPass2(ss)} containerStyle={styles.textInputLogin} />
+          <Input isPassword={true}  placeholder="رمز عبور جدید" onChangeText={(ss)=>setPass1(ss)} ErrorText={eror?" ":eror2?" ":""} containerStyle={styles.textInputLogin} />
+          <Input isPassword={true} ErrorText={eror?"لطفا موارد را وارد نمائید":eror2?"رمز با تکرار تطابق ندارد":""} placeholder="تکرار رمز عبور" onChangeText={(ss)=>setPass2(ss)} containerStyle={styles.textInputLogin} />
           <View style={{alignItems:'flex-end'}}>
 
         <Button

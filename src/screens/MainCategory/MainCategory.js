@@ -1,8 +1,9 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState,useEffect,useRef } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, TextInput,Image, AsyncStorage } from 'react-native';
 import { myFontStyle } from "../../assets/Constance";
 import Icon from 'react-native-vector-icons/MaterialIcons';
-
+import DrawerContent from '../../components/drewerContent/DrawerContent';
+import Drawer from 'react-native-drawer'
 import { Colors } from '../../assets/Colors';
 import { responsiveFontSize, responsiveHeight, responsiveScreenWidth, responsiveWidth } from 'react-native-responsive-dimensions';
 import LinearGradient from 'react-native-linear-gradient';
@@ -11,26 +12,42 @@ import { ScrollView } from 'react-native-gesture-handler';
 
 // create a component
  const MainCategory = ({navigation}) => {
+  const drawers = useRef(null);
 
 
 
 return (
+  <Drawer
+  // type="static"
+  type="overlay"
+  acceptDoubleTap ={true}
+      ref={drawers}
+      content={<DrawerContent navigation={navigation}/>}
+      tapToClose={true}
+openDrawerOffset={0.4} // 20% gap on the right side of drawer
+panCloseMask={0.2}
+closedDrawerOffset={-3}
+styles={styles.drawerStyles}
+tweenHandler={(ratio) => ({
+  main: { opacity:(2-ratio)/2 }
+})}
+      >
   <View style={styles.container}>
 
 
 <View style={styles.parent}>
 			<LinearGradient colors={['#16B2F5', '#0385BC']} style={styles.child}>
-  
-      		</LinearGradient>
-          
-      	</View>
-      
 
-          <View style={styles.customRow}> 
+      		</LinearGradient>
+
+      	</View>
+
+
+          <View style={styles.customRow}>
             <View style={{paddingLeft:20}}>
              <TouchableOpacity>
              <Icon name={"notes"} style={styles.menuIcon} size={50} color={"#fff"} style={{transform: [{rotateY: '180deg'}]}}/>
-              
+
              </TouchableOpacity>
              </View>
             <View style={{flex : 2,textAlign:"right"}}>
@@ -41,9 +58,9 @@ return (
                 <Icon name={"chevron-left"} color={"#fff"} size={30} style={{marginTop:10}}/>
               </TouchableOpacity>
               </View>
-           
+
        </View>
-       <View style={styles.customRow2}> 
+       <View style={styles.customRow2}>
        <View style={styles.logoBox}>
            <Image source={require('../../assets/images/boardLogo.png')} style={styles.logoSize}/>
        </View>
@@ -59,7 +76,7 @@ return (
             </Text>
         </View>
   </LinearGradient>
-        
+
         </TouchableOpacity>
         <TouchableOpacity style={styles.categoryCol2}>
         <Image source={require('../../assets/images/kids.png')} style={styles.categoryColImg}/>
@@ -112,7 +129,7 @@ return (
   </LinearGradient>
         </TouchableOpacity>
        </View>
-      
+
       </ScrollView>
 
 
@@ -121,6 +138,8 @@ return (
 
 
 </View>
+</Drawer>
+
 );
 };
 
@@ -140,7 +159,7 @@ width:responsiveWidth(90),
         width:'50%',
         flexDirection: 'row', justifyContent: 'flex-start',
         marginBottom:20,
-        
+
 
   }, categoryCol2:{
     width:'50%', flexDirection: 'row', justifyContent: 'flex-end',
@@ -164,7 +183,7 @@ child : {
 
 },
 customRow:{
-  flex:1, flexDirection:"row-reverse",
+  flex:1, flexDirection:"row",
   position:"absolute",
   top:responsiveHeight(2),
   paddingRight:20,
@@ -177,7 +196,7 @@ customRow:{
   }
   ,logoBox:{
       backgroundColor:'#fff',
-     
+
       padding:5,
       borderRadius:10,
       shadowColor: '#878B92',
@@ -194,7 +213,7 @@ customRow:{
     paddingLeft:20,
   },logoSize:{
      width:105,height:120,
-      
+
   },categoryColImg:{
       width:'95%',
       borderTopRightRadius:10,
@@ -206,7 +225,7 @@ customRow:{
       height:38,
       borderBottomLeftRadius:10,
       borderBottomRightRadius:10,
-   
+
       width:'95%',
       position:'absolute',
       bottom:responsiveHeight(0),
