@@ -8,6 +8,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import {Input} from '../../components/Input';
 import {Button} from '../../components/Button';
 
+import axios from 'axios';
 
 // create a component
  const Login = ({navigation}) => {
@@ -30,19 +31,35 @@ if(user=="" || pass==""){
 }
 
 else{
-
-        if((user=="user1"&&pass=="pass1")||(user=="user2"&&pass=="pass2")){
+console.log(545)
+        // if((user=="user1"&&pass=="pass1")||(user=="user2"&&pass=="pass2")){
                 setLoading(false);
-AsyncStorage.setItem("user","true")
-                navigation.navigate("MainPage")
-        }
-else{
-        setLoading(false);
-         SetEror2(true)
+                axios.post('https://appflashcard.ir//api/WebApi/Login',{Mobile:user,Password:pass})
+                .then(function (response) {
+                  const message = response.data.message;
+                  const result = response.data.result;
+                  console.log(result);
+                  console.log(message);
+                  if(result == "true"){
+                    AsyncStorage.setItem("user","true")
+                    navigation.navigate("StackNavigatorsssss")
+                                    }else{
+                                      setLoading(false);
+                                      SetEror2(true)
+                  }
+                })
+                .catch(function (error) {
+                  console.log(error);
+                });
+
+        // }
+// else{
+//         setLoading(false);
+//          SetEror2(true)
 
 
 
-}
+// }
 
 
 }
@@ -61,8 +78,8 @@ return (
         <Image source={require('../../assets/images/login.png')} style={styles.login}/>
         <Text style={styles.loginTitle}>ورود به حساب کاربری</Text>
         <View style={styles.loginView}>
-          <Input  isIconLeft={"phone-android"} placeholder="شماره تماس خود را وارد نمائید" containerStyle={styles.textInputLogin} onChangeText={(ss)=>setUser(ss)} />
-          <Input isPassword={true} ErrorText={eror?"لطفا موارد را وارد نمائید":""} placeholder="رمز عبور خود را را وارد نمائید" onChangeText={(ss)=>setPass(ss)} containerStyle={styles.textInputLogin} />
+          <Input  isIconLeft={"phone-android"} ErrorText={eror?" ":eror2?" ":""} placeholder="شماره تماس خود را وارد نمائید" inputStyle={{color:"#000"}} containerStyle={styles.textInputLogin} onChangeText={(ss)=>setUser(ss)} />
+          <Input isPassword={true} ErrorText={eror?"لطفا موارد را وارد نمائید":eror2?"نام کاربری یا رمز عبور درست نیست":""}  placeholder="رمز عبور خود را را وارد نمائید" onChangeText={(ss)=>setPass(ss)} containerStyle={styles.textInputLogin} />
           <View style={{alignItems:'flex-start'}}>
 <TouchableOpacity onPress={()=>  navigation.navigate("ForgetPass")} style={styles.ViewFooter}>
 

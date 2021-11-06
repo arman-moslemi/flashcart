@@ -24,8 +24,8 @@ const SplashScreen = ({ navigation }) => {
     // }
     // else{
 
-      // navigation.navigate('Login');
-      navigation.navigate('StackNavigatorsssss');
+      navigation.navigate('Login');
+      // navigation.navigate('StackNavigatorsssss');
       // navigation.navigate('SubCategory');
 
       // navigation.navigate('FlashCardView');

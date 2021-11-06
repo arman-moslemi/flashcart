@@ -7,22 +7,24 @@ import { responsiveFontSize, responsiveHeight, responsiveScreenWidth, responsive
 import LinearGradient from 'react-native-linear-gradient';
 import {Input} from '../../components/Input';
 import {Button} from '../../components/Button';
+import axios from 'axios';
 
 
 // create a component
- const ChangePass = ({navigation}) => {
-const [user,setUser]=useState("");
-const [pass,setPass]=useState("");
+ const ChangePass = ({navigation,route}) => {
+const [pass1,setPass1]=useState("");
+const [pass2,setPass2]=useState("");
 const [isLoading,setLoading]=useState(false);
 const [eror,SetEror]=useState(false);
 const [eror2,SetEror2]=useState(false);
 const keyboardVerticalOffset = responsiveHeight(5)
+const {mobile} = route?.params ?? {};
 
 
 
       const  mutLogin=async()=> {
         setLoading(true);
-if(user=="" || pass==""){
+if(pass1=="" || pass2=="" || pass1!=pass2){
         // alert("Please fill input")
         SetEror(true)
         setLoading(false);
@@ -30,24 +32,35 @@ if(user=="" || pass==""){
 }
 
 else{
+  console.log(545)
+    // if((user=="user1"&&pass=="pass1")||(user=="user2"&&pass=="pass2")){
+            setLoading(false);
+            axios.post('https://appflashcard.ir//api/WebApi/Forgeeting',{Mobile:mobile})
+            .then(function (response) {
+              const message = response.data.Data;
+              const result = response.data.result;
+              console.log(result);
+              console.log(message);
+              if(result == "true"){
+                navigation.navigate("Verification",{mobile:mobile})
+                                }else{
+                                  setLoading(false);
+                                  SetEror2(true)
+              }
+            })
+            .catch(function (error) {
+              console.log(error);
+            });
 
-        if((user=="user1"&&pass=="pass1")||(user=="user2"&&pass=="pass2")){
-                setLoading(false);
-AsyncStorage.setItem("user","true")
-                navigation.navigate("MainPage")
-        }
-else{
-        setLoading(false);
-         SetEror2(true)
 
 
 
-}
+  }
+
+    };
 
 
-}
 
-        };
 
 return (
   <View style={styles.container}>
@@ -61,8 +74,8 @@ return (
         <Image source={require('../../assets/images/login.png')} style={styles.login}/>
         <Text style={styles.loginTitle}>رمز عبور جدید خود را وارد نمائید</Text>
         <View style={styles.loginView}>
-          <Input isPassword={true}  placeholder="رمز عبور جدید" onChangeText={(ss)=>setUser(ss)} containerStyle={styles.textInputLogin} />
-          <Input isPassword={true} ErrorText={eror?"لطفا موارد را وارد نمائید":""} placeholder="تکرار رمز عبور" onChangeText={(ss)=>setPass(ss)} containerStyle={styles.textInputLogin} />
+          <Input isPassword={true}  placeholder="رمز عبور جدید" onChangeText={(ss)=>setPass1(ss)} containerStyle={styles.textInputLogin} />
+          <Input isPassword={true} ErrorText={eror?"لطفا موارد را وارد نمائید":""} placeholder="تکرار رمز عبور" onChangeText={(ss)=>setPass2(ss)} containerStyle={styles.textInputLogin} />
           <View style={{alignItems:'flex-end'}}>
 
         <Button

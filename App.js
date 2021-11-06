@@ -43,6 +43,7 @@ import AzmoonList from './src/screens/Azmoon/AzmoonList';
 import FlashCardView from './src/screens/FlashCard/FlashCardView';
 import FlashCardSearch from './src/screens/FlashCard/FlashCardSearch';
 import FlashCardList from './src/screens/FlashCard/FlashCardList';
+import FlashCardVideo from './src/screens/FlashCard/FlashCardVideo';
 import Question from './src/screens/Azmoon/Question';
 import EditProfile from './src/screens/UserPanel/EditProfile';
 import UserReport from './src/screens/UserPanel/UserReport';
@@ -120,11 +121,17 @@ const StackNavigatorsHome = () => {
       <Stack.Screen name="FlashCardView" component={FlashCardView} />
       <Stack.Screen name="FlashCardSearch" component={FlashCardSearch} />
       <Stack.Screen name="FlashCardList" component={FlashCardList} />
+
       <Stack.Screen name="LitnearBoxCardList" component={LitnearBoxCardList}/>
       <Stack.Screen name="AboutUs" component={AboutUs} />
       <Stack.Screen name="Favorite" component={Favorite}/>
       <Stack.Screen name="TicketsList" component={TicketsList}/>
       <Stack.Screen name="Rules" component={Rules}/>
+
+      <Stack.Screen name="FlashCardVideo" component={FlashCardVideo} />
+      <Stack.Screen name="Ticket" component={Ticket} />
+
+
       {/* <Stack.Screen name="MainTabScreen" component={MainTabScreen} /> */}
       {/* <Stack.Screen name="AzanPrayer" component={AzanPrayer} /> */}
 

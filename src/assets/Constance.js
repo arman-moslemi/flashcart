@@ -13,39 +13,39 @@ const myFontFamily = {
 export const myFontStyle = {
   smallBold: {
     fontFamily: myFontFamily.Bold,
-    fontSize: responsiveFontSize(1),
+    fontSize: 10,
   },
   mediumBold: {
     fontFamily: myFontFamily.Bold,
-    fontSize: responsiveFontSize(1.5),
+    fontSize: 12,
   },
   normalBold: {
     fontFamily: myFontFamily.Bold,
-    fontSize: responsiveFontSize(1.75),
+    fontSize: 16,
   },
   largBold: {
     fontFamily: myFontFamily.Bold,
-    fontSize: responsiveFontSize(2),
+    fontSize: 18,
   },
   UltraBold: {
     fontFamily: myFontFamily.Bold,
-    fontSize: responsiveFontSize(3),
+    fontSize: 20,
   },
   smallRegular: {
     fontFamily: myFontFamily.regularItalic,
-    fontSize: responsiveFontSize(1.25),
+    fontSize: 10,
   },
   mediumRegular: {
     fontFamily: myFontFamily.Medium,
-    fontSize: responsiveFontSize(1.5),
+    fontSize: 12,
   },
   normalRegular: {
     fontFamily: myFontFamily.Medium,
-    fontSize: responsiveFontSize(1.75),
+    fontSize: 16,
   },
   largeRegular: {
     fontFamily: myFontFamily.Medium,
-    fontSize: responsiveFontSize(2),
+    fontSize: 18,
   },
   smallUltraLight: {
     fontFamily: myFontFamily.UltraLight,

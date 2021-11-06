@@ -36,18 +36,71 @@ const Ticket = ({navigation}) => {
 </View>
       </View>
 <View>
+<View style={styles.viewTicket}>
 
-<View style={{flexDirection:'row-reverse',alignItems:'flex-end',marginTop:responsiveHeight(2),padding:5}}>
 
 <Image source={require("../../assets/images/questionProf.png")} />
 <View>
-<View style={{backgroundColor:"#ECEDEF",height:responsiveHeight(13),width:responsiveWidth(70),borderRadius:5}}>
-
-<Text>لورم</Text>
+<View style={styles.viewBack}>
+<View  style={styles.viewHeaderBack}>
+<Text style={{...myFontStyle.mediumRegular,color:Colors.white}}>نام کاربر</Text>
+<Text style={{...myFontStyle.mediumRegular,color:Colors.white}}>
+        تاریخ ایجاد تیکت:1400/08/08
+    </Text>
+</View>
+<Text style={{...myFontStyle.mediumRegular,color:Colors.text,marginHorizontal:responsiveWidth(3)}}>لورم</Text>
 </View>
 
 </View>
 </View>
+
+
+<View style={styles.viewTicket2}>
+
+
+<Image source={require("../../assets/images/customer-support.png")} />
+<View>
+<View style={styles.viewBack}>
+<View  style={styles.viewHeaderBack2}>
+<Text style={{...myFontStyle.mediumRegular,color:Colors.white}}>پشتیبان فنی</Text>
+<Text style={{...myFontStyle.mediumRegular,color:Colors.white}}>
+        تاریخ ایجاد تیکت:1400/08/08
+    </Text>
+</View>
+<Text style={{...myFontStyle.mediumRegular,color:Colors.text,marginHorizontal:responsiveWidth(3)}}>لورم</Text>
+</View>
+
+</View>
+</View>
+
+<View style={styles.viewTicket}>
+
+
+<Image source={require("../../assets/images/questionProf.png")} />
+<View>
+<View style={styles.viewBack3}>
+<View  style={styles.viewHeaderBack}>
+<Text style={{...myFontStyle.mediumRegular,color:Colors.white}}>نام کاربر</Text>
+<Text style={{...myFontStyle.mediumRegular,color:Colors.white}}>
+        تاریخ ایجاد تیکت:1400/08/08
+    </Text>
+</View>
+<View style={{alignItems:'center'}}>
+<Input placeholder={"پیام خودرا بنویسید"} inputStyle={{borderColor:Colors.gray,height:responsiveHeight(10),color:Colors.text}} containerStyle={{height:responsiveHeight(10)}}/>
+
+</View>
+<View style={styles.button}>
+      <Text style={{...myFontStyle.mediumBold,color:Colors.white}}>
+        ذخیره
+      </Text>
+    </View>
+</View>
+
+</View>
+</View>
+
+
+
 </View>
 
 
@@ -116,6 +169,24 @@ const styles = StyleSheet.create({
         borderBottomColor:"#F1F1F1",
         borderBottomWidth:2,
       alignItems:'flex-end'
+
+        },
+        viewTicket:{flexDirection:'row-reverse',alignItems:'flex-end',marginTop:responsiveHeight(2),padding:5},
+        viewTicket2:{flexDirection:'row',alignItems:'flex-end',marginTop:responsiveHeight(2),padding:5},
+        viewBack:{backgroundColor:"#ECEDEF",height:responsiveHeight(15),width:responsiveWidth(70),borderRadius:5},
+        viewBack3:{backgroundColor:"#ECEDEF",height:responsiveHeight(20),width:responsiveWidth(70),borderRadius:5},
+        viewHeaderBack:{borderTopLeftRadius:5,borderTopEndRadius:5, flexDirection:'row',backgroundColor:"#09B5DB",
+        justifyContent:'space-between'
+        ,alignItems:'center',paddingHorizontal:responsiveWidth(3)},
+        viewHeaderBack2:{borderTopLeftRadius:5,borderTopEndRadius:5, flexDirection:'row',backgroundColor:"#068CC5"
+        ,justifyContent:'space-between',alignItems:'center',paddingHorizontal:responsiveWidth(3)},
+        button:{marginTop:responsiveHeight(2),width:responsiveWidth(25)
+          ,height:responsiveHeight(3),backgroundColor:Colors.yellow,
+        borderRadius:25,
+        alignItems:'center',
+        justifyContent:'center',
+        alignSelf:'flex-end',
+        margin:5
 
         },
 });

@@ -7,12 +7,12 @@ import { responsiveFontSize, responsiveHeight, responsiveScreenWidth, responsive
 import LinearGradient from 'react-native-linear-gradient';
 import {Input} from '../../components/Input';
 import {Button} from '../../components/Button';
+import axios from 'axios';
 
 
 // create a component
  const ForgetPass = ({navigation}) => {
 const [user,setUser]=useState("");
-const [pass,setPass]=useState("");
 const [isLoading,setLoading]=useState(false);
 const [eror,SetEror]=useState(false);
 const [eror2,SetEror2]=useState(false);
@@ -22,7 +22,7 @@ const keyboardVerticalOffset = responsiveHeight(5)
 
       const  mutLogin=async()=> {
         setLoading(true);
-if(user=="" || pass==""){
+if(user==""){
         // alert("Please fill input")
         SetEror(true)
         setLoading(false);
@@ -31,23 +31,30 @@ if(user=="" || pass==""){
 
 else{
 
-        if((user=="user1"&&pass=="pass1")||(user=="user2"&&pass=="pass2")){
-                setLoading(false);
-AsyncStorage.setItem("user","true")
-                navigation.navigate("MainPage")
-        }
-else{
-        setLoading(false);
-         SetEror2(true)
+  axios.post('https://appflashcard.ir//api/WebApi/InsertMobileForgetting',{Mobile:user})
+  .then(function (response) {
+    const message = response.data.Data;
+    const result = response.data.result;
+    console.log(result);
+    console.log(message);
+    if(result == "true"){
+      navigation.navigate("Verification",{mobile:user,verify:response.data.Data,type:'forget'})
+                      }else{
+                        setLoading(false);
+                        SetEror2(true);
+    }
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+
+}
 
 
 
 }
 
 
-}
-
-        };
 
 return (
   <View style={styles.container}>
@@ -65,8 +72,8 @@ return (
           <View style={{alignItems:'flex-end'}}>
 
         <Button
-           onPress={()=>navigation.navigate("ChangePass")}
-            //   onPress={()=>mutLogin()}
+          //  onPress={()=>navigation.navigate("ChangePass")}
+              onPress={()=>mutLogin()}
               isLoading={isLoading}
 
              // onPress={()=>alert(number)}

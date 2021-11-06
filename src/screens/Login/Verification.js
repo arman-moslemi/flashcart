@@ -8,46 +8,62 @@ import LinearGradient from 'react-native-linear-gradient';
 import {Input} from '../../components/Input';
 import {Button} from '../../components/Button';
 import CodeInputMain from '../../components/CodeInput';
+import axios from 'axios';
 
 
 // create a component
- const Verification = ({navigation}) => {
-const [user,setUser]=useState("");
-const [pass,setPass]=useState("");
+ const Verification = ({navigation,route}) => {
+
 const [isLoading,setLoading]=useState(false);
+// const [verify,setVerify]=useState(false);
 const [eror,SetEror]=useState(false);
 const [eror2,SetEror2]=useState(false);
 const keyboardVerticalOffset = responsiveHeight(5)
 const CodeInputRef = useRef(null);
 const [validCode, setValidCode] = useState('');
 
-
-
+const {mobile,ncode,user,pass,family,verify,type} = route?.params ?? {};
+console.log(route)
       const  mutLogin=async()=> {
         setLoading(true);
-if(user=="" || pass==""){
-        // alert("Please fill input")
-        SetEror(true)
+if(verify!=validCode){
+         alert("رمز نادرست می باشد")
+        SetEror(true);
         setLoading(false);
 
 }
 
 else{
+  if(type=="forget")
+  {
+    navigation.navigate("ChangePass",{Mobile:mobile})
 
-        if((user=="user1"&&pass=="pass1")||(user=="user2"&&pass=="pass2")){
-                setLoading(false);
-AsyncStorage.setItem("user","true")
-                navigation.navigate("MainPage")
-        }
-else{
-        setLoading(false);
-         SetEror2(true)
+  }
+  else{
+  axios.post('https://appflashcard.ir//api/WebApi/InsertCustomerFull',{Mobile:mobile,Password:pass,NationalCode:ncode,Family:family,Name:user})
+  .then(function (response) {
+    const message = response.data.message;
+    const result = response.data.result;
+    console.log(result);
+    console.log(message);
+    if(result == "true"){
+      AsyncStorage.setItem("user","true")
+      alert("ثبت نام با موفقیت انجام شد")
 
 
 
-}
+        navigation.navigate("Login")
 
+                      }else{
+                        setLoading(false);
+                        SetEror2(true)
+    }
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
 
+  }
 }
 
         };

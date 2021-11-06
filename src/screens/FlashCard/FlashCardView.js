@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState,useEffect,useRef } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, TextInput,Image, AsyncStorage } from 'react-native';
 import { myFontStyle } from "../../assets/Constance";
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -16,11 +16,101 @@ import Box4 from '../../assets/images/box4';
 import Box5 from '../../assets/images/box5';
 import Svg, { Path } from 'react-native-svg';
 import DropDownPicker from 'react-native-dropdown-picker';
+import Video from 'react-native-video';
+// import VideoPlayer from 'react-native-video-controls';
+ import VideoPlayer from 'react-native-video-player';
+ import TrackPlayer, { usePlaybackState } from "react-native-track-player";
+ import localTrack from "../../assets/images/audio_2021-11-02_15-04-15.mp3";
+import Player from "../../components/Player";
 // create a component
  const FlashCardView = ({navigation}) => {
 
     const [isModalVisible, setModalVisible] = useState(false);
+    const [sound, setSound] = useState(false);
+    const [isplay, setPlay] = useState(false);
+    const [video, setVideo] = useState(false);
+    const vid = useRef(null);
 
+    async function setup() {
+      await TrackPlayer.setupPlayer({});
+      await TrackPlayer.updateOptions({
+        stopWithApp: true,
+        capabilities: [
+          TrackPlayer.CAPABILITY_PLAY,
+          TrackPlayer.CAPABILITY_PAUSE,
+          TrackPlayer.CAPABILITY_SKIP_TO_NEXT,
+          TrackPlayer.CAPABILITY_SKIP_TO_PREVIOUS,
+          TrackPlayer.CAPABILITY_STOP
+        ],
+        compactCapabilities: [
+          TrackPlayer.CAPABILITY_PLAY,
+          TrackPlayer.CAPABILITY_PAUSE
+        ]
+      });
+    }
+    async function setup() {
+      await TrackPlayer.setupPlayer({});
+      await TrackPlayer.updateOptions({
+        stopWithApp: true,
+        capabilities: [
+          TrackPlayer.CAPABILITY_PLAY,
+          TrackPlayer.CAPABILITY_PAUSE,
+          TrackPlayer.CAPABILITY_SKIP_TO_NEXT,
+          TrackPlayer.CAPABILITY_SKIP_TO_PREVIOUS,
+          TrackPlayer.CAPABILITY_STOP
+        ],
+        compactCapabilities: [
+          TrackPlayer.CAPABILITY_PLAY,
+          TrackPlayer.CAPABILITY_PAUSE
+        ]
+      });
+    }
+
+    async function togglePlayback() {
+      const currentTrack = await TrackPlayer.getPosition();
+      const currentTrack2 = await TrackPlayer.getDuration();
+      console.log(444)
+      console.log(currentTrack)
+      if (currentTrack == currentTrack2) {
+        setPlay(true)
+        await TrackPlayer.reset();
+        await TrackPlayer.add({
+          id: "local-track",
+          url: localTrack,
+          title: "Pure (Demo)",
+          artist: "David Chavez",
+          artwork: "https://i.picsum.photos/id/500/200/200.jpg",
+          // duration: 10
+        });
+        await TrackPlayer.play();
+      }
+      else{
+
+        if(isplay)
+       { await TrackPlayer.pause()
+setPlay(false)}
+else{
+
+  await TrackPlayer.play()
+  setPlay(true)
+}
+      }
+
+
+      // }
+    }
+    async function stop() {
+if(isplay)
+       { await TrackPlayer.pause()
+setPlay(false)}
+else{
+
+  await TrackPlayer.play()
+  setPlay(true)
+}
+
+      // }
+    }
     const toggleModal = () => {
      setModalVisible(!isModalVisible);
     };
@@ -49,18 +139,17 @@ import DropDownPicker from 'react-native-dropdown-picker';
     ]);
     const classes =()=>{
       return(
-        <View style={styles.container}>
+        <ScrollView style={styles.container}>
         <View style={{padding:10,flexDirection: 'column',
             justifyContent: 'center',
             alignItems: 'center',}}>
             <View style={styles.flashCardBox}>
             <View style={styles.yellowBox}>
-              <View style={{width:responsiveWidth(38),height:5}}>
-                <TouchableOpacity style={styles.nextBtn}  onPress={toggleModal}>
-                  <Icon name={"chevron-right"} color={'#fff'} size={30} style={{position:'absolute'}}></Icon>
+            <TouchableOpacity style={{flexDirection:"row",alignItems:'baseline'}}  onPress={toggleModal}>
+                  <Icon name={"chevron-right"} color={'#fff'} size={30} ></Icon>
                   <Text style={styles.nextBtnText}>بعدی</Text>
-                </TouchableOpacity>
-                <Modal isVisible={isModalVisible} onBackdropPress={closeModal} style={{justifyContent:'center',alignItems:'center'}}>
+              </TouchableOpacity>
+              <Modal isVisible={isModalVisible} onBackdropPress={closeModal} style={{justifyContent:'center',alignItems:'center'}}>
                 <View style={styles.rateModal}>
                   <Text style={styles.modalTitle}>نظر خود را راجع به این سوال ثبت نمایید.</Text>
                   <Rating
@@ -95,26 +184,83 @@ import DropDownPicker from 'react-native-dropdown-picker';
                 </View>
                 </View>
               </Modal>
-              </View>
-              <View style={{justifyContent:'center',alignItems:'center'}}>
-                <TouchableOpacity style={styles.favoriteBtn}>
+              <TouchableOpacity style={styles.favoriteBtn} onPress={()=>vid.current.presentFullscreenPlayer()}>
                   <Icon name={"favorite-border"} size={40} color={'#ffc444'}></Icon>
-                </TouchableOpacity>
-              </View>
-              <View style={{width:responsiveWidth(38),height:5}}>
-              <TouchableOpacity style={styles.nextBtn}>
-                  <Icon name={"chevron-left"} color={'#fff'} size={30} style={{position:'absolute',right:responsiveWidth(3)}}></Icon>
-                  <Text style={styles.preBtnText}>قبلی</Text>
-                </TouchableOpacity>
-              </View>
-            </View>
+              </TouchableOpacity>
+              <TouchableOpacity style={{flexDirection:'row-reverse'}}onPress={toggleModal}>
+                  <Icon name={"chevron-left"} color={'#fff'} size={30} ></Icon>
+                  <Text style={styles.nextBtnText}>قبلی</Text>
+              </TouchableOpacity>
+
+                          </View>
             <View style={styles.textBoxCard}>
             <Text style={styles.questionText}>
             لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است  </Text>
 
             </View>
-           <View style={{position:'absolute',bottom:responsiveHeight(2),right:responsiveWidth(5)}}>
-           <TouchableOpacity style={styles.seeAnswerBtn}>
+            <View style={{padding:responsiveWidth(5),alignItems:'center'}} >
+              {
+                sound?
+                <Player
+        // onNext={skipToNext}
+        style={{ marginTop: 10}}
+        // onPrevious={skipToPrevious}
+        onTogglePlayback={togglePlayback}
+        stop={stop}
+        isplay={isplay}
+      />
+                :
+              <TouchableOpacity onPress={()=>setSound(true)}>
+
+<Icon name={"volume-up"} color={Colors.appColor} size={60} />
+              </TouchableOpacity>
+
+              }
+{
+  video?
+  <VideoPlayer
+//             source={{
+//   uri: "https://www.example.com/video.mp4",
+//   headers: {
+//     Authorization: 'bearer some-token-value',
+//     'X-Custom-Header': 'some value'
+//   }
+// }}
+audioOnly={true}
+
+// videoWidth={2000}
+//     videoHeight={900}
+// source={require( "../../assets/images/mahmmod.mp4")}
+video={require( "../../assets/images/mahmmod.mp4")}
+showDuration={true}
+fullScreenOnLongPress={true}
+fullscreen={true}
+
+// Can be a URL or a local file.
+      //  ref={(ref) => {
+      //    this.player = ref
+      //  }}
+       ref={vid}
+      //  resizeMode={"stretch"}
+
+      //  onBuffer={this.onBuffer}
+      //  onError={this.videoError}
+      // toggleResizeModeOnFullscreen={true}
+
+      //  style={styles.backgroundVideo}
+       />
+  :
+  null
+
+}
+
+            </View>
+           {/* <View style={{position:'absolute',bottom:responsiveHeight(2),right:responsiveWidth(5)}}> */}
+           <TouchableOpacity style={{position:'absolute',top:responsiveHeight(24),left:responsiveWidth(8)}} onPress={()=>{vid.current.stop();navigation.navigate('FlashCardVideo')}}>
+              <Icon name={"crop-free"} color={Colors.white} size={20}/>
+            </TouchableOpacity>
+           <View>
+           <TouchableOpacity style={styles.seeAnswerBtn} >
               <Text style={styles.seeAnswer}>مشاهده پاسخ</Text>
             </TouchableOpacity>
            </View>
@@ -139,8 +285,10 @@ import DropDownPicker from 'react-native-dropdown-picker';
             <Text style={styles.questionText}>
             لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است  </Text>
 
+
+
             </View>
-           <View style={{position:'absolute',bottom:responsiveHeight(2),left:responsiveWidth(5)}}>
+            <View>
            <TouchableOpacity style={styles.seeAnswerBtn}>
               <Text style={styles.seeAnswer}>توضیح بیشتر</Text>
             </TouchableOpacity>
@@ -148,14 +296,13 @@ import DropDownPicker from 'react-native-dropdown-picker';
             </View>
 
         </View>
-        <View style={{paddingleft:responsiveWidth(5),flexDirection:'row',marginTop:10}}>
-           <View style={{width:'50%'}}>
-           <TouchableOpacity style={styles.returnFirst2} onPress={toggleModal2}>
+        <View style={{padding:responsiveWidth(5),flexDirection:'row',justifyContent:'space-between'}}>
+           <TouchableOpacity style={styles.returnFirst}
+            onPress={toggleModal2}>
+           <Icon name={"add"} color={'#3AC3FE'} size={20} ></Icon>
            <Text style={styles.addLitnearText}>افزودن به جعبه لایتنر</Text>
-           <Icon name={"add"} color={'#3AC3FE'} size={25} style={{position:'absolute',left:responsiveWidth(1)}}></Icon>
-            
 
-           </TouchableOpacity>
+
            <Modal isVisible={isModalVisible2} onBackdropPress={closeModal2} style={{justifyContent:'center',alignItems:'center'}}>
                 <View style={styles.rateModal}>
                   <Text style={styles.modalTitle2}>جهت افزودن به جعبه لایتنر،درجه سختی کارت را انتخاب نمایید.</Text>
@@ -169,7 +316,7 @@ import DropDownPicker from 'react-native-dropdown-picker';
                 <View style={{flexDirection:'row',marginTop:responsiveHeight(2)}}>
                 <View style={{width:'50%'}}>
                 <Text style={styles.modalTitle2}>درجه سختی این کارت:</Text>
-               
+
                  </View>
                  <View style={{width:'50%'}}>
                  <DropDownPicker
@@ -219,21 +366,21 @@ import DropDownPicker from 'react-native-dropdown-picker';
                 </View>
                 </View>
               </Modal>
-          </View>
-           <View style={{width:'50%'}}>
+          </TouchableOpacity>
            <TouchableOpacity style={styles.returnFirst}>
 
+
              <Text style={styles.returnText}>بازگشت به اولین سوال</Text>
-             <Icon name={"chevron-left"} color={'#3AC3FE'} size={30} style={{position:'absolute',right:responsiveWidth(0)}}></Icon>
+             <Icon name={"chevron-left"} color={'#3AC3FE'} size={20} ></Icon>
+
            </TouchableOpacity>
-           </View>
         </View>
-        </View>
+        </ScrollView>
       )
       }
 return (
 
-  <TopBar Classes={classes}/>
+  <TopBar Classes={classes} navigation={navigation}/>
 
 );
 };
@@ -245,9 +392,13 @@ const styles = StyleSheet.create({
     backgroundColor:'#fff',
     borderRadius:3,
 
-    height:responsiveHeight(30),
+    // height:responsiveHeight(30),
     width:responsiveWidth(90),
     shadowColor: '#DEE0E3',
+
+    paddingBottom:5,
+    shadowColor: '#878B92',
+
       shadowOpacity: 0.1,
       shadowOffset: { width: 2, height: 0},
       shadowRadius: 700,
@@ -271,6 +422,7 @@ const styles = StyleSheet.create({
     height:responsiveHeight(4),
 
     flexDirection:'row',
+    justifyContent:'space-between'
   },favoriteBtn:{
     height:65,
     width:65,
@@ -283,11 +435,11 @@ const styles = StyleSheet.create({
    alignItems: 'center',
   },nextBtnText:{
     ...myFontStyle.largBold,
-    position:'absolute',
-    left:responsiveWidth(8),
-    top:responsiveHeight(-0.8),
+    // position:'absolute',
+    // left:responsiveWidth(8),
+    // top:responsiveHeight(-0.8),
     color:'#fff',
-    fontSize:responsiveFontSize(3),
+    // fontSize:responsiveFontSize(3),
   },nextBtn:{
     flexDirection:'row',
   }
@@ -297,10 +449,9 @@ const styles = StyleSheet.create({
     right:responsiveWidth(12),
     top:responsiveHeight(-0.8),
     color:'#fff',
-    fontSize:responsiveFontSize(3),
+    // fontSize:responsiveFontSize(3),
   },questionText:{
     ...myFontStyle.normalRegular,
-    position:'absolute',
     color:'#000',
 
   marginLeft:10,
@@ -309,39 +460,36 @@ const styles = StyleSheet.create({
     textAlign:'left',
   },textBoxCard:{
 
-  },seeAnswerBtn:{
+  },
+  seeAnswerBtn:{
     backgroundColor:'#fff',
     borderStyle:"dashed",
     borderBottomWidth:2,
     borderBottomColor:'#ffc444',
-    paddingRight:10,
-    paddingLeft:10,
-    paddingTop:8,
-    paddingBottom:8,
-    justifyContent:'center',
-    textAlign:'center',
-    alignContent:'center',
 
+
+    width:responsiveWidth(26),
+    marginRight:responsiveWidth(3),
+    marginTop:responsiveHeight(2),
+    marginBottom:responsiveHeight(2),
+    //    justifyContent:'center',
+    // textAlign:'center',
+    alignContent:'center',
+alignSelf:'flex-end'
   }
   ,seeAnswer:{
     ...myFontStyle.btnBold,
     color:'#ffc444',
-    fontSize:responsiveFontSize(2),
-  },returnFirst:{
-backgroundColor:'#fff',
-height:20,
-shadowColor: '#878B92',
-shadowOpacity: 0.1,
-shadowOffset: { width: 2, height: 0},
-shadowRadius: 700,
-elevation: 20,
-width:responsiveWidth(43),
-paddingBottom:responsiveHeight(5),
-justifyContent:'center',
-alignContent:'center',
-borderRadius:3,
-right:responsiveWidth(-2.5),
-  },returnFirst2:{
+    // fontSize:responsiveFontSize(2),
+  },
+  returnFirst:
+  {width:responsiveWidth(35),backgroundColor:"#ffffff",height:responsiveHeight(5),flexDirection:'row',alignItems:'center',borderRadius:5,  shadowColor: '#878B92',
+  shadowOpacity: 0.1,
+  shadowOffset: { width: 2, height: 0},
+  shadowRadius: 700,
+  elevation: 10,
+  padding:2}
+,returnFirst2:{
     backgroundColor:'#fff',
     height:20,
     shadowColor: '#878B92',
@@ -358,22 +506,22 @@ right:responsiveWidth(-2.5),
       }
   ,returnText:{
     color:'#3AC3FE',
-    ...myFontStyle.btnBold,
-    position:'absolute',
-    left:responsiveWidth(2),
+    ...myFontStyle.mediumBold,
+    // position:'absolute',
+    // left:responsiveWidth(2),
 
   },answerTitle:{
     ...myFontStyle.largBold,
     position:'absolute',
     left:responsiveWidth(5),
     top:responsiveHeight(-0.2),
-    fontSize:responsiveFontSize(2.5),
+    // fontSize:responsiveFontSize(2.5),
     color:'#fff',
   },addLitnearText:{
     color:'#3AC3FE',
-    ...myFontStyle.btnBold,
-    position:'absolute',
-    right:responsiveWidth(8),
+    ...myFontStyle.mediumBold,
+    // position:'absolute',
+    // right:responsiveWidth(8),
 
   },rateModal:{
     width:responsiveWidth(80),
@@ -395,7 +543,7 @@ right:responsiveWidth(-2.5),
     ...myFontStyle.btnBold,
     color:'#FFC444',
     textAlign:'center',
-    fontSize:responsiveFontSize(2.5),
+    // fontSize:responsiveFontSize(2.5),
   }
   ,notShowBtn:{
    textAlign:'center',
@@ -405,11 +553,11 @@ right:responsiveWidth(-2.5),
     ...myFontStyle.mediumBold,
     color:'#fff',
     textAlign:'center',
-    fontSize:responsiveFontSize(1.5),
+    // fontSize:responsiveFontSize(1.5),
   },modalTitle2:{
     ...myFontStyle.normalBold,
     color:'#000',
-    fontSize:responsiveFontSize(1.7),
+    // fontSize:responsiveFontSize(1.7),
     textAlign:'center',
   },inlineBox:{
      margin:10,
@@ -420,7 +568,16 @@ right:responsiveWidth(-2.5),
     alignContent:'center',
     justifyContent:'center',
     marginTop:responsiveHeight(2),
-  }
+  },
+  backgroundVideo: {
+    // position: 'absolute',
+    width:200,
+    height:200,
+    // top: 0,
+    // left: 0,
+    // bottom: 0,
+    // right: 0,
+  },
   });
 
   export default FlashCardView;

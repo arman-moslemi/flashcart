@@ -38,9 +38,16 @@ const AzmoonList = ({navigation}) => {
 
 <Icon name="chevron-left" size={30} color={Colors.yellow}/>
 <View style={{flexDirection:'row-reverse',justifyContent:"space-between",alignItems:"center"}}>
+
 <Text style={{...myFontStyle.normalRegular,color:Colors.gray}}>نمره کسب شده:15</Text>
 <Text style={{...myFontStyle.normalRegular,color:Colors.gray,marginHorizontal:10}}>پزشکی:اطفال</Text>
 <Text style={{...myFontStyle.largBold,color:Colors.text,width:responsiveWidth(30)}}>عنوان آزمون</Text>
+
+<Text style={{...myFontStyle.mediumBold,color:Colors.gray}}>نمره کسب شده:15</Text>
+<Text style={{...myFontStyle.mediumBold,color:Colors.gray,marginHorizontal:10}}>پزشکی:اطفال</Text>
+<Text style={{...myFontStyle.mediumBold,color:Colors.text}}>عنوان آزمون</Text>
+<Image source={require('../../assets/images/RectangleGreen.png')} style={{ height:responsiveHeight(10),width:5,marginLeft:responsiveWidth(-5),marginRight:responsiveWidth(3),marginBottom:responsiveHeight(0.5)}}/>
+
 </View>
     {/* </View> */}
 
@@ -55,6 +62,10 @@ const AzmoonList = ({navigation}) => {
 <Text style={{...myFontStyle.normalRegular,color:Colors.gray}}>شرکت در آزمون</Text>
 <Text style={{...myFontStyle.normalRegular,color:Colors.gray,marginHorizontal:10}}>پزشکی:اطفال</Text>
 <Text style={{...myFontStyle.largBold,color:Colors.text,width:responsiveWidth(30)}}>عنوان آزمون</Text>
+<Text style={{...myFontStyle.mediumBold,color:Colors.gray}}>نمره کسب شده:15</Text>
+<Text style={{...myFontStyle.mediumBold,color:Colors.gray,marginHorizontal:10}}>پزشکی:اطفال</Text>
+<Text style={{...myFontStyle.mediumBold,color:Colors.text}}>عنوان آزمون</Text>
+<Image source={require('../../assets/images/RectangleRed.png')} style={{ height:responsiveHeight(10),width:5,marginLeft:responsiveWidth(-5),marginRight:responsiveWidth(3),marginBottom:responsiveHeight(0.5)}}/>
 </View>
     {/* </View> */}
 
