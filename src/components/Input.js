@@ -118,7 +118,7 @@ export const Input = props => {
                 ):null}
       </View>
 
-      {ErrorText ? (
+      {ErrorText && ErrorText!=" " ? (
         <View style={styles.errorContainer}>
           <Text style={styles.errorTextStyle}>{ErrorText}</Text>
         </View>

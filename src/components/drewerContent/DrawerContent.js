@@ -43,7 +43,7 @@ const DrawerContent = ({ navigation }) => {
   ]
 
 
-  const _renderMapView = (item, index,navigation) => (
+  const _renderMapView = (item, index) => (
 
 
 
@@ -106,7 +106,7 @@ onPress={() => navigation.navigate('Profile')}
 
         {txtDarawerItem.map((item, index) => (
 
-          _renderMapView(item, index,navigation)
+          _renderMapView(item, index)
 
         ))}
 
