@@ -206,7 +206,7 @@ const PanelMain = ({navigation}) => {
 
   <LinearGradient colors={['#F7397F', '#E82B63']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={styles.rowCart3}>
 
-<View style={{flexDirection:'row-reverse',alignItems:'center'}}>
+  <View style={{flexDirection:'row-reverse',alignItems:'center'}}>
 
 <Icon name="note-add" size={50} color={Colors.white}/>
 <Text style={{...myFontStyle.largBold,color:Colors.white}}>افزودن کارت جدید</Text>
