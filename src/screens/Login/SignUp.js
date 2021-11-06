@@ -7,11 +7,15 @@ import { responsiveFontSize, responsiveHeight, responsiveScreenWidth, responsive
 import LinearGradient from 'react-native-linear-gradient';
 import {Input} from '../../components/Input';
 import {Button} from '../../components/Button';
+import axios from 'axios';
 
 
 // create a component
  const SignUp = ({navigation}) => {
 const [user,setUser]=useState("");
+const [family,setFamily]=useState("");
+const [ncode,setNcode]=useState("");
+const [mobile,setMobile]=useState("");
 const [pass,setPass]=useState("");
 const [isLoading,setLoading]=useState(false);
 const [eror,SetEror]=useState(false);
@@ -20,34 +24,42 @@ const keyboardVerticalOffset = responsiveHeight(5)
 
 
 
-      const  mutLogin=async()=> {
-        setLoading(true);
+const  mutLogin=async()=> {
+  setLoading(true);
 if(user=="" || pass==""){
-        // alert("Please fill input")
-        SetEror(true)
-        setLoading(false);
+  // alert("Please fill input")
+  SetEror(true)
+  setLoading(false);
 
 }
 
 else{
+console.log(545)
+  // if((user=="user1"&&pass=="pass1")||(user=="user2"&&pass=="pass2")){
+          setLoading(false);
+          axios.post('https://appflashcard.ir//api/WebApi/InsertMobile_RegisterSms',{Mobile:mobile})
+          .then(function (response) {
+            const message = response.data.Data;
+            const result = response.data.result;
+            console.log(result);
+            console.log(message);
+            if(result == "true"){
+              navigation.navigate("Verification",{mobile:mobile,user:user,family:family,ncode:ncode,pass:pass,verify:response.data.Data})
+                              }else{
+                                setLoading(false);
+                                SetEror2(true)
+            }
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
 
-        if((user=="user1"&&pass=="pass1")||(user=="user2"&&pass=="pass2")){
-                setLoading(false);
-AsyncStorage.setItem("user","true")
-                navigation.navigate("MainPage")
-        }
-else{
-        setLoading(false);
-         SetEror2(true)
-
+ 
 
 
 }
 
-
-}
-
-        };
+  };
 
 return (
   <View style={styles.container}>
@@ -62,14 +74,14 @@ return (
         <Text style={styles.loginTitle}>ثبت نام</Text>
         <View style={styles.loginView}>
           <Input  isIconLeft={"person"} placeholder="نام خودرا وارد کنید" containerStyle={styles.textInputLogin} onChangeText={(ss)=>setUser(ss)} />
-          <Input  isIconLeft={"person"} placeholder="نام خانوادگی خود را واردکنید" containerStyle={styles.textInputLogin} onChangeText={(ss)=>setUser(ss)} />
-          <Input  isIconLeft={"credit-card"} placeholder="کدملی خود را واردکنید" containerStyle={styles.textInputLogin} onChangeText={(ss)=>setUser(ss)} />
-          <Input  isIconLeft={"phone-android"} placeholder="شماره تماس خود را وارد نمائید" containerStyle={styles.textInputLogin} onChangeText={(ss)=>setUser(ss)} />
-          <Input isIconLeft={"remove-red-eye"} ErrorText={eror?"لطفا موارد را وارد نمائید":""} placeholder="رمز عبور خود را را وارد نمائید" onChangeText={(ss)=>setPass(ss)} containerStyle={styles.textInputLogin} />
+          <Input  isIconLeft={"person"} placeholder="نام خانوادگی خود را واردکنید" containerStyle={styles.textInputLogin} onChangeText={(ss)=>setFamily(ss)} />
+          <Input  isIconLeft={"credit-card"} placeholder="کدملی خود را واردکنید" containerStyle={styles.textInputLogin} onChangeText={(ss)=>setNcode(ss)} />
+          <Input  isIconLeft={"phone-android"} placeholder="شماره تماس خود را وارد نمائید" containerStyle={styles.textInputLogin} onChangeText={(ss)=>setMobile(ss)} />
+          <Input isIconLeft={"remove-red-eye"} ErrorText={eror2?"لطفا موارد را صحیح وارد نمائید":""} placeholder="رمز عبور خود را را وارد نمائید" onChangeText={(ss)=>setPass(ss)} containerStyle={styles.textInputLogin} />
           <View style={{alignItems:'flex-start'}}>
 
         <Button
-           onPress={()=>navigation.navigate("Verification")}
+           onPress={()=>mutLogin()}
             //   onPress={()=>mutLogin()}
               isLoading={isLoading}
 

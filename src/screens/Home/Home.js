@@ -11,43 +11,42 @@ import {Button} from '../../components/Button';
 import DrawerContent from '../../components/drewerContent/DrawerContent';
 import Drawer from 'react-native-drawer'
 import ViewSlider from 'react-native-view-slider';
+import axios from 'axios';
+
 // create a component
  const Home = ({navigation}) => {
-const [user,setUser]=useState("");
-const [pass,setPass]=useState("");
-const [isLoading,setLoading]=useState(false);
-const [eror,SetEror]=useState(false);
-const [eror2,SetEror2]=useState(false);
+const [slider1,setSlider1]=useState("");
+const [slider2,setSlider2]=useState("");
+const [slider3,setSlider3]=useState("");
+
 const drawers = useRef(null);
 I18nManager.forceRTL(true);
+useEffect(() => {
+
+    mutLogin();
 
 
-//       const  mutLogin=async()=> {
-//         setLoading(true);
-// if(user=="" || pass==""){
-//         alert("Please fill input")
-//         SetEror(true)
-// }
+}, []);
+      const  mutLogin=async()=> {
+        axios.post('https://appflashcard.ir//api/WebApi/Info')
+        .then(function (response) {
+          const message = response.data.Data;
+          const result = response.data.result;
+          console.log(result);
+          console.log(message);
+          if(result == "true"){
 
-// else{
+            // navigation.navigate("ChangePass",{mobile:user,verify:response.data.Data})
+                            }else{
 
-//         if((user=="user1"&&pass=="pass1")||(user=="user2"&&pass=="pass2")){
-//                 setLoading(false);
-// AsyncStorage.setItem("user","true")
-//                 navigation.navigate("MainPage")
-//         }
-// else{
-//         setLoading(false);
-//          SetEror2(true)
-
-
-
-// }
+          }
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
 
 
-// }
-
-//         };
+        };
 
 return (
   <Drawer
@@ -77,7 +76,7 @@ return (
         <View style={styles.customRow}>
             <View style={{paddingLeft:0}}>
              <TouchableOpacity onPress={()=>drawers.current.open()}>
-             <Icon name={"notes"} style={styles.menuIcon} size={50} color={"#fff"} style={{transform: [{rotateY: '180deg'}]}}/>
+             <Icon name={"notes"} style={styles.menuIcon} size={50} color={"#fff"}/>
 
              </TouchableOpacity>
              </View>
@@ -92,7 +91,7 @@ return (
 
        </View>
     <View style={styles.bodyC}>
-    <ViewSlider style={{borderRadius:10}}
+    {/* <ViewSlider style={{borderRadius:10}}
         renderSlides = {
           <>
             <View style={styles.viewBox}>
@@ -112,7 +111,7 @@ return (
       dotsContainerStyle={styles.dotContainer}     // Container style of the pagination dots
       autoSlide = {true}    //The views will slide automatically
       slideInterval = {5000}    //In Miliseconds
-     />
+     /> */}
      <TouchableOpacity onPress={()=>navigation.navigate("SubCategory")} style={styles.customRowC}>
      <Image source={require('../../assets/images/slide4.png')} style={styles.image}/>
       <LinearGradient
@@ -221,7 +220,7 @@ customRow:{
 
 }
 ,menuIcon:{
-
+  transform: [{rotateY: '180deg'}]
 }
 ,menuTitle:{
   fontFamily:"IRANSansBold",
