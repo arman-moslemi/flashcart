@@ -8,6 +8,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import {Input} from '../../components/Input';
 import {Button} from '../../components/Button';
 import axios from 'axios';
+import { apiUrl ,apiAsset} from "../../commons/inFormTypes";
 
 
 // create a component
@@ -37,7 +38,7 @@ else{
 console.log(545)
   // if((user=="user1"&&pass=="pass1")||(user=="user2"&&pass=="pass2")){
           setLoading(false);
-          axios.post('https://appflashcard.ir//api/WebApi/InsertMobile_RegisterSms',{Mobile:mobile})
+          axios.post(apiUrl+'InsertMobile_RegisterSms',{Mobile:mobile})
           .then(function (response) {
             const message = response.data.Data;
             const result = response.data.result;
@@ -54,7 +55,7 @@ console.log(545)
             console.log(error);
           });
 
- 
+
 
 
 }

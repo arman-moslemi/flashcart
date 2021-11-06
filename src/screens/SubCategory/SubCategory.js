@@ -10,7 +10,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 import {TopBar} from '../../components/TopBar';
 
 // create a component
- const SubCategory = ({navigation}) => {
+ const SubCategory = ({navigation,route}) => {
 
     const classes =()=>{
         return(
