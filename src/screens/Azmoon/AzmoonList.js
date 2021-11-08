@@ -63,7 +63,7 @@ const AzmoonList = ({navigation}) => {
 <Text style={{...myFontStyle.normalRegular,color:Colors.gray,marginHorizontal:10}}>پزشکی:اطفال</Text>
 <Text style={{...myFontStyle.largBold,color:Colors.text,width:responsiveWidth(30)}}>عنوان آزمون</Text>
 <Text style={{...myFontStyle.mediumBold,color:Colors.gray}}>نمره کسب شده:15</Text>
-<Text style={{...myFontStyle.mediumBold,color:Colors.gray,marginHorizontal:10}}>پزشکی:اطفال</Text>
+<Text style={{...myFontStyle.mediumBold,color:Colors.gray,marginHorizontal:10}}>پزشکی: اطفال</Text>
 <Text style={{...myFontStyle.mediumBold,color:Colors.text}}>عنوان آزمون</Text>
 <Image source={require('../../assets/images/RectangleRed.png')} style={{ height:responsiveHeight(10),width:5,marginLeft:responsiveWidth(-5),marginRight:responsiveWidth(3),marginBottom:responsiveHeight(0.5)}}/>
 </View>
