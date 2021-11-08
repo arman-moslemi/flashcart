@@ -1,5 +1,5 @@
 import React, { useState,useEffect,useRef } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, TextInput,Image, AsyncStorage } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, TextInput,Image } from 'react-native';
 import { myFontStyle } from "../../assets/Constance";
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import Modal from 'react-native-modal';
@@ -22,15 +22,112 @@ import Video from 'react-native-video';
  import TrackPlayer, { usePlaybackState } from "react-native-track-player";
  import localTrack from "../../assets/images/audio_2021-11-02_15-04-15.mp3";
 import Player from "../../components/Player";
+import axios from 'axios';
+import { apiUrl ,apiAsset} from "../../commons/inFormTypes";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 // create a component
- const FlashCardView = ({navigation}) => {
+ const FlashCardView = ({navigation,route}) => {
 
     const [isModalVisible, setModalVisible] = useState(false);
     const [sound, setSound] = useState(false);
     const [isplay, setPlay] = useState(false);
     const [video, setVideo] = useState(false);
+    const [isPhoto, setPhoto] = useState(false);
+    const [answer, setAnswer] = useState(false);
+    const [soundAns, setSoundAns] = useState(false);
+    const [isplayAns, setPlayAns] = useState(false);
+    const [videoAns, setVideoAns] = useState(false);
+    const [isPhotoAns, setPhotoAns] = useState(false);
+    const [rateNum, setRateNum] = useState(false);
     const vid = useRef(null);
+    const vidAnswer = useRef(null);
+    const [data,setData]=useState([]);
+    const {id,first,last} = route?.params ?? {};
+    const [ids,setID]=useState(id);
 
+    useEffect(() => {
+// setID(id)
+      mutLogin(ids);
+
+
+    }, [ids]);
+
+    const  mutLogin=async(mm)=> {
+      setSound(false)
+      setPlay(false)
+      setVideo(false)
+      setPhoto(false)
+      setSoundAns(false)
+      setVideoAns(false)
+      setPhotoAns(false)
+
+      axios.post(apiUrl+'OneFlashCard',{FlashCardID:mm})
+      .then(function (response) {
+        const message = response.data.Data;
+        const result = response.data.result;
+        console.log(result);
+        console.log(message)
+
+        if(result == "true"){
+          setData(response.data.Data)
+if(response.data.Data[0].Voice){
+  setSound(true)
+}
+if(response.data.Data[0].Video){
+  setVideo(true)
+}
+if(response.data.Data[0].Photo){
+  setPhoto(true)
+}
+if(response.data.Data[0].VoiceAnswer){
+  setSoundAns(true)
+}
+if(response.data.Data[0].VideoAnswer){
+  setVideoAns(true)
+}
+if(response.data.Data[0].PhotoAnswer){
+  setPhotoAns(true)
+}
+          // navigation.navigate("ChangePass",{mobile:user,verify:response.data.Data})
+                          }else{
+
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+
+
+      };
+      const  setRate=async()=> {
+        console.log(rateNum)
+        // const ss=await AsyncStorage.getItem("userID")
+        const state = await AsyncStorage.getItem("@user");
+
+        // console.log(ss)
+
+        axios.post(apiUrl + 'InsertRate',{FlashCardID:id,CustomerID:state,Rate:rateNum})
+        .then(function (response) {
+          const message = response.data.Data;
+          const result = response.data.result;
+          console.log(result);
+          console.log(message)
+
+          if(result == "true"){
+   alert("با موفقیت ثبت شد")
+     navigation.navigate("FlashCardView",{id:id,first:first,last:last})
+  }
+                          else{
+
+          }
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+
+
+        };
     async function setup() {
       await TrackPlayer.setupPlayer({});
       await TrackPlayer.updateOptions({
@@ -76,9 +173,9 @@ import Player from "../../components/Player";
         await TrackPlayer.reset();
         await TrackPlayer.add({
           id: "local-track",
-          url: localTrack,
-          title: "Pure (Demo)",
-          artist: "David Chavez",
+          // url: localTrack,
+          url: apiAsset+data[0]?.Voice,
+          title: "FlashCart",
           artwork: "https://i.picsum.photos/id/500/200/200.jpg",
           // duration: 10
         });
@@ -107,6 +204,53 @@ else{
 
   await TrackPlayer.play()
   setPlay(true)
+}
+
+      // }
+    }
+
+    async function togglePlaybackAnswer() {
+      const currentTrack = await TrackPlayer.getPosition();
+      const currentTrack2 = await TrackPlayer.getDuration();
+      console.log(444)
+      console.log(currentTrack)
+      if (currentTrack == currentTrack2) {
+        setPlay(true)
+        await TrackPlayer.reset();
+        await TrackPlayer.add({
+          id: "local-track",
+          // url: localTrack,
+          url: apiAsset+data[0]?.VoiceAnswer,
+          title: "FlashCart",
+          // artist: "David Chavez",
+          artwork: "https://i.picsum.photos/id/500/200/200.jpg",
+          // duration: 10
+        });
+        await TrackPlayer.play();
+      }
+      else{
+
+        if(isplayAns)
+       { await TrackPlayer.pause()
+setPlayAns(false)}
+else{
+
+  await TrackPlayer.play()
+  setPlayAns(true)
+}
+      }
+
+
+      // }
+    }
+    async function stopAnswer() {
+if(isplayAns)
+       { await TrackPlayer.pause()
+setPlayAns(false)}
+else{
+
+  await TrackPlayer.play()
+  setPlayAns(true)
 }
 
       // }
@@ -145,7 +289,7 @@ else{
             alignItems: 'center',}}>
             <View style={styles.flashCardBox}>
             <View style={styles.yellowBox}>
-            <TouchableOpacity style={{flexDirection:"row",alignItems:'baseline'}}  onPress={toggleModal}>
+            <TouchableOpacity style={{flexDirection:"row",justifyContent:'center',alignItems:'center'}}  onPress={toggleModal}>
                   <Icon name={"chevron-right"} color={'#fff'} size={30} ></Icon>
                   <Text style={styles.nextBtnText}>بعدی</Text>
               </TouchableOpacity>
@@ -159,6 +303,7 @@ else{
                     showRating
                     ratingTextColor={'#fff'}
                     ratingColor={'#FFC444'}
+                    onFinishRating={(ss)=>setRateNum(ss)}
                   />
 
                   <View style={{flexDirection:'row',marginTop:responsiveHeight(3)}}>
@@ -176,7 +321,7 @@ else{
                    <LinearGradient colors={['#3AC3FE', '#0284BB'] }start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={{borderRadius:3,padding:5}}>
 
 
-          <TouchableOpacity style={styles.notShowBtn}>
+          <TouchableOpacity onPress={()=>setRate()} style={styles.notShowBtn}>
           <Text style={styles.modalBtnText}>ثبت نظر</Text>
           </TouchableOpacity>
           </LinearGradient>
@@ -187,7 +332,7 @@ else{
               <TouchableOpacity style={styles.favoriteBtn} onPress={()=>vid.current.presentFullscreenPlayer()}>
                   <Icon name={"favorite-border"} size={40} color={'#ffc444'}></Icon>
               </TouchableOpacity>
-              <TouchableOpacity style={{flexDirection:'row-reverse'}}onPress={toggleModal}>
+              <TouchableOpacity style={{flexDirection:'row-reverse',alignItems:'center'}}onPress={toggleModal}>
                   <Icon name={"chevron-left"} color={'#fff'} size={30} ></Icon>
                   <Text style={styles.nextBtnText}>قبلی</Text>
               </TouchableOpacity>
@@ -195,12 +340,14 @@ else{
                           </View>
             <View style={styles.textBoxCard}>
             <Text style={styles.questionText}>
-            لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است  </Text>
+            {/* لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است   */}
+            {data[0]?.Text}
+            </Text>
 
             </View>
-            <View style={{padding:responsiveWidth(5),alignItems:'center'}} >
               {
-                sound?
+                sound ?
+            <View style={{padding:responsiveWidth(5),alignItems:'center'}} >
                 <Player
         // onNext={skipToNext}
         style={{ marginTop: 10}}
@@ -209,15 +356,23 @@ else{
         stop={stop}
         isplay={isplay}
       />
-                :
-              <TouchableOpacity onPress={()=>setSound(true)}>
+                  </View>
 
-<Icon name={"volume-up"} color={Colors.appColor} size={60} />
-              </TouchableOpacity>
+                :
+//               <TouchableOpacity onPress={()=>setSound(true)}>
+
+// <Icon name={"volume-up"} color={Colors.appColor} size={60} />
+//               </TouchableOpacity>
+null
 
               }
 {
   video?
+  <View style={{padding:responsiveWidth(4)}}>
+        <TouchableOpacity style={{flexDirection:'row',marginBottom:2}} onPress={()=>{vid.current. vid?.current?.stop();navigation.navigate('FlashCardVideo',{paths:apiAsset+data[0]?.Video})}}>
+              <Icon name={"crop-free"} color={Colors.yellow} size={20}/>
+              <Text style={{...myFontStyle.mediumBold,color:Colors.yellow}}>بزرگنمایی</Text>
+            </TouchableOpacity>
   <VideoPlayer
 //             source={{
 //   uri: "https://www.example.com/video.mp4",
@@ -231,7 +386,8 @@ audioOnly={true}
 // videoWidth={2000}
 //     videoHeight={900}
 // source={require( "../../assets/images/mahmmod.mp4")}
-video={require( "../../assets/images/mahmmod.mp4")}
+// video={require( "../../assets/images/mahmmod.mp4")}
+video={{uri:apiAsset+data[0]?.Video}}
 showDuration={true}
 fullScreenOnLongPress={true}
 fullscreen={true}
@@ -249,26 +405,35 @@ fullscreen={true}
 
       //  style={styles.backgroundVideo}
        />
+
+       </View>
   :
   null
 
 }
 
-            </View>
-           {/* <View style={{position:'absolute',bottom:responsiveHeight(2),right:responsiveWidth(5)}}> */}
-           <TouchableOpacity style={{position:'absolute',top:responsiveHeight(24),left:responsiveWidth(8)}} onPress={()=>{vid.current.stop();navigation.navigate('FlashCardVideo')}}>
-              <Icon name={"crop-free"} color={Colors.white} size={20}/>
-            </TouchableOpacity>
+{
+  isPhoto?
+  <View style={{padding:responsiveWidth(4),alignItems:'center'}}>
+
+   <Image source={{uri:apiAsset+data[0]?.Photo}} style={{width:responsiveWidth(70),height:responsiveHeight(50)}}/>
+
+       </View>
+  :
+  null
+
+}
            <View>
-           <TouchableOpacity style={styles.seeAnswerBtn} >
+           <TouchableOpacity onPress={()=>setAnswer(!answer)} style={styles.seeAnswerBtn} >
               <Text style={styles.seeAnswer}>مشاهده پاسخ</Text>
             </TouchableOpacity>
            </View>
             </View>
 
         </View>
-
-        <View style={{padding:10,flexDirection: 'column',
+{
+  answer?
+<View style={{padding:10,flexDirection: 'column',
             justifyContent: 'center',
             alignItems: 'center',}}>
             <View style={styles.flashCardBox2}>
@@ -283,19 +448,101 @@ fullscreen={true}
             </View>
             <View style={styles.textBoxCard}>
             <Text style={styles.questionText}>
-            لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است  </Text>
+            {/* لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است   */}
+{data[0]?.TextAnswer}
 
-
-
+</Text>
             </View>
-            <View>
-           <TouchableOpacity style={styles.seeAnswerBtn}>
-              <Text style={styles.seeAnswer}>توضیح بیشتر</Text>
+            {
+                soundAns ?
+            <View style={{padding:responsiveWidth(5),alignItems:'center'}} >
+                <Player
+        // onNext={skipToNext}
+        style={{ marginTop: 10}}
+        // onPrevious={skipToPrevious}
+        onTogglePlayback={togglePlaybackAnswer}
+        stop={stopAnswer}
+        isplay={isplayAns}
+      />
+                  </View>
+
+                :
+//               <TouchableOpacity onPress={()=>setSound(true)}>
+
+// <Icon name={"volume-up"} color={Colors.appColor} size={60} />
+//               </TouchableOpacity>
+null
+
+              }
+{
+  videoAns?
+  <View style={{padding:responsiveWidth(4)}}>
+        <TouchableOpacity style={{flexDirection:'row',marginBottom:2}} onPress={()=>{vid.current. vid?.current?.stop();navigation.navigate('FlashCardVideo',{paths:apiAsset+data[0]?.VideoAnswer})}}>
+              <Icon name={"crop-free"} color={Colors.yellow} size={20}/>
+              <Text style={{...myFontStyle.mediumBold,color:Colors.yellow}}>بزرگنمایی</Text>
             </TouchableOpacity>
+  <VideoPlayer
+//             source={{
+//   uri: "https://www.example.com/video.mp4",
+//   headers: {
+//     Authorization: 'bearer some-token-value',
+//     'X-Custom-Header': 'some value'
+//   }
+// }}
+audioOnly={true}
+
+// videoWidth={2000}
+//     videoHeight={900}
+// source={require( "../../assets/images/mahmmod.mp4")}
+// video={require( "../../assets/images/mahmmod.mp4")}
+video={{uri:apiAsset+data[0]?.VideoAnswer}}
+showDuration={true}
+fullScreenOnLongPress={true}
+fullscreen={true}
+
+// Can be a URL or a local file.
+      //  ref={(ref) => {
+      //    this.player = ref
+      //  }}
+       ref={vidAnswer}
+      //  resizeMode={"stretch"}
+
+      //  onBuffer={this.onBuffer}
+      //  onError={this.videoError}
+      // toggleResizeModeOnFullscreen={true}
+
+      //  style={styles.backgroundVideo}
+       />
+
+       </View>
+  :
+  null
+
+}
+
+{
+  isPhotoAns?
+  <View style={{padding:responsiveWidth(4),alignItems:'center'}}>
+
+   <Image source={{uri:apiAsset+data[0]?.PhotoAnswer}} style={{width:responsiveWidth(70),height:responsiveHeight(50)}}/>
+
+       </View>
+  :
+  null
+
+}
+            <View>
+           {/* <TouchableOpacity style={styles.seeAnswerBtn}>
+              <Text style={styles.seeAnswer}>توضیح بیشتر</Text>
+            </TouchableOpacity> */}
            </View>
             </View>
 
         </View>
+  :
+  null
+}
+
         <View style={{padding:responsiveWidth(5),flexDirection:'row',justifyContent:'space-between'}}>
            <TouchableOpacity style={styles.returnFirst}
             onPress={toggleModal2}>
@@ -367,7 +614,7 @@ fullscreen={true}
                 </View>
               </Modal>
           </TouchableOpacity>
-           <TouchableOpacity style={styles.returnFirst}>
+           <TouchableOpacity onPress={()=>setID(first)} style={styles.returnFirst}>
 
 
              <Text style={styles.returnText}>بازگشت به اولین سوال</Text>
@@ -408,7 +655,7 @@ const styles = StyleSheet.create({
     backgroundColor:'#fff',
     borderRadius:3,
 
-    height:responsiveHeight(30),
+    // height:responsiveHeight(30),
     width:responsiveWidth(90),
     shadowColor: '#DEE0E3',
       shadowOpacity: 0.1,
@@ -434,7 +681,7 @@ const styles = StyleSheet.create({
    justifyContent: 'center',
    alignItems: 'center',
   },nextBtnText:{
-    ...myFontStyle.largBold,
+    ...myFontStyle.normalBold,
     // position:'absolute',
     // left:responsiveWidth(8),
     // top:responsiveHeight(-0.8),

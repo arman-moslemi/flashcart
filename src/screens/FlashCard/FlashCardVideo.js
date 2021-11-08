@@ -20,11 +20,12 @@ import Video from 'react-native-video';
 import VideoPlayer from 'react-native-video-controls';
 //  import VideoPlayer from 'react-native-video-player';
 // create a component
- const FlashCardVideo = ({navigation}) => {
+ const FlashCardVideo = ({navigation,route}) => {
 
     const [isModalVisible, setModalVisible] = useState(false);
     const vid = useRef(null);
 
+    const {paths} = route?.params ?? {};
 
 
 return (
@@ -40,7 +41,8 @@ return (
   // }}
   // videoWidth={2000}
   //     videoHeight={900}
-  source={require( "../../assets/images/mahmmod.mp4")}
+  // source={require( "../../assets/images/mahmmod.mp4")}
+  source={{uri:paths}}
   // video={require( "../../assets/images/mahmmod.mp4")}
   showDuration={true}
   fullScreenOnLongPress={true}

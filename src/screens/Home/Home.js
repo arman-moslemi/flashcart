@@ -79,7 +79,7 @@ return (
 
 
 <View style={styles.parent}>
-			<LinearGradient colors={['#16B2F5', '#0385BC']} style={styles.child}>
+			<LinearGradient colors={['#16B2F5', '#0385BC']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={styles.child}>
 
       		</LinearGradient>
 
@@ -123,7 +123,7 @@ return (
       autoSlide = {true}    //The views will slide automatically
       slideInterval = {5000}    //In Miliseconds
      /> */}
-     <TouchableOpacity onPress={()=>navigation.navigate("MainCategory")} style={styles.customRowC}>
+     <TouchableOpacity onPress={()=>navigation.navigate("MainCategory",{id:1})} style={styles.customRowC}>
      <Image source={{uri:apiAsset+pezeshki}} style={styles.image}/>
       <LinearGradient
       colors={[
@@ -142,8 +142,8 @@ return (
       style={styles.logoAbsolute}/>
       <Text style={styles.textOverlay}>پزشکی</Text>
      </TouchableOpacity>
-     <View style={styles.columnC}>
-      <View style={styles.item1}>
+     <View  style={styles.columnC}>
+      <TouchableOpacity onPress={()=>navigation.navigate("MainCategory",{id:3})} style={styles.item1}>
       {/* <Image source={require('../../assets/images/slide2.png')} style={styles.miniImage}/> */}
       <Image source={{uri:apiAsset+board}} style={styles.miniImage}/>
       <LinearGradient
@@ -160,8 +160,8 @@ return (
       <Text style={styles.textOverlay2}>بورد</Text>
       <Image source={require('../../assets/images/boardLogo.png')} style={styles.logoAbsolute2}/>
 
-      </View>
-      <View style={styles.item2}>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={()=>navigation.navigate("MainCategory",{id:2})} style={styles.item2}>
       {/* <Image source={require('../../assets/images/slide2.png')} style={styles.miniImage} /> */}
       <Image source={{uri:apiAsset+dandan}} style={styles.miniImage} />
       <LinearGradient
@@ -177,7 +177,7 @@ return (
       />
        <Image source={require('../../assets/images/dentalLogo.png')} style={styles.logoAbsolute2}/>
       <Text style={styles.textOverlay2}>دندان پزشکی</Text>
-      </View>
+      </TouchableOpacity>
 
      </View>
 
@@ -242,9 +242,10 @@ customRow:{
   transform: [{rotateY: '180deg'}]
 }
 ,menuTitle:{
-  fontFamily:"IRANSansBold",
+  // fontFamily:"IRANSansBold",
+  ...myFontStyle.largBold,
   color:"#fff",
-  fontSize:25,
+  // fontSize:25,
   marginTop:responsiveHeight(1),
 }
 ,searchBTN:{
@@ -334,7 +335,7 @@ bottom: 15
   },textOverlay:{
 
     color:"#fff",
-    ...myFontStyle.textOnImg,
+    ...myFontStyle.largBold,
     position:'absolute',
     right:responsiveWidth(78),
     top:responsiveHeight(18),
@@ -345,7 +346,7 @@ bottom: 15
     top:responsiveHeight(12),
     right:responsiveWidth(2),
   },textOverlay2:{
-   ...myFontStyle.textOnImg,
+   ...myFontStyle.largBold,
     color:"#fff",
 
     position:'absolute',
