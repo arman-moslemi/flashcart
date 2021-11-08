@@ -34,7 +34,7 @@ const PanelMain = ({navigation}) => {
   const [items2, setItems2] = useState([
 
   ]);
-  
+
   const  setValueDrop=()=> {
 
   }

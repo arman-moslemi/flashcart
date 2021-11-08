@@ -1,5 +1,5 @@
 import React, { useState,useEffect,useRef } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, TextInput,Image, AsyncStorage } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, TextInput,Image, AsyncStorage ,FlatList} from 'react-native';
 import { myFontStyle } from "../../assets/Constance";
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import DrawerContent from '../../components/drewerContent/DrawerContent';
@@ -8,13 +8,62 @@ import { Colors } from '../../assets/Colors';
 import { responsiveFontSize, responsiveHeight, responsiveScreenWidth, responsiveWidth } from 'react-native-responsive-dimensions';
 import LinearGradient from 'react-native-linear-gradient';
 import { ScrollView } from 'react-native-gesture-handler';
-
+import axios from 'axios';
+import { apiUrl ,apiAsset} from "../../commons/inFormTypes";
 
 // create a component
- const MainCategory = ({navigation}) => {
+ const MainCategory = ({navigation,route}) => {
   const drawers = useRef(null);
+  const [data,setData]=useState([]);
+  useEffect(() => {
+
+    mutLogin();
 
 
+}, []);
+const {id} = route?.params ?? {};
+
+  const  mutLogin=async()=> {
+    axios.post(apiUrl+'Groups',{MainGroupID:id})
+    .then(function (response) {
+      const message = response.data.Data;
+      const result = response.data.result;
+      console.log(result);
+
+      if(result == "true"){
+        setData(response.data.Data)
+
+        // navigation.navigate("ChangePass",{mobile:user,verify:response.data.Data})
+                        }else{
+
+      }
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+
+
+    };
+    const keyExtractor = item => {
+      return item.GroupID;
+    };
+    const _render = (item, index) => {
+      console.log(item.item)
+      return (
+        <TouchableOpacity onPress={()=>navigation.navigate('SubCategory',{id:item.item.GroupID,title:item.item.Title})} style={styles.categoryCol1}>
+        {/* <Image source={require('../../assets/images/zanan.png')} style={styles.categoryColImg}/> */}
+        <Image source={{uri:apiAsset+item.item.Photo}} style={styles.categoryColImg}/>
+        <LinearGradient colors={['#16B2F5', '#0385BC']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={styles.bottomBox}>
+        <View>
+            <Text style={styles.bottomBoxText}>
+                {item.item.Title}
+            </Text>
+        </View>
+  </LinearGradient>
+
+        </TouchableOpacity>
+      );
+    };
 
 return (
   <Drawer
@@ -36,7 +85,7 @@ tweenHandler={(ratio) => ({
 
 
 <View style={styles.parent}>
-			<LinearGradient colors={['#16B2F5', '#0385BC']} style={styles.child}>
+			<LinearGradient colors={['#16B2F5', '#0385BC']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={styles.child}>
 
       		</LinearGradient>
 
@@ -45,8 +94,8 @@ tweenHandler={(ratio) => ({
 
           <View style={styles.customRow}>
             <View style={{paddingLeft:20}}>
-             <TouchableOpacity>
-             <Icon name={"notes"} style={styles.menuIcon} size={50} color={"#fff"} style={{transform: [{rotateY: '180deg'}]}}/>
+            <TouchableOpacity onPress={()=>drawers.current.open()}>
+             <Icon name={"notes"}  size={50} color={"#fff"} style={{transform: [{rotateY: '180deg'}]}}/>
 
              </TouchableOpacity>
              </View>
@@ -62,76 +111,35 @@ tweenHandler={(ratio) => ({
        </View>
        <View style={styles.customRow2}>
        <View style={styles.logoBox}>
+         {
+           id == 1?
+
+           <Image source={require('../../assets/images/pezeshkiLogo.png')} style={styles.logoSize}/>
+           :id==2?
+           <Image source={require('../../assets/images/dentalLogo.png')} style={styles.logoSize}/>
+
+           :
+           id==3?
            <Image source={require('../../assets/images/boardLogo.png')} style={styles.logoSize}/>
+
+           :
+           null
+         }
        </View>
        </View>
-      <ScrollView style={{marginTop:responsiveHeight(10)}}>
-      <View style={styles.categoryRow}>
-        <TouchableOpacity style={styles.categoryCol1}>
-        <Image source={require('../../assets/images/zanan.png')} style={styles.categoryColImg}/>
-        <LinearGradient colors={['#16B2F5', '#0385BC']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={styles.bottomBox}>
-        <View>
-            <Text style={styles.bottomBoxText}>
-                زنان
-            </Text>
-        </View>
-  </LinearGradient>
+       <View>
 
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.categoryCol2}>
-        <Image source={require('../../assets/images/kids.png')} style={styles.categoryColImg}/>
-        <LinearGradient colors={['#16B2F5', '#0385BC']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={styles.bottomBox}>
-        <View>
-            <Text style={styles.bottomBoxText}>
-                اطفال
-            </Text>
-        </View>
-  </LinearGradient>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.categoryCol1}>
-        <Image source={require('../../assets/images/orolojh.png')} style={styles.categoryColImg}/>
-        <LinearGradient colors={['#16B2F5', '#0385BC']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={styles.bottomBox}>
-        <View>
-            <Text style={styles.bottomBoxText}>
-                اورولوژی
-            </Text>
-        </View>
-  </LinearGradient>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.categoryCol2}>
-        <Image source={require('../../assets/images/bihooshi.png')} style={styles.categoryColImg}/>
-        <LinearGradient colors={['#16B2F5', '#0385BC']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={styles.bottomBox}>
-        <View>
-            <Text style={styles.bottomBoxText}>
-                بیهوشی
-            </Text>
-        </View>
-  </LinearGradient>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.categoryCol1}>
-        <Image source={require('../../assets/images/other.png')} style={styles.categoryColImg}/>
-        <LinearGradient colors={['#16B2F5', '#0385BC']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={styles.bottomBox}>
-        <View>
-            <Text style={styles.bottomBoxText}>
-               سایر رشته ها
-            </Text>
-        </View>
-  </LinearGradient>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.categoryCol2}>
-        <Image source={require('../../assets/images/ortoped.png')} style={styles.categoryColImg}/>
-        <LinearGradient colors={['#16B2F5', '#0385BC']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={styles.bottomBox}>
-        <View>
-            <Text style={styles.bottomBoxText}>
-             اورتوپد
-            </Text>
-        </View>
-  </LinearGradient>
-        </TouchableOpacity>
+       <FlatList
+          numColumns={2}
+          columnWrapperStyle={styles.charityList}
+          keyExtractor={keyExtractor}
+          data={data}
+          renderItem={_render}
+          style={{marginTop:responsiveHeight(6),marginLeft:responsiveWidth(2),marginBottom:responsiveHeight(20)}}
+                    // ListFooterComponent={listFooter}
+          // onEndReached={fetchNextCharityPage}
+        />
        </View>
-
-      </ScrollView>
-
 
 
 
@@ -156,9 +164,10 @@ const styles = StyleSheet.create({
 width:responsiveWidth(90),
 },
   categoryCol1:{
-        width:'50%',
-        flexDirection: 'row', justifyContent: 'flex-start',
-        marginBottom:20,
+        width:'45%',
+        flexDirection: 'row',
+       justifyContent: 'flex-start',
+        marginBottom:responsiveHeight(2),
 
 
   }, categoryCol2:{
@@ -182,6 +191,11 @@ child : {
     justifyContent : 'center',
 
 },
+charityList: {
+  marginTop: responsiveHeight(2),
+
+  justifyContent: 'center',
+},
 customRow:{
   flex:1, flexDirection:"row",
   position:"absolute",
@@ -189,9 +203,11 @@ customRow:{
   paddingRight:20,
   paddingLeft:20,
 },menuTitle:{
-    fontFamily:"IRANSansBold",
+    // fontFamily:"IRANSansBold",
     color:"#fff",
-    fontSize:25,
+    ...myFontStyle.largBold,
+
+    // fontSize:25,
     marginTop:responsiveHeight(1),
   }
   ,logoBox:{
@@ -208,11 +224,12 @@ customRow:{
     flex:1, flexDirection:"row-reverse",
     position:"absolute",
     top:responsiveHeight(11),
-    left:responsiveWidth(30),
-    paddingRight:20,
-    paddingLeft:20,
+    alignSelf:'center'
+    // left:responsiveWidth(35),
+    // paddingRight:20,
+    // paddingLeft:20,
   },logoSize:{
-     width:105,height:120,
+     width:responsiveWidth(22.5),height:responsiveHeight(15),
 
   },categoryColImg:{
       width:'95%',

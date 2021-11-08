@@ -5,22 +5,26 @@ import { responsiveWidth,res } from 'react-native-responsive-dimensions';
 // import Loading from '../../components/Loading';
 // import { ezan_vakti, myFontStyle } from '../../Constance';
 import { Colors } from '../../assets/Colors';
-import { AsyncStorage } from 'react-native';
+// import { AsyncStorage } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // create a component
 const SplashScreen = ({ navigation }) => {
   const [state,setState]=useState("");
 
   const  mutLogin=async()=> {
-    const state = await AsyncStorage.getItem("user");
+    const state = await AsyncStorage.getItem("@user");
+    // const us = await AsyncStorage.getItem("userID");
 
     // setState(state);
 
-    // console.log(state)
+     console.log(444)
+     console.log(state)
     if(state!=null && state!="" && state!="false"){
 
     console.log(state)
       navigation.navigate('StackNavigatorsssss')
+      // navigation.navigate('Login')
     }
     else{
 

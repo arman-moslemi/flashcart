@@ -41,7 +41,7 @@ const AzmoonList = ({navigation}) => {
 <Text style={{...myFontStyle.mediumBold,color:Colors.gray}}>نمره کسب شده:15</Text>
 <Text style={{...myFontStyle.mediumBold,color:Colors.gray,marginHorizontal:10}}>پزشکی:اطفال</Text>
 <Text style={{...myFontStyle.mediumBold,color:Colors.text}}>عنوان آزمون</Text>
-<Image source={require('../../assets/images/RectangleGreen.png')} style={{ height:responsiveHeight(10),width:5,marginLeft:responsiveWidth(-5),marginRight:responsiveWidth(3),marginBottom:responsiveHeight(0.5)}}/>
+{/* <Image source={require('../../assets/images/RectangleGreen.png')} style={{ height:responsiveHeight(10),width:5,marginLeft:responsiveWidth(-5),marginRight:responsiveWidth(3),marginBottom:responsiveHeight(0.5)}}/> */}
 </View>
     {/* </View> */}
 
@@ -56,7 +56,7 @@ const AzmoonList = ({navigation}) => {
 <Text style={{...myFontStyle.mediumBold,color:Colors.gray}}>نمره کسب شده:15</Text>
 <Text style={{...myFontStyle.mediumBold,color:Colors.gray,marginHorizontal:10}}>پزشکی:اطفال</Text>
 <Text style={{...myFontStyle.mediumBold,color:Colors.text}}>عنوان آزمون</Text>
-<Image source={require('../../assets/images/RectangleRed.png')} style={{ height:responsiveHeight(10),width:5,marginLeft:responsiveWidth(-5),marginRight:responsiveWidth(3),marginBottom:responsiveHeight(0.5)}}/>
+{/* <Image source={require('../../assets/images/RectangleRed.png')} style={{ height:responsiveHeight(10),width:5,marginLeft:responsiveWidth(-5),marginRight:responsiveWidth(3),marginBottom:responsiveHeight(0.5)}}/> */}
 </View>
     {/* </View> */}
 
@@ -131,7 +131,8 @@ const styles = StyleSheet.create({
   paddingBottom:responsiveHeight(2)},
   subViewRead:{
     backgroundColor:"#fff",
-    elevation:5,
+    elevation:5
+    ,borderLeftWidth:5,borderLeftColor:"green",
     shadowOpacity:1,
     shadowRadius:10,
     shadowOffset:5,

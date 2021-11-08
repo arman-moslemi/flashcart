@@ -1,5 +1,5 @@
 import React, { useState,useEffect } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, TextInput,Image, AsyncStorage,KeyboardAvoidingView } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, TextInput,Image,KeyboardAvoidingView } from 'react-native';
 import { myFontStyle } from "../../assets/Constance";
 
 import { Colors } from '../../assets/Colors';
@@ -10,7 +10,7 @@ import {Button} from '../../components/Button';
 import { apiUrl ,apiAsset} from "../../commons/inFormTypes";
 
 import axios from 'axios';
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
 // create a component
  const Login = ({navigation}) => {
 const [user,setUser]=useState("");
@@ -20,7 +20,12 @@ const [eror,SetEror]=useState(false);
 const [eror2,SetEror2]=useState(false);
 const keyboardVerticalOffset = responsiveHeight(5)
 
-
+const storeData = async (value) => {
+  try {
+      await AsyncStorage.setItem('@user', value.toString())
+} catch (e) {
+     // saving error
+ }}
 
       const  mutLogin=async()=> {
         setLoading(true);
@@ -34,19 +39,25 @@ if(user=="" || pass==""){
 else{
 console.log(545)
         // if((user=="user1"&&pass=="pass1")||(user=="user2"&&pass=="pass2")){
-                setLoading(false);
-                axios.post(apiUrl+'Login',{Mobile:user,Password:pass})
+          // console.log(await  AsyncStorage.getItem("userID") )
+        // await  AsyncStorage.setItem("userID",3)
+          setLoading(false);
+                axios.post(apiUrl + 'Login',{Mobile:user,Password:pass})
                 .then(function (response) {
+                  // await AsyncStorage.setItem("@user","true")
                   const message = response.data.message;
                   const result = response.data.result;
                   console.log(result);
                   console.log(message);
                   if(result == "true"){
-                    AsyncStorage.setItem("user","true")
+                   console.log(22);
+                   console.log(response.data.Data[0].CustomerID);
+                    // storeData(response.data.CustomerID);
+                    AsyncStorage.setItem('@user',response.data.Data[0].CustomerID.toString())
                     navigation.navigate("StackNavigatorsssss")
                                     }else{
-                                      setLoading(false);
-                                      SetEror2(true)
+                     setLoading(false);
+                     SetEror2(true)
                   }
                 })
                 .catch(function (error) {

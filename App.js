@@ -67,21 +67,21 @@ shifting={false}
 
 // tabBar={props => <TabBar {...props} />}
 >
-  <Tab.Screen
-        // name="home"
-        name={"LitnearBox"}
-        component={LitnearBox}
-        options={{          tabBarLabel: '',          tabBarIcon: ({ color }) => (            <Icon name="how-to-vote" color={Colors.appColor} size={26} />          ),        }}      />
+<Tab.Screen
+    name="StackNavigatorsAzmoon" component={StackNavigatorsAzmoon}
+    options={{          tabBarLabel: '',    tabBarIcon: ({ color }) => (    <Icon name="person-outline" color={Colors.appColor} size={26} />         ),           }}      />
 
     <Tab.Screen
     // name="home"
     name={"StackNavigatorsHome"}
     component={StackNavigatorsHome}
     options={{          tabBarLabel: '',    tabBarIcon: ({ color }) => (            <Icon name="home" color={Colors.appColor} size={26} />          ),        }}      />
-  <Tab.Screen
-    name="StackNavigatorsAzmoon" component={StackNavigatorsAzmoon}
-    options={{          tabBarLabel: '',    tabBarIcon: ({ color }) => (    <Icon name="person-outline" color={Colors.appColor} size={26} />         ),           }}      />
 
+<Tab.Screen
+        // name="home"
+        name={"LitnearBox"}
+        component={LitnearBox}
+        options={{          tabBarLabel: '',          tabBarIcon: ({ color }) => (            <Icon name="how-to-vote" color={Colors.appColor} size={26} />          ),        }}      />
 
 </Tab.Navigator>
    );
