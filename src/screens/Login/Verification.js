@@ -9,6 +9,7 @@ import {Input} from '../../components/Input';
 import {Button} from '../../components/Button';
 import CodeInputMain from '../../components/CodeInput';
 import axios from 'axios';
+import { apiUrl ,apiAsset} from "../../commons/inFormTypes";
 
 
 // create a component
@@ -36,11 +37,11 @@ if(verify!=validCode){
 else{
   if(type=="forget")
   {
-    navigation.navigate("ChangePass",{Mobile:mobile})
+    navigation.navigate("ChangePass",{mobile:mobile})
 
   }
   else{
-  axios.post('https://appflashcard.ir//api/WebApi/InsertCustomerFull',{Mobile:mobile,Password:pass,NationalCode:ncode,Family:family,Name:user})
+  axios.post(apiUrl+'InsertCustomerFull',{Mobile:mobile,Password:pass,NationalCode:ncode,Family:family,Name:user})
   .then(function (response) {
     const message = response.data.message;
     const result = response.data.result;

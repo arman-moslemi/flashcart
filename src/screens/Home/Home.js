@@ -12,12 +12,16 @@ import DrawerContent from '../../components/drewerContent/DrawerContent';
 import Drawer from 'react-native-drawer'
 import ViewSlider from 'react-native-view-slider';
 import axios from 'axios';
+import { apiUrl ,apiAsset} from "../../commons/inFormTypes";
 
 // create a component
  const Home = ({navigation}) => {
 const [slider1,setSlider1]=useState("");
 const [slider2,setSlider2]=useState("");
 const [slider3,setSlider3]=useState("");
+const [pezeshki,setpezeshki]=useState("");
+const [board,setBoard]=useState("");
+const [dandan,setDandan]=useState("");
 
 const drawers = useRef(null);
 I18nManager.forceRTL(true);
@@ -28,14 +32,21 @@ useEffect(() => {
 
 }, []);
       const  mutLogin=async()=> {
-        axios.post('https://appflashcard.ir//api/WebApi/Info')
+        axios.get(apiUrl+'AllMainGroup')
         .then(function (response) {
           const message = response.data.Data;
           const result = response.data.result;
           console.log(result);
-          console.log(message);
+          console.log(response.data.DataSlider.Slider1);
+          console.log(response.data.DataSlider.Slider1);
           if(result == "true"){
-
+            setSlider1(response.data.DataSlider.Slider1)
+            setSlider2(response.data.DataSlider.Slider2)
+            setSlider3(response.data.DataSlider.Slider3)
+            setpezeshki(response.data.DataMaingroup[0].Photo)
+            setBoard(response.data.DataMaingroup[1].Photo)
+            setDandan(response.data.DataMaingroup[2].Photo)
+            console.log(apiAsset+slider1);
             // navigation.navigate("ChangePass",{mobile:user,verify:response.data.Data})
                             }else{
 
@@ -91,14 +102,14 @@ return (
 
        </View>
     <View style={styles.bodyC}>
-    {/* <ViewSlider style={{borderRadius:10}}
+    {/* <ViewSlider
         renderSlides = {
           <>
             <View style={styles.viewBox}>
-            <Image source={require('../../assets/images/slide1.png')}style={{borderRadius:10,height:180}}></Image>
+            <Image source={{uri:apiAsset+slider1}}style={styles.imageSlider}/>
             </View>
-            <View style={styles.viewBox}><Image source={require('../../assets/images/slide1.png')} style={{borderRadius:10,height:180}}></Image></View>
-            <View style={styles.viewBox}><Image source={require('../../assets/images/slide1.png')}style={{borderRadius:10,height:180}}></Image></View>
+            <View style={styles.viewBox}><Image source={{uri:apiAsset+slider2}} style={styles.imageSlider}></Image></View>
+            <View style={styles.viewBox}><Image source={{uri:apiAsset+slider3}}style={styles.imageSlider}></Image></View>
 
          </>
       }
@@ -112,8 +123,8 @@ return (
       autoSlide = {true}    //The views will slide automatically
       slideInterval = {5000}    //In Miliseconds
      /> */}
-     <TouchableOpacity onPress={()=>navigation.navigate("SubCategory")} style={styles.customRowC}>
-     <Image source={require('../../assets/images/slide4.png')} style={styles.image}/>
+     <TouchableOpacity onPress={()=>navigation.navigate("MainCategory")} style={styles.customRowC}>
+     <Image source={{uri:apiAsset+pezeshki}} style={styles.image}/>
       <LinearGradient
       colors={[
       'rgba(203, 203, 203, 0.2)',
@@ -125,12 +136,16 @@ return (
 
       style={styles.linearGradient}
       />
-      <Image source={require('../../assets/images/pezeshkiLogo.png')} style={styles.logoAbsolute}/>
+      <Image
+      //  source={require('../../assets/images/pezeshkiLogo.png')}
+       source={require('../../assets/images/pezeshkiLogo.png')}
+      style={styles.logoAbsolute}/>
       <Text style={styles.textOverlay}>پزشکی</Text>
      </TouchableOpacity>
      <View style={styles.columnC}>
       <View style={styles.item1}>
-      <Image source={require('../../assets/images/slide2.png')} style={styles.miniImage}/>
+      {/* <Image source={require('../../assets/images/slide2.png')} style={styles.miniImage}/> */}
+      <Image source={{uri:apiAsset+board}} style={styles.miniImage}/>
       <LinearGradient
       colors={[
       'rgba(203, 203, 203, 0.2)',
@@ -147,7 +162,8 @@ return (
 
       </View>
       <View style={styles.item2}>
-      <Image source={require('../../assets/images/slide2.png')} style={styles.miniImage} />
+      {/* <Image source={require('../../assets/images/slide2.png')} style={styles.miniImage} /> */}
+      <Image source={{uri:apiAsset+dandan}} style={styles.miniImage} />
       <LinearGradient
       colors={[
       'rgba(203, 203, 203, 0.2)',
@@ -202,6 +218,9 @@ child : {
     justifyContent : 'center',
 
 },
+imageSlider:
+  {borderRadius:10,height:responsiveHeight(20),width:responsiveWidth(90)}
+,
 drawerStyles: { shadowColor: '#000000', shadowOpacity: 0.8, shadowRadius: 3},
 customRow:{
   flex:1, flexDirection:"row",
@@ -255,7 +274,7 @@ slider: {
   alignSelf: 'center',
   justifyContent: 'center',
   alignItems: 'center',
-  borderRadius:5,
+  borderRadius:10,
   paddingRight:responsiveWidth(0),
   paddingLeft:responsiveWidth(0),
 },

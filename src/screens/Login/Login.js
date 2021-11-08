@@ -7,6 +7,7 @@ import { responsiveFontSize, responsiveHeight, responsiveScreenWidth, responsive
 import LinearGradient from 'react-native-linear-gradient';
 import {Input} from '../../components/Input';
 import {Button} from '../../components/Button';
+import { apiUrl ,apiAsset} from "../../commons/inFormTypes";
 
 import axios from 'axios';
 
@@ -34,7 +35,7 @@ else{
 console.log(545)
         // if((user=="user1"&&pass=="pass1")||(user=="user2"&&pass=="pass2")){
                 setLoading(false);
-                axios.post('https://appflashcard.ir//api/WebApi/Login',{Mobile:user,Password:pass})
+                axios.post(apiUrl+'Login',{Mobile:user,Password:pass})
                 .then(function (response) {
                   const message = response.data.message;
                   const result = response.data.result;

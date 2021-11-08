@@ -130,7 +130,7 @@ const StackNavigatorsHome = () => {
 
       <Stack.Screen name="FlashCardVideo" component={FlashCardVideo} />
       <Stack.Screen name="Ticket" component={Ticket} />
-
+      <Stack.Screen name="MainCategory" component={MainCategory} />
 
       {/* <Stack.Screen name="MainTabScreen" component={MainTabScreen} /> */}
       {/* <Stack.Screen name="AzanPrayer" component={AzanPrayer} /> */}

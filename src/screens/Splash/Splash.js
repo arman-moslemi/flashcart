@@ -12,17 +12,17 @@ const SplashScreen = ({ navigation }) => {
   const [state,setState]=useState("");
 
   const  mutLogin=async()=> {
-    // const state = await AsyncStorage.getItem("user");
+    const state = await AsyncStorage.getItem("user");
 
     // setState(state);
 
     // console.log(state)
-    // if(state!=null && state!="" && state!="false"){
+    if(state!=null && state!="" && state!="false"){
 
-    // console.log(state)
-    //   navigation.navigate('MainPage')
-    // }
-    // else{
+    console.log(state)
+      navigation.navigate('StackNavigatorsssss')
+    }
+    else{
 
       navigation.navigate('Login');
       // navigation.navigate('StackNavigatorsssss');
@@ -30,7 +30,7 @@ const SplashScreen = ({ navigation }) => {
 
       // navigation.navigate('FlashCardView');
 
-    // }
+    }
 
 
 
