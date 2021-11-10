@@ -16,10 +16,13 @@ import axios from 'axios';
 import { apiUrl ,apiAsset} from "../../commons/inFormTypes";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+import { RadioButton } from 'react-native-paper';
 // create a component
 const PanelMain = ({navigation}) => {
+  const [checked, setChecked] = useState('first');
   const [modalVisible, setModalVisible] = useState(false);
   const [data, setData] = useState(false);
+  const [modal2Visible, setModal2Visible] = useState(false);
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState(null);
   const [ques, setQues] = useState(null);
@@ -97,9 +100,114 @@ const PanelMain = ({navigation}) => {
     <View style={styles.viewBody}>
     <View style={styles.subViewBody}>
     <View style={{marginRight:responsiveWidth(5)}}>
+      <TouchableOpacity onPress={()=>setModal2Visible(true)} >
       <Text style={styles.txtEdit}>
         تمدید اشتراک
       </Text>
+      </TouchableOpacity>
+      <Modal
+        isVisible={modal2Visible}
+        onBackdropPress={() => setModal2Visible(false)}
+        >
+           <View style={styles.alertModal}>
+      <View style={{flexDirection:'row',padding:10,justifyContent:'center',borderBottomColor:'#f4f4f4',borderBottomWidth:2}}>
+                  
+                  <Text style={{...myFontStyle.textOnImg,color:'#068CC5',fontSize:responsiveFontSize(2)}}>جهت تمدید اشتراک ابتدا بخش مورد نظر خود را انتخاب کنید</Text>
+                </View>
+                <View style={{flexDirection:'row',alignItems:"center",margin:5}}>
+                <Text style={{...myFontStyle.mediumBold,color:Colors.text}}>انتخاب بخش مورد نظر: </Text>
+    <View>
+<DropDownPicker
+      open={open}
+      value={value}
+      items={items}
+      setOpen={setOpen}
+      setValue={setValue}
+      setItems={setItems}
+      // width={100}
+      ite
+      style={{
+        borderColor:'#F1F1F1',
+        borderWidth:2,
+        // margin:5,
+        width:responsiveWidth(30),
+      
+      }}
+      placeholder="انتخاب کنید"
+      zIndex={1000}
+      dropDownContainerStyle={{
+        borderColor:'#F1F1F1',
+        borderWidth:2,
+      borderRadius:5,
+     
+    }}
+    />
+    </View>
+      
+  </View>
+  <View style={styles.viewRadio}>
+      <RadioButton
+            //   value={"option2"+item._id}
+              status={ checked === 'first' ? 'checked' : 'unchecked' }
+        onPress={() => setChecked('first')}
+              color={Colors.yellow}
+
+            />
+            <Text style={styles.txtRadio}>تمدید 1 ماهه (40000 تومان)</Text>
+            </View>
+            <View style={styles.viewRadio}>
+      <RadioButton
+            //   value={"option2"+item._id}
+              status={ checked === 'first' ? 'checked' : 'unchecked' }
+        onPress={() => setChecked('first')}
+              color={Colors.yellow}
+
+            />
+            <Text style={styles.txtRadio}>تمدید 1 ماهه (40000 تومان)</Text>
+            </View>
+            <View style={styles.viewRadio}>
+      <RadioButton
+            //   value={"option2"+item._id}
+              status={ checked === 'first' ? 'checked' : 'unchecked' }
+        onPress={() => setChecked('first')}
+              color={Colors.yellow}
+
+            />
+            <Text style={styles.txtRadio}>تمدید 1 ماهه (40000 تومان)</Text>
+            </View>
+            <View style={styles.viewRadio}>
+      <RadioButton
+            //   value={"option2"+item._id}
+              status={ checked === 'first' ? 'checked' : 'unchecked' }
+        onPress={() => setChecked('first')}
+              color={Colors.yellow}
+
+            />
+            <Text style={styles.txtRadio}>تمدید 1 ماهه (40000 تومان)</Text>
+            </View>
+         <View style={{flexDirection:'row',justifyContent:'space-evenly',marginTop:responsiveHeight(3)}}>
+                    <View style={{width:responsiveWidth(32)}}>
+                    <LinearGradient colors={['#CC1111', '#F43535'] }start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={{borderRadius:3,padding:5}}>
+
+
+                      <TouchableOpacity >
+                        <Text style={{...myFontStyle.btnBold,color:Colors.white,textAlign:'center'}}>اتمام آزمون</Text>
+                        </TouchableOpacity>
+                        </LinearGradient>
+                    </View>
+                    
+                   <View style={{width:responsiveWidth(32)}}>
+                   <LinearGradient colors={['#3AC3FE', '#0284BB'] }start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={{borderRadius:3,padding:5}}>
+
+
+          <TouchableOpacity style={{}}>
+          <Text style={{...myFontStyle.btnBold,color:Colors.white,textAlign:'center'}}>ادامه آزمون</Text>
+          </TouchableOpacity>
+          </LinearGradient>
+                    </View>
+                </View>          
+      </View>
+        </Modal>
     </View>
 
 
@@ -170,7 +278,7 @@ const PanelMain = ({navigation}) => {
 
   <LinearGradient colors={['#F7397F', '#E82B63']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={styles.rowCart3}>
 
-<View style={{flexDirection:'row',alignItems:'center'}}>
+  <View style={{flexDirection:'row-reverse',alignItems:'center'}}>
 
 <Icon name="note-add" size={50} color={Colors.white}/>
 <Text style={{...myFontStyle.largBold,color:Colors.white}}>افزودن کارت جدید</Text>
@@ -188,7 +296,7 @@ const PanelMain = ({navigation}) => {
         //   setModalVisible(!modalVisible);
         // }}
 
-         backdropColor="black"
+       
         //  hasBackdrop={false}
         onBackdropPress={() => setModalVisible(false)}
 
@@ -375,7 +483,31 @@ textInputLogin:{
   borderWidth:2,
 alignItems:'flex-end'
 
+  } ,txtRadio: {
+    color: Colors.text,
+    ...myFontStyle.mediumRegular,
+    // lineHeight:responsiveHeight(3)
+
   },
+  viewRadio: {flexDirection:'row',alignItems:'center',marginTop:responsiveHeight(1)},
+  alertModal:{
+  
+    width:responsiveWidth(90),
+    marginTop:responsiveHeight(-30),
+    backgroundColor:'#fff',
+    borderRadius:5,
+    shadowColor: '#fff',
+    shadowOpacity: 0.1,
+    shadowOffset: { width: 2, height: 0},
+    shadowRadius: 700,
+    elevation: 20,
+    alignContent:'center',
+    paddingTop:responsiveHeight(1),
+    paddingBottom:responsiveHeight(3),
+    paddingRight:responsiveWidth(0),
+    paddingLeft:responsiveWidth(0)},
+    marginRight:responsiveWidth(5),
+    marginLeft:responsiveWidth(5),
 });
 
   export default PanelMain;

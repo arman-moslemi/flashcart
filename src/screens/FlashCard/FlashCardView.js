@@ -641,8 +641,11 @@ const styles = StyleSheet.create({
 
     // height:responsiveHeight(30),
     width:responsiveWidth(90),
+    shadowColor: '#DEE0E3',
+
     paddingBottom:5,
     shadowColor: '#878B92',
+
       shadowOpacity: 0.1,
       shadowOffset: { width: 2, height: 0},
       shadowRadius: 700,
@@ -654,7 +657,7 @@ const styles = StyleSheet.create({
 
     // height:responsiveHeight(30),
     width:responsiveWidth(90),
-    shadowColor: '#878B92',
+    shadowColor: '#DEE0E3',
       shadowOpacity: 0.1,
       shadowOffset: { width: 2, height: 0},
       shadowRadius: 700,

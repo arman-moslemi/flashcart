@@ -48,6 +48,11 @@ import Question from './src/screens/Azmoon/Question';
 import EditProfile from './src/screens/UserPanel/EditProfile';
 import UserReport from './src/screens/UserPanel/UserReport';
 import Ticket from './src/screens/Ticket/Ticket';
+import AboutUs from './src/screens/About/AboutUs';
+import LitnearBoxCardList from './src/screens/Home/LitnearBoxCardList';
+import Favorite from './src/screens/UserPanel/Favorite';
+import TicketsList from './src/screens/Ticket/TicketsList';
+import Rules from './src/screens/Rules/Rules';
 //  import {store, persist} from './store/redux/stores/store';
 //  import {Provider} from 'react-redux';
 //  import {PersistGate} from 'redux-persist/integmration/react';
@@ -99,7 +104,7 @@ shifting={false}
       <Stack.Screen name="EditProfile" component={EditProfile} />
       <Stack.Screen name="UserReport" component={UserReport} />
       <Stack.Screen name="Ticket" component={Ticket} />
-
+ 
 
     </Stack.Navigator>
   );
@@ -116,9 +121,17 @@ const StackNavigatorsHome = () => {
       <Stack.Screen name="FlashCardView" component={FlashCardView} />
       <Stack.Screen name="FlashCardSearch" component={FlashCardSearch} />
       <Stack.Screen name="FlashCardList" component={FlashCardList} />
+
+      <Stack.Screen name="LitnearBoxCardList" component={LitnearBoxCardList}/>
+      <Stack.Screen name="AboutUs" component={AboutUs} />
+      <Stack.Screen name="Favorite" component={Favorite}/>
+      <Stack.Screen name="TicketsList" component={TicketsList}/>
+      <Stack.Screen name="Rules" component={Rules}/>
+
       <Stack.Screen name="FlashCardVideo" component={FlashCardVideo} />
       <Stack.Screen name="Ticket" component={Ticket} />
       <Stack.Screen name="MainCategory" component={MainCategory} />
+
       {/* <Stack.Screen name="MainTabScreen" component={MainTabScreen} /> */}
       {/* <Stack.Screen name="AzanPrayer" component={AzanPrayer} /> */}
 

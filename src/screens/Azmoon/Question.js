@@ -17,7 +17,24 @@ import { RadioButton } from 'react-native-paper';
 // create a component
 const Question = ({navigation}) => {
     const [checked, setChecked] = useState('first');
+    const [isModalVisible, setModalVisible] = useState(false);
 
+    const toggleModal = () => {
+     setModalVisible(!isModalVisible);
+    };
+  
+    const closeModal=()=>{
+      setModalVisible(!isModalVisible);
+    }
+    const [isModal2Visible, setModal2Visible] = useState(false);
+
+    const toggleModal2 = () => {
+     setModal2Visible(!isModal2Visible);
+    };
+  
+    const closeModal2=()=>{
+      setModal2Visible(!isModal2Visible);
+    }
    const classes =()=>{
    return(
        <View>
@@ -25,12 +42,72 @@ const Question = ({navigation}) => {
       <Text  style={styles.headerTitle}>
         سوال 2
       </Text>
-      <LinearGradient  colors={['#16B2F5', '#068DF6']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={styles.etmam}>
+      <LinearGradient  colors={['#068DF6', '#16B2F5']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={styles.etmam}>
 
-      <Text style={{...myFontStyle.mediumBold,color:Colors.white}}>
+     <TouchableOpacity onPress={toggleModal}>
+     <Text style={{...myFontStyle.btnBold,color:Colors.white}}>
         اتمام آزمون
       </Text>
+     </TouchableOpacity>
     </LinearGradient>
+    <Modal isVisible={isModalVisible} onBackdropPress={closeModal} style={{justifyContent:'center',alignItems:'center'}}>
+      <View style={styles.alertModal}>
+      <View style={{flexDirection:'row',padding:10,justifyContent:'center'}}>
+                  <Icon name={"notification-important"} color={'#cc1111'} size={30} style={{marginRight:5}}></Icon>
+                  <Text style={{...myFontStyle.textOnImg,color:'#cc1111'}}>شما به 8 سوال پاسخ نداده اید !</Text>
+                </View>
+         <View style={{flexDirection:'row',justifyContent:'space-evenly',marginTop:responsiveHeight(3)}}>
+                    <View style={{width:responsiveWidth(32)}}>
+                    <LinearGradient colors={['#CC1111', '#F43535'] }start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={{borderRadius:3,padding:5}}>
+
+
+                      <TouchableOpacity onPress={toggleModal2}>
+                        <Text style={{...myFontStyle.btnBold,color:Colors.white,textAlign:'center'}}>اتمام آزمون</Text>
+                        </TouchableOpacity>
+                        </LinearGradient>
+                    </View>
+                    
+                   <View style={{width:responsiveWidth(32)}}>
+                   <LinearGradient colors={['#3AC3FE', '#0284BB'] }start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={{borderRadius:3,padding:5}}>
+
+
+          <TouchableOpacity style={{}}>
+          <Text style={{...myFontStyle.btnBold,color:Colors.white,textAlign:'center'}}>ادامه آزمون</Text>
+          </TouchableOpacity>
+          </LinearGradient>
+                    </View>
+                </View>          
+      </View>
+    </Modal>
+    <Modal isVisible={isModal2Visible} onBackdropPress={closeModal2} style={{justifyContent:'center',alignItems:'center'}}>
+    <View style={styles.alertModal}>
+      <View style={{flexDirection:'row',padding:10,justifyContent:'center',borderBottomColor:'#f4f4f4',borderBottomWidth:2}}>
+                  <Icon name={"assignment"} color={'#cc1111'} size={30} style={{marginRight:5}}></Icon>
+                  <Text style={{...myFontStyle.textOnImg,color:'#cc1111'}}>نتیجه آزمون بورد اطفال</Text>
+                </View>
+              <View style={{borderBottomColor:'#f4f4f4',borderBottomWidth:2,paddingBottom:responsiveHeight(2)}}>
+                
+              <Text style={styles.scoreText}>کل تعداد سوالات آزمون: 20 تا</Text>
+                <Text style={styles.scoreText}>تعداد سوالات پاسخ داده شده: 12 تا</Text>
+                <Text style={styles.scoreText}>تعداد پاسخ درست: 5 تا</Text>
+              </View>
+         <View style={{flexDirection:'row',justifyContent:'space-evenly',marginTop:responsiveHeight(3)}}>
+                  
+         <View style={{width:responsiveWidth(30)}}>
+         <Text style={{...myFontStyle.btnBold,color:'#0D8424',textAlign:'left',fontSize:responsiveFontSize(2.5),marginLeft:responsiveWidth(3)}}>نمره شما: 14</Text>
+                    </View> 
+                   <View style={{}}>
+                   <LinearGradient colors={['#3AC3FE', '#0284BB'] }start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={{borderRadius:3,paddingLeft:responsiveWidth(3),paddingRight:responsiveWidth(3),paddingBottom:responsiveHeight(1),paddingTop:responsiveHeight(1)}}>
+
+
+          <TouchableOpacity style={{}}>
+          <Text style={{...myFontStyle.btnBold,color:Colors.white,textAlign:'center'}}>بازگشت به صفحه ی آزمون ها</Text>
+          </TouchableOpacity>
+          </LinearGradient>
+                    </View>
+                </View>          
+      </View>
+    </Modal>
     </View>
     <View style={styles.modalcontainer}
           >
@@ -153,16 +230,31 @@ const styles = StyleSheet.create({
     // marginLeft:responsiveWidth(10),
     // marginRight:responsiveWidth(10),
 
-  },
+  },alertModal:{
+  
+    width:responsiveWidth(80),
+    marginTop:responsiveHeight(-30),
+    backgroundColor:'#fff',
+    borderRadius:5,
+    shadowColor: '#fff',
+    shadowOpacity: 0.1,
+    shadowOffset: { width: 2, height: 0},
+    shadowRadius: 700,
+    elevation: 20,
+    alignContent:'center',
+    paddingTop:responsiveHeight(1),
+    paddingBottom:responsiveHeight(3),
+    paddingRight:responsiveWidth(0),
+    paddingLeft:responsiveWidth(0)},
   headerTitle:{...myFontStyle.largBold,color:Colors.text,marginLeft:responsiveWidth(5)},
   header:{flexDirection:"row",justifyContent:'space-between',
   paddingLeft:responsiveWidth(2),paddingRight:responsiveWidth(5),
   marginTop:responsiveHeight(3)},
   etmam:{
-      width:responsiveWidth(30),
+      width:responsiveWidth(25),
       height:responsiveHeight(4),
       alignItems:'center',
-      borderRadius:5
+      borderRadius:5,
   },
   viewNext:{
       width:responsiveWidth(30),
@@ -187,9 +279,16 @@ const styles = StyleSheet.create({
   },
   viewRadio: {flexDirection:'row',alignItems:'center',marginTop:responsiveHeight(1)},
   viewFooter: {flexDirection:'row',alignItems:'center',marginTop:responsiveHeight(1)
-  ,justifyContent:"space-between",paddingHorizontal:responsiveWidth(5)},
-
-});
+  ,justifyContent:"space-between",paddingHorizontal:responsiveWidth(5)}
+  ,scoreText:{
+    ...myFontStyle.normalRegular,color:'#000',
+    paddingRight:responsiveWidth(5),
+    paddingLeft:responsiveWidth(5),
+    paddingTop:responsiveHeight(3),
+    fontSize:responsiveFontSize(2.5),
+  }
+}
+);
 
   export default Question;
 
