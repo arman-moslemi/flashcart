@@ -9,17 +9,76 @@ import LinearGradient from 'react-native-linear-gradient';
 import { ScrollView } from 'react-native-gesture-handler';
 import {TopBar} from '../../components/TopBar';
 import Modal from "react-native-modal";
-import DropDownPicker from 'react-native-dropdown-picker';
-import {Input} from '../../components/Input';
-import { Button } from '../../components/Button';
 import { RadioButton } from 'react-native-paper';
+import axios from 'axios';
+import { apiUrl ,apiAsset} from "../../commons/inFormTypes";
 // create a component
-const LitnearBoxCardList = ({navigation}) => {
+const LitnearBoxCardList = ({navigation,route}) => {
   const [checked, setChecked] = useState('first');
   const [open, setOpen] = useState(false);
-  const [value, setValue] = useState(null);
+  const [value, setValue] = useState(0);
   const [isModalVisible, setModalVisible] = useState(false);
 
+  const [data,setData]=useState([]);
+  useEffect(() => {
+
+    mutLogin();
+
+
+  }, [value,checked]);
+  const {id} = route?.params ?? {};
+
+  const  mutLogin=async()=> {
+    const state = await AsyncStorage.getItem("@user");
+
+    axios.post(apiUrl + 'CustomerLitnear',{CustomerID:state,LitnearLevel:id})
+    .then(function (response) {
+      const message = response.data.Data;
+      console.log(55);
+      console.log(message);
+      const result = response.data.result;
+      console.log(result);
+
+      if(result == "true"){
+        setData(response.data.Data)
+
+        // navigation.navigate("ChangePass",{mobile:user,verify:response.data.Data})
+                        }else{
+
+      }
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+
+
+    };
+    const  DeleteLitnear=async(ss)=> {
+      const state = await AsyncStorage.getItem("@user");
+
+      axios.post(apiUrl + 'DeleteLitnear',{CustomerID:state,FlashCardID:ss,Sort:checked})
+      .then(function (response) {
+        const message = response.data.Data;
+        console.log(55);
+        console.log(message);
+        const result = response.data.result;
+        console.log(result);
+
+        if(result == "true"){
+          // setData(response.data.Data)
+          alert("با موفقیت حذف شد")
+setValue(value+1)
+          // navigation.navigate("ChangePass",{mobile:user,verify:response.data.Data})
+                          }else{
+
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+
+
+      };
   const toggleModal = () => {
    setModalVisible(!isModalVisible);
   };
@@ -32,29 +91,29 @@ const LitnearBoxCardList = ({navigation}) => {
     <View style={styles.container}>
     <View style={{flexDirection:'row',marginTop:responsiveHeight(3),marginLeft:responsiveWidth(5),marginRight:responsiveWidth(5),justifyContent:'space-between'}}>
     <View>
-    <Text style={{...myFontStyle.textOnImg,color:'#0384BC'}}>خانه 5</Text>
+    <Text style={{...myFontStyle.textOnImg,color:'#0384BC'}}>خانه {id}</Text>
 
     </View>
     <View>
         <TouchableOpacity style={styles.sortBtn} onPress={toggleModal}>
         <Icon name={"sort"} color={'#fff'} size={35} style={{marginTop:responsiveHeight(0),transform: [{rotateY: '180deg'}]}}></Icon>
-          <Text style={{...myFontStyle.btnBold,color:'#fff',alignSelf:'center'}}>مرتب سازی 
-          
+          <Text style={{...myFontStyle.normalBold,color:'#fff',alignSelf:'center'}}>مرتب سازی
+
           </Text>
-          
+
         </TouchableOpacity>
         <Modal isVisible={isModalVisible} onBackdropPress={closeModal} style={{justifyContent:'center',alignItems:'center'}}>
                <View style={styles.sortModal}>
                 <View style={{flexDirection:'row',justifyContent:'center',borderBottomColor:'#f4f4f4',borderBottomWidth:2}}>
                   <Icon name={"sort"} color={'#ffc444'} size={35} style={{transform: [{rotateY: '180deg'}]}}></Icon>
-                  <Text style={{...myFontStyle.textOnImg,color:'#000'}}>مرتب سازی بر اساس درجه سختی</Text>
+                  <Text style={{...myFontStyle.largBold,color:'#000'}}>مرتب سازی بر اساس درجه سختی</Text>
                 </View>
                 <View>
                 <View style={styles.viewRadio}>
       <RadioButton
             //   value={"option2"+item._id}
-              status={ checked === 'first' ? 'checked' : 'unchecked' }
-        onPress={() => setChecked('first')}
+              status={ checked === 'easy' ? 'checked' : 'unchecked' }
+        onPress={() => setChecked('easy')}
               color={Colors.yellow}
 
             />
@@ -64,8 +123,8 @@ const LitnearBoxCardList = ({navigation}) => {
 
             <RadioButton
             //   value={"option2"+item._id}
-              status={ checked === 'Second' ? 'checked' : 'unchecked' }
-        onPress={() => setChecked('Second')}
+              status={ checked === 'hard' ? 'checked' : 'unchecked' }
+        onPress={() => setChecked('hard')}
         color={Colors.yellow}
 
             />
@@ -75,13 +134,13 @@ const LitnearBoxCardList = ({navigation}) => {
                 </View>
              <View style={{justifyContent:'center',width:'100%',alignContent:'center'}}>
              <View style={{width:responsiveWidth(30),alignSelf:'center' ,marginTop:responsiveHeight(2)}}>
-               <LinearGradient colors={['#3AC3FE', '#0284BB'] }start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={{borderRadius:3,padding:5}}>
+               {/* <LinearGradient colors={['#3AC3FE', '#0284BB'] }start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={{borderRadius:3,padding:5}}>
 
 
 <TouchableOpacity style={styles.notShowBtn}>
 <Text style={styles.modalBtnText}>اعمال مرتب سازی</Text>
 </TouchableOpacity>
-</LinearGradient>
+</LinearGradient> */}
                  </View>
                </View>
                </View>
@@ -89,63 +148,46 @@ const LitnearBoxCardList = ({navigation}) => {
     </View>
     </View>
 {/* <View style={styles.viewBody}> */}
-
-
-<TouchableOpacity style={styles.subViewRead}>
-<TouchableOpacity style={{flexDirection:'row',alignItems:'center'}}>
+<ScrollView style={{paddingBottom:20}}>
+  {
+    data.map((item, index) => (
+      <View   style={styles.subViewRead}>
+<TouchableOpacity onPress={()=>DeleteLitnear(item.FlashCardID)} style={{flexDirection:'row',alignItems:'center'}}>
 
 
 <Icon name="delete" size={30} color={'#cc1111'}/>
 </TouchableOpacity>
-<View style={{flexDirection:'row',justifyContent:'flex-start',width:responsiveWidth(75)}}>
+<TouchableOpacity  onPress={()=>navigation.navigate("FlashCardView",{id:item.FlashCardID})} style={{flexDirection:'row',justifyContent:'flex-start',width:responsiveWidth(75)}}>
     <View>
-    <Text style={{...myFontStyle.largBold,color:Colors.black,textAlign:'right',flexDirection:'column'}}>متن سوال اینجا قرار می گیرد...</Text>
+    <Text style={{...myFontStyle.normalBold,color:Colors.black,flexDirection:'column'}}>{item.Text?.substring(0, 20)}...</Text>
     <View style={{flexDirection:'row'}}>
     <Icon name={"alarm"} color={'#BCC0C8'} size={20}></Icon>
-<Text style={{...myFontStyle.normalRegular,color:Colors.black,textAlign:'left',color:'#BCC0C8'}}>
+<Text style={{...myFontStyle.mediumRegular,textAlign:'left',color:'#BCC0C8'}}>
 
   زمان مرور دو روز دیگر
- 
+
 </Text>
       </View>
 
       </View>
-</View>
+</TouchableOpacity>
 
 
 {/* </View> */}
 
 
 
-  </TouchableOpacity>
-  <TouchableOpacity style={styles.subViewRead}>
-<TouchableOpacity style={{flexDirection:'row',alignItems:'center'}}>
-
-
-<Icon name="delete" size={30} color={'#cc1111'}/>
-</TouchableOpacity>
-<View style={{flexDirection:'row',justifyContent:'flex-start',width:responsiveWidth(75)}}>
-    <View>
-    <Text style={{...myFontStyle.largBold,color:Colors.black,textAlign:'right',flexDirection:'column'}}>متن سوال اینجا قرار می گیرد...</Text>
-    <View style={{flexDirection:'row'}}>
-    <Icon name={"alarm"} color={'#BCC0C8'} size={20}></Icon>
-<Text style={{...myFontStyle.normalRegular,color:Colors.black,textAlign:'left',color:'#BCC0C8'}}>
-
-  زمان مرور دو روز دیگر
- 
-</Text>
-      </View>
-
-      </View>
-</View>
-
-
-{/* </View> */}
+  </View>
+      ))
+  }
 
 
 
-  </TouchableOpacity>
 
+
+
+
+  </ScrollView>
 </View>
    )
    }
@@ -221,11 +263,11 @@ const styles = StyleSheet.create({
     shadowRadius:10,
     shadowOffset:5,
     borderRadius:5,
-    marginRight:responsiveHeight(2), 
+    marginRight:responsiveHeight(2),
     marginLeft:responsiveHeight(2),
-    marginBottom:0,
+    marginBottom:responsiveHeight(1),
   height:responsiveHeight(8),
-  marginTop:responsiveHeight(3)
+  marginTop:responsiveHeight(2)
   ,alignItems:'center',
   flexDirection:'row-reverse',
   justifyContent:'space-between',
@@ -278,10 +320,10 @@ alignItems:'flex-end'
     width:responsiveWidth(25),
    },
    modalBtnText:{
-     ...myFontStyle.btnBold,
+     ...myFontStyle.normalBold,
      color:'#fff',
      textAlign:'center',
-     
+
    }
 });
 

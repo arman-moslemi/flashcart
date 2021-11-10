@@ -38,10 +38,10 @@ const Favorite = ({navigation}) => {
     <View>
         <TouchableOpacity style={styles.sortBtn} onPress={toggleModal}>
         <Icon name={"sort"} color={'#fff'} size={35} style={{marginTop:responsiveHeight(0),transform: [{rotateY: '180deg'}]}}></Icon>
-          <Text style={{...myFontStyle.btnBold,color:'#fff',alignSelf:'center'}}>مرتب سازی 
-          
+          <Text style={{...myFontStyle.btnBold,color:'#fff',alignSelf:'center'}}>مرتب سازی
+
           </Text>
-          
+
         </TouchableOpacity>
         <Modal isVisible={isModalVisible} onBackdropPress={closeModal} style={{justifyContent:'center',alignItems:'center'}}>
                <View style={styles.sortModal}>
@@ -99,8 +99,8 @@ const Favorite = ({navigation}) => {
 </TouchableOpacity>
 <View style={{flexDirection:'row',justifyContent:'flex-start',width:responsiveWidth(75)}}>
     <View>
-    <Text style={{...myFontStyle.largBold,color:Colors.black,textAlign:'right',flexDirection:'column'}}>متن سوال اینجا قرار می گیرد...</Text>
- 
+    <Text style={{...myFontStyle.normalBold,color:Colors.black,textAlign:'right',flexDirection:'column'}}>متن سوال اینجا قرار می گیرد...</Text>
+
 
       </View>
 </View>
@@ -119,8 +119,8 @@ const Favorite = ({navigation}) => {
 </TouchableOpacity>
 <View style={{flexDirection:'row',justifyContent:'flex-start',width:responsiveWidth(75)}}>
     <View>
-    <Text style={{...myFontStyle.largBold,color:Colors.black,textAlign:'right',flexDirection:'column'}}>متن سوال اینجا قرار می گیرد...</Text>
-  
+    <Text style={{...myFontStyle.normalBold,color:Colors.black,textAlign:'right',flexDirection:'column'}}>متن سوال اینجا قرار می گیرد...</Text>
+
 
       </View>
 </View>
@@ -207,7 +207,7 @@ const styles = StyleSheet.create({
     shadowRadius:10,
     shadowOffset:5,
     borderRadius:5,
-    marginRight:responsiveHeight(2), 
+    marginRight:responsiveHeight(2),
     marginLeft:responsiveHeight(2),
     marginBottom:0,
   height:responsiveHeight(8),
@@ -267,7 +267,7 @@ alignItems:'flex-end'
      ...myFontStyle.btnBold,
      color:'#fff',
      textAlign:'center',
-     
+
    }
 });
 

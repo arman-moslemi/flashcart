@@ -17,7 +17,7 @@ export const myFontStyle = {
   },
   mediumBold: {
     fontFamily: myFontFamily.Bold,
-    fontSize: 12,
+    fontSize: 13,
   },
   normalBold: {
     fontFamily: myFontFamily.Bold,
@@ -37,7 +37,7 @@ export const myFontStyle = {
   },
   mediumRegular: {
     fontFamily: myFontFamily.Medium,
-    fontSize: 12,
+    fontSize: 13,
   },
   normalRegular: {
     fontFamily: myFontFamily.Medium,

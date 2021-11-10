@@ -90,19 +90,62 @@ const EditProfile = ({navigation}) => {
 
 
           };
-   const classes =()=>{
-   return(
-    <View style={styles.container}>
-        <View style={{flexDirection:'row',margin:responsiveHeight(2),alignItems:"center"}}>
-        <Icon name={"create"} size={20} color={Colors.appColor}/>
-        <Text style={styles.txtTitle}>ویرایش اطلاعات کاربری</Text>
 
-        </View>
-        <View style={{backgroundColor:Colors.white,height:responsiveHeight(30),marginTop:responsiveHeight(1),marginHorizontal:responsiveWidth(2),borderRadius:5,shadowColor: '#878B92',
-      shadowOpacity: 0.1,
-      shadowOffset: { width: 2, height: 0},
-      shadowRadius: 700,
-      elevation: 20,}}>
+
+
+
+   {/* <TopBar Classes={classes} /> */}
+return (
+  <Drawer
+  // type="static"
+  type="overlay"
+  acceptDoubleTap ={true}
+      ref={drawers}
+      content={<DrawerContent navigation={navigation}/>}
+      tapToClose={true}
+openDrawerOffset={0.4} // 20% gap on the right side of drawer
+panCloseMask={0.2}
+closedDrawerOffset={-3}
+styles={styles.drawerStyles}
+tweenHandler={(ratio) => ({
+  main: { opacity:(2-ratio)/2 }
+})}
+      >
+         <View >
+
+
+
+<LinearGradient colors={['#16B2F5', '#007FB5']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={{height:55}}>
+
+  </LinearGradient>
+
+
+<View style={styles.customRow}>
+<View style={{paddingLeft:20}} >
+ <TouchableOpacity onPress={()=>drawers.current.open()}>
+ <Icon name={"notes"} style={styles.menuIcon} size={50} color={"#fff"} style={{transform: [{rotateY: '180deg'}]}}/>
+
+ </TouchableOpacity>
+ </View>
+<View style={{flex : 2,textAlign:"right"}}>
+  <Text style={styles.menuTitle}>نوآوران دانش(ماهان)</Text>
+  </View>
+<View style={{flex :0.5}}>
+  <TouchableOpacity style={{}}>
+    <Icon name={"chevron-left"} color={"#fff"} size={30} style={{marginTop:10}}/>
+  </TouchableOpacity>
+  </View>
+
+</View>
+
+</View>
+  <View style={styles.container}>
+  <View style={{flexDirection:'row',margin:responsiveHeight(2),alignItems:"center"}}>
+  <Icon name={"create"} size={20} color={Colors.appColor}/>
+  <Text style={styles.txtTitle}>ویرایش اطلاعات کاربری</Text>
+
+  </View>
+  <View style={styles.viewHeadContainer}>
 <View style={styles.header}>
 <TouchableOpacity onPress={()=>setModalVisible(true)} style={{  width:responsiveWidth(40),borderBottomColor:"#CBCBCB",borderBottomWidth:1 }}>
 <Text style={styles.txtTitleInput}>نام</Text>
@@ -168,325 +211,6 @@ const EditProfile = ({navigation}) => {
 </View>
 
 <Modal
-        // animationType="slide"
-        // transparent={true}
-        isVisible={modalVisible}
-        // avoidKeyboard={true}
-        // onRequestClose={() => {
-        //   setModalVisible(!modalVisible);
-        // }}
-
-        //  backdropColor="black"
-        //  hasBackdrop={false}
-        onBackdropPress={() => setModalVisible(false)}
-style={{alignSelf:'center'}}
-        >
-
-<View       style={styles.modal}>
-  <View style={{flexDirection:'row'}}>
-
-  <Text style={{...myFontStyle.largBold,color:Colors.text}}>ویرایش نام</Text>
-
-  </View>
-
-<View style={{flexDirection:'row'}}>
-<Input   placeholder="نام"  onChangeText={(ss)=>setName(ss)}      inputStyle={styles.textInputLogin}containerStyle={{alignItems:"flex-end"}} />
-
-</View>
-<View style={{flexDirection:'row',justifyContent:'space-between',marginTop:responsiveHeight(4)}}>
-<TouchableOpacity onPress={()=>setModalVisible(false)}>
-<LinearGradient   colors={['#CC1111', '#F43535']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={styles.viewNext}>
-
-<Text style={{...myFontStyle.mediumBold,color:Colors.white}}>
-بستن</Text>
-
-</LinearGradient>
-</TouchableOpacity>
-<LinearGradient   colors={['#3AC3FE', '#0284BB']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={styles.viewNext}>
-
-<Text style={{...myFontStyle.mediumBold,color:Colors.white}}>
-ویرایش</Text>
-
-</LinearGradient>
-</View>
-<View style={styles.button}>
-      <Text style={{...myFontStyle.mediumBold,color:Colors.white}}>
-        ذخیره
-      </Text>
-    </View>
-             </View>
-</Modal>
-<Modal
-        // animationType="slide"
-        // transparent={true}
-        visible={modalVisible2}
-        // onRequestClose={() => {
-        //   setModalVisible(!modalVisible);
-        // }}
-
-         backdropColor="black"
-        //  hasBackdrop={false}
-        onBackdropPress={() => setModalVisible2(false)}
-style={{alignSelf:'center'}}
-        >
-
-<View       style={styles.modal}>
-  <View style={{flexDirection:'row'}}>
-  <Text style={{...myFontStyle.largBold,color:Colors.text}}>ویرایش نام خانوادگی</Text>
-
-  </View>
-
-<View style={{flexDirection:'row'}}>
-<Input   placeholder="نام خانوادگی"   onChangeText={(ss)=>setFamily(ss)}     inputStyle={styles.textInputLogin}containerStyle={{alignItems:"flex-end"}} />
-
-</View>
-<View style={{flexDirection:'row',justifyContent:'space-between',marginTop:responsiveHeight(4)}}>
-<TouchableOpacity onPress={()=>setModalVisible2(false)}>
-
-<LinearGradient   colors={['#CC1111', '#F43535']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={styles.viewNext}>
-
-<Text style={{...myFontStyle.mediumBold,color:Colors.white}}>
-بستن</Text>
-
-</LinearGradient>
-</TouchableOpacity>
-<LinearGradient   colors={['#3AC3FE', '#0284BB']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={styles.viewNext}>
-
-<Text style={{...myFontStyle.mediumBold,color:Colors.white}}>
-ویرایش</Text>
-
-</LinearGradient>
-</View>
-<View style={styles.button}>
-      <Text style={{...myFontStyle.mediumBold,color:Colors.white}}>
-        ذخیره
-      </Text>
-    </View>
-             </View>
-</Modal>
-<Modal
-        // animationType="slide"
-        // transparent={true}
-        visible={modalVisible3}
-        // onRequestClose={() => {
-        //   setModalVisible(!modalVisible);
-        // }}
-
-         backdropColor="black"
-        //  hasBackdrop={false}
-        onBackdropPress={() => setModalVisible3(false)}
-style={{alignSelf:'center'}}
-        >
-
-<View       style={styles.modal}>
-  <View style={{flexDirection:'row'}}>
-  <Text style={{...myFontStyle.largBold,color:Colors.text}}>ویرایش کدملی</Text>
-
-  </View>
-
-<View style={{flexDirection:'row'}}>
-<Input   placeholder="کدملی"   onChangeText={(ss)=>setNational(ss)}     inputStyle={styles.textInputLogin}containerStyle={{alignItems:"flex-end"}} />
-
-</View>
-<View style={{flexDirection:'row',justifyContent:'space-between',marginTop:responsiveHeight(4)}}>
-<TouchableOpacity onPress={()=>setModalVisible3(false)}>
-
-<LinearGradient   colors={['#CC1111', '#F43535']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={styles.viewNext}>
-
-<Text style={{...myFontStyle.mediumBold,color:Colors.white}}>
-بستن</Text>
-
-</LinearGradient>
-</TouchableOpacity>
-<LinearGradient   colors={['#3AC3FE', '#0284BB']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={styles.viewNext}>
-
-<Text style={{...myFontStyle.mediumBold,color:Colors.white}}>
-ویرایش</Text>
-
-</LinearGradient>
-</View>
-<View style={styles.button}>
-      <Text style={{...myFontStyle.mediumBold,color:Colors.white}}>
-        ذخیره
-      </Text>
-    </View>
-             </View>
-</Modal>
-<Modal
-        // animationType="slide"
-        // transparent={true}
-        visible={modalVisible4}
-        // onRequestClose={() => {
-        //   setModalVisible(!modalVisible);
-        // }}
-
-         backdropColor="black"
-        //  hasBackdrop={false}
-        onBackdropPress={() => setModalVisible4(false)}
-style={{alignSelf:'center'}}
-        >
-
-<View       style={styles.modal}>
-  <View style={{flexDirection:'row'}}>
-  <Text style={{...myFontStyle.largBold,color:Colors.text}}>ویرایش شماره موبایل</Text>
-
-  </View>
-
-<View style={{flexDirection:'row'}}>
-<Input   placeholder="شماره موبایل"    onChangeText={(ss)=>setMobile(ss)}     inputStyle={styles.textInputLogin}containerStyle={{alignItems:"flex-end"}} />
-
-</View>
-<View style={{flexDirection:'row',justifyContent:'space-between',marginTop:responsiveHeight(4)}}>
-<TouchableOpacity onPress={()=>setModalVisible4(false)}>
-
-<LinearGradient   colors={['#CC1111', '#F43535']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={styles.viewNext}>
-
-<Text style={{...myFontStyle.mediumBold,color:Colors.white}}>
-بستن</Text>
-
-</LinearGradient>
-</TouchableOpacity>
-<LinearGradient   colors={['#3AC3FE', '#0284BB']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={styles.viewNext}>
-
-<Text style={{...myFontStyle.mediumBold,color:Colors.white}}>
-ویرایش</Text>
-
-</LinearGradient>
-</View>
-<View style={styles.button}>
-      <Text style={{...myFontStyle.mediumBold,color:Colors.white}}>
-        ذخیره
-      </Text>
-    </View>
-             </View>
-</Modal>
-    </View>
-   )
-   }
-
-
-
-   {/* <TopBar Classes={classes} /> */}
-return (
-  <Drawer
-  // type="static"
-  type="overlay"
-  acceptDoubleTap ={true}
-      ref={drawers}
-      content={<DrawerContent navigation={navigation}/>}
-      tapToClose={true}
-openDrawerOffset={0.4} // 20% gap on the right side of drawer
-panCloseMask={0.2}
-closedDrawerOffset={-3}
-styles={styles.drawerStyles}
-tweenHandler={(ratio) => ({
-  main: { opacity:(2-ratio)/2 }
-})}
-      >
-         <View >
-
-
-
-<LinearGradient colors={['#16B2F5', '#007FB5']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={{height:55}}>
-
-  </LinearGradient>
-
-
-<View style={styles.customRow}>
-<View style={{paddingLeft:20}} >
- <TouchableOpacity onPress={()=>drawers.current.open()}>
- <Icon name={"notes"} style={styles.menuIcon} size={50} color={"#fff"} style={{transform: [{rotateY: '180deg'}]}}/>
-
- </TouchableOpacity>
- </View>
-<View style={{flex : 2,textAlign:"right"}}>
-  <Text style={styles.menuTitle}>نوآوران دانش(ماهان)</Text>
-  </View>
-<View style={{flex :0.5}}>
-  <TouchableOpacity style={{}}>
-    <Icon name={"chevron-left"} color={"#fff"} size={30} style={{marginTop:10}}/>
-  </TouchableOpacity>
-  </View>
-
-</View>
-
-</View>
-  <View style={styles.container}>
-  <View style={{flexDirection:'row',margin:responsiveHeight(2),alignItems:"center"}}>
-  <Icon name={"create"} size={20} color={Colors.appColor}/>
-  <Text style={styles.txtTitle}>ویرایش اطلاعات کاربری</Text>
-
-  </View>
-  <View style={{backgroundColor:Colors.white,height:responsiveHeight(30),marginTop:responsiveHeight(1),marginHorizontal:responsiveWidth(2),borderRadius:5,shadowColor: '#878B92',
-shadowOpacity: 0.1,
-shadowOffset: { width: 2, height: 0},
-shadowRadius: 700,
-elevation: 20,}}>
-<View style={styles.header}>
-<TouchableOpacity onPress={()=>setModalVisible(true)} style={{  width:responsiveWidth(40),borderBottomColor:"#CBCBCB",borderBottomWidth:1 }}>
-<Text style={styles.txtTitleInput}>نام</Text>
-<View style={{flexDirection:'row',justifyContent:'space-between'}}>
-
-<Text style={styles.txtInput}>{name}</Text>
-<Icon name={"create"} size={20}/>
-</View>
-{/* <Input isIconLeft={"create"} inputStyle={styles.textInput}  containerStyle={styles.textInputLogin}/> */}
-</TouchableOpacity>
-<TouchableOpacity onPress={()=>setModalVisible2(true)} style={{flexDirection:'row',justifyContent:'space-around' }}>
-<View style={{  width:responsiveWidth(40),borderBottomColor:"#CBCBCB",borderBottomWidth:1 }}>
-<Text style={styles.txtTitleInput}> نام خانوادگی</Text>
-<View style={{flexDirection:'row',justifyContent:'space-between'}}>
-
-<Text style={styles.txtInput}>{family}</Text>
-<Icon name={"create"} size={20}/>
-</View>
-</View>
-</TouchableOpacity>
-
-
-
-
-
-</View>
-
-
-<View style={styles.header}>
-<TouchableOpacity onPress={()=>setModalVisible3(true)} style={{  width:responsiveWidth(40),borderBottomColor:"#CBCBCB",borderBottomWidth:1 }}>
-<Text style={styles.txtTitleInput}>کد ملی</Text>
-<View style={{flexDirection:'row',justifyContent:'space-between'}}>
-
-<Text style={styles.txtInput}>{national}</Text>
-<Icon name={"create"} size={20}/>
-</View>
-{/* <Input isIconLeft={"create"} inputStyle={styles.textInput}  containerStyle={styles.textInputLogin}/> */}
-</TouchableOpacity>
-<TouchableOpacity onPress={()=>setModalVisible4(true)} style={{flexDirection:'row',justifyContent:'space-around' }}>
-<View style={{  width:responsiveWidth(40),borderBottomColor:"#CBCBCB",borderBottomWidth:1 }}>
-<Text style={styles.txtTitleInput}> شماره موبایل</Text>
-<View style={{flexDirection:'row',justifyContent:'space-between'}}>
-
-<Text style={styles.txtInput}>{mobile}</Text>
-<Icon name={"create"} size={20}/>
-</View>
-</View>
-</TouchableOpacity>
-
-
-
-
-
-</View>
-<View style={{alignItems:'flex-end',paddingVertical:responsiveWidth(10),paddingHorizontal:responsiveWidth(2)}}>
-<LinearGradient   colors={['#FFC444', '#F36F56']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={styles.viewNext}>
-
-<Text style={{...myFontStyle.mediumBold,color:Colors.white}}>
-ذخیره اطلاعات</Text>
-
-</LinearGradient>
-</View>
-</View>
-
-<Modal
   // animationType="slide"
   // transparent={true}
   isVisible={modalVisible}
@@ -512,7 +236,7 @@ style={{alignSelf:'center'}}
 <Input   placeholder="نام"  onChangeText={(ss)=>setName(ss)}      inputStyle={styles.textInputLogin}containerStyle={{alignItems:"flex-end"}} />
 
 </View>
-<View style={{flexDirection:'row',justifyContent:'space-between',marginTop:responsiveHeight(4)}}>
+<View style={{flexDirection:'row-reverse',justifyContent:'space-between',marginTop:responsiveHeight(4)}}>
 <TouchableOpacity onPress={()=>setModalVisible(false)}>
 <LinearGradient   colors={['#CC1111', '#F43535']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={styles.viewNext}>
 
@@ -521,12 +245,12 @@ style={{alignSelf:'center'}}
 
 </LinearGradient>
 </TouchableOpacity>
-<LinearGradient   colors={['#3AC3FE', '#0284BB']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={styles.viewNext}>
+{/* <LinearGradient   colors={['#3AC3FE', '#0284BB']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={styles.viewNext}>
 
 <Text style={{...myFontStyle.mediumBold,color:Colors.white}}>
 ویرایش</Text>
 
-</LinearGradient>
+</LinearGradient> */}
 </View>
 <View style={styles.button}>
 <Text style={{...myFontStyle.mediumBold,color:Colors.white}}>
@@ -538,7 +262,7 @@ style={{alignSelf:'center'}}
 <Modal
   // animationType="slide"
   // transparent={true}
-  visible={modalVisible2}
+  isVisible={modalVisible2}
   // onRequestClose={() => {
   //   setModalVisible(!modalVisible);
   // }}
@@ -559,7 +283,7 @@ style={{alignSelf:'center'}}
 <Input   placeholder="نام خانوادگی"   onChangeText={(ss)=>setFamily(ss)}     inputStyle={styles.textInputLogin}containerStyle={{alignItems:"flex-end"}} />
 
 </View>
-<View style={{flexDirection:'row',justifyContent:'space-between',marginTop:responsiveHeight(4)}}>
+<View style={{flexDirection:'row-reverse',justifyContent:'space-between',marginTop:responsiveHeight(4)}}>
 <TouchableOpacity onPress={()=>setModalVisible2(false)}>
 
 <LinearGradient   colors={['#CC1111', '#F43535']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={styles.viewNext}>
@@ -569,12 +293,12 @@ style={{alignSelf:'center'}}
 
 </LinearGradient>
 </TouchableOpacity>
-<LinearGradient   colors={['#3AC3FE', '#0284BB']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={styles.viewNext}>
+{/* <LinearGradient   colors={['#3AC3FE', '#0284BB']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={styles.viewNext}>
 
 <Text style={{...myFontStyle.mediumBold,color:Colors.white}}>
 ویرایش</Text>
 
-</LinearGradient>
+</LinearGradient> */}
 </View>
 <View style={styles.button}>
 <Text style={{...myFontStyle.mediumBold,color:Colors.white}}>
@@ -586,7 +310,7 @@ style={{alignSelf:'center'}}
 <Modal
   // animationType="slide"
   // transparent={true}
-  visible={modalVisible3}
+  isVisible={modalVisible3}
   // onRequestClose={() => {
   //   setModalVisible(!modalVisible);
   // }}
@@ -607,7 +331,7 @@ style={{alignSelf:'center'}}
 <Input   placeholder="کدملی"   onChangeText={(ss)=>setNational(ss)}     inputStyle={styles.textInputLogin}containerStyle={{alignItems:"flex-end"}} />
 
 </View>
-<View style={{flexDirection:'row',justifyContent:'space-between',marginTop:responsiveHeight(4)}}>
+<View style={{flexDirection:'row-reverse',justifyContent:'space-between',marginTop:responsiveHeight(4)}}>
 <TouchableOpacity onPress={()=>setModalVisible3(false)}>
 
 <LinearGradient   colors={['#CC1111', '#F43535']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={styles.viewNext}>
@@ -617,12 +341,12 @@ style={{alignSelf:'center'}}
 
 </LinearGradient>
 </TouchableOpacity>
-<LinearGradient   colors={['#3AC3FE', '#0284BB']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={styles.viewNext}>
+{/* <LinearGradient   colors={['#3AC3FE', '#0284BB']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={styles.viewNext}>
 
 <Text style={{...myFontStyle.mediumBold,color:Colors.white}}>
 ویرایش</Text>
 
-</LinearGradient>
+</LinearGradient> */}
 </View>
 <View style={styles.button}>
 <Text style={{...myFontStyle.mediumBold,color:Colors.white}}>
@@ -634,7 +358,7 @@ style={{alignSelf:'center'}}
 <Modal
   // animationType="slide"
   // transparent={true}
-  visible={modalVisible4}
+  isVisible={modalVisible4}
   // onRequestClose={() => {
   //   setModalVisible(!modalVisible);
   // }}
@@ -655,7 +379,7 @@ style={{alignSelf:'center'}}
 <Input   placeholder="شماره موبایل"    onChangeText={(ss)=>setMobile(ss)}     inputStyle={styles.textInputLogin}containerStyle={{alignItems:"flex-end"}} />
 
 </View>
-<View style={{flexDirection:'row',justifyContent:'space-between',marginTop:responsiveHeight(4)}}>
+<View style={{flexDirection:'row-reverse',justifyContent:'space-between',marginTop:responsiveHeight(4)}}>
 <TouchableOpacity onPress={()=>setModalVisible4(false)}>
 
 <LinearGradient   colors={['#CC1111', '#F43535']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={styles.viewNext}>
@@ -665,12 +389,12 @@ style={{alignSelf:'center'}}
 
 </LinearGradient>
 </TouchableOpacity>
-<LinearGradient   colors={['#3AC3FE', '#0284BB']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={styles.viewNext}>
+{/* <LinearGradient   colors={['#3AC3FE', '#0284BB']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={styles.viewNext}>
 
 <Text style={{...myFontStyle.mediumBold,color:Colors.white}}>
 ویرایش</Text>
 
-</LinearGradient>
+</LinearGradient> */}
 </View>
 <View style={styles.button}>
 <Text style={{...myFontStyle.mediumBold,color:Colors.white}}>
@@ -686,7 +410,11 @@ style={{alignSelf:'center'}}
 
 const styles = StyleSheet.create({
   // container: {flex:3,backgroundColor:"#fff"},
-
+viewHeadContainer:{backgroundColor:Colors.white,height:responsiveHeight(30),marginTop:responsiveHeight(1),marginHorizontal:responsiveWidth(2),borderRadius:5,shadowColor: '#878B92',
+shadowOpacity: 0.1,
+shadowOffset: { width: 2, height: 0},
+shadowRadius: 700,
+elevation: 20,},
   menuTitle:{
 ...myFontStyle.largBold,
     color:"#fff",
