@@ -18,6 +18,7 @@ import { apiUrl ,apiAsset} from "../../commons/inFormTypes";
 const Ticket = ({navigation,route}) => {
   const {id,title,date} = route?.params ?? {};
   const [data,setData] = useState([]);
+  const [text,setText] = useState([]);
 
   useEffect(() => {
 
@@ -40,6 +41,31 @@ const Ticket = ({navigation,route}) => {
         setData(response.data.Data)
 
         // navigation.navigate("ChangePass",{mobile:user,verify:response.data.Data})
+                        }else{
+
+      }
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+
+
+    };
+  const  newTicket=()=> {
+
+    axios.post(apiUrl + 'InsertSubSupport',{SupportID:id,Text:text})
+    .then(function (response) {
+      const message = response.data.Data;
+      console.log(55);
+      console.log(message);
+      const result = response.data.result;
+      console.log(result);
+
+      if(result == "true"){
+        // setData(response.data.Data)
+alert("با موفقیت اضافه شد")
+
+         navigation.navigate("TicketList")
                         }else{
 
       }
@@ -129,11 +155,11 @@ const Ticket = ({navigation,route}) => {
 <Input placeholder={"پیام خودرا بنویسید"} inputStyle={{borderColor:Colors.gray,height:responsiveHeight(10),color:Colors.text}} containerStyle={{height:responsiveHeight(10)}}/>
 
 </View>
-<View style={styles.button}>
+<TouchableOpacity onPress={()=>newTicket()} style={styles.button}>
       <Text style={{...myFontStyle.mediumBold,color:Colors.white}}>
         ذخیره
       </Text>
-    </View>
+    </TouchableOpacity>
 </View>
 
 </View>
