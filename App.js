@@ -64,14 +64,23 @@ import Rules from './src/screens/Rules/Rules';
  const StackNavigatorsssss = () => {
 
    return (
-
     <Tab.Navigator
-    barStyle={{ backgroundColor: Colors.white }}
+    barStyle={{backgroundColor: 'black',
+    // position: 'absolute',
+    overflow: 'hidden',
+    // borderTopLeftRadius: 120,
+    borderRadius: 50,
+  height:120,
+  // top:20
+  // width:1000
+  }}
+    
 initialRouteName={"StackNavigatorsHome"}
 shifting={false}
-
+// style={{height:200}}
 // tabBar={props => <TabBar {...props} />}
 >
+
 <Tab.Screen
     name="StackNavigatorsAzmoon" component={StackNavigatorsAzmoon}
     options={{          tabBarLabel: '',    tabBarIcon: ({ color }) => (    <Icon name="person-outline" color={Colors.appColor} size={26} />         ),           }}      />

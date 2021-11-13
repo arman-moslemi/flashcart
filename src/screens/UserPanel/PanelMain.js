@@ -12,23 +12,23 @@ import Modal from "react-native-modal";
 import DropDownPicker from 'react-native-dropdown-picker';
 import {Input} from '../../components/Input';
 import { Button } from '../../components/Button';
-<<<<<<< HEAD
+
 import { RadioButton } from 'react-native-paper';
-=======
+
 import axios from 'axios';
 import { apiUrl ,apiAsset} from "../../commons/inFormTypes";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
->>>>>>> 440ace100358fb84812a6462f4c595f621c7b530
+
 // create a component
 const PanelMain = ({navigation}) => {
   const [checked, setChecked] = useState('first');
   const [modalVisible, setModalVisible] = useState(false);
-<<<<<<< HEAD
+
   const [modal2Visible, setModal2Visible] = useState(false);
-=======
+
   const [data, setData] = useState(false);
->>>>>>> 440ace100358fb84812a6462f4c595f621c7b530
+
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState(null);
   const [ques, setQues] = useState(null);
