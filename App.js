@@ -104,7 +104,8 @@ shifting={false}
       <Stack.Screen name="EditProfile" component={EditProfile} />
       <Stack.Screen name="UserReport" component={UserReport} />
       <Stack.Screen name="Ticket" component={Ticket} />
- 
+      <Stack.Screen name="TicketsList" component={TicketsList}/>
+
 
     </Stack.Navigator>
   );
@@ -125,11 +126,12 @@ const StackNavigatorsHome = () => {
       <Stack.Screen name="LitnearBoxCardList" component={LitnearBoxCardList}/>
       <Stack.Screen name="AboutUs" component={AboutUs} />
       <Stack.Screen name="Favorite" component={Favorite}/>
-      <Stack.Screen name="TicketsList" component={TicketsList}/>
       <Stack.Screen name="Rules" component={Rules}/>
 
       <Stack.Screen name="FlashCardVideo" component={FlashCardVideo} />
       <Stack.Screen name="Ticket" component={Ticket} />
+      <Stack.Screen name="TicketsList" component={TicketsList}/>
+
       <Stack.Screen name="MainCategory" component={MainCategory} />
 
       {/* <Stack.Screen name="MainTabScreen" component={MainTabScreen} /> */}

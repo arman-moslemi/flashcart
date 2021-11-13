@@ -16,9 +16,43 @@ import {TabView, SceneMap, TabBar} from 'react-native-tab-view';
 import { BarChart, Grid ,YAxis,XAxis} from 'react-native-svg-charts'
 import * as scale from 'd3-scale'
 import { LinearGradient, Stop, Defs } from 'react-native-svg'// create a component
+import axios from 'axios';
+import { apiUrl ,apiAsset} from "../../commons/inFormTypes";
 const PanelMain = ({navigation}) => {
     const [index, setIndex] = React.useState(0);
+    useEffect(() => {
 
+      mutLogin();
+
+
+    }, []);
+    const [data,setData] = useState([]);
+
+    const  mutLogin=async()=> {
+      const state = await AsyncStorage.getItem("@user");
+
+      axios.post(apiUrl + 'OneCustomerStudyDetail',{CustomerID:state})
+      .then(function (response) {
+        const message = response.data.Data;
+        console.log(55);
+        console.log(message);
+        const result = response.data.result;
+        console.log(result);
+
+        if(result == "true"){
+          setData(response.data.Data)
+
+          // navigation.navigate("ChangePass",{mobile:user,verify:response.data.Data})
+                          }else{
+
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+
+
+      };
     const data1 = [ 14, 30, 100, 50, 94, ]
     .map((value) => ({ value }))
 const data2 = [ 24, 28, 93, 77,30 ]
