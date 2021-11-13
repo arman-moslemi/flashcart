@@ -65,7 +65,7 @@ const AzmoonList = ({navigation}) => {
 <View style={{flexDirection:'row-reverse',justifyContent:"space-between",alignItems:"center"}}>
 {/* <Text style={{...myFontStyle.mediumBold,color:Colors.gray}}>نمره کسب شده:15</Text> */}
 <Text style={{...myFontStyle.mediumBold,color:Colors.gray,marginHorizontal:10}}>{item.Title}</Text>
-<Text style={{...myFontStyle.mediumBold,color:Colors.text}}>{item.Text?.substring(0, 20)}...</Text>
+<Text style={{...myFontStyle.mediumBold,color:Colors.text}}>{item.Text?.substring(0, 20)}... </Text>
 {/* <Image source={require('../../assets/images/RectangleGreen.png')} style={{ height:responsiveHeight(10),width:5,marginLeft:responsiveWidth(-5),marginRight:responsiveWidth(3),marginBottom:responsiveHeight(0.5)}}/> */}
 </View>
     {/* </View> */}
