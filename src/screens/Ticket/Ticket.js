@@ -12,10 +12,44 @@ import Modal from "react-native-modal";
 import DropDownPicker from 'react-native-dropdown-picker';
 import {Input} from '../../components/Input';
 import { Button } from '../../components/Button';
-
+import axios from 'axios';
+import { apiUrl ,apiAsset} from "../../commons/inFormTypes";
 // create a component
-const Ticket = ({navigation}) => {
+const Ticket = ({navigation,route}) => {
+  const {id,title,date} = route?.params ?? {};
+  const [data,setData] = useState([]);
 
+  useEffect(() => {
+
+    mutLogin();
+
+
+  }, []);
+
+  const  mutLogin=()=> {
+
+    axios.post(apiUrl + 'CustomerSubSupport',{SupportID:id})
+    .then(function (response) {
+      const message = response.data.Data;
+      console.log(55);
+      console.log(message);
+      const result = response.data.result;
+      console.log(result);
+
+      if(result == "true"){
+        setData(response.data.Data)
+
+        // navigation.navigate("ChangePass",{mobile:user,verify:response.data.Data})
+                        }else{
+
+      }
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+
+
+    };
 
    const classes =()=>{
    return(
@@ -24,37 +58,20 @@ const Ticket = ({navigation}) => {
 <Icon name="textsms" size={30} color={Colors.yellow} style={{marginTop:responsiveWidth(2)}}/>
 <View style={{marginLeft:5}}>
     <Text style={styles.txtTitle}>
-عنوان پیام
-    </Text>
+{title}    </Text>
     <View style={{flexDirection:'row'}}>
     <Icon name="query-builder" size={15} color={Colors.gray}/>
 
     <Text style={styles.textInput}>
-        تاریخ ایجاد تیکت:1400/08/08
+        تاریخ ایجاد تیکت:{date}
     </Text>
     </View>
 </View>
       </View>
-<View>
-<View style={styles.viewTicket}>
-
-
-<Image source={require("../../assets/images/questionProf.png")} />
-<View>
-<View style={styles.viewBack}>
-<View  style={styles.viewHeaderBack}>
-<Text style={{...myFontStyle.mediumRegular,color:Colors.white}}>نام کاربر</Text>
-<Text style={{...myFontStyle.mediumRegular,color:Colors.white}}>
-        تاریخ ایجاد تیکت:1400/08/08
-    </Text>
-</View>
-<Text style={{...myFontStyle.mediumRegular,color:Colors.text,marginHorizontal:responsiveWidth(3)}}>لورم</Text>
-</View>
-
-</View>
-</View>
-
-
+<ScrollView style={{marginBottom:10}}>
+{
+  data.map((item)=>(
+    item.isAdmin?
 <View style={styles.viewTicket2}>
 
 
@@ -64,14 +81,37 @@ const Ticket = ({navigation}) => {
 <View  style={styles.viewHeaderBack2}>
 <Text style={{...myFontStyle.mediumRegular,color:Colors.white}}>پشتیبان فنی</Text>
 <Text style={{...myFontStyle.mediumRegular,color:Colors.white}}>
-        تاریخ ایجاد تیکت:1400/08/08
+        تاریخ ایجاد تیکت:{item.Date}
     </Text>
 </View>
-<Text style={{...myFontStyle.mediumRegular,color:Colors.text,marginHorizontal:responsiveWidth(3)}}>لورم</Text>
+<Text style={{...myFontStyle.mediumRegular,color:Colors.text,marginHorizontal:responsiveWidth(3)}}>{item.Text}</Text>
 </View>
 
 </View>
 </View>
+    :
+
+<View style={styles.viewTicket}>
+
+
+<Image source={require("../../assets/images/questionProf.png")} />
+<View>
+<View style={styles.viewBack}>
+<View  style={styles.viewHeaderBack}>
+<Text style={{...myFontStyle.mediumRegular,color:Colors.white}}> کاربر</Text>
+<Text style={{...myFontStyle.mediumRegular,color:Colors.white}}>
+        تاریخ ایجاد تیکت:{item.Date}
+    </Text>
+</View>
+<Text style={{...myFontStyle.mediumRegular,color:Colors.text,marginHorizontal:responsiveWidth(3)}}>{item.Text}</Text>
+</View>
+
+</View>
+</View>
+
+))
+  }
+
 
 <View style={styles.viewTicket}>
 
@@ -80,10 +120,10 @@ const Ticket = ({navigation}) => {
 <View>
 <View style={styles.viewBack3}>
 <View  style={styles.viewHeaderBack}>
-<Text style={{...myFontStyle.mediumRegular,color:Colors.white}}>نام کاربر</Text>
-<Text style={{...myFontStyle.mediumRegular,color:Colors.white}}>
+<Text style={{...myFontStyle.mediumRegular,color:Colors.white}}> کاربر</Text>
+{/* <Text style={{...myFontStyle.mediumRegular,color:Colors.white}}>
         تاریخ ایجاد تیکت:1400/08/08
-    </Text>
+    </Text> */}
 </View>
 <View style={{alignItems:'center'}}>
 <Input placeholder={"پیام خودرا بنویسید"} inputStyle={{borderColor:Colors.gray,height:responsiveHeight(10),color:Colors.text}} containerStyle={{height:responsiveHeight(10)}}/>
@@ -101,7 +141,7 @@ const Ticket = ({navigation}) => {
 
 
 
-</View>
+</ScrollView>
 
 
     </View>

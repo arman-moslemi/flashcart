@@ -45,6 +45,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
     const [data,setData]=useState([]);
     const {id,first,last} = route?.params ?? {};
     const [ids,setID]=useState(id);
+    const [type,setType]=useState(id);
 
     useEffect(() => {
 // setID(id)
@@ -116,7 +117,8 @@ if(response.data.Data[0].PhotoAnswer){
 
           if(result == "true"){
    alert("با موفقیت ثبت شد")
-     navigation.navigate("FlashCardView",{id:id,first:first,last:last})
+   goto()
+    //  navigation.navigate("FlashCardView",{id:id,first:first,last:last})
   }
                           else{
 
@@ -128,41 +130,99 @@ if(response.data.Data[0].PhotoAnswer){
 
 
         };
-    async function setup() {
-      await TrackPlayer.setupPlayer({});
-      await TrackPlayer.updateOptions({
-        stopWithApp: true,
-        capabilities: [
-          TrackPlayer.CAPABILITY_PLAY,
-          TrackPlayer.CAPABILITY_PAUSE,
-          TrackPlayer.CAPABILITY_SKIP_TO_NEXT,
-          TrackPlayer.CAPABILITY_SKIP_TO_PREVIOUS,
-          TrackPlayer.CAPABILITY_STOP
-        ],
-        compactCapabilities: [
-          TrackPlayer.CAPABILITY_PLAY,
-          TrackPlayer.CAPABILITY_PAUSE
-        ]
-      });
-    }
-    async function setup() {
-      await TrackPlayer.setupPlayer({});
-      await TrackPlayer.updateOptions({
-        stopWithApp: true,
-        capabilities: [
-          TrackPlayer.CAPABILITY_PLAY,
-          TrackPlayer.CAPABILITY_PAUSE,
-          TrackPlayer.CAPABILITY_SKIP_TO_NEXT,
-          TrackPlayer.CAPABILITY_SKIP_TO_PREVIOUS,
-          TrackPlayer.CAPABILITY_STOP
-        ],
-        compactCapabilities: [
-          TrackPlayer.CAPABILITY_PLAY,
-          TrackPlayer.CAPABILITY_PAUSE
-        ]
-      });
-    }
 
+        const  goto=()=> {
+          console.log(rateNum)
+
+
+          axios.post(apiUrl + 'ChangeFlashCard',{FlashCardID:id,Type:type})
+          .then(function (response) {
+            const message = response.data.Data;
+            const result = response.data.result;
+            console.log(222);
+            console.log(result);
+            console.log(message)
+
+            if(result == "true"){
+    //  alert("با موفقیت ثبت شد")
+      //  navigation.navigate("FlashCardView",{id:id,first:first,last:last})
+      if(type=="next")
+{      setID(response.data.Data.FlashCardID)
+  setModalVisible(false)
+}
+else{
+  setID(message)
+  setModalVisible(false)
+
+}
+}
+                            else{
+
+            }
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+
+
+          };
+          const  favoriteInsert=async()=> {
+            console.log(rateNum)
+            const state = await AsyncStorage.getItem("@user");
+
+
+            axios.post(apiUrl + 'AddFavoriteFlashCardCustomer',{FlashCardID:id,CustomerID:state})
+            .then(function (response) {
+              const message = response.data.Data;
+              const result = response.data.result;
+              console.log(222);
+              console.log(result);
+              console.log(message)
+
+              if(result == "true"){
+        alert("با موفقیت اضافه شد")
+        //  navigation.navigate("FlashCardView",{id:id,first:first,last:last})
+
+  }
+                              else{
+
+              }
+            })
+            .catch(function (error) {
+              console.log(error);
+            });
+
+
+            };
+            const  LitnearInsert=async()=> {
+              console.log(rateNum)
+              const state = await AsyncStorage.getItem("@user");
+
+
+              axios.post(apiUrl + 'InsertLitnear',{FlashCardID:id,CustomerID:state,LitnearLevel:5,Difficulty:value})
+              .then(function (response) {
+                const message = response.data.Data;
+                const result = response.data.result;
+                console.log(222);
+                console.log(result);
+                console.log(message)
+
+                if(result == "true"){
+          alert("با موفقیت اضافه شد")
+          setModalVisible2(false)
+          //  navigation.navigate("FlashCardView",{id:id,first:first,last:last})
+
+    }
+                                else{
+
+                }
+              })
+              .catch(function (error) {
+                console.log(error);
+              });
+
+
+              };
     async function togglePlayback() {
       const currentTrack = await TrackPlayer.getPosition();
       const currentTrack2 = await TrackPlayer.getDuration();
@@ -255,8 +315,9 @@ else{
 
       // }
     }
-    const toggleModal = () => {
+    const toggleModal = (tt) => {
      setModalVisible(!isModalVisible);
+     setType(tt)
     };
 
     const closeModal=()=>{
@@ -272,14 +333,14 @@ else{
       setModalVisible2(!isModalVisible2);
     }
     const [open, setOpen] = useState(false);
-    const [value, setValue] = useState(null);
+    const [value, setValue] = useState(1);
     const [items, setItems] = useState([
-      {label: 'خیلی آسان', value: 'very easy'},
-      {label: 'آسان', value: 'easy'},
-      {label: 'متوسط', value: 'medium'},
-      {label: 'سخت', value: 'hard'},
-      {label: 'خیلی سخت', value: 'very hard'},
-      {label: 'راهنمایی از استاد', value: 'guide'},
+      {label: 'خیلی آسان', value: 1},
+      {label: 'آسان', value: 2},
+      {label: 'متوسط', value: 3},
+      {label: 'سخت', value: 4},
+      {label: 'خیلی سخت', value: 5},
+      {label: 'راهنمایی از استاد', value: 6},
     ]);
     const classes =()=>{
       return(
@@ -289,7 +350,7 @@ else{
             alignItems: 'center',}}>
             <View style={styles.flashCardBox}>
             <View style={styles.yellowBox}>
-            <TouchableOpacity style={{flexDirection:"row",justifyContent:'center',alignItems:'center'}}  onPress={toggleModal}>
+            <TouchableOpacity style={{flexDirection:"row",justifyContent:'center',alignItems:'center'}}  onPress={()=>toggleModal("next")}>
                   <Icon name={"chevron-right"} color={'#fff'} size={30} ></Icon>
                   <Text style={styles.nextBtnText}>بعدی</Text>
               </TouchableOpacity>
@@ -301,6 +362,7 @@ else{
                     ratingCount={5}
                     imageSize={40}
                     showRating
+
                     ratingTextColor={'#fff'}
                     ratingColor={'#FFC444'}
                     onFinishRating={(ss)=>setRateNum(ss)}
@@ -311,8 +373,8 @@ else{
                     <LinearGradient colors={['#CC1111', '#F43535'] }start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={{borderRadius:3,padding:5}}>
 
 
-                      <TouchableOpacity style={styles.notShowBtn}>
-                        <Text style={styles.modalBtnText}>تمایلی به ثبت نظر ندارم،دیگر نمایش نده.</Text>
+                      <TouchableOpacity onPress={()=>goto()} style={styles.notShowBtn}>
+                        <Text style={styles.modalBtnText}>تمایلی به ثبت نظر ندارم.</Text>
                         </TouchableOpacity>
                         </LinearGradient>
                     </View>
@@ -329,10 +391,10 @@ else{
                 </View>
                 </View>
               </Modal>
-              <TouchableOpacity style={styles.favoriteBtn} onPress={()=>vid.current.presentFullscreenPlayer()}>
+              <TouchableOpacity style={styles.favoriteBtn} onPress={()=>favoriteInsert()}>
                   <Icon name={"favorite-border"} size={40} color={'#ffc444'}></Icon>
               </TouchableOpacity>
-              <TouchableOpacity style={{flexDirection:'row-reverse',alignItems:'center'}}onPress={toggleModal}>
+              <TouchableOpacity style={{flexDirection:'row-reverse',alignItems:'center'}} onPress={()=>toggleModal("prev")}>
                   <Icon name={"chevron-left"} color={'#fff'} size={30} ></Icon>
                   <Text style={styles.nextBtnText}>قبلی</Text>
               </TouchableOpacity>
@@ -544,7 +606,7 @@ fullscreen={true}
 }
 
         <View style={{padding:responsiveWidth(5),flexDirection:'row',justifyContent:'space-between'}}>
-           <TouchableOpacity style={styles.returnFirst}
+           <TouchableOpacity  style={styles.returnFirst}
             onPress={toggleModal2}>
            <Icon name={"add"} color={'#3AC3FE'} size={20} ></Icon>
            <Text style={styles.addLitnearText}>افزودن به جعبه لایتنر</Text>
@@ -561,12 +623,9 @@ fullscreen={true}
                   <Box5 style={styles.inlineBox}/>
                 </View>
                 <View style={{flexDirection:'row',marginTop:responsiveHeight(2)}}>
-                <View style={{width:'50%'}}>
+                <View style={{flexDirection:'row',alignItems:'center'}}>
                 <Text style={styles.modalTitle2}>درجه سختی این کارت:</Text>
-
-                 </View>
-                 <View style={{width:'50%'}}>
-                 <DropDownPicker
+                <DropDownPicker
       open={open}
       value={value}
       items={items}
@@ -585,9 +644,12 @@ fullscreen={true}
       dropDownContainerStyle={{
         borderColor:'#F1F1F1',
         borderWidth:2,
+        width:responsiveWidth(37),
+
       borderRadius:5}}
     />
-                   </View>
+                 </View>
+
                    </View>
                    <View style={{flexDirection:'row',marginTop:responsiveHeight(3)}}>
                    <View style={{width:'42%'}}></View>
@@ -595,17 +657,18 @@ fullscreen={true}
                     <LinearGradient colors={['#CC1111', '#F43535'] }start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={{borderRadius:3,padding:5}}>
 
 
-                      <TouchableOpacity style={styles.notShowBtn}>
+                      <TouchableOpacity onPress={()=>          setModalVisible2(false)}
+                       style={styles.notShowBtn}>
                         <Text style={styles.modalBtnText}>بستن</Text>
                         </TouchableOpacity>
                         </LinearGradient>
                     </View>
                     <View style={{width:'2%'}}></View>
-                   <View style={{width:'28%'}}>
+                   <View style={{width:'30%'}}>
                    <LinearGradient colors={['#3AC3FE', '#0284BB'] }start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={{borderRadius:3,padding:5}}>
 
 
-          <TouchableOpacity style={styles.notShowBtn}>
+          <TouchableOpacity onPress={()=>LitnearInsert()} style={styles.notShowBtn}>
           <Text style={styles.modalBtnText}>افزودن به لایتنر</Text>
           </TouchableOpacity>
           </LinearGradient>
@@ -797,12 +860,12 @@ alignSelf:'flex-end'
 
   },
   modalBtnText:{
-    ...myFontStyle.mediumBold,
+    ...myFontStyle.mediumRegular,
     color:'#fff',
     textAlign:'center',
     // fontSize:responsiveFontSize(1.5),
   },modalTitle2:{
-    ...myFontStyle.normalBold,
+    ...myFontStyle.mediumBold,
     color:'#000',
     // fontSize:responsiveFontSize(1.7),
     textAlign:'center',

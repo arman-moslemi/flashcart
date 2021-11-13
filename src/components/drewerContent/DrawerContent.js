@@ -31,7 +31,7 @@ const DrawerContent = ({ navigation }) => {
 
   const txtDarawerItem = [
     {id:1, title: "راهنمای استفاده از اپلیکیشن", icon: "lightbulb", navigateName: "About" },
-    { id:2,title: "تیکت ها و پشتیبانی", icon: "textsms", navigateName: "Ticket" },
+    { id:2,title: "تیکت ها و پشتیبانی", icon: "textsms", navigateName: "TicketsList" },
     {id:3, title: "تخفیف ها", icon: "people-alt", navigateName: "" },
     // { title: Strings.inviteFriends, icon: invitefriends, navigateName: "" },
     {id:4, title: "درباره ما", icon: "people-alt", navigateName: "AboutUs" },
