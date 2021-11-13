@@ -26,7 +26,7 @@ const AzmoonList = ({navigation}) => {
   const  mutLogin=async()=> {
     const state = await AsyncStorage.getItem("@user");
 
-    axios.post(apiUrl + 'CustomerExamShow',{CustomerID:2})
+    axios.post(apiUrl + 'CustomerExamShow',{CustomerID:state})
     .then(function (response) {
       const message = response.data.Data;
       console.log(55);
@@ -53,22 +53,31 @@ const AzmoonList = ({navigation}) => {
    return(
     <View style={styles.container}>
 <Text style={{...myFontStyle.UltraBold,color:Colors.appColor,marginLeft:responsiveWidth(5)}}>لیست آزمون ها</Text>
+    {/* <View style={styles.viewBody}> */}
 
 {
   curdata.map((item)=>(
 
 
+<<<<<<< HEAD
 <Text style={{...myFontStyle.mediumBold,color:Colors.gray}}>نمره کسب شده:15</Text>
 <Text style={{...myFontStyle.mediumBold,color:Colors.gray,marginHorizontal:10}}>پزشکی:اطفال</Text>
 <Text style={{...myFontStyle.mediumBold,color:Colors.text}}>عنوان آزمون</Text>
+
 <Image source={require('../../assets/images/RectangleGreen.png')} style={{ height:responsiveHeight(10),width:5,marginLeft:responsiveWidth(-5),marginRight:responsiveWidth(3),marginBottom:responsiveHeight(0.5)}}/>
+
+=======
     <TouchableOpacity onPress={()=>navigation.navigate("Question")} style={styles.subViewRead}>
+
 <Icon name="chevron-left" size={30} color={Colors.yellow}/>
 <View style={{flexDirection:'row-reverse',justifyContent:"space-between",alignItems:"center"}}>
-
+{/* <Text style={{...myFontStyle.mediumBold,color:Colors.gray}}>نمره کسب شده:15</Text> */}
 <Text style={{...myFontStyle.mediumBold,color:Colors.gray,marginHorizontal:10}}>{item.Title}</Text>
 <Text style={{...myFontStyle.mediumBold,color:Colors.text}}>{item.Text?.substring(0, 20)}...</Text>
+{/* <Image source={require('../../assets/images/RectangleGreen.png')} style={{ height:responsiveHeight(10),width:5,marginLeft:responsiveWidth(-5),marginRight:responsiveWidth(3),marginBottom:responsiveHeight(0.5)}}/> */}
+>>>>>>> 0ead147b5f383824530d4a3e87e070bb9ed1e685
 </View>
+    {/* </View> */}
 
 
 
@@ -84,7 +93,7 @@ const AzmoonList = ({navigation}) => {
 <Icon name="chevron-left" size={30} color={Colors.yellow}/>
 <View style={{flexDirection:'row-reverse',justifyContent:"space-between",alignItems:"center"}}>
 <Text style={{...myFontStyle.mediumBold,color:Colors.gray}}>نمره کسب شده:{item.Score}</Text>
-<Text style={{...myFontStyle.mediumBold,color:Colors.gray,marginHorizontal:10}}>{item.Title}</Text>
+<Text style={{...myFontStyle.mediumBold,color:Colors.gray,marginHorizontal:10}}>پزشکی:اطفال</Text>
 <Text style={{...myFontStyle.mediumBold,color:Colors.text}}>{item.Text?.substring(0, 20)}...</Text>
 {/* <Image source={require('../../assets/images/RectangleRed.png')} style={{ height:responsiveHeight(10),width:5,marginLeft:responsiveWidth(-5),marginRight:responsiveWidth(3),marginBottom:responsiveHeight(0.5)}}/> */}
 </View>
@@ -164,6 +173,7 @@ const styles = StyleSheet.create({
   paddingBottom:responsiveHeight(2)},
   subViewRead:{
     backgroundColor:"#fff",
+<<<<<<< HEAD
 
     shadowColor: '#878B92',
     shadowOpacity: 0.1,
@@ -171,8 +181,8 @@ const styles = StyleSheet.create({
     shadowRadius: 700,
     elevation: 20,
 
-
- 
+=======
+>>>>>>> 0ead147b5f383824530d4a3e87e070bb9ed1e685
     elevation:5
     ,borderLeftWidth:5,borderLeftColor:"green",
     shadowOpacity:1,
@@ -205,7 +215,7 @@ const styles = StyleSheet.create({
   justifyContent:'space-between',
   padding:responsiveWidth(5),
   paddingBottom:responsiveHeight(2)},
-  viewProfText:{marginRight:5,marginTop:responsiveHeight(1),alignItems:'flexzz-end'},
+  viewProfText:{marginRight:5,marginTop:responsiveHeight(1),alignItems:'flex-end'},
 viewIconEdit:{position:"absolute",bottom:0,right:20,backgroundColor:Colors.yellow,borderRadius:50},
 textInputLogin:{
   height:responsiveHeight(15),

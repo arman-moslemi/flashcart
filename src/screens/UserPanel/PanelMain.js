@@ -15,15 +15,14 @@ import { Button } from '../../components/Button';
 
 import { RadioButton } from 'react-native-paper';
 
-import axios from 'axios';
+
 import { apiUrl ,apiAsset} from "../../commons/inFormTypes";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 
 import axios from 'axios';
-import { apiUrl ,apiAsset} from "../../commons/inFormTypes";
-import AsyncStorage from '@react-native-async-storage/async-storage';
+
 import DrawerContent from '../../components/drewerContent/DrawerContent';
 import Drawer from 'react-native-drawer'
 
@@ -33,8 +32,6 @@ const PanelMain = ({navigation}) => {
 
 
   const [modal2Visible, setModal2Visible] = useState(false);
-
-  const [data, setData] = useState(false);
 
 
   const [data, setData] = useState([]);
