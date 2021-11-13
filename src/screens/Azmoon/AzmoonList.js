@@ -8,39 +8,64 @@ import { responsiveFontSize, responsiveHeight, responsiveScreenWidth, responsive
 import LinearGradient from 'react-native-linear-gradient';
 import { ScrollView } from 'react-native-gesture-handler';
 import {TopBar} from '../../components/TopBar';
-import Modal from "react-native-modal";
-import DropDownPicker from 'react-native-dropdown-picker';
-import {Input} from '../../components/Input';
-import { Button } from '../../components/Button';
+import axios from 'axios';
+import { apiUrl ,apiAsset} from "../../commons/inFormTypes";
 
 // create a component
 const AzmoonList = ({navigation}) => {
-  const [modalVisible, setModalVisible] = useState(false);
-  const [open, setOpen] = useState(false);
-  const [value, setValue] = useState(null);
-  const [items, setItems] = useState([
-    {label: 'Apple', value: 'apple'},
-    {label: 'Banana', value: 'banana'}
-  ]);
-  const [open2, setOpen2] = useState(false);
-  const [value2, setValue2] = useState(null);
-  const [items2, setItems2] = useState([
-    {label: 'Apple', value: 'apple'},
-    {label: 'Banana', value: 'banana'}
-  ]);
+
+  const [data,setData] = useState([]);
+  const [curdata,setCurData] = useState([]);
+  useEffect(() => {
+
+    mutLogin();
+
+
+  }, []);
+
+  const  mutLogin=async()=> {
+    const state = await AsyncStorage.getItem("@user");
+
+    axios.post(apiUrl + 'CustomerExamShow',{CustomerID:state})
+    .then(function (response) {
+      const message = response.data.Data;
+      console.log(55);
+      console.log(message);
+      const result = response.data.result;
+      console.log(result);
+
+      if(result == "true"){
+        setData(response.data.PastData)
+        setCurData(response.data.CurrentData)
+
+        // navigation.navigate("ChangePass",{mobile:user,verify:response.data.Data})
+                        }else{
+
+      }
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+
+
+    };
    const classes =()=>{
    return(
     <View style={styles.container}>
 <Text style={{...myFontStyle.UltraBold,color:Colors.appColor,marginLeft:responsiveWidth(5)}}>لیست آزمون ها</Text>
     {/* <View style={styles.viewBody}> */}
 
+{
+  curdata.map((item)=>(
+
+
     <TouchableOpacity onPress={()=>navigation.navigate("Question")} style={styles.subViewRead}>
 
 <Icon name="chevron-left" size={30} color={Colors.yellow}/>
 <View style={{flexDirection:'row-reverse',justifyContent:"space-between",alignItems:"center"}}>
-<Text style={{...myFontStyle.mediumBold,color:Colors.gray}}>نمره کسب شده:15</Text>
-<Text style={{...myFontStyle.mediumBold,color:Colors.gray,marginHorizontal:10}}>پزشکی:اطفال</Text>
-<Text style={{...myFontStyle.mediumBold,color:Colors.text}}>عنوان آزمون</Text>
+{/* <Text style={{...myFontStyle.mediumBold,color:Colors.gray}}>نمره کسب شده:15</Text> */}
+<Text style={{...myFontStyle.mediumBold,color:Colors.gray,marginHorizontal:10}}>{item.Title}</Text>
+<Text style={{...myFontStyle.mediumBold,color:Colors.text}}>{item.Text?.substring(0, 20)}...</Text>
 {/* <Image source={require('../../assets/images/RectangleGreen.png')} style={{ height:responsiveHeight(10),width:5,marginLeft:responsiveWidth(-5),marginRight:responsiveWidth(3),marginBottom:responsiveHeight(0.5)}}/> */}
 </View>
     {/* </View> */}
@@ -49,13 +74,18 @@ const AzmoonList = ({navigation}) => {
 
           </TouchableOpacity>
 
+  )
+  )
+}
+{
+  data.map((item)=>(
           <TouchableOpacity onPress={()=>navigation.navigate("Question")} style={styles.subViewRead}>
 
 <Icon name="chevron-left" size={30} color={Colors.yellow}/>
 <View style={{flexDirection:'row-reverse',justifyContent:"space-between",alignItems:"center"}}>
-<Text style={{...myFontStyle.mediumBold,color:Colors.gray}}>نمره کسب شده:15</Text>
+<Text style={{...myFontStyle.mediumBold,color:Colors.gray}}>نمره کسب شده:{item.Score}</Text>
 <Text style={{...myFontStyle.mediumBold,color:Colors.gray,marginHorizontal:10}}>پزشکی:اطفال</Text>
-<Text style={{...myFontStyle.mediumBold,color:Colors.text}}>عنوان آزمون</Text>
+<Text style={{...myFontStyle.mediumBold,color:Colors.text}}>{item.Text?.substring(0, 20)}...</Text>
 {/* <Image source={require('../../assets/images/RectangleRed.png')} style={{ height:responsiveHeight(10),width:5,marginLeft:responsiveWidth(-5),marginRight:responsiveWidth(3),marginBottom:responsiveHeight(0.5)}}/> */}
 </View>
     {/* </View> */}
@@ -63,6 +93,9 @@ const AzmoonList = ({navigation}) => {
 
 
           </TouchableOpacity>
+           )
+  )
+}
     </View>
    )
    }
@@ -133,6 +166,21 @@ const styles = StyleSheet.create({
     backgroundColor:"#fff",
     elevation:5
     ,borderLeftWidth:5,borderLeftColor:"green",
+    shadowOpacity:1,
+    shadowRadius:10,
+    shadowOffset:5,
+    borderRadius:5,
+    margin:responsiveHeight(2),
+  height:responsiveHeight(10)
+  ,alignItems:'center',
+  flexDirection:'row-reverse',
+  justifyContent:'space-between',
+  padding:responsiveWidth(5),
+  paddingBottom:responsiveHeight(2)},
+  subViewRead2:{
+    backgroundColor:"#fff",
+    elevation:5
+    ,borderLeftWidth:5,borderLeftColor:"red",
     shadowOpacity:1,
     shadowRadius:10,
     shadowOffset:5,

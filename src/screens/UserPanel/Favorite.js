@@ -9,9 +9,8 @@ import LinearGradient from 'react-native-linear-gradient';
 import { ScrollView } from 'react-native-gesture-handler';
 import {TopBar} from '../../components/TopBar';
 import Modal from "react-native-modal";
-import DropDownPicker from 'react-native-dropdown-picker';
-import {Input} from '../../components/Input';
-import { Button } from '../../components/Button';
+import axios from 'axios';
+import { apiUrl ,apiAsset} from "../../commons/inFormTypes";
 import { RadioButton } from 'react-native-paper';
 // create a component
 const Favorite = ({navigation}) => {
@@ -27,6 +26,66 @@ const Favorite = ({navigation}) => {
   const closeModal=()=>{
     setModalVisible(!isModalVisible);
   }
+   const [data,setData]=useState([]);
+  useEffect(() => {
+
+    mutLogin();
+
+
+  }, []);
+
+  const  mutLogin=async()=> {
+    const state = await AsyncStorage.getItem("@user");
+
+    axios.post(apiUrl + 'FavoriteFlashCardCustomer',{CustomerID:state})
+    .then(function (response) {
+      const message = response.data.Data;
+      console.log(55);
+      console.log(message);
+      const result = response.data.result;
+      console.log(result);
+
+      if(result == "true"){
+        setData(response.data.Data)
+
+        // navigation.navigate("ChangePass",{mobile:user,verify:response.data.Data})
+                        }else{
+
+      }
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+
+
+    };
+
+    const  Delete=async(ss)=> {
+      const state = await AsyncStorage.getItem("@user");
+
+      axios.post(apiUrl + 'DeleteFavoriteFlashCardCustomer',{CustomerID:state,FlashCardID:ss})
+      .then(function (response) {
+        const message = response.data.Data;
+        console.log(55);
+        console.log(message);
+        const result = response.data.result;
+        console.log(result);
+
+        if(result == "true"){
+          // setData(response.data.Data)
+          alert("با موفقیت حذف شد")
+
+          // navigation.navigate("ChangePass",{mobile:user,verify:response.data.Data})
+                          }else{
+
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+
+
+      };
    const classes =()=>{
    return(
     <View style={styles.container}>
@@ -90,16 +149,17 @@ const Favorite = ({navigation}) => {
     </View>
 {/* <View style={styles.viewBody}> */}
 
-
-<TouchableOpacity style={styles.subViewRead}>
-<TouchableOpacity style={{flexDirection:'row',alignItems:'center'}}>
+{
+  data?.map((item)=>(
+<TouchableOpacity onPress={()=>navigation.navigate("FlashCardView",{id:item.FlashCardID})} style={styles.subViewRead}>
+<TouchableOpacity onPress={()=>Delete(item.FlashCardID)} style={{flexDirection:'row',alignItems:'center'}}>
 
 
 <Icon name="delete" size={30} color={'#cc1111'}/>
 </TouchableOpacity>
 <View style={{flexDirection:'row',justifyContent:'flex-start',width:responsiveWidth(75)}}>
     <View>
-    <Text style={{...myFontStyle.normalBold,color:Colors.black,textAlign:'right',flexDirection:'column'}}>متن سوال اینجا قرار می گیرد...</Text>
+    <Text style={{...myFontStyle.normalBold,color:Colors.black,textAlign:'right',flexDirection:'column'}}>{item.Text?.substring(0, 20)}...</Text>
 
 
       </View>
@@ -111,27 +171,7 @@ const Favorite = ({navigation}) => {
 
 
   </TouchableOpacity>
-  <TouchableOpacity style={styles.subViewRead}>
-<TouchableOpacity style={{flexDirection:'row',alignItems:'center'}}>
-
-
-<Icon name="delete" size={30} color={'#cc1111'}/>
-</TouchableOpacity>
-<View style={{flexDirection:'row',justifyContent:'flex-start',width:responsiveWidth(75)}}>
-    <View>
-    <Text style={{...myFontStyle.normalBold,color:Colors.black,textAlign:'right',flexDirection:'column'}}>متن سوال اینجا قرار می گیرد...</Text>
-
-
-      </View>
-</View>
-
-
-{/* </View> */}
-
-
-
-  </TouchableOpacity>
-
+  ))}
 </View>
    )
    }
