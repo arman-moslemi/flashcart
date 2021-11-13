@@ -16,14 +16,20 @@ import axios from 'axios';
 import { apiUrl ,apiAsset} from "../../commons/inFormTypes";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import DrawerContent from '../../components/drewerContent/DrawerContent';
-import Drawer from 'react-native-drawer'
+import Drawer from 'react-native-drawer';
+import { RadioButton } from 'react-native-paper';
 // create a component
 const PanelMain = ({navigation}) => {
   const [modalVisible, setModalVisible] = useState(false);
+  const [checked, setChecked] = useState('first');
   const [data, setData] = useState([]);
+  const [accunt, setAccunt] = useState([]);
   const [group, setGroup] = useState([]);
   const [open, setOpen] = useState(false);
+  const [open3, setOpen3] = useState(false);
   const [value, setValue] = useState(null);
+  const [valueAc, setValueAc] = useState(null);
+  const [modal2Visible, setModal2Visible] = useState(false);
 
   const [ques, setQues] = useState(null);
   const [ans, setAns] = useState(null);
@@ -32,6 +38,10 @@ const PanelMain = ({navigation}) => {
     // {label: 'دندان پزشکی', value: '2'},
     // {label: 'بورد', value: '3'},
   ]);
+  const [itemsAc, setItemsAc] = useState([
+
+  ]);
+
   const [open2, setOpen2] = useState(false);
   const [value2, setValue2] = useState(null);
   const drawers = useRef(null);
@@ -74,9 +84,68 @@ const PanelMain = ({navigation}) => {
     });
 
   }
+  const  setValueAccunts=()=> {
+     console.log(value);
+
+    axios.get(apiUrl+'AllGroup')
+    .then(function (response) {
+      const message = response.data.Data;
+      const result = response.data.result;
+      console.log(22222222);
+      console.log(result);
+      console.log(message);
+      const charity = [];
+
+      // console.log(response.data.DataSlider.Slider1);
+      // console.log(response.data.DataSlider.Slider1);
+      if(result == "true"){
+    // setGroup(response.data.Data)
+    response.data.Data.map((item, index) => (
+      charity.push({
+        label: item.Title,
+        value: item.GroupID
+      })
+    ))
+    setItemsAc(charity)
+console.log(12345)
+console.log(itemsAc)
+                        }else{
+
+      }
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+
+  }
+  const  getAccunts=(val)=> {
+     console.log(value);
+setValueAc(val)
+    axios.post(apiUrl+'Accounts',{GroupID:2})
+    .then(function (response) {
+      const message = response.data.Data;
+      const result = response.data.result;
+      console.log(22222222);
+      console.log(result);
+      console.log(message);
+
+
+      if(result == "true"){
+    // setGroup(response.data.Data)
+  setAccunt(response.data.Data)
+                        }else{
+
+      }
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+
+  }
   useEffect(() => {
 
     mutLogin();
+    setValueAccunts();
 
 
 }, []);
@@ -189,7 +258,7 @@ tweenHandler={(ratio) => ({
 <View style={styles.customRow}>
 <View style={{paddingLeft:20}} >
  <TouchableOpacity onPress={()=>drawers.current.open()}>
- <Icon name={"notes"} style={styles.menuIcon} size={50} color={"#fff"} style={{transform: [{rotateY: '180deg'}]}}/>
+ <Icon name={"notes"}  size={50} color={"#fff"} style={{transform: [{rotateY: '180deg'}]}}/>
 
  </TouchableOpacity>
  </View>
@@ -210,12 +279,95 @@ tweenHandler={(ratio) => ({
 
 <View style={styles.viewBody}>
 <View style={styles.subViewBody}>
-<View style={{marginRight:responsiveWidth(5)}}>
+<TouchableOpacity onPress={()=>setModal2Visible(true)} style={{marginRight:responsiveWidth(5)}}>
   <Text style={styles.txtEdit}>
-    تمدید اشتراک
+    خرید اشتراک
   </Text>
-</View>
+</TouchableOpacity>
 
+<Modal
+        isVisible={modal2Visible}
+        onBackdropPress={() => setModal2Visible(false)}
+        >
+           <View style={styles.alertModal}>
+      <View style={{flexDirection:'row',padding:10,justifyContent:'center',borderBottomColor:'#f4f4f4',borderBottomWidth:2}}>
+
+                  <Text style={{...myFontStyle.normalBold,color:'#068CC5',}}>جهت تمدید اشتراک ابتدا بخش مورد نظر خود را انتخاب کنید</Text>
+                </View>
+                <View style={{flexDirection:'row',alignItems:"center",margin:5}}>
+                <Text style={{...myFontStyle.mediumBold,color:Colors.text}}>انتخاب بخش مورد نظر: </Text>
+    <View>
+<DropDownPicker
+      open={open3}
+      value={valueAc}
+      items={itemsAc}
+      setOpen={setOpen3}
+      setValue={getAccunts}
+      setItems={setItemsAc}
+
+      style={{
+        borderColor:'#F1F1F1',
+        borderWidth:2,
+        // margin:5,
+        width:responsiveWidth(30),
+
+      }}
+      placeholder="انتخاب کنید"
+      zIndex={1000}
+      dropDownContainerStyle={{
+        borderColor:'#F1F1F1',
+        borderWidth:2,
+      borderRadius:5,
+
+    }}
+    />
+    </View>
+
+  </View>
+  {
+    accunt.map((item)=>(
+
+      <View style={styles.viewRadio}>
+      <RadioButton
+            //   value={"option2"+item._id}
+              status={ checked === item.AccountID ? 'checked' : 'unchecked' }
+        onPress={() => setChecked(item.AccountID)}
+              color={Colors.yellow}
+
+            />
+            <Text style={styles.txtRadio}>{item.Title}{item.Cost}{item.Days}</Text>
+            </View>
+     ) )
+  }
+
+
+         <View style={{flexDirection:'row',justifyContent:'space-evenly',marginTop:responsiveHeight(3)}}>
+                    <View style={{width:responsiveWidth(32)}}>
+                    <LinearGradient colors={['#CC1111', '#F43535'] }start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={{borderRadius:3,padding:5}}>
+
+
+                      <TouchableOpacity onPress={()=>setModal2Visible()} >
+                        <Text style={{...myFontStyle.btnBold,color:Colors.white,textAlign:'center'}}>بستن</Text>
+                        </TouchableOpacity>
+                        </LinearGradient>
+                    </View>
+
+                   <View style={{width:responsiveWidth(32)}}>
+                   <LinearGradient colors={['#3AC3FE', '#0284BB'] }start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={{borderRadius:3,padding:5}}>
+
+
+          <TouchableOpacity style={{}}>
+          <Text style={{...myFontStyle.btnBold,color:Colors.white,textAlign:'center'}}>ادامه </Text>
+          </TouchableOpacity>
+          </LinearGradient>
+                    </View>
+                </View>
+      </View>
+        </Modal>
+
+
+
+<View style={{flexDirection:'row-reverse'}}>
 
 <View style={styles.viewProfText}>
   <Text style={{...myFontStyle.largBold,color:Colors.black}}>{data[0]?.Name} {data[0]?.Family}</Text>
@@ -252,6 +404,7 @@ onPress={() => navigation.navigate('Profile')}
 </TouchableOpacity>
 
 </View>
+</View>
 <TouchableOpacity onPress={()=>navigation.navigate('UserReport')} style={styles.subViewRead}>
 
 <View style={{flexDirection:'row'}}>
@@ -280,7 +433,7 @@ onPress={() => navigation.navigate('Profile')}
 </TouchableOpacity>
 </View>
 <View style={styles.viewRowCart4}>
-<TouchableOpacity onPress={()=>navigation.navigate('Favorite')}>
+<TouchableOpacity onPress={()=>navigation.navigate('Accounts')}>
 
 <LinearGradient colors={['#2DDB4E', '#00a32a']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={styles.rowCart}>
 <Icon name="account-balance-wallet" color={Colors.white} size={50} style={{margin:5}}/>
@@ -483,7 +636,8 @@ const styles = StyleSheet.create({
   height:responsiveHeight(12)
   ,alignItems:'flex-end',
   flexDirection:'row-reverse',
-  justifyContent:'flex-end',
+  justifyContent:'space-between',
+  paddingHorizontal:responsiveWidth(5),
   paddingBottom:responsiveHeight(2)},
   subViewRead:{
     backgroundColor:"#fff",
@@ -508,7 +662,35 @@ textInputLogin:{
   borderWidth:2,
 alignItems:'flex-end'
 
+  }
+  ,txtRadio: {
+    color: Colors.text,
+    ...myFontStyle.mediumRegular,
+    // lineHeight:responsiveHeight(3)
+
   },
+  viewRadio: {flexDirection:'row',alignItems:'center',marginTop:responsiveHeight(1)},
+
+  alertModal:{
+
+    width:responsiveWidth(90),
+    marginTop:responsiveHeight(-30),
+    backgroundColor:'#fff',
+    borderRadius:5,
+    shadowColor: '#fff',
+    shadowOpacity: 0.1,
+    shadowOffset: { width: 2, height: 0},
+    shadowRadius: 700,
+    elevation: 20,
+    alignContent:'center',
+    paddingTop:responsiveHeight(1),
+    paddingBottom:responsiveHeight(3),
+    paddingRight:responsiveWidth(0),
+    paddingLeft:responsiveWidth(0)},
+    marginRight:responsiveWidth(5),
+    marginLeft:responsiveWidth(5),
+
+
 });
 
   export default PanelMain;

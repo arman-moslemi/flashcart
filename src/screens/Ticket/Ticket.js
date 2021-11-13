@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState,useEffect,useRef } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, TextInput,Image, AsyncStorage } from 'react-native';
 import { myFontStyle } from "../../assets/Constance";
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -14,11 +14,14 @@ import {Input} from '../../components/Input';
 import { Button } from '../../components/Button';
 import axios from 'axios';
 import { apiUrl ,apiAsset} from "../../commons/inFormTypes";
+import DrawerContent from '../../components/drewerContent/DrawerContent';
+import Drawer from 'react-native-drawer'
 // create a component
 const Ticket = ({navigation,route}) => {
   const {id,title,date} = route?.params ?? {};
   const [data,setData] = useState([]);
-  const [text,setText] = useState([]);
+  const [text,setText] = useState('');
+  const drawers = useRef(null);
 
   useEffect(() => {
 
@@ -52,7 +55,8 @@ const Ticket = ({navigation,route}) => {
 
     };
   const  newTicket=()=> {
-
+console.log(id)
+console.log(text)
     axios.post(apiUrl + 'InsertSubSupport',{SupportID:id,Text:text})
     .then(function (response) {
       const message = response.data.Data;
@@ -65,7 +69,7 @@ const Ticket = ({navigation,route}) => {
         // setData(response.data.Data)
 alert("با موفقیت اضافه شد")
 
-         navigation.navigate("TicketList")
+         navigation.navigate("TicketsList")
                         }else{
 
       }
@@ -77,9 +81,57 @@ alert("با موفقیت اضافه شد")
 
     };
 
-   const classes =()=>{
-   return(
-    <View style={styles.container}>
+
+
+
+
+return (
+  <Drawer
+  // type="static"
+  type="overlay"
+  acceptDoubleTap ={true}
+      ref={drawers}
+      content={<DrawerContent navigation={navigation}/>}
+      tapToClose={true}
+openDrawerOffset={0.4} // 20% gap on the right side of drawer
+panCloseMask={0.2}
+closedDrawerOffset={-3}
+styles={styles.drawerStyles}
+tweenHandler={(ratio) => ({
+  main: { opacity:(2-ratio)/2 }
+})}
+      >
+           <View >
+
+
+
+<LinearGradient colors={['#16B2F5', '#007FB5']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={{height:55}}>
+
+  </LinearGradient>
+
+
+<View style={styles.customRow}>
+<View style={{paddingLeft:20}} >
+ <TouchableOpacity onPress={()=>drawers.current.open()}>
+ <Icon name={"notes"}  size={50} color={"#fff"} style={{transform: [{rotateY: '180deg'}]}}/>
+
+ </TouchableOpacity>
+ </View>
+<View style={{flex : 2,textAlign:"right"}}>
+  <Text style={styles.menuTitle}>نوآوران دانش(ماهان)</Text>
+  </View>
+<View style={{flex :0.5}}>
+  <TouchableOpacity style={{}}>
+    <Icon name={"chevron-left"} color={"#fff"} size={30} style={{marginTop:10}}/>
+  </TouchableOpacity>
+  </View>
+
+</View>
+
+</View>
+
+
+<View style={styles.container}>
       <View style={{flexDirection:'row',paddingHorizontal:responsiveWidth(4),marginTop:responsiveHeight(2)}}>
 <Icon name="textsms" size={30} color={Colors.yellow} style={{marginTop:responsiveWidth(2)}}/>
 <View style={{marginLeft:5}}>
@@ -152,7 +204,7 @@ alert("با موفقیت اضافه شد")
     </Text> */}
 </View>
 <View style={{alignItems:'center'}}>
-<Input placeholder={"پیام خودرا بنویسید"} inputStyle={{borderColor:Colors.gray,height:responsiveHeight(10),color:Colors.text}} containerStyle={{height:responsiveHeight(10)}}/>
+<Input placeholder={"پیام خودرا بنویسید"} onChangeText={(ss)=>setText(ss)} inputStyle={{borderColor:Colors.gray,height:responsiveHeight(10),color:Colors.text}} containerStyle={{height:responsiveHeight(10)}}/>
 
 </View>
 <TouchableOpacity onPress={()=>newTicket()} style={styles.button}>
@@ -171,21 +223,32 @@ alert("با موفقیت اضافه شد")
 
 
     </View>
-   )
-   }
 
 
 
-return (
-<TopBar Classes={classes} />
-
+</Drawer>
 );
 };
 
 const styles = StyleSheet.create({
 
   container: {flex:1,backgroundColor:"#FAFAFB"},
-  modal:{
+  menuTitle:{
+    ...myFontStyle.largBold,
+        color:"#fff",
+        marginTop:responsiveHeight(1),
+      },
+
+      page: {
+      flexDirection: 'column',
+    },customRow:{
+      flex:1, flexDirection:"row",
+      position:"absolute",
+      top:responsiveHeight(0),
+      paddingRight:responsiveWidth(5),
+      paddingLeft:responsiveWidth(5),
+    },
+    drawerStyles: { shadowColor: '#000000', shadowOpacity: 0.8, shadowRadius: 3,zIndex:5},  modal:{
     // alignSelf: "center",
     // marginTop: responsiveHeight(30),
      height: responsiveHeight(25),

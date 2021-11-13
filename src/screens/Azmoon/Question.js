@@ -13,16 +13,20 @@ import DropDownPicker from 'react-native-dropdown-picker';
 import {Input} from '../../components/Input';
 import { Button } from '../../components/Button';
 import { RadioButton } from 'react-native-paper';
+import {clearAzmoon, getAzmoon,initAzmoon} from '../../../services/azmoonservice';
 
 // create a component
-const Question = ({navigation}) => {
-    const [checked, setChecked] = useState('first');
+const Question = ({navigation,route}) => {
+    const [checked, setChecked] = useState('');
+    const [data, setData] = useState('');
+    const [fake, setFake] = useState(0);
     const [isModalVisible, setModalVisible] = useState(false);
+    const {id} = route?.params ?? {};
 
     const toggleModal = () => {
      setModalVisible(!isModalVisible);
     };
-  
+
     const closeModal=()=>{
       setModalVisible(!isModalVisible);
     }
@@ -31,16 +35,27 @@ const Question = ({navigation}) => {
     const toggleModal2 = () => {
      setModal2Visible(!isModal2Visible);
     };
-  
+
     const closeModal2=()=>{
       setModal2Visible(!isModal2Visible);
     }
+    useEffect(() => {
+
+     console.log(111);
+     console.log( getAzmoon());
+     setData( getAzmoon());
+
+     console.log(data.length);
+    //  setFake(id)
+
+
+    }, [fake]);
    const classes =()=>{
    return(
        <View>
            <View style={styles.header}>
       <Text  style={styles.headerTitle}>
-        سوال 2
+        سوال {fake+1}
       </Text>
       <LinearGradient  colors={['#068DF6', '#16B2F5']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={styles.etmam}>
 
@@ -66,7 +81,7 @@ const Question = ({navigation}) => {
                         </TouchableOpacity>
                         </LinearGradient>
                     </View>
-                    
+
                    <View style={{width:responsiveWidth(32)}}>
                    <LinearGradient colors={['#3AC3FE', '#0284BB'] }start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={{borderRadius:3,padding:5}}>
 
@@ -76,7 +91,7 @@ const Question = ({navigation}) => {
           </TouchableOpacity>
           </LinearGradient>
                     </View>
-                </View>          
+                </View>
       </View>
     </Modal>
     <Modal isVisible={isModal2Visible} onBackdropPress={closeModal2} style={{justifyContent:'center',alignItems:'center'}}>
@@ -86,16 +101,16 @@ const Question = ({navigation}) => {
                   <Text style={{...myFontStyle.textOnImg,color:'#cc1111'}}>نتیجه آزمون بورد اطفال</Text>
                 </View>
               <View style={{borderBottomColor:'#f4f4f4',borderBottomWidth:2,paddingBottom:responsiveHeight(2)}}>
-                
+
               <Text style={styles.scoreText}>کل تعداد سوالات آزمون: 20 تا</Text>
                 <Text style={styles.scoreText}>تعداد سوالات پاسخ داده شده: 12 تا</Text>
                 <Text style={styles.scoreText}>تعداد پاسخ درست: 5 تا</Text>
               </View>
          <View style={{flexDirection:'row',justifyContent:'space-evenly',marginTop:responsiveHeight(3)}}>
-                  
+
          <View style={{width:responsiveWidth(30)}}>
          <Text style={{...myFontStyle.btnBold,color:'#0D8424',textAlign:'left',fontSize:responsiveFontSize(2.5),marginLeft:responsiveWidth(3)}}>نمره شما: 14</Text>
-                    </View> 
+                    </View>
                    <View style={{}}>
                    <LinearGradient colors={['#3AC3FE', '#0284BB'] }start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={{borderRadius:3,paddingLeft:responsiveWidth(3),paddingRight:responsiveWidth(3),paddingBottom:responsiveHeight(1),paddingTop:responsiveHeight(1)}}>
 
@@ -105,7 +120,7 @@ const Question = ({navigation}) => {
           </TouchableOpacity>
           </LinearGradient>
                     </View>
-                </View>          
+                </View>
       </View>
     </Modal>
     </View>
@@ -117,7 +132,7 @@ const Question = ({navigation}) => {
                 {/* <Text style={styles.txtSkyLine}>{item.title}</Text> */}
                 <View style={{flexDirection:'row',alignItems:"center"}}>
                 <Icon name={"label-important"} size={25} color={Colors.yellow}  style={{marginLeft:5,transform: [{rotateY: '180deg'}]}}/>
-                <Text style={styles.txtSkyLine}>چه زمانی تب خطرناک است؟</Text>
+                <Text style={styles.txtSkyLine}>{data[fake]?.Text}</Text>
 
                 </View>
 
@@ -132,7 +147,7 @@ const Question = ({navigation}) => {
               color={Colors.yellow}
 
             />
-            <Text style={styles.txtRadio}>افزایش دما</Text>
+            <Text style={styles.txtRadio}>{data[fake]?.Answer1}</Text>
             </View>
             <View style={styles.viewRadio}>
 
@@ -144,7 +159,7 @@ const Question = ({navigation}) => {
 
             />
 
-      <Text style={styles.txtRadio}>option 2</Text>
+      <Text style={styles.txtRadio}>{data[fake]?.Answer2}</Text>
             </View>
           {/* <RadioButton
             value="Egypt"
@@ -160,7 +175,7 @@ const Question = ({navigation}) => {
         color={Colors.yellow}
 
             />
-       <Text style={styles.txtRadio}>option 3</Text>
+       <Text style={styles.txtRadio}>{data[fake]?.Answer3}</Text>
             </View>
             <View style={styles.viewRadio}>
 
@@ -171,26 +186,41 @@ const Question = ({navigation}) => {
         color={Colors.yellow}
 
             />
-        <Text style={styles.txtRadio}>option 4</Text>
+        <Text style={styles.txtRadio}>{data[fake]?.Answer4}</Text>
             </View>
        </View>
           </View>
-          <View style={styles.viewFooter}>
+          <View  style={styles.viewFooter}>
+          {
+  fake!=data.length-1?
+<TouchableOpacity onPress={()=>setFake(fake+1)}>
           <LinearGradient  colors={['#FFC444', '#F36F56']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={styles.viewNext}>
-
 <Icon name={"double-arrow"} size={20} color={Colors.white}/>
 <Text style={{...myFontStyle.mediumBold,color:Colors.white}}>
   سوال بعدی
 </Text>
 </LinearGradient>
+</TouchableOpacity>
+:
+null
+}
+
+{
+  fake!=0?
+
+
+<TouchableOpacity onPress={()=>setFake(fake-1)}>
 <LinearGradient   colors={['#FFC444', '#F36F56']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={styles.viewNext}>
 
 <Text style={{...myFontStyle.mediumBold,color:Colors.white}}>
 سوال قبلی
 </Text>
 <Icon name={"double-arrow"} size={20} style={{transform: [{rotateY: '180deg'}]}} color={Colors.white}/>
-
 </LinearGradient>
+</TouchableOpacity>
+  :
+null
+}
           </View>
           </View>
    )
@@ -231,7 +261,7 @@ const styles = StyleSheet.create({
     // marginRight:responsiveWidth(10),
 
   },alertModal:{
-  
+
     width:responsiveWidth(80),
     marginTop:responsiveHeight(-30),
     backgroundColor:'#fff',

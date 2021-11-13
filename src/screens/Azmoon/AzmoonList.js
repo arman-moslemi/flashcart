@@ -10,6 +10,8 @@ import { ScrollView } from 'react-native-gesture-handler';
 import {TopBar} from '../../components/TopBar';
 import axios from 'axios';
 import { apiUrl ,apiAsset} from "../../commons/inFormTypes";
+import {clearAzmoon, getAzmoon,initAzmoon} from '../../../services/azmoonservice';
+
 
 // create a component
 const AzmoonList = ({navigation}) => {
@@ -49,6 +51,32 @@ const AzmoonList = ({navigation}) => {
 
 
     };
+  const  Goto=(ss)=> {
+console.log(33)
+console.log(ss)
+    axios.post(apiUrl + 'CustomerSubExam',{ExamID:ss})
+    .then(function (response) {
+      const message = response.data.DataList;
+      console.log(55);
+      console.log(message);
+      const result = response.data.result;
+      console.log(result);
+
+      if(result == "true"){
+        initAzmoon(response.data.DataList)
+        navigation.navigate("Question",{id:0})
+
+        // navigation.navigate("ChangePass",{mobile:user,verify:response.data.Data})
+                        }else{
+
+      }
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+
+
+    };
    const classes =()=>{
    return(
     <View style={styles.container}>
@@ -59,13 +87,13 @@ const AzmoonList = ({navigation}) => {
   curdata.map((item)=>(
 
 
-    <TouchableOpacity onPress={()=>navigation.navigate("Question")} style={styles.subViewRead}>
+    <TouchableOpacity onPress={()=>Goto(item.ExamID)} style={styles.subViewRead}>
 
 <Icon name="chevron-left" size={30} color={Colors.yellow}/>
 <View style={{flexDirection:'row-reverse',justifyContent:"space-between",alignItems:"center"}}>
 {/* <Text style={{...myFontStyle.mediumBold,color:Colors.gray}}>نمره کسب شده:15</Text> */}
 <Text style={{...myFontStyle.mediumBold,color:Colors.gray,marginHorizontal:10}}>{item.Title}</Text>
-<Text style={{...myFontStyle.mediumBold,color:Colors.text}}>{item.Text?.substring(0, 20)}... </Text>
+<Text style={{...myFontStyle.mediumBold,color:Colors.text}}>{item.ExamTitle?.substring(0, 20)}... </Text>
 {/* <Image source={require('../../assets/images/RectangleGreen.png')} style={{ height:responsiveHeight(10),width:5,marginLeft:responsiveWidth(-5),marginRight:responsiveWidth(3),marginBottom:responsiveHeight(0.5)}}/> */}
 </View>
     {/* </View> */}
@@ -79,13 +107,13 @@ const AzmoonList = ({navigation}) => {
 }
 {
   data.map((item)=>(
-          <TouchableOpacity onPress={()=>navigation.navigate("Question")} style={styles.subViewRead}>
+          <TouchableOpacity style={styles.subViewRead}>
 
 <Icon name="chevron-left" size={30} color={Colors.yellow}/>
 <View style={{flexDirection:'row-reverse',justifyContent:"space-between",alignItems:"center"}}>
 <Text style={{...myFontStyle.mediumBold,color:Colors.gray}}>نمره کسب شده:{item.Score}</Text>
 <Text style={{...myFontStyle.mediumBold,color:Colors.gray,marginHorizontal:10}}>{item.Title}</Text>
-<Text style={{...myFontStyle.mediumBold,color:Colors.text}}>{item.Text?.substring(0, 20)}...</Text>
+<Text style={{...myFontStyle.mediumBold,color:Colors.text}}>{item.ExamTitle?.substring(0, 20)}...</Text>
 {/* <Image source={require('../../assets/images/RectangleRed.png')} style={{ height:responsiveHeight(10),width:5,marginLeft:responsiveWidth(-5),marginRight:responsiveWidth(3),marginBottom:responsiveHeight(0.5)}}/> */}
 </View>
     {/* </View> */}

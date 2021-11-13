@@ -51,8 +51,12 @@ import Ticket from './src/screens/Ticket/Ticket';
 import AboutUs from './src/screens/About/AboutUs';
 import LitnearBoxCardList from './src/screens/Home/LitnearBoxCardList';
 import Favorite from './src/screens/UserPanel/Favorite';
+import Accounts from './src/screens/UserPanel/Accounts';
 import TicketsList from './src/screens/Ticket/TicketsList';
 import Rules from './src/screens/Rules/Rules';
+import {store, persist} from './redux/stores/store';
+import {Provider} from 'react-redux';
+import {PersistGate} from 'redux-persist/integration/react';
 //  import {store, persist} from './store/redux/stores/store';
 //  import {Provider} from 'react-redux';
 //  import {PersistGate} from 'redux-persist/integmration/react';
@@ -126,6 +130,7 @@ const StackNavigatorsHome = () => {
       <Stack.Screen name="LitnearBoxCardList" component={LitnearBoxCardList}/>
       <Stack.Screen name="AboutUs" component={AboutUs} />
       <Stack.Screen name="Favorite" component={Favorite}/>
+      <Stack.Screen name="Accounts" component={Accounts}/>
       <Stack.Screen name="Rules" component={Rules}/>
 
       <Stack.Screen name="FlashCardVideo" component={FlashCardVideo} />
@@ -143,24 +148,8 @@ const StackNavigatorsHome = () => {
  function App() {
 
    return (
-
- //       <NavigationContainer>
- // <Stack.Navigator screenOptions={{
- //       headerShown: false
- //     }}>
- //       <Stack.Screen name="SplashScreen" component={SplashScreen} />
- //       <Stack.Screen name="Login" component={Login} />
- //       <Stack.Screen name="MainPage" component={MainPage} />
- //       <Stack.Screen name="AzmoonAbout" component={AzmoonAbout} />
- //       <Stack.Screen name="AzmoonDetail" component={AzmoonDetail} />
- //       <Stack.Screen name="AzmoonResult" component={AzmoonResult} />
- //       {/* <Stack.Screen name="MainTabScreen" component={MainTabScreen} /> */}
- //       {/* <Stack.Screen name="AzanPrayer" component={AzanPrayer} /> */}
-
- //     </Stack.Navigator>
- //      </NavigationContainer>
-//  <Provider store={store}>
-//  <PersistGate loading={null} persistor={persist}>
+<Provider store={store}>
+<PersistGate loading={null} persistor={persist}>
         <NavigationContainer>
   <Stack.Navigator screenOptions={{
         headerShown: false
@@ -187,8 +176,8 @@ const StackNavigatorsHome = () => {
 
 
        </NavigationContainer>
-//        </PersistGate>
-//  </Provider>
+        </PersistGate>
+  </Provider>
 
 
    );

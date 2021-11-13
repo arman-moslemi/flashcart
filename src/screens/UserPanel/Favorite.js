@@ -94,7 +94,7 @@ const Favorite = ({navigation}) => {
     <Text style={{...myFontStyle.textOnImg,color:'#0384BC'}}>کارت های برگزیده</Text>
 
     </View>
-    <View>
+    {/* <View>
         <TouchableOpacity style={styles.sortBtn} onPress={toggleModal}>
         <Icon name={"sort"} color={'#fff'} size={35} style={{marginTop:responsiveHeight(0),transform: [{rotateY: '180deg'}]}}></Icon>
           <Text style={{...myFontStyle.btnBold,color:'#fff',alignSelf:'center'}}>مرتب سازی
@@ -145,7 +145,7 @@ const Favorite = ({navigation}) => {
                </View>
                </View>
               </Modal>
-    </View>
+    </View> */}
     </View>
 {/* <View style={styles.viewBody}> */}
 
