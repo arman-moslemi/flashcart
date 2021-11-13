@@ -26,7 +26,7 @@ const AzmoonList = ({navigation}) => {
   const  mutLogin=async()=> {
     const state = await AsyncStorage.getItem("@user");
 
-    axios.post(apiUrl + 'CustomerExamShow',{CustomerID:state})
+    axios.post(apiUrl + 'CustomerExamShow',{CustomerID:2})
     .then(function (response) {
       const message = response.data.Data;
       console.log(55);
@@ -84,7 +84,7 @@ const AzmoonList = ({navigation}) => {
 <Icon name="chevron-left" size={30} color={Colors.yellow}/>
 <View style={{flexDirection:'row-reverse',justifyContent:"space-between",alignItems:"center"}}>
 <Text style={{...myFontStyle.mediumBold,color:Colors.gray}}>نمره کسب شده:{item.Score}</Text>
-<Text style={{...myFontStyle.mediumBold,color:Colors.gray,marginHorizontal:10}}>پزشکی:اطفال</Text>
+<Text style={{...myFontStyle.mediumBold,color:Colors.gray,marginHorizontal:10}}>{item.Title}</Text>
 <Text style={{...myFontStyle.mediumBold,color:Colors.text}}>{item.Text?.substring(0, 20)}...</Text>
 {/* <Image source={require('../../assets/images/RectangleRed.png')} style={{ height:responsiveHeight(10),width:5,marginLeft:responsiveWidth(-5),marginRight:responsiveWidth(3),marginBottom:responsiveHeight(0.5)}}/> */}
 </View>
