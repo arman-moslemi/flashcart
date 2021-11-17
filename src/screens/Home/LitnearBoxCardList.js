@@ -195,7 +195,7 @@ setValue(value+1)
 
 
 return (
-<TopBar Classes={classes} />
+<TopBar Classes={classes}  navigation={navigation}/>
 
 );
 };

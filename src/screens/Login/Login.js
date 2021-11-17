@@ -51,10 +51,24 @@ console.log(545)
                   console.log(message);
                   if(result == "true"){
                    console.log(22);
-                   console.log(response.data.Data[0].CustomerID);
+                   console.log(response.data.Data);
                     // storeData(response.data.CustomerID);
                     AsyncStorage.setItem('@user',response.data.Data[0].CustomerID.toString())
-                    navigation.navigate("StackNavigatorsssss")
+                    AsyncStorage.setItem('@userName',response.data.Data[0].Name.toString())
+                    if(response.data.Data[0].Photo)
+                    {
+
+                      AsyncStorage.setItem('@userPhoto',response.data.Data[0].Photo?.toString())
+                    }
+                    else{
+                      AsyncStorage.setItem('@userPhoto',"")
+
+                    }
+                    // navigation.navigate("StackNavigatorsssss")
+                    navigation.reset({
+                      index: 0,
+                      routes: [{ name: 'StackNavigatorsssss' }]
+                 })
                                     }else{
                      setLoading(false);
                      SetEror2(true)

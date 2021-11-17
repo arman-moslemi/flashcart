@@ -9,8 +9,8 @@ const reducer = createReducer(
 
           }),
         [Action.setAzmoon]: (state, id) => {
-            const azmoon = state.azmoon.find(c=>c._id == id);
-            azmoon.status = 'done';
+            const azmoon = state.azmoon.find(c=>c.SubExamID == id.split('T')[0]);
+            azmoon.CustomerAnswer = id.split('T')[1];
             return Object.assign({}, state);
 
           },

@@ -642,7 +642,7 @@ fullscreen={true}
 </View>
 )}
 return (
-  <TopBar Classes={classes} />
+  <TopBar Classes={classes} navigation={navigation} />
 
   );
 };

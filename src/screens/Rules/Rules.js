@@ -43,7 +43,7 @@ const Rules = ({navigation}) => {
    </Text>
 
     </View>
-   
+
     </View>
    </ScrollView>
 {/* <View style={styles.viewBody}> */}
@@ -57,7 +57,7 @@ const Rules = ({navigation}) => {
 
 
 return (
-<TopBar Classes={classes} />
+<TopBar Classes={classes} navigation={navigation} />
 
 );
 };
@@ -65,22 +65,22 @@ return (
 const styles = StyleSheet.create({
 
   container: {flex:1,backgroundColor:"#FAFAFB"},
- 
+
   questionText:{
     ...myFontStyle.normalRegular,
-   
+
     color:'#000',
- 
+
   marginLeft:10,
   marginTop:10,
   marginRight:10,
     textAlign:'left',
     lineHeight:responsiveHeight(4),
-  
+
     paddingBottom:responsiveHeight(5),
   }
-  
-  
+
+
 });
 
   export default Rules;

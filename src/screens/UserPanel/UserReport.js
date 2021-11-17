@@ -13,12 +13,16 @@ import DropDownPicker from 'react-native-dropdown-picker';
 import {Input} from '../../components/Input';
 import { Button } from '../../components/Button';
 import {TabView, SceneMap, TabBar} from 'react-native-tab-view';
-import { BarChart, Grid ,YAxis,XAxis} from 'react-native-svg-charts'
+// import { BarChart, Grid ,YAxis,XAxis} from 'react-native-svg-charts'
 import * as scale from 'd3-scale'
 import { LinearGradient, Stop, Defs } from 'react-native-svg'// create a component
 import axios from 'axios';
 import { apiUrl ,apiAsset} from "../../commons/inFormTypes";
-const PanelMain = ({navigation}) => {
+import {
+  BarChart,
+
+} from "react-native-chart-kit";
+const UserReport = ({navigation}) => {
     const [index, setIndex] = React.useState(0);
     useEffect(() => {
 
@@ -26,7 +30,17 @@ const PanelMain = ({navigation}) => {
 
 
     }, []);
-    const [data,setData] = useState([]);
+    const [data1,setData1] = useState([]);
+    const [datay,setDatay] = useState([]);
+    const [data2,setData2] = useState([]);
+    const [datass,setDatass] = useState([]);
+    const [allTime,setAllTime] = useState([]);
+    const [count,setCount] = useState([]);
+    const [nerkh,setNerkh] = useState(0);
+    const [today,setToday] = useState(0);
+//     const data1 = []
+// const data2 = []
+
 
     const  mutLogin=async()=> {
       const state = await AsyncStorage.getItem("@user");
@@ -38,9 +52,37 @@ const PanelMain = ({navigation}) => {
         console.log(message);
         const result = response.data.result;
         console.log(result);
-
+        const data11 = [];
+        const datayy = [];
+        const data22 = [];
+        const data33 = [];
+var allTimes=0
         if(result == "true"){
-          setData(response.data.Data)
+          // setData(response.data.Data)
+          response.data.Data.map((item, index) => (
+            allTimes+=item.Study &&
+index<5?
+
+            datayy.push(
+          item.Study.toString()
+
+              )
+              &&
+              data33.push(
+               item.PersianDate
+
+              )
+
+              :
+              null
+          ))
+          // setData1(response.data.Data)
+          setDatay(datayy)
+          setDatass(data33)
+          setAllTime(allTimes)
+          setCount(response.data.Data.length)
+          setNerkh( Math.floor(allTimes/response.data.Data.length))
+          setToday(response.data.Data[count].Study)
 
           // navigation.navigate("ChangePass",{mobile:user,verify:response.data.Data})
                           }else{
@@ -53,10 +95,10 @@ const PanelMain = ({navigation}) => {
 
 
       };
-    const data1 = [ 14, 30, 100, 50, 94, ]
-    .map((value) => ({ value }))
-const data2 = [ 24, 28, 93, 77,30 ]
-    .map((value) => ({ value }))
+    // const data1 = [ 14, 30, 100, 50, 94 ]
+    // .map((value) => ({ value }))
+// const data2 = [ 24, 28, 93, 77,30 ]
+    // .map((value) => ({ value }))
 
 const barData = [
     {
@@ -69,7 +111,7 @@ const barData = [
         data: data2,
     },
 ]
-const datass = [10, 20, 30, 40, 50];
+// const datass = [];
   const labels = ['9مهر', 'مهر', '9مهر', '9مهر', '9مهر'];
 const Labels = ({x, y, bandwidth, data}) => (
     <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
@@ -82,7 +124,7 @@ const Labels = ({x, y, bandwidth, data}) => (
   );
   const Numbers = ({x, y, bandwidth, data}) => (
     <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-      {datass.map((value, index) => (
+      {data1.map((value, index) => (
         <Text key={index} style={styles.numText}>
           {value}
         </Text>
@@ -110,6 +152,28 @@ const Labels = ({x, y, bandwidth, data}) => (
       {key: 'second', title: 'مقایسه با دیگران'},
 
     ]);
+    const data = {
+      labels: datass,
+      // color:"#fff",
+      datasets: [
+        {
+          // color:"#fff",
+          data: datay
+        }
+      ]
+    };
+    const chartConfig = {
+      backgroundGradientFrom: "#fff",
+      backgroundGradientFromOpacity: 10,
+      backgroundGradientTo: "#fff",
+      // backgroundGradientToOpacity: 0.1,
+      color: (opacity = 1) => `rgba(22, 178, 245, 1)`,
+      strokeWidth: 30, // optional, default 3
+      barPercentage: 1,
+      labelColor: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
+      // decimalPlaces: 1,
+      useShadowColorFromDataset: false // optional
+    };
     const FirstRoute = () => (
         <View >
           <View style={{flexDirection:'row',alignItems:'center'}}>
@@ -122,13 +186,15 @@ const Labels = ({x, y, bandwidth, data}) => (
 <Image source={require('../../assets/images/miangin.png')}/>
 <Text style={{...myFontStyle.mediumRegular,color:Colors.gray}}>میانگین مطالعه روزانه</Text>
           </View>
-<YAxis
-                    data={datass}
+{/* <YAxis
+                    data={data1}
                     yAccessor={({ index }) => index}
                     // scale={scale.scaleBand}
-                    contentInset={{ top: 20, bottom: 20 }}
-                    spacing={0.2}
+                    contentInset={{ top: responsiveHeight(3), bottom: responsiveHeight(3) }}
+                    spacing={1}
                     formatLabel={(value, index) => value}
+                    // formatLabel={(value, index) =>datay[index]}
+                    // formatLabel={(_, index) => data1[ index ].label}
                     svg={{ fontSize: 10, fill: 'black' }}
                     style={{ height: responsiveHeight(25) ,position:'absolute',right:0,top: responsiveHeight(5)}}
                 />
@@ -137,7 +203,7 @@ const Labels = ({x, y, bandwidth, data}) => (
         style={ { height: responsiveHeight(25) ,marginRight:responsiveWidth(5)} }
         data={ barData }
         // formatLabel={5}
-            gridMin={0}
+        gridMin={0}
         yAccessor={({ item }) => item.value}
         // svg={{
         //     fill: 'rgba(246, 157, 13, 1)',
@@ -147,25 +213,41 @@ const Labels = ({x, y, bandwidth, data}) => (
                     fill: 'url(#gradient)',
                 } }
 
-        contentInset={ { top: 30, bottom: 30 } }
+        contentInset={ { top: responsiveHeight(4), bottom: responsiveHeight(4) } }
         // { ...this.props }
-        bandwidth={10}
+        bandwidth={5}
         spacingInner={0.1}
     >
            <Gradient/>
            <Gradient2/>
         </BarChart>
         <XAxis
-                            style={{ marginHorizontal: -10 }}
+                    style={{ marginHorizontal: -10 }}
                     data={datass}
                     xAccessor={({ index }) => index}
                     // scale={scale.scaleBand}
-                    contentInset={{ left: responsiveWidth(10), right: responsiveWidth(10) }}
-                                        spacing={0.2}
+                    contentInset={{ left: responsiveWidth(15), right: responsiveWidth(15) }}
+                    spacing={0.2}
                     formatLabel={(value, index) =>datass[index]}
                     svg={{ fontSize: 10, fill: 'black' }}
-                    />
-
+                    /> */}
+<BarChart
+   style={{color:"#fff"}}
+  data={data}
+  width={responsiveWidth(88)}
+  height={responsiveHeight(25)}
+  // yAxisLabel=""
+  chartConfig={chartConfig}
+  color={"#fff"}
+  withInnerLines={false}
+  fromZero={true}
+  // flatColor={true}
+  // withCustomBarColorFromData={true}
+  // withHorizontalLabels={true}
+  // xAxisLabel={"دقیقه"}
+  // yAxisSuffix={"ایالیاییای"}
+  // verticalLabelRotation={30}
+/>
 
         </View>
       );
@@ -199,42 +281,7 @@ const Labels = ({x, y, bandwidth, data}) => (
     <View style={styles.container}>
 
     <View style={styles.viewBody}>
-    <View style={styles.subViewBody}>
-    <View style={{marginRight:responsiveWidth(5)}}>
-      <Text style={styles.txtEdit}>
-        تمدید اشتراک
-      </Text>
-    </View>
 
-
-    <View style={styles.viewProfText}>
-      <Text style={{...myFontStyle.largBold,color:Colors.black}}>امیرحسین مفید</Text>
-      <Text style={{...myFontStyle.mediumRegular,color:Colors.gray}}>09398277376</Text>
-      <Text style={{...myFontStyle.smallRegular,color:Colors.gray}}>مدت زمان باقی مانده از اشتراک شما:21روز</Text>
-
-
-
-
-    </View>
-
-
-    <TouchableOpacity
-
-    onPress={() => navigation.navigate('Profile')}
-
-    >
-
-
-              {/* <Image style={drawerStyles.avatar} source={avatarWoman} /> */}
-              <Image style={styles.avatar} source={require("../../assets/images/profi.png")} />
-              <TouchableOpacity onPress={()=>navigation.navigate('EditProfile')} style={styles.viewIconEdit}>
-
-              <Icon name="create" color={Colors.white} size={20} style={{margin:5}}/>
-              </TouchableOpacity>
-
-    </TouchableOpacity>
-
-    </View>
     <View style={styles.subViewRead}>
 
 
@@ -253,7 +300,7 @@ const Labels = ({x, y, bandwidth, data}) => (
 <View style={{alignItems:'flex-start',marginLeft:responsiveWidth(1)}}>
 
 <Text style={{...myFontStyle.mediumBold,color:Colors.text}}>فلش کارت مطالعه شده:</Text>
-<Text style={{...myFontStyle.normalRegular,color:Colors.appColor}}>21</Text>
+<Text style={{...myFontStyle.normalRegular,color:Colors.appColor}}>{count}</Text>
 </View>
 </View>
 <View style={styles.footerCart}>
@@ -261,7 +308,7 @@ const Labels = ({x, y, bandwidth, data}) => (
 <View style={{alignItems:'flex-start',marginLeft:responsiveWidth(1)}}>
 
 <Text style={{...myFontStyle.mediumBold,color:Colors.text}}>مدت زمان مطالعه امروز:</Text>
-<Text style={{...myFontStyle.normalRegular,color:Colors.appColor}}>18دقیقه</Text>
+<Text style={{...myFontStyle.normalRegular,color:Colors.appColor}}>{today}دقیقه</Text>
 </View>
 </View>
 
@@ -273,7 +320,7 @@ const Labels = ({x, y, bandwidth, data}) => (
 <View style={{alignItems:'flex-start',marginLeft:responsiveWidth(1)}}>
 
 <Text style={{...myFontStyle.mediumBold,color:Colors.text}}>نرخ مطالعه:</Text>
-<Text style={{...myFontStyle.mediumBold,color:Colors.appColor}}>12فلش کارت در 10دقیقه</Text>
+<Text style={{...myFontStyle.mediumBold,color:Colors.appColor}}>1 کارت در {nerkh}دقیقه</Text>
 </View>
 </View>
 <View style={styles.footerCart}>
@@ -281,7 +328,7 @@ const Labels = ({x, y, bandwidth, data}) => (
 <View style={{alignItems:'flex-start',marginLeft:responsiveWidth(1)}}>
 
 <Text style={{...myFontStyle.mediumBold,color:Colors.text}}>کل زمان مطالعه:</Text>
-<Text style={{...myFontStyle.normalRegular,color:Colors.appColor}}>18دقیقه</Text>
+<Text style={{...myFontStyle.normalRegular,color:Colors.appColor}}>{allTime}دقیقه</Text>
 </View>
 </View>
 
@@ -296,7 +343,7 @@ const Labels = ({x, y, bandwidth, data}) => (
 
 
 return (
-<TopBar Classes={classes} />
+<TopBar Classes={classes} navigation={navigation} />
 
 );
 };
@@ -432,6 +479,6 @@ alignItems:'flex-end'
   elevation: 10,}
 });
 
-  export default PanelMain;
+  export default UserReport;
 
 //make this component available to the <app></app>

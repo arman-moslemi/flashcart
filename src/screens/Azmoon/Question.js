@@ -13,16 +13,52 @@ import DropDownPicker from 'react-native-dropdown-picker';
 import {Input} from '../../components/Input';
 import { Button } from '../../components/Button';
 import { RadioButton } from 'react-native-paper';
-import {clearAzmoon, getAzmoon,initAzmoon} from '../../../services/azmoonservice';
-
+import {clearAzmoon, getAzmoon,updateAzmoon} from '../../../services/azmoonservice';
+import axios from 'axios';
+import { apiUrl ,apiAsset} from "../../commons/inFormTypes";
 // create a component
 const Question = ({navigation,route}) => {
     const [checked, setChecked] = useState('');
     const [data, setData] = useState('');
+    const [all, setAll] = useState(0);
+    const [allAnswer, setAllAnswer] = useState(0);
+    const [right, setRight] = useState(0);
+    const [remain, setRemain] = useState(0);
     const [fake, setFake] = useState(0);
     const [isModalVisible, setModalVisible] = useState(false);
     const {id} = route?.params ?? {};
 
+    const setAns = (ss,ff) => {
+setChecked(ss);
+updateAzmoon(ff+"T"+ss);
+console.log(444);
+console.log(getAzmoon());
+};
+const  Submit=async()=> {
+  const state = await AsyncStorage.getItem("@user");
+
+  axios.post(apiUrl + 'CustomerResultExam',{CustomerID:state,Score:right,ExamID:id})
+  .then(function (response) {
+    const message = response.data.Data;
+    console.log(55);
+    console.log(message);
+    const result = response.data.result;
+    console.log(result);
+
+    if(result == "true"){
+       alert("با موفقیت ثبت شد")
+       navigation.navigate("AzmoonList",{id:12});
+                      }
+                      else{
+
+    }
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+
+
+  };
     const toggleModal = () => {
      setModalVisible(!isModalVisible);
     };
@@ -39,14 +75,31 @@ const Question = ({navigation,route}) => {
     const closeModal2=()=>{
       setModal2Visible(!isModal2Visible);
     }
+    const etmam=()=>{
+      setModalVisible(true);
+      setAllAnswer( getAzmoon().filter(datas => datas.CustomerAnswer != null).length);
+      setAll( getAzmoon().length);
+      setRight( getAzmoon().filter(datas => datas.CustomerAnswer == datas.RightAnswer).length);
+      setRemain( getAzmoon().length - getAzmoon().filter(datas => datas.CustomerAnswer != null).length);
+     }
+
+
     useEffect(() => {
 
      console.log(111);
-     console.log( getAzmoon());
+     console.log( getAzmoon()[fake]);
      setData( getAzmoon());
+     console.log(22);
+     console.log(fake);
+     console.log(getAzmoon()[fake].CustomerAnswer);
+if(getAzmoon()[fake].CustomerAnswer!=null)
+{
+  setChecked(parseInt( getAzmoon()[fake].CustomerAnswer))
+}
+else{
+  setChecked(0)
+}
 
-     console.log(data.length);
-    //  setFake(id)
 
 
     }, [fake]);
@@ -59,17 +112,19 @@ const Question = ({navigation,route}) => {
       </Text>
       <LinearGradient  colors={['#068DF6', '#16B2F5']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={styles.etmam}>
 
-     <TouchableOpacity onPress={toggleModal}>
-     <Text style={{...myFontStyle.btnBold,color:Colors.white}}>
+     <TouchableOpacity onPress={()=>etmam()}>
+     <Text style={{...myFontStyle.normalBold,color:Colors.white}}>
         اتمام آزمون
       </Text>
      </TouchableOpacity>
     </LinearGradient>
-    <Modal isVisible={isModalVisible} onBackdropPress={closeModal} style={{justifyContent:'center',alignItems:'center'}}>
+    <Modal isVisible={isModalVisible}
+     onBackdropPress={closeModal}
+     style={{justifyContent:'center',alignItems:'center'}}>
       <View style={styles.alertModal}>
       <View style={{flexDirection:'row',padding:10,justifyContent:'center'}}>
                   <Icon name={"notification-important"} color={'#cc1111'} size={30} style={{marginRight:5}}></Icon>
-                  <Text style={{...myFontStyle.textOnImg,color:'#cc1111'}}>شما به 8 سوال پاسخ نداده اید !</Text>
+                  <Text style={{...myFontStyle.normalBold,color:'#cc1111'}}>شما به {remain} سوال پاسخ نداده اید !</Text>
                 </View>
          <View style={{flexDirection:'row',justifyContent:'space-evenly',marginTop:responsiveHeight(3)}}>
                     <View style={{width:responsiveWidth(32)}}>
@@ -77,7 +132,7 @@ const Question = ({navigation,route}) => {
 
 
                       <TouchableOpacity onPress={toggleModal2}>
-                        <Text style={{...myFontStyle.btnBold,color:Colors.white,textAlign:'center'}}>اتمام آزمون</Text>
+                        <Text style={{...myFontStyle.normalBold,color:Colors.white,textAlign:'center'}}>اتمام آزمون</Text>
                         </TouchableOpacity>
                         </LinearGradient>
                     </View>
@@ -86,37 +141,39 @@ const Question = ({navigation,route}) => {
                    <LinearGradient colors={['#3AC3FE', '#0284BB'] }start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={{borderRadius:3,padding:5}}>
 
 
-          <TouchableOpacity style={{}}>
-          <Text style={{...myFontStyle.btnBold,color:Colors.white,textAlign:'center'}}>ادامه آزمون</Text>
+          <TouchableOpacity onPress={()=>setModalVisible(false)} style={{}}>
+          <Text style={{...myFontStyle.normalBold,color:Colors.white,textAlign:'center'}}>ادامه آزمون</Text>
           </TouchableOpacity>
           </LinearGradient>
                     </View>
                 </View>
       </View>
     </Modal>
-    <Modal isVisible={isModal2Visible} onBackdropPress={closeModal2} style={{justifyContent:'center',alignItems:'center'}}>
+    <Modal isVisible={isModal2Visible}
+    //  onBackdropPress={closeModal2}
+      style={{justifyContent:'center',alignItems:'center'}}>
     <View style={styles.alertModal}>
       <View style={{flexDirection:'row',padding:10,justifyContent:'center',borderBottomColor:'#f4f4f4',borderBottomWidth:2}}>
                   <Icon name={"assignment"} color={'#cc1111'} size={30} style={{marginRight:5}}></Icon>
-                  <Text style={{...myFontStyle.textOnImg,color:'#cc1111'}}>نتیجه آزمون بورد اطفال</Text>
+                  <Text style={{...myFontStyle.normalBold,color:'#cc1111'}}>نتیجه آزمون </Text>
                 </View>
               <View style={{borderBottomColor:'#f4f4f4',borderBottomWidth:2,paddingBottom:responsiveHeight(2)}}>
 
-              <Text style={styles.scoreText}>کل تعداد سوالات آزمون: 20 تا</Text>
-                <Text style={styles.scoreText}>تعداد سوالات پاسخ داده شده: 12 تا</Text>
-                <Text style={styles.scoreText}>تعداد پاسخ درست: 5 تا</Text>
+              <Text style={styles.scoreText}>کل تعداد سوالات آزمون: {all} تا</Text>
+                <Text style={styles.scoreText}>تعداد سوالات پاسخ داده شده: {allAnswer} تا</Text>
+                <Text style={styles.scoreText}>تعداد پاسخ درست: {right} تا</Text>
               </View>
          <View style={{flexDirection:'row',justifyContent:'space-evenly',marginTop:responsiveHeight(3)}}>
 
-         <View style={{width:responsiveWidth(30)}}>
-         <Text style={{...myFontStyle.btnBold,color:'#0D8424',textAlign:'left',fontSize:responsiveFontSize(2.5),marginLeft:responsiveWidth(3)}}>نمره شما: 14</Text>
+         <View >
+         <Text style={{...myFontStyle.btnBold,color:'#0D8424',textAlign:'left',marginLeft:responsiveWidth(3)}}>نمره شما: {right}</Text>
                     </View>
                    <View style={{}}>
                    <LinearGradient colors={['#3AC3FE', '#0284BB'] }start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={{borderRadius:3,paddingLeft:responsiveWidth(3),paddingRight:responsiveWidth(3),paddingBottom:responsiveHeight(1),paddingTop:responsiveHeight(1)}}>
 
 
-          <TouchableOpacity style={{}}>
-          <Text style={{...myFontStyle.btnBold,color:Colors.white,textAlign:'center'}}>بازگشت به صفحه ی آزمون ها</Text>
+          <TouchableOpacity onPress={()=>Submit()} style={{}}>
+          <Text style={{...myFontStyle.mediumBold,color:Colors.white,textAlign:'center'}}>بازگشت به صفحه ی آزمون ها</Text>
           </TouchableOpacity>
           </LinearGradient>
                     </View>
@@ -142,8 +199,8 @@ const Question = ({navigation,route}) => {
       <View style={styles.viewRadio}>
       <RadioButton
             //   value={"option2"+item._id}
-              status={ checked === 'first' ? 'checked' : 'unchecked' }
-        onPress={() => setChecked('first')}
+              status={ checked === 1 ? 'checked' : 'unchecked' }
+        onPress={() => setAns(1,data[fake].SubExamID)}
               color={Colors.yellow}
 
             />
@@ -153,8 +210,8 @@ const Question = ({navigation,route}) => {
 
             <RadioButton
             //   value={"option2"+item._id}
-              status={ checked === 'Second' ? 'checked' : 'unchecked' }
-        onPress={() => setChecked('Second')}
+              status={ checked === 2 ? 'checked' : 'unchecked' }
+        onPress={() => setAns(2,data[fake].SubExamID)}
         color={Colors.yellow}
 
             />
@@ -170,8 +227,8 @@ const Question = ({navigation,route}) => {
 
       <RadioButton
             //   value={"option2"+item._id}
-              status={ checked === 'third' ? 'checked' : 'unchecked' }
-        onPress={() => setChecked('third')}
+              status={ checked === 3 ? 'checked' : 'unchecked' }
+        onPress={() => setAns(3,data[fake].SubExamID)}
         color={Colors.yellow}
 
             />
@@ -181,8 +238,8 @@ const Question = ({navigation,route}) => {
 
             <RadioButton
             //   value={"option2"+item._id}
-              status={ checked === 'four' ? 'checked' : 'unchecked' }
-        onPress={() => setChecked('four')}
+              status={ checked === 4 ? 'checked' : 'unchecked' }
+        onPress={() =>setAns(4,data[fake].SubExamID)}
         color={Colors.yellow}
 
             />
@@ -193,7 +250,7 @@ const Question = ({navigation,route}) => {
           <View  style={styles.viewFooter}>
           {
   fake!=data.length-1?
-<TouchableOpacity onPress={()=>setFake(fake+1)}>
+<TouchableOpacity onPress={()=>{setFake(fake+1)}}>
           <LinearGradient  colors={['#FFC444', '#F36F56']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={styles.viewNext}>
 <Icon name={"double-arrow"} size={20} color={Colors.white}/>
 <Text style={{...myFontStyle.mediumBold,color:Colors.white}}>
@@ -209,7 +266,7 @@ null
   fake!=0?
 
 
-<TouchableOpacity onPress={()=>setFake(fake-1)}>
+<TouchableOpacity onPress={()=>{setFake(fake-1)}}>
 <LinearGradient   colors={['#FFC444', '#F36F56']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={styles.viewNext}>
 
 <Text style={{...myFontStyle.mediumBold,color:Colors.white}}>
@@ -229,7 +286,7 @@ null
 
 
 return (
-<TopBar Classes={classes} />
+<TopBar Classes={classes} navigation={navigation} />
 
 );
 };
@@ -315,7 +372,7 @@ const styles = StyleSheet.create({
     paddingRight:responsiveWidth(5),
     paddingLeft:responsiveWidth(5),
     paddingTop:responsiveHeight(3),
-    fontSize:responsiveFontSize(2.5),
+    // fontSize:responsiveFontSize(2.5),
   }
 }
 );

@@ -111,7 +111,7 @@ const _render = (item, index) => {
 
 
 return (
-<TopBar Classes={classes} />
+<TopBar Classes={classes} navigation={navigation} />
 
 );
 };

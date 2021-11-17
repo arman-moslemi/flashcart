@@ -1,8 +1,6 @@
-import React, {useState,useRef} from 'react';
+import React, {useState,useRef,useEffect} from 'react';
 import {View, Text, TouchableOpacity,Image} from 'react-native';
-//import {create} from 'nahira-react-native-style-sheet';
-//import Icon from '@spark/assets/FontIcon';
-//import Modal from 'react-native-modal';
+
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { StyleSheet } from 'react-native';
 import { responsiveHeight, responsiveWidth } from 'react-native-responsive-dimensions';
@@ -12,10 +10,43 @@ import Drawer from 'react-native-drawer'
 import DrawerContent from '../../components/drewerContent/DrawerContent';
 import { myFontStyle } from "../../assets/Constance";
 import {Input} from '../../components/Input';
-
+import axios from 'axios';
+import { apiUrl ,apiAsset} from "../../commons/inFormTypes";
  const FlashCardSearch = ({navigation}) => {
   const drawers = useRef(null);
   const [search,setSearch]=useState("");
+  const [data,setData]=useState([]);
+  useEffect(() => {
+
+    mutLogin();
+
+
+  }, [search]);
+  const  mutLogin=async()=> {
+    axios.post(apiUrl+'MenuSearch',{Title:search})
+    .then(function (response) {
+      const message = response.data.Data;
+      console.log(message)
+      const result = response.data.result;
+      console.log(result);
+
+
+      if(result == "true"){
+        setData(response.data.Data)
+
+        // navigation.navigate("ChangePass",{mobile:user,verify:response.data.Data})
+                        }else{
+
+      }
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+
+
+    };
+
+
 
   return (
     <Drawer
@@ -54,7 +85,7 @@ import {Input} from '../../components/Input';
       <Text style={styles.menuTitle}>نوآوران دانش(ماهان)</Text>
       </View>
     <View style={{flex :0.5}}>
-      <TouchableOpacity style={{}}>
+      <TouchableOpacity onPress={()=>navigation.goBack()} style={{}}>
         <Icon name={"chevron-left"} color={"#fff"} size={30} style={{marginTop:10}}/>
       </TouchableOpacity>
       </View>
@@ -75,12 +106,22 @@ import {Input} from '../../components/Input';
 <Text style={styles.txtNoSearch}>مطلبی را جستجو نکرده اید</Text>
 </View>
         :
+
+
+
+
+
         <View style={styles.container}>
             <View style={{alignItems:'center',marginTop:responsiveHeight(5)}}>
 <Text style={{...myFontStyle.UltraBold,color:Colors.appColor}}>نتایج جستجو</Text>
 
             </View>
     {/* <View style={styles.viewBody}> */}
+
+
+{
+    data.map((item)=>(
+
 
     <TouchableOpacity onPress={()=>navigation.navigate("Question")} style={styles.subViewRead}>
 <View style={{flexDirection:'row',alignItems:'center'}}>
@@ -89,16 +130,19 @@ import {Input} from '../../components/Input';
 <Icon name="remove-red-eye" size={30} color={Colors.yellow}/>
 </View>
 
-<View style={{flexDirection:'row-reverse',alignItems:"center",justifyContent:'flex-end'}}>
-<Text style={{...myFontStyle.normalRegular,color:Colors.black,width:responsiveWidth(50)}}>متن سوال</Text>
+<View style={styles.viewText}>
+<Text style={{...myFontStyle.normalRegular,color:Colors.black,width:responsiveWidth(50)}}>{item.Text?.substring(0, 20)}...</Text>
 
-<Image source={require('../../assets/images/RectangleYellow.png')} style={{ height:responsiveHeight(8),width:5,marginRight:responsiveWidth(3),marginBottom:responsiveHeight(0.5),marginLeft:responsiveWidth(-5),}}/>
+{/* <Image source={require('../../assets/images/RectangleYellow.png')} style={{ height:responsiveHeight(8),width:5,marginRight:responsiveWidth(3),marginBottom:responsiveHeight(0.5),marginLeft:responsiveWidth(-5),}}/> */}
 </View>
     {/* </View> */}
 
 
 
           </TouchableOpacity>
+
+))
+}
 
 
     </View>
@@ -118,6 +162,7 @@ const styles =StyleSheet.create({
       color:"#fff",
       marginTop:responsiveHeight(1),
     },
+    viewText:{flexDirection:'row-reverse',alignItems:"center",justifyContent:'flex-end'},
 
     page: {
     flexDirection: 'column',
@@ -182,20 +227,22 @@ input:{
 
     },
     subViewRead:{
-        backgroundColor:"#fff",
-        elevation:5,
-        shadowOpacity:1,
-        shadowRadius:10,
-        shadowOffset:5,
-        borderRadius:5,
-        margin:responsiveHeight(2),
-      height:responsiveHeight(8),
-      marginTop:responsiveHeight(3)
-      ,alignItems:'center',
-      flexDirection:'row-reverse',
-      justifyContent:'space-between',
-      padding:responsiveWidth(5),
-      paddingBottom:responsiveHeight(2)},
+      backgroundColor:"#fff",
+      borderLeftWidth:5,
+      borderLeftColor:Colors.yellow,
+      elevation:5,
+      shadowOpacity:1,
+      shadowRadius:10,
+      shadowOffset:5,
+      borderRadius:5,
+      margin:responsiveHeight(2),
+    height:responsiveHeight(8),
+    marginTop:0,
+    alignItems:'center',
+    flexDirection:'row-reverse',
+    justifyContent:'space-between',
+    padding:responsiveWidth(5),
+    paddingBottom:responsiveHeight(2)},
 
 });
 

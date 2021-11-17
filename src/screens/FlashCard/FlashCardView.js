@@ -45,16 +45,82 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
     const [data,setData]=useState([]);
     const {id,first,last} = route?.params ?? {};
     const [ids,setID]=useState(id);
+    const [ids2,setID2]=useState(id);
     const [type,setType]=useState(id);
-
+    const [time, setTime] = useState(0);
     useEffect(() => {
 // setID(id)
-      mutLogin(ids);
+// if(ids2!=ids || (time.seconds==0 && time.minutes==0))
+// {
+//   setID2(ids)
+if(time==0)
+{
 
+  setTime( new Date().getTime())
+}
+
+    mutLogin(ids);
+// }
+    // setTimeout(() => {
+    //       let nSeconds = time.seconds;
+    //       let nMinutes = time.minutes;
+    //       let nHours = time.hours;
+
+    //       nSeconds++;
+
+    //       if (nSeconds > 59) {
+    //         nMinutes++;
+    //         nSeconds = 0;
+    //       }
+    //       if (nMinutes > 59) {
+    //         nHours++;
+    //         nMinutes = 0;
+    //       }
+    //       if (nHours > 24) {
+    //         nHours = 0;
+    //       }
+    //       setTime({ seconds: nSeconds, minutes: nMinutes, hours: nHours });
+    //       console.log(time)
+    //     }, 1000);
 
     }, [ids]);
 
+    const  setStudy=async()=> {
+      if(time!=0)
+      {
+        var SS=new Date().getTime() - time
+        var daysTill30June2035 = Math.floor( SS/ (1000 * 60 ));
+
+      setTime(0)
+console.log(daysTill30June2035);
+const state = await AsyncStorage.getItem("@user");
+
+
+      axios.post(apiUrl+'InsertStudy',{Study:daysTill30June2035,CustomerID:state})
+      .then(function (response) {
+        const message = response.data.Data;
+        const result = response.data.result;
+        console.log(result);
+        console.log(message)
+
+        if(result == "true"){
+
+          // navigation.navigate("ChangePass",{mobile:user,verify:response.data.Data})
+                          }else{
+
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    }
+
+      };
+
     const  mutLogin=async(mm)=> {
+
+setStudy();
+// console.log(new Date().getTime() - time)
       setSound(false)
       setPlay(false)
       setVideo(false)
@@ -316,17 +382,22 @@ else{
       // }
     }
     const toggleModal = (tt) => {
+
      setModalVisible(!isModalVisible);
      setType(tt)
+     setStudy()
+
     };
 
-    const closeModal=()=>{
+    const closeModal = ()=>{
       setModalVisible(!isModalVisible);
     }
     const [isModalVisible2, setModalVisible2] = useState(false);
 
     const toggleModal2 = () => {
      setModalVisible2(!isModalVisible2);
+     setStudy()
+
     };
 
     const closeModal2=()=>{

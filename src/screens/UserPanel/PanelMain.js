@@ -18,6 +18,9 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import DrawerContent from '../../components/drewerContent/DrawerContent';
 import Drawer from 'react-native-drawer';
 import { RadioButton } from 'react-native-paper';
+// import ImagePicker from 'react-native-image-picker';
+import {launchImageLibrary} from 'react-native-image-picker';
+import ImgToBase64 from 'react-native-image-base64';
 // create a component
 const PanelMain = ({navigation}) => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -30,6 +33,7 @@ const PanelMain = ({navigation}) => {
   const [value, setValue] = useState(null);
   const [valueAc, setValueAc] = useState(null);
   const [modal2Visible, setModal2Visible] = useState(false);
+  const [backimage, setbackimageData] = React.useState('');
 
   const [ques, setQues] = useState(null);
   const [ans, setAns] = useState(null);
@@ -49,7 +53,65 @@ const PanelMain = ({navigation}) => {
   const [items2, setItems2] = useState([
 
   ]);
+  const handleChoosePhoto =async ()=>{
 
+    // setbackimageData(10);
+    // console.log(backimage);
+    const state = await AsyncStorage.getItem("@user");
+
+    const options = {
+      noData:true
+    };
+    const response = await launchImageLibrary(options);
+    console.log(response.assets[0]);
+  // launchImageLibrary(options,response => {
+      if(response.assets[0].uri){
+        console.log(response.assets[0]);
+        console.log(1111);
+
+        setbackimageData(response.assets[0].uri);
+        console.log(backimage);
+
+
+        ImgToBase64.getBase64String(response.assets[0].uri)
+        .then(base64String =>
+         // console.log(base64String)
+        axios.post(apiUrl + 'EditCustomerPic', {
+          CustomerID: state,
+          PhotoFileName:response.assets[0].fileName,
+          Photo:base64String,
+        })
+          .then(response => {
+           //   setData(response.data.data);
+             // setids(id);
+              // return;
+              const result = response.data.result;
+console.log(result)
+if(result=="true"){
+
+  console.log(222);
+  AsyncStorage.setItem('@userPhoto',response.data.Data[0].Photo.toString())
+
+  console.log(response.data.result);
+  alert('عکس با موقیت ثبت شد')
+}
+
+
+          })
+          .catch(function(error) {
+            console.log(222);
+            console.log(error);
+
+          }
+          )
+
+
+    );
+
+
+      }
+    // });
+  };
   const  setValueDrop=async(val)=> {
     setValue(val)
      console.log(value);
@@ -215,8 +277,9 @@ setValueAc(val)
             if(result == "true"){
           // setData(response.data.Data)
           alert('با موفقیت اضافه شد')
-          modalVisible(false)
+          setModalVisible(false)
                               }else{
+                                alert('تمام آیتم هارا وارد نمائید')
 
             }
           })
@@ -382,13 +445,19 @@ tweenHandler={(ratio) => ({
 
 <TouchableOpacity
 
-onPress={() => navigation.navigate('Profile')}
+onPress={
+  ()=>{handleChoosePhoto()}
+}
 
 >
 
 
           {/* <Image style={drawerStyles.avatar} source={avatarWoman} /> */}
           {
+                  backimage !=''?
+                  <Image style={styles.avatar}  source={{uri:backimage}}/>
+
+                  :
             data[0]?.Photo?
 
             <Image style={styles.avatar} source={{uri:apiAsset+data[0]?.Photo}} />
@@ -472,7 +541,7 @@ onPress={() => navigation.navigate('Profile')}
 
 <View       style={styles.modal}>
 <View style={{flexDirection:'row-reverse',justifyContent:"space-between"}}>
-<Icon name="close" size={20} color={Colors.yellow}/>
+<Icon onPress={()=>          setModalVisible(false)} name="close" size={20} color={Colors.yellow}/>
 <Text style={{...myFontStyle.largBold,color:Colors.text}}>افزودن سوال(نکته)جدید</Text>
 
 </View>
@@ -586,7 +655,8 @@ const styles = StyleSheet.create({
     height: responsiveHeight(10),
     resizeMode: "contain",
     // margin:5,
-    marginRight:responsiveWidth(5)
+    marginRight:responsiveWidth(5),
+    borderRadius:50
 
   },
   button:{marginTop:responsiveHeight(2),width:responsiveWidth(30)

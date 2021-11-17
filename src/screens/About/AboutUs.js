@@ -86,13 +86,13 @@ return (
       <Text style={styles.menuTitle}>نوآوران دانش(ماهان)</Text>
       </View>
     <View style={{flex :0.5}}>
-      <TouchableOpacity style={{}}>
+      <TouchableOpacity onPress={()=>navigation.goBack()} style={{}}>
         <Icon name={"chevron-left"} color={"#fff"} size={30} style={{marginTop:10}}/>
       </TouchableOpacity>
       </View>
 
 </View>
-<View style={styles.customRow2}> 
+<View style={styles.customRow2}>
        <View style={styles.logoBox}>
            <Image source={require('../../assets/images/pezeshkiLogo.png')} style={styles.logoSize}/>
        </View>
@@ -108,7 +108,7 @@ return (
               </Text>
   </View>
 </View>
-           
+
 <View style={{flexDirection:'row',alignItems:'center'}}>
   <View style={{flex: 1, height: 2, backgroundColor: '#ECEDEF'}}>
 
@@ -117,7 +117,7 @@ return (
     <Image source={require('../../assets/images/boardLogo.png')} style={{width:75,height:90}}></Image>
     </View>
     <View style={{flex: 1, height: 2, backgroundColor: '#ECEDEF'}}>
-    
+
     </View>
   </View>
   <View style={{flexDirection:'row'}}>
@@ -137,7 +137,7 @@ return (
     <Image source={require('../../assets/images/dentalLogo.png')} style={{width:70,height:100}}></Image>
     </View>
     <View style={{flex: 1, height: 2, backgroundColor: '#ECEDEF'}}>
-    
+
     </View>
   </View>
   <View style={{flexDirection:'row'}}>
@@ -195,7 +195,7 @@ customRow:{
 
 } ,logoBox:{
   backgroundColor:'#fff',
- 
+
   padding:5,
   borderRadius:10,
   shadowColor: '#878B92',
@@ -213,7 +213,7 @@ customRow:{
 }
 ,questionText:{
   ...myFontStyle.normalRegular,
- 
+
   color:'#000',
 paddingRight:responsiveWidth(3),
 paddingLeft:responsiveWidth(3),
@@ -226,13 +226,13 @@ marginRight:10,
   paddingBottom:responsiveHeight(5),
 }
 ,menuTitle:{
-  fontFamily:"IRANSansBold",
+  // fontFamily:"IRANSansBold",
   color:"#fff",
-  fontSize:25,
+  ...myFontStyle.largBold,
   marginTop:responsiveHeight(1),
 },logoSize:{
   width:90,height:120,
-   
+
 }, aboutBox:{
   backgroundColor:'#fff',
   borderRadius:3,
@@ -247,8 +247,8 @@ height: Dimensions.get('window').height/0.8,
     marginTop:responsiveHeight(12),
 },
 
-  
-  
+
+
   });
 
   export default AboutUs;

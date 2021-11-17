@@ -179,7 +179,7 @@ const Favorite = ({navigation}) => {
 
 
 return (
-<TopBar Classes={classes} />
+<TopBar Classes={classes} navigation={navigation} />
 
 );
 };

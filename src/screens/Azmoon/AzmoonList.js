@@ -14,23 +14,25 @@ import {clearAzmoon, getAzmoon,initAzmoon} from '../../../services/azmoonservice
 
 
 // create a component
-const AzmoonList = ({navigation}) => {
+const AzmoonList = ({navigation,route}) => {
 
   const [data,setData] = useState([]);
   const [curdata,setCurData] = useState([]);
+  const {id} = route?.params ?? {};
+
   useEffect(() => {
 
     mutLogin();
 
 
-  }, []);
+  }, [id]);
 
   const  mutLogin=async()=> {
     const state = await AsyncStorage.getItem("@user");
 
-    axios.post(apiUrl + 'CustomerExamShow',{CustomerID:2})
+    axios.post(apiUrl + 'CustomerExamShow',{CustomerID:state})
     .then(function (response) {
-      const message = response.data.Data;
+      const message = response.data.PastData;
       console.log(55);
       console.log(message);
       const result = response.data.result;
@@ -64,7 +66,7 @@ console.log(ss)
 
       if(result == "true"){
         initAzmoon(response.data.DataList)
-        navigation.navigate("Question",{id:0})
+        navigation.navigate("Question",{id:ss})
 
         // navigation.navigate("ChangePass",{mobile:user,verify:response.data.Data})
                         }else{
@@ -79,7 +81,7 @@ console.log(ss)
     };
    const classes =()=>{
    return(
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
 <Text style={{...myFontStyle.UltraBold,color:Colors.appColor,marginLeft:responsiveWidth(5)}}>لیست آزمون ها</Text>
     {/* <View style={styles.viewBody}> */}
 
@@ -107,13 +109,13 @@ console.log(ss)
 }
 {
   data.map((item)=>(
-          <TouchableOpacity style={styles.subViewRead}>
+          <TouchableOpacity style={styles.subViewRead2}>
 
 <Icon name="chevron-left" size={30} color={Colors.yellow}/>
 <View style={{flexDirection:'row-reverse',justifyContent:"space-between",alignItems:"center"}}>
 <Text style={{...myFontStyle.mediumBold,color:Colors.gray}}>نمره کسب شده:{item.Score}</Text>
 <Text style={{...myFontStyle.mediumBold,color:Colors.gray,marginHorizontal:10}}>{item.Title}</Text>
-<Text style={{...myFontStyle.mediumBold,color:Colors.text}}>{item.ExamTitle?.substring(0, 20)}...</Text>
+<Text style={{...myFontStyle.mediumBold,color:Colors.text}}>{item.Title?.substring(0, 20)}...</Text>
 {/* <Image source={require('../../assets/images/RectangleRed.png')} style={{ height:responsiveHeight(10),width:5,marginLeft:responsiveWidth(-5),marginRight:responsiveWidth(3),marginBottom:responsiveHeight(0.5)}}/> */}
 </View>
     {/* </View> */}
@@ -124,14 +126,14 @@ console.log(ss)
            )
   )
 }
-    </View>
+    </ScrollView>
    )
    }
 
 
 
 return (
-<TopBar Classes={classes} />
+<TopBar Classes={classes} navigation={navigation}/>
 
 );
 };
