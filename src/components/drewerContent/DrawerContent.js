@@ -16,29 +16,46 @@ import {
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
 // import {getUserInfo,MutUserInfos,SetSignOut} from '../../api/graphql/requests/login';
-import { AsyncStorage } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import LinearGradient from 'react-native-linear-gradient';
+import { apiUrl ,apiAsset} from "../../commons/inFormTypes";
 
 
 // create a component
 const DrawerContent = ({ navigation }) => {
   const [Name,setName]=useState("User");
+  const [photo,setPhoto]=useState("");
   // const [phone,setPhone]=useState("");
-  // useEffect(() => {
-  //   // getDriverStatisticsList();
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, []);
+  useEffect(() => {
+    // getDriverStatisticsList();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    mutLogin()
+
+
+
+  }, []);
+  const  mutLogin=async()=> {
+    setName(await AsyncStorage.getItem('@userName'))
+    setPhoto(await AsyncStorage.getItem('@userPhoto'))
+    console.log(1111)
+    console.log(photo)
+  }
+  const  exit=async()=> {
+
+    AsyncStorage.setItem('@user',"")
+navigation.navigate('Login')
+  }
 
   const txtDarawerItem = [
     {id:1, title: "راهنمای استفاده از اپلیکیشن", icon: "lightbulb", navigateName: "About" },
     { id:2,title: "تیکت ها و پشتیبانی", icon: "textsms", navigateName: "TicketsList" },
-    {id:3, title: "تخفیف ها", icon: "people-alt", navigateName: "" },
+    // {id:3, title: "تخفیف ها", icon: "people-alt", navigateName: "" },
     // { title: Strings.inviteFriends, icon: invitefriends, navigateName: "" },
     {id:4, title: "درباره ما", icon: "people-alt", navigateName: "AboutUs" },
     {id:5, title: "تماس با ما", icon: "call", navigateName: "" },
-    {id:6, title: "قوانین و مقررات", icon: "sticky-note-2", navigateName: "" },
+    {id:6, title: "قوانین و مقررات", icon: "sticky-note-2", navigateName: "Rules" },
     {id:7, title: "به روز رسانی", icon: "cached", navigateName: "" },
-    { id:8,title: "خروج", icon: "exit", navigateName: "" },
+    { id:8,title: "خروج", icon: "login", navigateName: "" },
     // { title: Strings.signIn, icon: exit, navigateName: "" },
   ]
 
@@ -51,12 +68,12 @@ const DrawerContent = ({ navigation }) => {
 
     <TouchableOpacity
 key={item.id}
-      onPress={() =>  navigation.navigate(item.navigateName)}
+      onPress={() => item.id!=8? navigation.navigate(item.navigateName):exit()}
 
       style={drawerStyles.subBtn}>
 
 
-      <Icon color={Colors.black} name={"chevron-left"} size={responsiveFontSize(1.5)} />
+      <Icon color={Colors.black}  name={"chevron-left"} size={responsiveFontSize(1.5)} />
 
 
 
@@ -93,13 +110,28 @@ onPress={() => navigation.navigate('Profile')}
 
 
           {/* <Image style={drawerStyles.avatar} source={avatarWoman} /> */}
+          {
+  photo?
+          <Image style={drawerStyles.avatar} source={{uri:apiAsset+photo}} />
+
+          :
           <Image style={drawerStyles.avatar} source={require("../../assets/images/profi.png")} />
+
+          }
 
 </TouchableOpacity>
         </View>
+<TouchableOpacity style={{alignItems:"center"}} onPress={()=>navigation.navigate("EditProfile")}>
+{
+  Name?
 
-        <Text style={drawerStyles.txtTitle}>{Name}</Text>
+  <Text style={drawerStyles.txtTitle}>{Name}</Text>
+  :
+  <Text style={drawerStyles.txtTitle}>User</Text>
+
+}
         <Text style={drawerStyles.txtEdit}>ویرایش اطلاعات</Text>
+</TouchableOpacity>
       </View>
 
       <View style={drawerStyles.subViemItem}>

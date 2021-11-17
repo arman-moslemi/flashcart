@@ -51,7 +51,7 @@ export const TopBar = ({Classes,navigation}) => {
       <Text style={styles.menuTitle}>نوآوران دانش(ماهان)</Text>
       </View>
     <View style={{flex :0.5}}>
-      <TouchableOpacity style={{}}>
+      <TouchableOpacity onPress={()=>navigation.goBack()} style={{}}>
         <Icon name={"chevron-left"} color={"#fff"} size={30} style={{marginTop:10}}/>
       </TouchableOpacity>
       </View>
