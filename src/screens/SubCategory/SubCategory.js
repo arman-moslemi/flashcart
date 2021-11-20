@@ -96,7 +96,7 @@ import { apiUrl ,apiAsset} from "../../commons/inFormTypes";
         }
 
 return (
-    <TopBar Classes={classes}/>
+    <TopBar Classes={classes} navigation={navigation}/>
 
 );
 };
