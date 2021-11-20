@@ -15,6 +15,7 @@
    Text,
    useColorScheme,
    View,
+   I18nManager
  } from 'react-native';
  import { NavigationContainer } from '@react-navigation/native';
  import { createStackNavigator } from "@react-navigation/stack";
@@ -62,6 +63,8 @@ import {PersistGate} from 'redux-persist/integration/react';
 //  import {PersistGate} from 'redux-persist/integmration/react';
  const Stack = createStackNavigator();
  const Drawer = createDrawerNavigator();
+ I18nManager.forceRTL(true);
+
 
  const Tab = createMaterialBottomTabNavigator();
 

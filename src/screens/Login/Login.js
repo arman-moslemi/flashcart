@@ -1,5 +1,5 @@
 import React, { useState,useEffect } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, TextInput,Image,KeyboardAvoidingView } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, TextInput,Image,KeyboardAvoidingView ,I18nManager} from 'react-native';
 import { myFontStyle } from "../../assets/Constance";
 
 import { Colors } from '../../assets/Colors';
@@ -11,6 +11,8 @@ import { apiUrl ,apiAsset} from "../../commons/inFormTypes";
 
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+I18nManager.forceRTL(true);
+
 // create a component
  const Login = ({navigation}) => {
 const [user,setUser]=useState("");

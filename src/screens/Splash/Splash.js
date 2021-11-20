@@ -1,18 +1,21 @@
 //import liraries
 import React, { Component, useEffect,useState } from 'react';
-import { View, Text, StyleSheet, Image } from 'react-native';
+import { View, Text, StyleSheet, Image ,I18nManager} from 'react-native';
 import { responsiveWidth,res } from 'react-native-responsive-dimensions';
 // import Loading from '../../components/Loading';
 // import { ezan_vakti, myFontStyle } from '../../Constance';
 import { Colors } from '../../assets/Colors';
 // import { AsyncStorage } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
+import RNRestart from 'react-native-restart'; // Import package from node modules
 // create a component
 const SplashScreen = ({ navigation }) => {
   const [state,setState]=useState("");
+  I18nManager.forceRTL(true);
+
 
   const  mutLogin=async()=> {
+
     const state = await AsyncStorage.getItem("@user");
     // const us = await AsyncStorage.getItem("userID");
 
@@ -40,6 +43,9 @@ const SplashScreen = ({ navigation }) => {
 
     };
   useEffect(() => {
+    if (!I18nManager.isRTL) {
+      RNRestart.Restart();
+      }
     //BadgeAndroid.setBadge(10);
     //alert(state)
     //ShortcutBadge.setCount(28);

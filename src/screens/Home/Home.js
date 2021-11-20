@@ -102,7 +102,7 @@ return (
 
        </View>
     <View style={styles.bodyC}>
-    {/* <ViewSlider
+    <ViewSlider
         renderSlides = {
           <>
             <View style={styles.viewBox}>
@@ -122,7 +122,7 @@ return (
       dotsContainerStyle={styles.dotContainer}     // Container style of the pagination dots
       autoSlide = {true}    //The views will slide automatically
       slideInterval = {5000}    //In Miliseconds
-     /> */}
+     />
      <TouchableOpacity onPress={()=>navigation.navigate("MainCategory",{id:1})} style={styles.customRowC}>
      <Image source={{uri:apiAsset+pezeshki}} style={styles.image}/>
       <LinearGradient
