@@ -53,6 +53,7 @@ import AboutUs from './src/screens/About/AboutUs';
 import LitnearBoxCardList from './src/screens/Home/LitnearBoxCardList';
 import Favorite from './src/screens/UserPanel/Favorite';
 import Accounts from './src/screens/UserPanel/Accounts';
+import Dargah from './src/screens/UserPanel/Dargah';
 import TicketsList from './src/screens/Ticket/TicketsList';
 import Rules from './src/screens/Rules/Rules';
 import {store, persist} from './redux/stores/store';
@@ -81,19 +82,19 @@ shifting={false}
 >
 <Tab.Screen
    name="StackNavigatorsAzmoon" component={StackNavigatorsAzmoon}
-   options={{          tabBarLabel: '',    tabBarIcon: ({ color }) => (    <Icon name="person-outline" color={Colors.appColor} size={26} />         ),           }}      />
+   options={{          tabBarLabel: '',    tabBarIcon: ({ color }) => (    <Icon name="person-outline" color={Colors.appColor} size={30} />         ),           }}      />
 
    <Tab.Screen
    // name="home"
    name={"StackNavigatorsHome"}
    component={StackNavigatorsHome}
-   options={{          tabBarLabel: '',    tabBarIcon: ({ color }) => (            <Icon name="home" color={Colors.appColor} size={26} />          ),        }}      />
+   options={{          tabBarLabel: '',    tabBarIcon: ({ color }) => (            <Icon name="home" color={Colors.appColor} size={30} />          ),        }}      />
 
 <Tab.Screen
        // name="home"
        name={"LitnearBox"}
        component={LitnearBox}
-       options={{          tabBarLabel: '',          tabBarIcon: ({ color }) => (            <Icon name="how-to-vote" color={Colors.appColor} size={26} />          ),        }}      />
+       options={{          tabBarLabel: '',          tabBarIcon: ({ color }) => (            <Icon name="how-to-vote" color={Colors.appColor} size={30} />          ),        }}      />
 
 </Tab.Navigator>
   );
@@ -129,6 +130,7 @@ const StackNavigatorsHome = () => {
      <Stack.Screen name="FlashCardView" component={FlashCardView} />
      <Stack.Screen name="FlashCardSearch" component={FlashCardSearch} />
      <Stack.Screen name="FlashCardList" component={FlashCardList} />
+     <Stack.Screen name="EditProfile" component={EditProfile} />
 
      <Stack.Screen name="LitnearBoxCardList" component={LitnearBoxCardList}/>
      <Stack.Screen name="AboutUs" component={AboutUs} />
@@ -141,6 +143,7 @@ const StackNavigatorsHome = () => {
      <Stack.Screen name="TicketsList" component={TicketsList}/>
 
      <Stack.Screen name="MainCategory" component={MainCategory} />
+     <Stack.Screen name="Dargah" component={Dargah} />
 
      {/* <Stack.Screen name="MainTabScreen" component={MainTabScreen} /> */}
      {/* <Stack.Screen name="AzanPrayer" component={AzanPrayer} /> */}

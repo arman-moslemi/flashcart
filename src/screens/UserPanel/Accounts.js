@@ -13,7 +13,7 @@ import axios from 'axios';
 import { apiUrl ,apiAsset} from "../../commons/inFormTypes";
 import { RadioButton } from 'react-native-paper';
 // create a component
-const Favorite = ({navigation}) => {
+const Account = ({navigation}) => {
   const [checked, setChecked] = useState('first');
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState(null);
@@ -71,17 +71,17 @@ const Favorite = ({navigation}) => {
     </View>
 
     </View>
+<ScrollView>
 
 {
   data?.map((item)=>(
 <TouchableOpacity  style={styles.subViewRead}>
 
-<View style={{flexDirection:'row',justifyContent:'flex-start',width:responsiveWidth(75)}}>
-    <View>
-    <Text style={{...myFontStyle.normalBold,color:Colors.black,textAlign:'right',flexDirection:'column'}}>{item.Title?.substring(0, 20)}...</Text>
+<View style={{flexDirection:'row',justifyContent:'space-between',width:responsiveWidth(75)}}>
+    <Text style={{...myFontStyle.normalBold,color:Colors.black}}>{item.Title?.substring(0, 20)}...</Text>
 
-
-      </View>
+<Text style={{...myFontStyle.normalBold,color:Colors.gray}}>{item.Price}</Text>
+<Text style={{...myFontStyle.normalRegular,color:Colors.gray}}>تعدادروز:{item.Remaining}</Text>
 </View>
 
 
@@ -91,6 +91,8 @@ const Favorite = ({navigation}) => {
 
   </TouchableOpacity>
   ))}
+  </ScrollView>
+
 </View>
    )
    }
@@ -230,5 +232,5 @@ alignItems:'flex-end'
    }
 });
 
-  export default Favorite;
+  export default Account;
 

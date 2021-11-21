@@ -47,10 +47,10 @@ const EditProfile = ({navigation}) => {
           // console.log(response.data.DataSlider.Slider1);
           // console.log(response.data.DataSlider.Slider1);
           if(result == "true"){
-        setData(response.data.Data)
+        setData(response.data.Data);
         setName(response.data.Data[0].Name);
         setFamily(response.data.Data[0].Family);
-        setNational(response.data.Data[0].NationalCode);
+        setNational(response.data.Data[0].Nationalcode);
         setMobile(response.data.Data[0].Mobile);
 
                             }

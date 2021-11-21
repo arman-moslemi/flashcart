@@ -24,7 +24,7 @@ import ImgToBase64 from 'react-native-image-base64';
 // create a component
 const PanelMain = ({navigation}) => {
   const [modalVisible, setModalVisible] = useState(false);
-  const [checked, setChecked] = useState('first');
+  const [checked, setChecked] = useState('');
   const [data, setData] = useState([]);
   const [accunt, setAccunt] = useState([]);
   const [group, setGroup] = useState([]);
@@ -181,9 +181,10 @@ console.log(itemsAc)
 
   }
   const  getAccunts=(val)=> {
+     console.log(33);
      console.log(value);
 setValueAc(val)
-    axios.post(apiUrl+'Accounts',{GroupID:2})
+    axios.post(apiUrl+'Accounts',{GroupID:valueAc})
     .then(function (response) {
       const message = response.data.Data;
       const result = response.data.result;
@@ -398,7 +399,20 @@ tweenHandler={(ratio) => ({
               color={Colors.yellow}
 
             />
-            <Text style={styles.txtRadio}>{item.Title}{item.Cost}{item.Days}</Text>
+  {
+    item.SpecialCost!=0
+    ?
+    <View style={{flexDirection:'row'}}>
+
+      <Text style={styles.txtRadio}>{item.Title}     {item.Days}روز  </Text>
+      <Text style={styles.txtRadioDash}> {item.Cost}تومان </Text>
+      <Text style={styles.txtRadio}> {item.SpecialCost}تومان </Text>
+    </View>
+
+    :
+
+            <Text style={styles.txtRadio}>{item.Title}   {item.Cost}تومان    {item.Days}روز</Text>
+  }
             </View>
      ) )
   }
@@ -409,7 +423,7 @@ tweenHandler={(ratio) => ({
                     <LinearGradient colors={['#CC1111', '#F43535'] }start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={{borderRadius:3,padding:5}}>
 
 
-                      <TouchableOpacity onPress={()=>setModal2Visible()} >
+                      <TouchableOpacity onPress={()=>{setModal2Visible();setChecked("")}} >
                         <Text style={{...myFontStyle.btnBold,color:Colors.white,textAlign:'center'}}>بستن</Text>
                         </TouchableOpacity>
                         </LinearGradient>
@@ -419,7 +433,7 @@ tweenHandler={(ratio) => ({
                    <LinearGradient colors={['#3AC3FE', '#0284BB'] }start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={{borderRadius:3,padding:5}}>
 
 
-          <TouchableOpacity style={{}}>
+          <TouchableOpacity onPress={()=>checked!=""?navigation.navigate("Dargah",{id:checked}):alert("یک مورد را انتخاب نمائید")} style={{}}>
           <Text style={{...myFontStyle.btnBold,color:Colors.white,textAlign:'center'}}>ادامه </Text>
           </TouchableOpacity>
           </LinearGradient>
@@ -733,9 +747,20 @@ textInputLogin:{
 alignItems:'flex-end'
 
   }
-  ,txtRadio: {
+  ,
+  txtRadio: {
     color: Colors.text,
     ...myFontStyle.mediumRegular,
+    // lineHeight:responsiveHeight(3)
+
+  },
+  txtRadioDash: {
+    color: Colors.text,
+    ...myFontStyle.mediumRegular,
+    textDecorationLine:'line-through',
+
+
+    // borderStyle:'dashed'
     // lineHeight:responsiveHeight(3)
 
   },

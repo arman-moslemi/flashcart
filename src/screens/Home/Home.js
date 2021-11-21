@@ -1,5 +1,5 @@
 import React, { useState,useEffect,useRef } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, TextInput,Image, AsyncStorage ,I18nManager} from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, TextInput,Image, AsyncStorage ,I18nManager,Pressable} from 'react-native';
 import { myFontStyle } from "../../assets/Constance";
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
@@ -102,7 +102,7 @@ return (
 
        </View>
     <View style={styles.bodyC}>
-    <ViewSlider
+    {/* <ViewSlider
         renderSlides = {
           <>
             <View style={styles.viewBox}>
@@ -122,7 +122,7 @@ return (
       dotsContainerStyle={styles.dotContainer}     // Container style of the pagination dots
       autoSlide = {true}    //The views will slide automatically
       slideInterval = {5000}    //In Miliseconds
-     />
+     /> */}
      <TouchableOpacity onPress={()=>navigation.navigate("MainCategory",{id:1})} style={styles.customRowC}>
      <Image source={{uri:apiAsset+pezeshki}} style={styles.image}/>
       <LinearGradient
@@ -139,6 +139,7 @@ return (
       <Image
       //  source={require('../../assets/images/pezeshkiLogo.png')}
        source={require('../../assets/images/pezeshkiLogo.png')}
+       onPress={()=>navigation.navigate("MainCategory",{id:1})}
       style={styles.logoAbsolute}/>
       <Text style={styles.textOverlay}>پزشکی</Text>
      </TouchableOpacity>
