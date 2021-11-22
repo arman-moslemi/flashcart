@@ -11,6 +11,8 @@ import {Button} from '../../components/Button';
 import DrawerContent from '../../components/drewerContent/DrawerContent';
 import Drawer from 'react-native-drawer'
 import { ScrollView } from 'react-native-gesture-handler';
+import { apiUrl ,apiAsset} from "../../commons/inFormTypes";
+import axios from 'axios';
 
 // create a component
  const AboutUs = ({navigation}) => {
@@ -21,34 +23,36 @@ const [eror,SetEror]=useState(false);
 const [eror2,SetEror2]=useState(false);
 const drawers = useRef(null);
 I18nManager.forceRTL(true);
+const [data,setData]=useState([]);
+
+useEffect(() => {
+
+  mutLogin();
 
 
-//       const  mutLogin=async()=> {
-//         setLoading(true);
-// if(user=="" || pass==""){
-//         alert("Please fill input")
-//         SetEror(true)
-// }
+}, []);
+const  mutLogin=async()=> {
+  axios.get(apiUrl+'AllMainGroup')
+  .then(function (response) {
+    const message = response.data;
+    const result = response.data.result;
+    console.log(result);
+    console.log(message);
 
-// else{
+    if(result == "true"){
+      setData(response.data.DataMaingroup)
 
-//         if((user=="user1"&&pass=="pass1")||(user=="user2"&&pass=="pass2")){
-//                 setLoading(false);
-// AsyncStorage.setItem("user","true")
-//                 navigation.navigate("MainPage")
-//         }
-// else{
-//         setLoading(false);
-//          SetEror2(true)
+      // navigation.navigate("ChangePass",{mobile:user,verify:response.data.Data})
+                      }else{
 
-
-
-// }
+    }
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
 
 
-// }
-
-//         };
+  };
 
 return (
   <Drawer
@@ -94,18 +98,28 @@ return (
 </View>
 <View style={styles.customRow2}>
        <View style={styles.logoBox}>
-           <Image source={require('../../assets/images/pezeshkiLogo.png')} style={styles.logoSize}/>
+           <Image source={require('../../assets/images/Flashcard.png')} style={styles.logoSize}/>
        </View>
        </View>
-<ScrollView style={{alignContent:'center',marginBottom:20}}>
+<ScrollView style={{alignContent:'center'}}>
 <View style={styles.aboutBox}>
+<View style={{flexDirection:'row',alignItems:'center'}}>
+  <View style={{flex: 1, height: 2, backgroundColor: '#ECEDEF'}}>
+
+  </View>
+  <View style={{width:responsiveScreenWidth(25),alignItems:'center'}}>
+    <Image source={require('../../assets/images/pezeshkiLogo.png')} style={{width:responsiveWidth(20),height:responsiveHeight(14)}}></Image>
+    </View>
+    <View style={{flex: 1, height: 2, backgroundColor: '#ECEDEF'}}>
+
+    </View>
+  </View>
 <View style={{flexDirection:'row'}}>
 <View style={{width:'100%'}}>
 <Text style={styles.questionText}>
-لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است
-لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است
-لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است
-              </Text>
+{  data[2]?.Description
+}
+ </Text>
   </View>
 </View>
 
@@ -114,7 +128,7 @@ return (
 
   </View>
   <View style={{width:responsiveScreenWidth(25),alignItems:'center'}}>
-    <Image source={require('../../assets/images/boardLogo.png')} style={{width:75,height:90}}></Image>
+    <Image source={require('../../assets/images/boardLogo.png')} style={{width:responsiveWidth(20),height:responsiveHeight(12)}}></Image>
     </View>
     <View style={{flex: 1, height: 2, backgroundColor: '#ECEDEF'}}>
 
@@ -123,10 +137,9 @@ return (
   <View style={{flexDirection:'row'}}>
 <View style={{width:'100%'}}>
 <Text style={styles.questionText}>
-لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است
-لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است
-لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است
-              </Text>
+{  data[0]?.Description
+}
+</Text>
   </View>
 </View>
 <View style={{flexDirection:'row',alignItems:'center'}}>
@@ -140,13 +153,13 @@ return (
 
     </View>
   </View>
+
   <View style={{flexDirection:'row'}}>
 <View style={{width:'100%'}}>
 <Text style={styles.questionText}>
-لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است
-لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است
-لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است
-  </Text>
+{  data[1]?.Description
+}
+</Text>
   </View>
 </View>
 </View>
@@ -184,12 +197,14 @@ customRow:{
   top:responsiveHeight(3),
   paddingRight:20,
   paddingLeft:20,
-},customRow2:{
-  flex:1, flexDirection:"row-reverse",
+}
+// customRow2:{
+//   flex:1, flexDirection:"row-reverse",
 
-  paddingRight:20,
-  paddingLeft:20,
-},customRowC:{
+//   paddingRight:20,
+//   paddingLeft:20,
+// }
+,customRowC:{
   flex:1, flexDirection:"row",
 
 
@@ -206,10 +221,8 @@ customRow:{
 },customRow2:{
   flex:1, flexDirection:"row-reverse",
   position:"absolute",
-  top:responsiveHeight(13),
-  left:responsiveWidth(33.5),
-  paddingRight:20,
-  paddingLeft:20,
+  top:responsiveHeight(11),
+  alignSelf:'center'
 }
 ,questionText:{
   ...myFontStyle.normalRegular,
@@ -231,20 +244,22 @@ marginRight:10,
   ...myFontStyle.largBold,
   marginTop:responsiveHeight(1),
 },logoSize:{
-  width:90,height:120,
+  width:responsiveWidth(25),height:responsiveHeight(12),
 
 }, aboutBox:{
   backgroundColor:'#fff',
   borderRadius:3,
 alignSelf:'center',
-height: Dimensions.get('window').height/0.8,
+// height: Dimensions.get('window').height/0.8,
+marginBottom:10,
+paddingTop:10,
   width:responsiveWidth(90),
   shadowColor: '#DEE0E3',
     shadowOpacity: 0.01,
     shadowOffset: { width: 20, height: 2},
     shadowRadius: 1000,
     elevation: 8,
-    marginTop:responsiveHeight(12),
+    marginTop:responsiveHeight(7),
 },
 
 

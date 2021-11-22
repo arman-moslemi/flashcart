@@ -1,6 +1,6 @@
 //import liraries
 import React, { Component, useEffect,useState } from 'react';
-import { View, Text, StyleSheet, Image ,I18nManager} from 'react-native';
+import { View, Text, StyleSheet, Image ,I18nManager,Alert} from 'react-native';
 // import { responsiveWidth,res } from 'react-native-responsive-dimensions';
 // import { View, Text, StyleSheet, Image } from 'react-native';
 import { responsiveWidth,res, responsiveHeight } from 'react-native-responsive-dimensions';
@@ -11,11 +11,11 @@ import { Colors } from '../../assets/Colors';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import RNRestart from 'react-native-restart'; // Import package from node modules
 import LinearGradient from 'react-native-linear-gradient';
+import NetInfo  from "@react-native-community/netinfo";
 // create a component
 const SplashScreen = ({ navigation }) => {
   const [state,setState]=useState("");
   I18nManager.forceRTL(true);
-
 
   const  mutLogin=async()=> {
 
@@ -46,9 +46,25 @@ const SplashScreen = ({ navigation }) => {
 
     };
   useEffect(() => {
+  //   NetInfo.fetch().then(state => {
+  //     console.log("Connection type", state.type);
+  //     console.log("Is connected?", state.isConnected);
+  //     Alert.alert("","اینترنت را بررسی کنید")
+  // });
+  const unsubscribe = NetInfo.addEventListener(state => {
+  !state.isConnected?
+  Alert.alert("","اینترنت را بررسی کنید")
+  :
+null
+});
+
+// Unsubscribe
+unsubscribe();
+
     if (!I18nManager.isRTL) {
       RNRestart.Restart();
       }
+
     //BadgeAndroid.setBadge(10);
     //alert(state)
     //ShortcutBadge.setCount(28);
@@ -69,10 +85,10 @@ const SplashScreen = ({ navigation }) => {
 
     <View  style={styles.container} >
       {/* <Loading icon={require("./assets/images/laoding/ezan-vakti.json")} size={60} marginTop={60} /> */}
-      <LinearGradient  colors={['#16B2F5', '#16B2F5']} start={{ x: 0, y: 0 }}  end={{ x: 1, y:1}} style={{height:responsiveHeight(100),width:responsiveWidth(100),justifyContent: 'center',
+      <LinearGradient  colors={['#fff', '#fff']} start={{ x: 0, y: 0 }}  end={{ x: 1, y:1}} style={{height:responsiveHeight(100),width:responsiveWidth(100),justifyContent: 'center',
     alignItems: 'center'}}>
 
-    <Image source={require('../../assets/images/pezeshkiLogo.png')}></Image>
+    <Image style={{width:responsiveWidth(40),height:responsiveHeight(20)}} source={require('../../assets/images/Flashcard.png')}></Image>
       </LinearGradient>
       </View>
   );

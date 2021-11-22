@@ -100,7 +100,7 @@ const _render = (item, index) => {
           keyExtractor={keyExtractor}
           data={data}
           renderItem={_render}
-          style={{marginTop:responsiveHeight(1),marginBottom:responsiveHeight(20)}}
+          style={{marginTop:responsiveHeight(1),marginBottom:responsiveHeight(1)}}
                     // ListFooterComponent={listFooter}
           // onEndReached={fetchNextCharityPage}
         />

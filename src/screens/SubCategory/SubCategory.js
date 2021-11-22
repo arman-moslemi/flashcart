@@ -85,7 +85,7 @@ import { apiUrl ,apiAsset} from "../../commons/inFormTypes";
           keyExtractor={keyExtractor}
           data={data}
           renderItem={_render}
-          style={{marginTop:responsiveHeight(6),marginLeft:responsiveWidth(2),marginBottom:responsiveHeight(20)}}
+          style={{marginTop:responsiveHeight(4),marginLeft:responsiveWidth(2),marginBottom:responsiveHeight(20)}}
                     // ListFooterComponent={listFooter}
           // onEndReached={fetchNextCharityPage}
         />
@@ -109,9 +109,10 @@ const styles = StyleSheet.create({
       },
   container: {flex:3,backgroundColor:"#FAFAFB"},
   pageHeader:{
-      ...myFontStyle.mediumBold,
+      ...myFontStyle.UltraBold,
       color:'#0384BC',
-      fontSize:responsiveFontSize(4)
+      marginLeft:responsiveWidth(3)
+
   }
   ,pageBody:{
       paddingTop:responsiveHeight(2),
@@ -122,9 +123,9 @@ const styles = StyleSheet.create({
 
 
 innerText:{
-    ...myFontStyle.textOnImg,
+    ...myFontStyle.largBold,
     color:'#007FB5',
-    fontSize:responsiveFontSize(2),
+    // fontSize:responsiveFontSize(2),
 },miniBox:{
     backgroundColor:'#fff',
 
@@ -133,7 +134,7 @@ innerText:{
 },col1Mini:{
     width:'48%',marginRight:'2%',
     flex:1,flexDirection:'column',
-  marginBottom:responsiveHeight(0.5),
+  marginBottom:responsiveHeight(2),
 },
 miniTouch:{
     backgroundColor:'#fff',

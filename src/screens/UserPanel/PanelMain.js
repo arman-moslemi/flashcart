@@ -1,5 +1,5 @@
 import React, { useState,useEffect,useRef } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, TextInput,Image } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, TextInput,Image,Alert} from 'react-native';
 import { myFontStyle } from "../../assets/Constance";
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
@@ -93,7 +93,7 @@ if(result=="true"){
   AsyncStorage.setItem('@userPhoto',response.data.Data[0].Photo.toString())
 
   console.log(response.data.result);
-  alert('عکس با موقیت ثبت شد')
+  Alert.alert("",'عکس با موقیت ثبت شد')
 }
 
 
@@ -277,10 +277,10 @@ setValueAc(val)
             // console.log(response.data.DataSlider.Slider1);
             if(result == "true"){
           // setData(response.data.Data)
-          alert('با موفقیت اضافه شد')
+          Alert.alert("",'با موفقیت اضافه شد')
           setModalVisible(false)
                               }else{
-                                alert('تمام آیتم هارا وارد نمائید')
+                                Alert.alert("",'تمام آیتم هارا وارد نمایید')
 
             }
           })
@@ -373,7 +373,7 @@ tweenHandler={(ratio) => ({
         borderColor:'#F1F1F1',
         borderWidth:2,
         // margin:5,
-        width:responsiveWidth(30),
+        width:responsiveWidth(40),
 
       }}
       placeholder="انتخاب کنید"
@@ -433,7 +433,7 @@ tweenHandler={(ratio) => ({
                    <LinearGradient colors={['#3AC3FE', '#0284BB'] }start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={{borderRadius:3,padding:5}}>
 
 
-          <TouchableOpacity onPress={()=>checked!=""?navigation.navigate("Dargah",{id:checked}):alert("یک مورد را انتخاب نمائید")} style={{}}>
+          <TouchableOpacity onPress={()=>checked!=""?navigation.navigate("Dargah",{id:checked}): Alert.alert("","یک مورد را انتخاب نمایید")} style={{}}>
           <Text style={{...myFontStyle.btnBold,color:Colors.white,textAlign:'center'}}>ادامه </Text>
           </TouchableOpacity>
           </LinearGradient>

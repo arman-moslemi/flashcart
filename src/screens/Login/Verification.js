@@ -1,5 +1,5 @@
 import React, { useState,useEffect,useRef } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, TextInput,Image, AsyncStorage,KeyboardAvoidingView } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, TextInput,Image, AsyncStorage,KeyboardAvoidingView,Alert } from 'react-native';
 import { myFontStyle } from "../../assets/Constance";
 
 import { Colors } from '../../assets/Colors';
@@ -28,7 +28,7 @@ console.log(route)
       const  mutLogin=async()=> {
         setLoading(true);
 if(verify!=validCode){
-         alert("رمز نادرست می باشد")
+  Alert.alert("","رمز نادرست می باشد")
         SetEror(true);
         setLoading(false);
 
@@ -49,7 +49,7 @@ else{
     console.log(message);
     if(result == "true"){
       AsyncStorage.setItem("user","true")
-      alert("ثبت نام با موفقیت انجام شد")
+      Alert.alert("","ثبت نام با موفقیت انجام شد")
 
 
 
@@ -79,7 +79,7 @@ return (
       		</LinearGradient>
       	</View>
         <Image source={require('../../assets/images/verify.png')} style={styles.login}/>
-        <Text style={styles.loginTitle}>کد تائید ارسال شده را وارد نمائید</Text>
+        <Text style={styles.loginTitle}>کد تائید ارسال شده را وارد نمایید</Text>
         <View style={styles.loginView}>
           {/* <Input  isIconLeft={"phone-android"} placeholder="شماره تماس خود را وارد نمائید" containerStyle={styles.textInputLogin} onChangeText={(ss)=>setUser(ss)} /> */}
 

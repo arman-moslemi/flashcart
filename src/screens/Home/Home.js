@@ -22,6 +22,7 @@ const [slider3,setSlider3]=useState("");
 const [pezeshki,setpezeshki]=useState("");
 const [board,setBoard]=useState("");
 const [dandan,setDandan]=useState("");
+const [load,setLoad]=useState(true);
 
 const drawers = useRef(null);
 I18nManager.forceRTL(true);
@@ -40,6 +41,7 @@ useEffect(() => {
           console.log(response.data.DataSlider.Slider1);
           console.log(response.data.DataSlider.Slider1);
           if(result == "true"){
+
             setSlider1(response.data.DataSlider.Slider1)
             setSlider2(response.data.DataSlider.Slider2)
             setSlider3(response.data.DataSlider.Slider3)
@@ -47,6 +49,7 @@ useEffect(() => {
             setBoard(response.data.DataMaingroup[1].Photo)
             setDandan(response.data.DataMaingroup[2].Photo)
             console.log(apiAsset+slider1);
+            setLoad(true)
             // navigation.navigate("ChangePass",{mobile:user,verify:response.data.Data})
                             }else{
 
@@ -101,8 +104,11 @@ return (
               </View>
 
        </View>
+      {
+        load?
+
     <View style={styles.bodyC}>
-    {/* <ViewSlider
+    <ViewSlider
         renderSlides = {
           <>
             <View style={styles.viewBox}>
@@ -122,7 +128,7 @@ return (
       dotsContainerStyle={styles.dotContainer}     // Container style of the pagination dots
       autoSlide = {true}    //The views will slide automatically
       slideInterval = {5000}    //In Miliseconds
-     /> */}
+     />
      <TouchableOpacity onPress={()=>navigation.navigate("MainCategory",{id:1})} style={styles.customRowC}>
      <Image source={{uri:apiAsset+pezeshki}} style={styles.image}/>
       <LinearGradient
@@ -183,6 +189,9 @@ return (
      </View>
 
     </View>
+        :
+        null
+      }
 
 
 

@@ -135,7 +135,7 @@ tweenHandler={(ratio) => ({
           keyExtractor={keyExtractor}
           data={data}
           renderItem={_render}
-          style={{marginTop:responsiveHeight(6),marginLeft:responsiveWidth(2),marginBottom:responsiveHeight(20)}}
+          style={{marginTop:responsiveHeight(7),marginLeft:responsiveWidth(2),marginBottom:responsiveHeight(20)}}
                     // ListFooterComponent={listFooter}
           // onEndReached={fetchNextCharityPage}
         />
@@ -229,7 +229,7 @@ customRow:{
     // paddingRight:20,
     // paddingLeft:20,
   },logoSize:{
-     width:responsiveWidth(22.5),height:responsiveHeight(15),
+     width:responsiveWidth(24),height:responsiveHeight(16),
 
   },categoryColImg:{
       width:'95%',
@@ -247,9 +247,9 @@ customRow:{
       position:'absolute',
       bottom:responsiveHeight(0),
   },bottomBoxText:{
-      fontFamily:'IRANSansBold',
+      // fontFamily:'IRANSansBold',
       color:'#fff',
-      fontSize:20,
+      ...myFontStyle.largBold,
       textAlign:'center',
   }
   });

@@ -1,5 +1,5 @@
 import React, { useState,useEffect,useRef } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, TextInput,Image } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, TextInput,Image,Alert } from 'react-native';
 import { myFontStyle } from "../../assets/Constance";
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import Modal from 'react-native-modal';
@@ -25,9 +25,11 @@ import Player from "../../components/Player";
 import axios from 'axios';
 import { apiUrl ,apiAsset} from "../../commons/inFormTypes";
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
+import DrawerContent from '../../components/drewerContent/DrawerContent';
+import Drawer from 'react-native-drawer';
 // create a component
  const FlashCardView = ({navigation,route}) => {
+  const drawers = useRef(null);
 
     const [isModalVisible, setModalVisible] = useState(false);
     const [sound, setSound] = useState(false);
@@ -182,7 +184,7 @@ if(response.data.Data[0].PhotoAnswer){
           console.log(message)
 
           if(result == "true"){
-   alert("با موفقیت ثبت شد")
+            Alert.alert("","با موفقیت ثبت شد")
    goto()
     //  navigation.navigate("FlashCardView",{id:id,first:first,last:last})
   }
@@ -201,19 +203,23 @@ if(response.data.Data[0].PhotoAnswer){
           console.log(rateNum)
 
 
-          axios.post(apiUrl + 'ChangeFlashCard',{FlashCardID:id,Type:type})
+          axios.post(apiUrl + 'ChangeFlashCard',{FlashCardID:ids,Type:type})
           .then(function (response) {
             const message = response.data.Data;
             const result = response.data.result;
             console.log(222);
             console.log(result);
             console.log(message)
-
+if(result=="duplicate"){
+  Alert.alert("",message)
+}
             if(result == "true"){
     //  alert("با موفقیت ثبت شد")
       //  navigation.navigate("FlashCardView",{id:id,first:first,last:last})
       if(type=="next")
-{      setID(response.data.Data.FlashCardID)
+{
+
+  setID(response.data.Data.FlashCardID)
   setModalVisible(false)
 }
 else{
@@ -246,7 +252,7 @@ else{
               console.log(message)
 
               if(result == "true"){
-        alert("با موفقیت اضافه شد")
+                Alert.alert("","با موفقیت اضافه شد")
         //  navigation.navigate("FlashCardView",{id:id,first:first,last:last})
 
   }
@@ -274,7 +280,7 @@ else{
                 console.log(message)
 
                 if(result == "true"){
-          alert("با موفقیت اضافه شد")
+                  Alert.alert("","با موفقیت اضافه شد")
           setModalVisible2(false)
           //  navigation.navigate("FlashCardView",{id:id,first:first,last:last})
 
@@ -432,8 +438,8 @@ else{
                     type='star'
                     ratingCount={5}
                     imageSize={40}
-                    showRating
-
+                    // showRating
+                    startingValue={0}
                     ratingTextColor={'#fff'}
                     ratingColor={'#FFC444'}
                     onFinishRating={(ss)=>setRateNum(ss)}
@@ -557,9 +563,16 @@ fullscreen={true}
 
 }
            <View>
+             {
+               isPhotoAns || data[0]?.TextAnswer || soundAns || videoAns?
+
            <TouchableOpacity onPress={()=>setAnswer(!answer)} style={styles.seeAnswerBtn} >
               <Text style={styles.seeAnswer}>مشاهده پاسخ</Text>
             </TouchableOpacity>
+               :
+null
+             }
+
            </View>
             </View>
 
@@ -686,13 +699,13 @@ fullscreen={true}
            <Modal isVisible={isModalVisible2} onBackdropPress={closeModal2} style={{justifyContent:'center',alignItems:'center'}}>
                 <View style={styles.rateModal}>
                   <Text style={styles.modalTitle2}>جهت افزودن به جعبه لایتنر،درجه سختی کارت را انتخاب نمایید.</Text>
-                <View style={styles.boxRow}>
+                {/* <View style={styles.boxRow}>
                   <Box1 style={styles.inlineBox} />
                   <Box2 style={styles.inlineBox}/>
                   <Box3 style={styles.inlineBox}/>
                   <Box4 style={styles.inlineBox}/>
                   <Box5 style={styles.inlineBox}/>
-                </View>
+                </View> */}
                 <View style={{flexDirection:'row',marginTop:responsiveHeight(2)}}>
                 <View style={{flexDirection:'row',alignItems:'center'}}>
                 <Text style={styles.modalTitle2}>درجه سختی این کارت:</Text>
@@ -761,13 +774,424 @@ fullscreen={true}
       }
 return (
 
-  <TopBar Classes={classes} navigation={navigation}/>
+  // <TopBar Classes={classes} navigation={navigation}/>
+  <Drawer
+  // type="static"
+  type="overlay"
+  acceptDoubleTap ={true}
+      ref={drawers}
+      content={<DrawerContent navigation={navigation}/>}
+      tapToClose={true}
+openDrawerOffset={0.4} // 20% gap on the right side of drawer
+panCloseMask={0.2}
+closedDrawerOffset={-3}
+styles={styles.drawerStyles}
+tweenHandler={(ratio) => ({
+  main: { opacity:(2-ratio)/2 }
+})}
+      >
+            <View >
+
+
+
+<LinearGradient colors={['#16B2F5', '#007FB5']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={{height:55}}>
+
+  </LinearGradient>
+
+
+<View style={styles.customRow}>
+<View style={{paddingLeft:20}} >
+ <TouchableOpacity onPress={()=>drawers.current.open()}>
+ <Icon name={"notes"}  size={50} color={"#fff"} style={{transform: [{rotateY: '180deg'}]}}/>
+
+ </TouchableOpacity>
+ </View>
+<View style={{flex : 2,textAlign:"right"}}>
+  <Text style={styles.menuTitle}>نوآوران دانش(ماهان)</Text>
+  </View>
+<View style={{flex :0.5}}>
+  <TouchableOpacity style={{}}>
+    <Icon name={"chevron-left"} color={"#fff"} size={30} style={{marginTop:10}}/>
+  </TouchableOpacity>
+  </View>
+
+</View>
+
+
+</View>
+<ScrollView style={styles.container}>
+        <View style={{padding:10,flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',}}>
+            <View style={styles.flashCardBox}>
+            <View style={styles.yellowBox}>
+            <TouchableOpacity style={{flexDirection:"row",justifyContent:'center',alignItems:'center'}}  onPress={()=>toggleModal("next")}>
+                  <Icon name={"chevron-right"} color={'#fff'} size={30} ></Icon>
+                  <Text style={styles.nextBtnText}>بعدی</Text>
+              </TouchableOpacity>
+              <Modal isVisible={isModalVisible} onBackdropPress={closeModal} style={{justifyContent:'center',alignItems:'center'}}>
+                <View style={styles.rateModal}>
+                  <Text style={styles.modalTitle}>نظر خود را راجع به این سوال ثبت نمایید.</Text>
+
+                  <Rating
+                    type='star'
+                    ratingCount={5}
+                    imageSize={40}
+                    // showRating
+
+                    ratingTextColor={'#fff'}
+                    ratingColor={'#FFC444'}
+                    onFinishRating={(ss)=>setRateNum(ss)}
+                    style={{transform: [{rotateY: '180deg'}]}}
+                  />
+
+                  <View style={{flexDirection:'row',marginTop:responsiveHeight(3)}}>
+                    <View style={{width:'70%'}}>
+                    <LinearGradient colors={['#CC1111', '#F43535'] }start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={{borderRadius:3,padding:5}}>
+
+
+                      <TouchableOpacity onPress={()=>goto()} style={styles.notShowBtn}>
+                        <Text style={styles.modalBtnText}>تمایلی به ثبت نظر ندارم.</Text>
+                        </TouchableOpacity>
+                        </LinearGradient>
+                    </View>
+                    <View style={{width:'2%'}}></View>
+                   <View style={{width:'28%'}}>
+                   <LinearGradient colors={['#3AC3FE', '#0284BB'] }start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={{borderRadius:3,padding:5}}>
+
+
+          <TouchableOpacity onPress={()=>setRate()} style={styles.notShowBtn}>
+          <Text style={styles.modalBtnText}>ثبت نظر</Text>
+          </TouchableOpacity>
+          </LinearGradient>
+                    </View>
+                </View>
+                </View>
+              </Modal>
+              <TouchableOpacity style={styles.favoriteBtn} onPress={()=>favoriteInsert()}>
+                  <Icon name={"favorite-border"} size={40} color={'#ffc444'}></Icon>
+              </TouchableOpacity>
+              <TouchableOpacity style={{flexDirection:'row-reverse',alignItems:'center'}} onPress={()=>toggleModal("prev")}>
+                  <Icon name={"chevron-left"} color={'#fff'} size={30} ></Icon>
+                  <Text style={styles.nextBtnText}>قبلی</Text>
+              </TouchableOpacity>
+
+                          </View>
+            <View style={styles.textBoxCard}>
+            <Text style={styles.questionText}>
+            {/* لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است   */}
+            {data[0]?.Text}
+            </Text>
+
+            </View>
+              {
+                sound ?
+            <View style={{padding:responsiveWidth(5),alignItems:'center'}} >
+                <Player
+        // onNext={skipToNext}
+        style={{ marginTop: 10}}
+        // onPrevious={skipToPrevious}
+        onTogglePlayback={togglePlayback}
+        stop={stop}
+        isplay={isplay}
+      />
+                  </View>
+
+                :
+//               <TouchableOpacity onPress={()=>setSound(true)}>
+
+// <Icon name={"volume-up"} color={Colors.appColor} size={60} />
+//               </TouchableOpacity>
+null
+
+              }
+{
+  video?
+  <View style={{padding:responsiveWidth(4)}}>
+        <TouchableOpacity style={{flexDirection:'row',marginBottom:2}} onPress={()=>{vid.current. vid?.current?.stop();navigation.navigate('FlashCardVideo',{paths:apiAsset+data[0]?.Video})}}>
+              <Icon name={"crop-free"} color={Colors.yellow} size={20}/>
+              <Text style={{...myFontStyle.mediumBold,color:Colors.yellow}}>بزرگنمایی</Text>
+            </TouchableOpacity>
+  <VideoPlayer
+//             source={{
+//   uri: "https://www.example.com/video.mp4",
+//   headers: {
+//     Authorization: 'bearer some-token-value',
+//     'X-Custom-Header': 'some value'
+//   }
+// }}
+audioOnly={true}
+
+// videoWidth={2000}
+//     videoHeight={900}
+// source={require( "../../assets/images/mahmmod.mp4")}
+// video={require( "../../assets/images/mahmmod.mp4")}
+video={{uri:apiAsset+data[0]?.Video}}
+showDuration={true}
+fullScreenOnLongPress={true}
+fullscreen={true}
+
+// Can be a URL or a local file.
+      //  ref={(ref) => {
+      //    this.player = ref
+      //  }}
+       ref={vid}
+      //  resizeMode={"stretch"}
+
+      //  onBuffer={this.onBuffer}
+      //  onError={this.videoError}
+      // toggleResizeModeOnFullscreen={true}
+
+      //  style={styles.backgroundVideo}
+       />
+
+       </View>
+  :
+  null
+
+}
+
+{
+  isPhoto?
+  <View style={{padding:responsiveWidth(4),alignItems:'center'}}>
+
+   <Image source={{uri:apiAsset+data[0]?.Photo}} style={{width:responsiveWidth(70),height:responsiveHeight(50)}}/>
+
+       </View>
+  :
+  null
+
+}
+           <View>
+             {
+               isPhotoAns || data[0]?.TextAnswer || soundAns || videoAns?
+
+           <TouchableOpacity onPress={()=>setAnswer(!answer)} style={styles.seeAnswerBtn} >
+              <Text style={styles.seeAnswer}>مشاهده پاسخ</Text>
+            </TouchableOpacity>
+               :
+null
+             }
+
+           </View>
+            </View>
+
+        </View>
+{
+  answer?
+<View style={{padding:10,flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',}}>
+            <View style={styles.flashCardBox2}>
+            <View style={styles.yellowBox}>
+              <View style={{width:responsiveWidth(90),height:5}}>
+
+                 <Text style={styles.answerTitle}>پاسخ</Text>
+
+              </View>
+
+
+            </View>
+            <View style={styles.textBoxCard}>
+            <Text style={styles.questionText}>
+            {/* لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است   */}
+{data[0]?.TextAnswer}
+
+</Text>
+            </View>
+            {
+                soundAns ?
+            <View style={{padding:responsiveWidth(5),alignItems:'center'}} >
+                <Player
+        // onNext={skipToNext}
+        style={{ marginTop: 10}}
+        // onPrevious={skipToPrevious}
+        onTogglePlayback={togglePlaybackAnswer}
+        stop={stopAnswer}
+        isplay={isplayAns}
+      />
+                  </View>
+
+                :
+//               <TouchableOpacity onPress={()=>setSound(true)}>
+
+// <Icon name={"volume-up"} color={Colors.appColor} size={60} />
+//               </TouchableOpacity>
+null
+
+              }
+{
+  videoAns?
+  <View style={{padding:responsiveWidth(4)}}>
+        <TouchableOpacity style={{flexDirection:'row',marginBottom:2}} onPress={()=>{vid.current. vid?.current?.stop();navigation.navigate('FlashCardVideo',{paths:apiAsset+data[0]?.VideoAnswer})}}>
+              <Icon name={"crop-free"} color={Colors.yellow} size={20}/>
+              <Text style={{...myFontStyle.mediumBold,color:Colors.yellow}}>بزرگنمایی</Text>
+            </TouchableOpacity>
+  <VideoPlayer
+//             source={{
+//   uri: "https://www.example.com/video.mp4",
+//   headers: {
+//     Authorization: 'bearer some-token-value',
+//     'X-Custom-Header': 'some value'
+//   }
+// }}
+audioOnly={true}
+
+// videoWidth={2000}
+//     videoHeight={900}
+// source={require( "../../assets/images/mahmmod.mp4")}
+// video={require( "../../assets/images/mahmmod.mp4")}
+video={{uri:apiAsset+data[0]?.VideoAnswer}}
+showDuration={true}
+fullScreenOnLongPress={true}
+fullscreen={true}
+
+// Can be a URL or a local file.
+      //  ref={(ref) => {
+      //    this.player = ref
+      //  }}
+       ref={vidAnswer}
+      //  resizeMode={"stretch"}
+
+      //  onBuffer={this.onBuffer}
+      //  onError={this.videoError}
+      // toggleResizeModeOnFullscreen={true}
+
+      //  style={styles.backgroundVideo}
+       />
+
+       </View>
+  :
+  null
+
+}
+
+{
+  isPhotoAns?
+  <View style={{padding:responsiveWidth(4),alignItems:'center'}}>
+
+   <Image source={{uri:apiAsset+data[0]?.PhotoAnswer}} style={{width:responsiveWidth(70),height:responsiveHeight(50)}}/>
+
+       </View>
+  :
+  null
+
+}
+            <View>
+           {/* <TouchableOpacity style={styles.seeAnswerBtn}>
+              <Text style={styles.seeAnswer}>توضیح بیشتر</Text>
+            </TouchableOpacity> */}
+           </View>
+            </View>
+
+        </View>
+  :
+  null
+}
+
+        <View style={{padding:responsiveWidth(5),flexDirection:'row',justifyContent:'space-between'}}>
+           <TouchableOpacity  style={styles.returnFirst}
+            onPress={toggleModal2}>
+           <Icon name={"add"} color={'#3AC3FE'} size={20} ></Icon>
+           <Text style={styles.addLitnearText}>افزودن به جعبه لایتنر</Text>
+
+
+           <Modal isVisible={isModalVisible2} onBackdropPress={closeModal2} style={{justifyContent:'center',alignItems:'center'}}>
+                <View style={styles.rateModal}>
+                  <Text style={styles.modalTitle2}>جهت افزودن به جعبه لایتنر،درجه سختی کارت را انتخاب نمایید.</Text>
+                {/* <View style={styles.boxRow}>
+                  <Box1 style={styles.inlineBox} />
+                  <Box2 style={styles.inlineBox}/>
+                  <Box3 style={styles.inlineBox}/>
+                  <Box4 style={styles.inlineBox}/>
+                  <Box5 style={styles.inlineBox}/>
+                </View> */}
+                <View style={{flexDirection:'row',marginTop:responsiveHeight(2)}}>
+                <View style={{flexDirection:'row',alignItems:'center'}}>
+                <Text style={styles.modalTitle2}>درجه سختی این کارت:</Text>
+                <DropDownPicker
+      open={open}
+      value={value}
+      items={items}
+      setOpen={setOpen}
+      setValue={setValue}
+      setItems={setItems}
+      // width={100}
+      style={{
+        borderColor:'#F1F1F1',
+        borderWidth:2,
+        // margin:5,
+        width:responsiveWidth(37)
+      }}
+      placeholder="انتخاب کنید"
+      zIndex={1000}
+      dropDownContainerStyle={{
+        borderColor:'#F1F1F1',
+        borderWidth:2,
+        width:responsiveWidth(37),
+
+      borderRadius:5}}
+    />
+                 </View>
+
+                   </View>
+                   <View style={{flexDirection:'row',marginTop:responsiveHeight(3)}}>
+                   <View style={{width:'42%'}}></View>
+                    <View style={{width:'28%'}}>
+                    <LinearGradient colors={['#CC1111', '#F43535'] }start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={{borderRadius:3,padding:5}}>
+
+
+                      <TouchableOpacity onPress={()=>          setModalVisible2(false)}
+                       style={styles.notShowBtn}>
+                        <Text style={styles.modalBtnText}>بستن</Text>
+                        </TouchableOpacity>
+                        </LinearGradient>
+                    </View>
+                    <View style={{width:'2%'}}></View>
+                   <View style={{width:'30%'}}>
+                   <LinearGradient colors={['#3AC3FE', '#0284BB'] }start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={{borderRadius:3,padding:5}}>
+
+
+          <TouchableOpacity onPress={()=>LitnearInsert()} style={styles.notShowBtn}>
+          <Text style={styles.modalBtnText}>افزودن به لایتنر</Text>
+          </TouchableOpacity>
+          </LinearGradient>
+                    </View>
+                </View>
+                </View>
+              </Modal>
+          </TouchableOpacity>
+           <TouchableOpacity onPress={()=>setID(first)} style={styles.returnFirst}>
+
+
+             <Text style={styles.returnText}>بازگشت به اولین سوال</Text>
+             <Icon name={"chevron-left"} color={'#3AC3FE'} size={20} ></Icon>
+
+           </TouchableOpacity>
+        </View>
+        </ScrollView>
+</Drawer>
 
 );
 };
 
 const styles = StyleSheet.create({
+  menuTitle:{
+    ...myFontStyle.largBold,
+        color:"#fff",
+        marginTop:responsiveHeight(1),
+      },
 
+      page: {
+      flexDirection: 'column',
+    },customRow:{
+      flex:1, flexDirection:"row",
+      position:"absolute",
+      top:responsiveHeight(0),
+      paddingRight:responsiveWidth(5),
+      paddingLeft:responsiveWidth(5),
+    },
+    drawerStyles: { shadowColor: '#000000', shadowOpacity: 0.8, shadowRadius: 3,zIndex:5},
   container: {flex:3,backgroundColor:"#FAFAFB"},
   flashCardBox:{
     backgroundColor:'#fff',

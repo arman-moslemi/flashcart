@@ -1,5 +1,5 @@
 import React, { useState,useEffect } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, TextInput,Image, AsyncStorage,KeyboardAvoidingView } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, TextInput,Image, AsyncStorage,KeyboardAvoidingView ,Alert} from 'react-native';
 import { myFontStyle } from "../../assets/Constance";
 
 import { Colors } from '../../assets/Colors';
@@ -44,7 +44,7 @@ else{
               console.log(result);
               console.log(message);
               if(result == "true"){
-                alert("باموفقیت انجام شد")
+                Alert.alert("","باموفقیت انجام شد")
                 navigation.navigate("Login")
                                 }else{
                                   setLoading(false);
@@ -75,10 +75,10 @@ return (
       		</LinearGradient>
       	</View>
         <Image source={require('../../assets/images/login.png')} style={styles.login}/>
-        <Text style={styles.loginTitle}>رمز عبور جدید خود را وارد نمائید</Text>
+        <Text style={styles.loginTitle}>رمز عبور جدید خود را وارد نمایید</Text>
         <View style={styles.loginView}>
           <Input isPassword={true}  placeholder="رمز عبور جدید" onChangeText={(ss)=>setPass1(ss)} ErrorText={eror?" ":eror2?" ":""} containerStyle={styles.textInputLogin} />
-          <Input isPassword={true} ErrorText={eror?"لطفا موارد را وارد نمائید":eror2?"رمز با تکرار تطابق ندارد":""} placeholder="تکرار رمز عبور" onChangeText={(ss)=>setPass2(ss)} containerStyle={styles.textInputLogin} />
+          <Input isPassword={true} ErrorText={eror?"لطفا موارد را وارد نمایید":eror2?"رمز با تکرار تطابق ندارد":""} placeholder="تکرار رمز عبور" onChangeText={(ss)=>setPass2(ss)} containerStyle={styles.textInputLogin} />
           <View style={{alignItems:'flex-end'}}>
 
         <Button

@@ -1,5 +1,5 @@
 import React, { useState,useEffect } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, TextInput,Image, AsyncStorage } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, TextInput,Image, AsyncStorage,Alert } from 'react-native';
 import { myFontStyle } from "../../assets/Constance";
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
@@ -46,7 +46,7 @@ const  Submit=async()=> {
     console.log(result);
 
     if(result == "true"){
-       alert("با موفقیت ثبت شد")
+      Alert.alert("","با موفقیت ثبت شد")
        navigation.navigate("AzmoonList",{id:12});
                       }
                       else{

@@ -77,8 +77,8 @@ return (
           <Input  isIconLeft={"person"} placeholder="نام خودرا وارد کنید" containerStyle={styles.textInputLogin} onChangeText={(ss)=>setUser(ss)} />
           <Input  isIconLeft={"person"} placeholder="نام خانوادگی خود را واردکنید" containerStyle={styles.textInputLogin} onChangeText={(ss)=>setFamily(ss)} />
           <Input  isIconLeft={"credit-card"} placeholder="کدملی خود را واردکنید" containerStyle={styles.textInputLogin} onChangeText={(ss)=>setNcode(ss)} />
-          <Input  isIconLeft={"phone-android"} placeholder="شماره تماس خود را وارد نمائید" containerStyle={styles.textInputLogin} onChangeText={(ss)=>setMobile(ss)} />
-          <Input isIconLeft={"remove-red-eye"} ErrorText={eror2?"لطفا موارد را صحیح وارد نمائید":""} placeholder="رمز عبور خود را را وارد نمائید" onChangeText={(ss)=>setPass(ss)} containerStyle={styles.textInputLogin} />
+          <Input  isIconLeft={"phone-android"} placeholder="شماره تماس خود را وارد نمایید" containerStyle={styles.textInputLogin} onChangeText={(ss)=>setMobile(ss)} />
+          <Input isIconLeft={"remove-red-eye"} ErrorText={eror2?"لطفا موارد را صحیح وارد نمایید":""} placeholder="رمز عبور خود را را وارد نمایید" onChangeText={(ss)=>setPass(ss)} containerStyle={styles.textInputLogin} />
           <View style={{alignItems:'flex-start'}}>
 
         <Button

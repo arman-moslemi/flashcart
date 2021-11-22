@@ -67,9 +67,9 @@ return (
       		</LinearGradient>
       	</View>
         <Image source={require('../../assets/images/login.png')} style={styles.login}/>
-        <Text style={styles.loginTitle}>شماره خود را وارد نمائید</Text>
+        <Text style={styles.loginTitle}>شماره خود را وارد نمایید</Text>
         <View style={styles.loginView}>
-          <Input  isIconLeft={"phone-android"} ErrorText={eror?"این شماره وجود ندارد":""}  placeholder="شماره تماس خود را وارد نمائید" containerStyle={styles.textInputLogin} onChangeText={(ss)=>setUser(ss)} />
+          <Input  isIconLeft={"phone-android"} ErrorText={eror?"این شماره وجود ندارد":""}  placeholder="شماره تماس خود را وارد نمایید" containerStyle={styles.textInputLogin} onChangeText={(ss)=>setUser(ss)} />
           <View style={{alignItems:'flex-end'}}>
 
         <Button

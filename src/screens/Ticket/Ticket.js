@@ -1,5 +1,5 @@
 import React, { useState,useEffect,useRef } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, TextInput,Image, AsyncStorage } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, TextInput,Image, AsyncStorage,Alert } from 'react-native';
 import { myFontStyle } from "../../assets/Constance";
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
@@ -67,7 +67,7 @@ console.log(text)
 
       if(result == "true"){
         // setData(response.data.Data)
-alert("با موفقیت اضافه شد")
+        Alert.alert("","با موفقیت اضافه شد")
 
          navigation.navigate("TicketsList")
                         }else{

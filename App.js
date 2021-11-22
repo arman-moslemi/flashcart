@@ -59,6 +59,7 @@ import Rules from './src/screens/Rules/Rules';
 import {store, persist} from './redux/stores/store';
 import {Provider} from 'react-redux';
 import {PersistGate} from 'redux-persist/integration/react';
+import { responsiveHeight, responsiveWidth } from 'react-native-responsive-dimensions';
 //  import {store, persist} from './store/redux/stores/store';
 //  import {Provider} from 'react-redux';
 //  import {PersistGate} from 'redux-persist/integmration/react';
@@ -74,7 +75,7 @@ const StackNavigatorsssss = () => {
   return (
 
    <Tab.Navigator
-   barStyle={{ backgroundColor: Colors.white }}
+   barStyle={{ backgroundColor: Colors.white,paddingRight:5 }}
 initialRouteName={"StackNavigatorsHome"}
 shifting={false}
 
@@ -82,19 +83,20 @@ shifting={false}
 >
 <Tab.Screen
    name="StackNavigatorsAzmoon" component={StackNavigatorsAzmoon}
-   options={{          tabBarLabel: '',    tabBarIcon: ({ color }) => (    <Icon name="person-outline" color={Colors.appColor} size={30} />         ),           }}      />
+   options={{          tabBarLabel: '',    tabBarIcon: ({ color }) => (    <Icon name="person-outline" color={Colors.appColor} style={{height:responsiveHeight(10),width:responsiveWidth(8)}} size={35} />         ),           }}      />
 
    <Tab.Screen
    // name="home"
    name={"StackNavigatorsHome"}
    component={StackNavigatorsHome}
-   options={{          tabBarLabel: '',    tabBarIcon: ({ color }) => (            <Icon name="home" color={Colors.appColor} size={30} />          ),        }}      />
+   options={{          tabBarLabel: null,  tabBarIcon: ({ color }) => (            <Icon name="home" color={Colors.appColor} style={{height:responsiveHeight(10),width:responsiveWidth(8)}} size={35} />          ),        }}      />
 
 <Tab.Screen
        // name="home"
        name={"LitnearBox"}
        component={LitnearBox}
-       options={{          tabBarLabel: '',          tabBarIcon: ({ color }) => (            <Icon name="how-to-vote" color={Colors.appColor} size={30} />          ),        }}      />
+
+       options={{          tabBarLabel: '',          tabBarIcon: ({ color }) => (            <Icon name="how-to-vote" color={Colors.appColor} style={{height:responsiveHeight(10),width:responsiveWidth(8)}} size={35} />          ),        }}      />
 
 </Tab.Navigator>
   );

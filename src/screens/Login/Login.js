@@ -73,7 +73,7 @@ console.log(545)
                  })
                                     }else{
                      setLoading(false);
-                     SetEror2(true)
+                     SetEror2(true);
                   }
                 })
                 .catch(function (error) {
@@ -106,8 +106,8 @@ return (
         <Image source={require('../../assets/images/login.png')} style={styles.login}/>
         <Text style={styles.loginTitle}>ورود به حساب کاربری</Text>
         <View style={styles.loginView}>
-          <Input  isIconLeft={"phone-android"} ErrorText={eror?" ":eror2?" ":""} placeholder="شماره تماس خود را وارد نمائید" inputStyle={{color:"#000"}} containerStyle={styles.textInputLogin} onChangeText={(ss)=>setUser(ss)} />
-          <Input isPassword={true} ErrorText={eror?"لطفا موارد را وارد نمائید":eror2?"نام کاربری یا رمز عبور درست نیست":""}  placeholder="رمز عبور خود را را وارد نمائید" onChangeText={(ss)=>setPass(ss)} containerStyle={styles.textInputLogin} />
+          <Input  isIconLeft={"phone-android"} ErrorText={eror?" ":eror2?" ":""} placeholder="شماره تماس خود را وارد نمایید" inputStyle={{color:"#000"}} containerStyle={styles.textInputLogin} onChangeText={(ss)=>setUser(ss)} />
+          <Input isPassword={true} ErrorText={eror?"لطفا موارد را وارد نمایید":eror2?"نام کاربری یا رمز عبور درست نیست":""}  placeholder="رمز عبور خود را را وارد نمایید" onChangeText={(ss)=>setPass(ss)} containerStyle={styles.textInputLogin} />
           <View style={{alignItems:'flex-start'}}>
 <TouchableOpacity onPress={()=>  navigation.navigate("ForgetPass")} style={styles.ViewFooter}>
 

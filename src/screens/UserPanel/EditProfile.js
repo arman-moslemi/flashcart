@@ -1,5 +1,5 @@
 import React, { useState,useEffect,useRef } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, TextInput,Image } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, TextInput,Image,Alert } from 'react-native';
 import { myFontStyle } from "../../assets/Constance";
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
@@ -77,7 +77,7 @@ const EditProfile = ({navigation}) => {
             // console.log(response.data.DataSlider.Slider1);
             // console.log(response.data.DataSlider.Slider1);
             if(result == "true"){
-        alert("باموفقیت ثبت شد")
+              Alert.alert("","باموفقیت ثبت شد")
 
                               }
                               else{
