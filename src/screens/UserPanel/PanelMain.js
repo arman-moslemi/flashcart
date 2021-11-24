@@ -445,7 +445,7 @@ tweenHandler={(ratio) => ({
   }
 
 
-         <View style={{flexDirection:'row',justifyContent:'space-evenly',marginTop:responsiveHeight(3)}}>
+         <View style={{flexDirection:'row',justifyContent:'space-evenly',marginTop:responsiveHeight(10)}}>
                     <View style={{width:responsiveWidth(32)}}>
                     <LinearGradient colors={['#CC1111', '#F43535'] }start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={{borderRadius:3,padding:5}}>
 
