@@ -115,6 +115,7 @@ const StackNavigatorsAzmoon = () => {
      <Stack.Screen name="UserReport" component={UserReport} />
      <Stack.Screen name="Ticket" component={Ticket} />
      <Stack.Screen name="TicketsList" component={TicketsList}/>
+     <Stack.Screen name="Dargah" component={Dargah} />
 
 
    </Stack.Navigator>
@@ -145,7 +146,6 @@ const StackNavigatorsHome = () => {
      <Stack.Screen name="TicketsList" component={TicketsList}/>
 
      <Stack.Screen name="MainCategory" component={MainCategory} />
-     <Stack.Screen name="Dargah" component={Dargah} />
 
      {/* <Stack.Screen name="MainTabScreen" component={MainTabScreen} /> */}
      {/* <Stack.Screen name="AzanPrayer" component={AzanPrayer} /> */}

@@ -43,10 +43,12 @@ const Dargah = ({navigation,route}) => {
     />
 
       <Button
-           onPress={()=>     navigation.reset({
-                      index: 0,
-                      routes: [{ name: 'StackNavigatorsssss' }]
-                 })}
+          //  onPress={()=>     navigation.reset({
+          //             index: 0,
+          //             routes: [{ name: 'StackNavigatorsAzmoon' }]
+          //        })}
+
+                 onPress={()=>     navigation.navigate("PanelMain")}
             //   onPress={()=>mutLogin()}
 
 

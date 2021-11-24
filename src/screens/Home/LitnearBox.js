@@ -181,11 +181,14 @@ if(mm<1){
 
               axios.post(apiUrl+'TransferLitnear',{CustomerID:state,FlashCardID:data.FlashCardID,LitnearLevel:mm})
               .then(function (response) {
+
                 const message = response.data.Data;
                 const result = response.data.result;
                 console.log(result);
-                console.log(9999)
-                console.log(message)
+                console.log(data.FlashCardID);
+                console.log(mm);
+                console.log(44485);
+                console.log(message);
 
                 if(result == "true"){
 mutLogin();
@@ -465,9 +468,13 @@ fullscreen={true}
 
 }
            <View>
+           {
+               isPhotoAns || data[0]?.TextAnswer || soundAns || videoAns?
            <TouchableOpacity onPress={()=>setAnswer(!answer)} style={styles.seeAnswerBtn} >
               <Text style={styles.seeAnswer}>مشاهده پاسخ</Text>
             </TouchableOpacity>
+            :
+            null}
            </View>
             </View>
 
@@ -728,9 +735,9 @@ const styles = StyleSheet.create({
     borderStyle:"dashed",
     borderBottomWidth:2,
     borderBottomColor:'#ffc444',
+alignItems:'center',
 
-
-    width:responsiveWidth(26),
+    width:responsiveWidth(25),
     marginRight:responsiveWidth(3),
     marginTop:responsiveHeight(2),
     marginBottom:responsiveHeight(2),

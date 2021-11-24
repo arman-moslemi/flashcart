@@ -205,6 +205,33 @@ setValueAc(val)
     });
 
   }
+  const  checkAccount=async()=> {
+     console.log(33);
+     const state = await AsyncStorage.getItem("@user");
+    axios.post(apiUrl+'AccountCheck',{CustomerID:state,AccountID:checked})
+    .then(function (response) {
+      const message = response.data.Data;
+      const result = response.data.result;
+      console.log(22222222);
+      console.log(result);
+      console.log(message);
+
+if(result == "duplicate"){
+Alert.alert("این اشتراک برای شما هم اکنون فعال است")
+}
+     else if(result == "true"){
+    // setGroup(response.data.Data)
+    setModal2Visible(false)
+    navigation.navigate("Dargah",{id:checked})
+                          }else{
+
+      }
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+
+  }
   useEffect(() => {
 
     mutLogin();
@@ -343,7 +370,7 @@ tweenHandler={(ratio) => ({
 
 <View style={styles.viewBody}>
 <View style={styles.subViewBody}>
-<TouchableOpacity onPress={()=>setModal2Visible(true)} style={{marginRight:responsiveWidth(5)}}>
+<TouchableOpacity onPress={()=>setModal2Visible(true)} style={{marginRight:responsiveWidth(5),alignItems:'center'}}>
   <Text style={styles.txtEdit}>
     خرید اشتراک
   </Text>
@@ -433,7 +460,7 @@ tweenHandler={(ratio) => ({
                    <LinearGradient colors={['#3AC3FE', '#0284BB'] }start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={{borderRadius:3,padding:5}}>
 
 
-          <TouchableOpacity onPress={()=>checked!=""?navigation.navigate("Dargah",{id:checked}): Alert.alert("","یک مورد را انتخاب نمایید")} style={{}}>
+          <TouchableOpacity onPress={()=>checked!=""?checkAccount(): Alert.alert("","یک مورد را انتخاب نمایید")} style={{}}>
           <Text style={{...myFontStyle.btnBold,color:Colors.white,textAlign:'center'}}>ادامه </Text>
           </TouchableOpacity>
           </LinearGradient>
@@ -685,10 +712,14 @@ const styles = StyleSheet.create({
     color: Colors.white,
     ...myFontStyle.mediumRegular,
     borderWidth:1,
+    alignItems:'center',
+    alignContent:'center',
+    width:responsiveWidth(30),
     borderColor:Colors.white,
     borderRadius:50,
     paddingVertical:3,
-    paddingHorizontal:9,
+    // marginLeft:responsiveWidth(5),
+    paddingHorizontal:responsiveWidth(6),
     backgroundColor:Colors.yellow
 
   },
@@ -721,7 +752,8 @@ const styles = StyleSheet.create({
   ,alignItems:'flex-end',
   flexDirection:'row-reverse',
   justifyContent:'space-between',
-  paddingHorizontal:responsiveWidth(5),
+  paddingLeft:responsiveWidth(0),
+  paddingRight:responsiveWidth(3),
   paddingBottom:responsiveHeight(2)},
   subViewRead:{
     backgroundColor:"#fff",

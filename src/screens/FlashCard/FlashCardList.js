@@ -14,6 +14,7 @@ import {Input} from '../../components/Input';
 import { Button } from '../../components/Button';
 import axios from 'axios';
 import { apiUrl ,apiAsset} from "../../commons/inFormTypes";
+import TrackPlayer, { usePlaybackState } from "react-native-track-player";
 
 // create a component
 const FlashCardList = ({navigation,route}) => {
@@ -25,7 +26,6 @@ const FlashCardList = ({navigation,route}) => {
 
 const [data,setData]=useState([]);
 useEffect(() => {
-
   mutLogin();
 
 
@@ -33,6 +33,8 @@ useEffect(() => {
 const {id} = route?.params ?? {};
 
 const  mutLogin=async()=> {
+  await TrackPlayer.destroy()
+
   axios.post(apiUrl+'CategoryFlashCard',{SubGroupID:id})
   .then(function (response) {
     const message = response.data.Data;

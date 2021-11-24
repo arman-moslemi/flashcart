@@ -48,7 +48,7 @@ import Drawer from 'react-native-drawer';
     const {id,first,last} = route?.params ?? {};
     const [ids,setID]=useState(id);
     const [ids2,setID2]=useState(id);
-    const [type,setType]=useState(id);
+    const [type,setType]=useState("next");
     const [time, setTime] = useState(0);
     useEffect(() => {
 // setID(id)
@@ -130,7 +130,7 @@ setStudy();
       setSoundAns(false)
       setVideoAns(false)
       setPhotoAns(false)
-
+      // await AsyncStorage.setItem("@userTamayol","true");
       axios.post(apiUrl+'OneFlashCard',{FlashCardID:mm})
       .then(function (response) {
         const message = response.data.Data;
@@ -185,7 +185,7 @@ if(response.data.Data[0].PhotoAnswer){
 
           if(result == "true"){
             Alert.alert("","با موفقیت ثبت شد")
-   goto()
+   goto(type)
     //  navigation.navigate("FlashCardView",{id:id,first:first,last:last})
   }
                           else{
@@ -199,11 +199,15 @@ if(response.data.Data[0].PhotoAnswer){
 
         };
 
-        const  goto=()=> {
-          console.log(rateNum)
+        const  goto=async(dd)=> {
+          // console.log(rateNum)
+          console.log(777)
+          console.log(ids)
+          console.log(dd)
+          console.log(type)
 
-
-          axios.post(apiUrl + 'ChangeFlashCard',{FlashCardID:ids,Type:type})
+          await TrackPlayer.destroy();
+          axios.post(apiUrl + 'ChangeFlashCard',{FlashCardID:ids,Type:dd})
           .then(function (response) {
             const message = response.data.Data;
             const result = response.data.result;
@@ -216,7 +220,7 @@ if(result=="duplicate"){
             if(result == "true"){
     //  alert("با موفقیت ثبت شد")
       //  navigation.navigate("FlashCardView",{id:id,first:first,last:last})
-      if(type=="next")
+      if(dd=="next")
 {
 
   setID(response.data.Data.FlashCardID)
@@ -238,6 +242,15 @@ else{
 
 
           };
+          const  tamayol=async()=> {
+            console.log(rateNum)
+        await AsyncStorage.setItem("@userTamayol","false");
+
+
+
+
+
+            };
           const  favoriteInsert=async()=> {
             console.log(rateNum)
             const state = await AsyncStorage.getItem("@user");
@@ -278,7 +291,11 @@ else{
                 console.log(222);
                 console.log(result);
                 console.log(message)
+                if(result == "duplicate"){
+                  Alert.alert("","این فلش کارت در لایتنر وجود دارد")
+                  setModalVisible2(false)
 
+                }
                 if(result == "true"){
                   Alert.alert("","با موفقیت اضافه شد")
           setModalVisible2(false)
@@ -311,6 +328,9 @@ else{
           artwork: "https://i.picsum.photos/id/500/200/200.jpg",
           // duration: 10
         });
+      //   TrackPlayer.updateOptions({
+      //     stopWithApp: true
+      // });
         await TrackPlayer.play();
       }
       else{
@@ -377,22 +397,30 @@ else{
     }
     async function stopAnswer() {
 if(isplayAns)
-       { await TrackPlayer.pause()
+       { await TrackPlayer.pause();
 setPlayAns(false)}
 else{
 
-  await TrackPlayer.play()
-  setPlayAns(true)
+  await TrackPlayer.play();
+  setPlayAns(true);
 }
 
       // }
     }
-    const toggleModal = (tt) => {
+    const toggleModal =async (tt) => {
 
-     setModalVisible(!isModalVisible);
-     setType(tt)
-     setStudy()
+      setType(tt)
+      setStudy()
+      const state = await AsyncStorage.getItem("@userTamayol");
 
+      if(state=="false")
+      {
+goto(tt);
+      }
+      else{
+        setModalVisible(!isModalVisible);
+
+      }
     };
 
     const closeModal = ()=>{
@@ -419,359 +447,7 @@ else{
       {label: 'خیلی سخت', value: 5},
       {label: 'راهنمایی از استاد', value: 6},
     ]);
-    const classes =()=>{
-      return(
-        <ScrollView style={styles.container}>
-        <View style={{padding:10,flexDirection: 'column',
-            justifyContent: 'center',
-            alignItems: 'center',}}>
-            <View style={styles.flashCardBox}>
-            <View style={styles.yellowBox}>
-            <TouchableOpacity style={{flexDirection:"row",justifyContent:'center',alignItems:'center'}}  onPress={()=>toggleModal("next")}>
-                  <Icon name={"chevron-right"} color={'#fff'} size={30} ></Icon>
-                  <Text style={styles.nextBtnText}>بعدی</Text>
-              </TouchableOpacity>
-              <Modal isVisible={isModalVisible} onBackdropPress={closeModal} style={{justifyContent:'center',alignItems:'center'}}>
-                <View style={styles.rateModal}>
-                  <Text style={styles.modalTitle}>نظر خود را راجع به این سوال ثبت نمایید.</Text>
-                  <Rating
-                    type='star'
-                    ratingCount={5}
-                    imageSize={40}
-                    // showRating
-                    startingValue={0}
-                    ratingTextColor={'#fff'}
-                    ratingColor={'#FFC444'}
-                    onFinishRating={(ss)=>setRateNum(ss)}
-                  />
 
-                  <View style={{flexDirection:'row',marginTop:responsiveHeight(3)}}>
-                    <View style={{width:'70%'}}>
-                    <LinearGradient colors={['#CC1111', '#F43535'] }start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={{borderRadius:3,padding:5}}>
-
-
-                      <TouchableOpacity onPress={()=>goto()} style={styles.notShowBtn}>
-                        <Text style={styles.modalBtnText}>تمایلی به ثبت نظر ندارم.</Text>
-                        </TouchableOpacity>
-                        </LinearGradient>
-                    </View>
-                    <View style={{width:'2%'}}></View>
-                   <View style={{width:'28%'}}>
-                   <LinearGradient colors={['#3AC3FE', '#0284BB'] }start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={{borderRadius:3,padding:5}}>
-
-
-          <TouchableOpacity onPress={()=>setRate()} style={styles.notShowBtn}>
-          <Text style={styles.modalBtnText}>ثبت نظر</Text>
-          </TouchableOpacity>
-          </LinearGradient>
-                    </View>
-                </View>
-                </View>
-              </Modal>
-              <TouchableOpacity style={styles.favoriteBtn} onPress={()=>favoriteInsert()}>
-                  <Icon name={"favorite-border"} size={40} color={'#ffc444'}></Icon>
-              </TouchableOpacity>
-              <TouchableOpacity style={{flexDirection:'row-reverse',alignItems:'center'}} onPress={()=>toggleModal("prev")}>
-                  <Icon name={"chevron-left"} color={'#fff'} size={30} ></Icon>
-                  <Text style={styles.nextBtnText}>قبلی</Text>
-              </TouchableOpacity>
-
-                          </View>
-            <View style={styles.textBoxCard}>
-            <Text style={styles.questionText}>
-            {/* لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است   */}
-            {data[0]?.Text}
-            </Text>
-
-            </View>
-              {
-                sound ?
-            <View style={{padding:responsiveWidth(5),alignItems:'center'}} >
-                <Player
-        // onNext={skipToNext}
-        style={{ marginTop: 10}}
-        // onPrevious={skipToPrevious}
-        onTogglePlayback={togglePlayback}
-        stop={stop}
-        isplay={isplay}
-      />
-                  </View>
-
-                :
-//               <TouchableOpacity onPress={()=>setSound(true)}>
-
-// <Icon name={"volume-up"} color={Colors.appColor} size={60} />
-//               </TouchableOpacity>
-null
-
-              }
-{
-  video?
-  <View style={{padding:responsiveWidth(4)}}>
-        <TouchableOpacity style={{flexDirection:'row',marginBottom:2}} onPress={()=>{vid.current. vid?.current?.stop();navigation.navigate('FlashCardVideo',{paths:apiAsset+data[0]?.Video})}}>
-              <Icon name={"crop-free"} color={Colors.yellow} size={20}/>
-              <Text style={{...myFontStyle.mediumBold,color:Colors.yellow}}>بزرگنمایی</Text>
-            </TouchableOpacity>
-  <VideoPlayer
-//             source={{
-//   uri: "https://www.example.com/video.mp4",
-//   headers: {
-//     Authorization: 'bearer some-token-value',
-//     'X-Custom-Header': 'some value'
-//   }
-// }}
-audioOnly={true}
-
-// videoWidth={2000}
-//     videoHeight={900}
-// source={require( "../../assets/images/mahmmod.mp4")}
-// video={require( "../../assets/images/mahmmod.mp4")}
-video={{uri:apiAsset+data[0]?.Video}}
-showDuration={true}
-fullScreenOnLongPress={true}
-fullscreen={true}
-
-// Can be a URL or a local file.
-      //  ref={(ref) => {
-      //    this.player = ref
-      //  }}
-       ref={vid}
-      //  resizeMode={"stretch"}
-
-      //  onBuffer={this.onBuffer}
-      //  onError={this.videoError}
-      // toggleResizeModeOnFullscreen={true}
-
-      //  style={styles.backgroundVideo}
-       />
-
-       </View>
-  :
-  null
-
-}
-
-{
-  isPhoto?
-  <View style={{padding:responsiveWidth(4),alignItems:'center'}}>
-
-   <Image source={{uri:apiAsset+data[0]?.Photo}} style={{width:responsiveWidth(70),height:responsiveHeight(50)}}/>
-
-       </View>
-  :
-  null
-
-}
-           <View>
-             {
-               isPhotoAns || data[0]?.TextAnswer || soundAns || videoAns?
-
-           <TouchableOpacity onPress={()=>setAnswer(!answer)} style={styles.seeAnswerBtn} >
-              <Text style={styles.seeAnswer}>مشاهده پاسخ</Text>
-            </TouchableOpacity>
-               :
-null
-             }
-
-           </View>
-            </View>
-
-        </View>
-{
-  answer?
-<View style={{padding:10,flexDirection: 'column',
-            justifyContent: 'center',
-            alignItems: 'center',}}>
-            <View style={styles.flashCardBox2}>
-            <View style={styles.yellowBox}>
-              <View style={{width:responsiveWidth(90),height:5}}>
-
-                 <Text style={styles.answerTitle}>پاسخ</Text>
-
-              </View>
-
-
-            </View>
-            <View style={styles.textBoxCard}>
-            <Text style={styles.questionText}>
-            {/* لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است   */}
-{data[0]?.TextAnswer}
-
-</Text>
-            </View>
-            {
-                soundAns ?
-            <View style={{padding:responsiveWidth(5),alignItems:'center'}} >
-                <Player
-        // onNext={skipToNext}
-        style={{ marginTop: 10}}
-        // onPrevious={skipToPrevious}
-        onTogglePlayback={togglePlaybackAnswer}
-        stop={stopAnswer}
-        isplay={isplayAns}
-      />
-                  </View>
-
-                :
-//               <TouchableOpacity onPress={()=>setSound(true)}>
-
-// <Icon name={"volume-up"} color={Colors.appColor} size={60} />
-//               </TouchableOpacity>
-null
-
-              }
-{
-  videoAns?
-  <View style={{padding:responsiveWidth(4)}}>
-        <TouchableOpacity style={{flexDirection:'row',marginBottom:2}} onPress={()=>{vid.current. vid?.current?.stop();navigation.navigate('FlashCardVideo',{paths:apiAsset+data[0]?.VideoAnswer})}}>
-              <Icon name={"crop-free"} color={Colors.yellow} size={20}/>
-              <Text style={{...myFontStyle.mediumBold,color:Colors.yellow}}>بزرگنمایی</Text>
-            </TouchableOpacity>
-  <VideoPlayer
-//             source={{
-//   uri: "https://www.example.com/video.mp4",
-//   headers: {
-//     Authorization: 'bearer some-token-value',
-//     'X-Custom-Header': 'some value'
-//   }
-// }}
-audioOnly={true}
-
-// videoWidth={2000}
-//     videoHeight={900}
-// source={require( "../../assets/images/mahmmod.mp4")}
-// video={require( "../../assets/images/mahmmod.mp4")}
-video={{uri:apiAsset+data[0]?.VideoAnswer}}
-showDuration={true}
-fullScreenOnLongPress={true}
-fullscreen={true}
-
-// Can be a URL or a local file.
-      //  ref={(ref) => {
-      //    this.player = ref
-      //  }}
-       ref={vidAnswer}
-      //  resizeMode={"stretch"}
-
-      //  onBuffer={this.onBuffer}
-      //  onError={this.videoError}
-      // toggleResizeModeOnFullscreen={true}
-
-      //  style={styles.backgroundVideo}
-       />
-
-       </View>
-  :
-  null
-
-}
-
-{
-  isPhotoAns?
-  <View style={{padding:responsiveWidth(4),alignItems:'center'}}>
-
-   <Image source={{uri:apiAsset+data[0]?.PhotoAnswer}} style={{width:responsiveWidth(70),height:responsiveHeight(50)}}/>
-
-       </View>
-  :
-  null
-
-}
-            <View>
-           {/* <TouchableOpacity style={styles.seeAnswerBtn}>
-              <Text style={styles.seeAnswer}>توضیح بیشتر</Text>
-            </TouchableOpacity> */}
-           </View>
-            </View>
-
-        </View>
-  :
-  null
-}
-
-        <View style={{padding:responsiveWidth(5),flexDirection:'row',justifyContent:'space-between'}}>
-           <TouchableOpacity  style={styles.returnFirst}
-            onPress={toggleModal2}>
-           <Icon name={"add"} color={'#3AC3FE'} size={20} ></Icon>
-           <Text style={styles.addLitnearText}>افزودن به جعبه لایتنر</Text>
-
-
-           <Modal isVisible={isModalVisible2} onBackdropPress={closeModal2} style={{justifyContent:'center',alignItems:'center'}}>
-                <View style={styles.rateModal}>
-                  <Text style={styles.modalTitle2}>جهت افزودن به جعبه لایتنر،درجه سختی کارت را انتخاب نمایید.</Text>
-                {/* <View style={styles.boxRow}>
-                  <Box1 style={styles.inlineBox} />
-                  <Box2 style={styles.inlineBox}/>
-                  <Box3 style={styles.inlineBox}/>
-                  <Box4 style={styles.inlineBox}/>
-                  <Box5 style={styles.inlineBox}/>
-                </View> */}
-                <View style={{flexDirection:'row',marginTop:responsiveHeight(2)}}>
-                <View style={{flexDirection:'row',alignItems:'center'}}>
-                <Text style={styles.modalTitle2}>درجه سختی این کارت:</Text>
-                <DropDownPicker
-      open={open}
-      value={value}
-      items={items}
-      setOpen={setOpen}
-      setValue={setValue}
-      setItems={setItems}
-      // width={100}
-      style={{
-        borderColor:'#F1F1F1',
-        borderWidth:2,
-        // margin:5,
-        width:responsiveWidth(37)
-      }}
-      placeholder="انتخاب کنید"
-      zIndex={1000}
-      dropDownContainerStyle={{
-        borderColor:'#F1F1F1',
-        borderWidth:2,
-        width:responsiveWidth(37),
-
-      borderRadius:5}}
-    />
-                 </View>
-
-                   </View>
-                   <View style={{flexDirection:'row',marginTop:responsiveHeight(3)}}>
-                   <View style={{width:'42%'}}></View>
-                    <View style={{width:'28%'}}>
-                    <LinearGradient colors={['#CC1111', '#F43535'] }start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={{borderRadius:3,padding:5}}>
-
-
-                      <TouchableOpacity onPress={()=>          setModalVisible2(false)}
-                       style={styles.notShowBtn}>
-                        <Text style={styles.modalBtnText}>بستن</Text>
-                        </TouchableOpacity>
-                        </LinearGradient>
-                    </View>
-                    <View style={{width:'2%'}}></View>
-                   <View style={{width:'30%'}}>
-                   <LinearGradient colors={['#3AC3FE', '#0284BB'] }start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={{borderRadius:3,padding:5}}>
-
-
-          <TouchableOpacity onPress={()=>LitnearInsert()} style={styles.notShowBtn}>
-          <Text style={styles.modalBtnText}>افزودن به لایتنر</Text>
-          </TouchableOpacity>
-          </LinearGradient>
-                    </View>
-                </View>
-                </View>
-              </Modal>
-          </TouchableOpacity>
-           <TouchableOpacity onPress={()=>setID(first)} style={styles.returnFirst}>
-
-
-             <Text style={styles.returnText}>بازگشت به اولین سوال</Text>
-             <Icon name={"chevron-left"} color={'#3AC3FE'} size={20} ></Icon>
-
-           </TouchableOpacity>
-        </View>
-        </ScrollView>
-      )
-      }
 return (
 
   // <TopBar Classes={classes} navigation={navigation}/>
@@ -850,7 +526,7 @@ tweenHandler={(ratio) => ({
                     <LinearGradient colors={['#CC1111', '#F43535'] }start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={{borderRadius:3,padding:5}}>
 
 
-                      <TouchableOpacity onPress={()=>goto()} style={styles.notShowBtn}>
+                      <TouchableOpacity onPress={()=>{tamayol();goto(type)}} style={styles.notShowBtn}>
                         <Text style={styles.modalBtnText}>تمایلی به ثبت نظر ندارم.</Text>
                         </TouchableOpacity>
                         </LinearGradient>
@@ -894,6 +570,7 @@ tweenHandler={(ratio) => ({
         onTogglePlayback={togglePlayback}
         stop={stop}
         isplay={isplay}
+
       />
                   </View>
 
@@ -1272,8 +949,9 @@ const styles = StyleSheet.create({
     borderBottomWidth:2,
     borderBottomColor:'#ffc444',
 
+    alignItems:'center',
 
-    width:responsiveWidth(26),
+    width:responsiveWidth(24),
     marginRight:responsiveWidth(3),
     marginTop:responsiveHeight(2),
     marginBottom:responsiveHeight(2),
@@ -1288,12 +966,13 @@ alignSelf:'flex-end'
     // fontSize:responsiveFontSize(2),
   },
   returnFirst:
-  {width:responsiveWidth(35),backgroundColor:"#ffffff",height:responsiveHeight(5),flexDirection:'row',alignItems:'center',borderRadius:5,  shadowColor: '#878B92',
+  {width:responsiveWidth(35),backgroundColor:"#ffffff",height:responsiveHeight(5),flexDirection:'row',
+  alignItems:'center',borderRadius:5,  shadowColor: '#878B92',
   shadowOpacity: 0.1,
   shadowOffset: { width: 2, height: 0},
   shadowRadius: 700,
   elevation: 10,
-  padding:2}
+  paddingLeft:responsiveWidth(1)}
 ,returnFirst2:{
     backgroundColor:'#fff',
     height:20,
@@ -1306,6 +985,7 @@ alignSelf:'flex-end'
     paddingBottom:responsiveHeight(5),
     justifyContent:'center',
     alignContent:'center',
+    alignItems:'center',
    right:responsiveWidth(-6),
    borderRadius:3,
       }

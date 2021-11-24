@@ -1,5 +1,5 @@
 import React, { useState,useEffect,useRef } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, TextInput,Image, AsyncStorage ,I18nManager,Pressable} from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, TextInput,Image, AsyncStorage ,I18nManager,Pressable,Linking} from 'react-native';
 import { myFontStyle } from "../../assets/Constance";
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
@@ -13,12 +13,14 @@ import Drawer from 'react-native-drawer'
 import ViewSlider from 'react-native-view-slider';
 import axios from 'axios';
 import { apiUrl ,apiAsset} from "../../commons/inFormTypes";
+import { ScrollView } from 'react-native-gesture-handler';
 
 // create a component
  const Home = ({navigation}) => {
 const [slider1,setSlider1]=useState("");
 const [slider2,setSlider2]=useState("");
 const [slider3,setSlider3]=useState("");
+const [data,setData]=useState([]);
 const [pezeshki,setpezeshki]=useState("");
 const [board,setBoard]=useState("");
 const [dandan,setDandan]=useState("");
@@ -45,6 +47,7 @@ useEffect(() => {
             setSlider1(response.data.DataSlider.Slider1)
             setSlider2(response.data.DataSlider.Slider2)
             setSlider3(response.data.DataSlider.Slider3)
+            setData(response.data.DataSlider)
             setpezeshki(response.data.DataMaingroup[0].Photo)
             setBoard(response.data.DataMaingroup[1].Photo)
             setDandan(response.data.DataMaingroup[2].Photo)
@@ -90,7 +93,7 @@ return (
         <View style={styles.customRow}>
             <View style={{paddingLeft:0}}>
              <TouchableOpacity onPress={()=>drawers.current.open()}>
-             <Icon name={"notes"} style={styles.menuIcon} size={50} color={"#fff"}/>
+             <Icon name={"notes"} style={styles.menuIcon} size={responsiveHeight(5)} color={"#fff"}/>
 
              </TouchableOpacity>
              </View>
@@ -99,7 +102,7 @@ return (
               </View>
             <View style={{flex :0.5}}>
               <TouchableOpacity onPress={()=>navigation.navigate("FlashCardSearch")} style={styles.searchBTN}>
-                <Icon name={"search"} color={"#16B2F5"} size={30}/>
+                <Icon name={"search"} color={"#16B2F5"} size={responsiveHeight(3.5)}/>
               </TouchableOpacity>
               </View>
 
@@ -107,20 +110,20 @@ return (
       {
         load?
 
-    <View style={styles.bodyC}>
+    <ScrollView style={styles.bodyC}>
     <ViewSlider
         renderSlides = {
           <>
-            <View style={styles.viewBox}>
-            <Image source={{uri:apiAsset+slider1}}style={styles.imageSlider}/>
-            </View>
-            <View style={styles.viewBox}><Image source={{uri:apiAsset+slider2}} style={styles.imageSlider}></Image></View>
-            <View style={styles.viewBox}><Image source={{uri:apiAsset+slider3}}style={styles.imageSlider}></Image></View>
+            <TouchableOpacity onPress={()=>Linking.openURL(data?.Link1)} style={styles.viewBox}>
+            <Image source={{uri:apiAsset+slider1}} resizeMode={"stretch"} style={styles.imageSlider}/>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={()=>Linking.openURL(data?.Link2)} style={styles.viewBox}><Image source={{uri:apiAsset+slider2}}  resizeMode={"stretch"} style={styles.imageSlider}></Image></TouchableOpacity>
+            <TouchableOpacity onPress={()=>Linking.openURL(data?.Link3)} style={styles.viewBox}><Image source={{uri:apiAsset+slider3}}  resizeMode={"stretch"} style={styles.imageSlider}></Image></TouchableOpacity>
 
          </>
       }
       style={styles.slider}     //Main slider container style
-      height = {200}    //Height of your slider
+      height = {responsiveHeight(25)}    //Height of your slider
       slideCount = {3}    //How many views you are adding to slide
       dots = {true}     // Pagination dots visibility true for visibile
       dotActiveColor = '#FFCC00'     //Pagination dot active color
@@ -188,7 +191,7 @@ return (
 
      </View>
 
-    </View>
+    </ScrollView>
         :
         null
       }
@@ -236,13 +239,13 @@ customRow:{
   flex:1, flexDirection:"row",
   position:"absolute",
   top:responsiveHeight(3),
-  paddingRight:20,
-  paddingLeft:20,
+  paddingRight:responsiveWidth(10),
+  paddingLeft:responsiveWidth(10),
 },customRow2:{
   flex:1, flexDirection:"row-reverse",
 
-  paddingRight:20,
-  paddingLeft:20,
+  paddingRight:responsiveWidth(10),
+  paddingLeft:responsiveWidth(10),
 },customRowC:{
   flex:1, flexDirection:"row",
 
@@ -263,8 +266,8 @@ customRow:{
   borderRadius:50,
   textAlign:"center",
   justifyContent:"center",
-  height:50,
-  width:50,
+  height:responsiveHeight(6),
+  width:responsiveWidth(12),
   padding:10,
   shadowColor: '#fff',
   shadowOpacity: 0.5,
@@ -273,7 +276,7 @@ customRow:{
   elevation: 7,
 
 } , viewBox: {
-  paddingHorizontal: 20,
+  paddingHorizontal: responsiveScreenWidth(10),
   justifyContent: 'center',
   width: responsiveWidth(100),
   padding: 0,
@@ -292,7 +295,7 @@ slider: {
 dotContainer: {
 backgroundColor: 'transparent',
 position: 'absolute',
-bottom: 15
+bottom: responsiveHeight(2)
 },bodyC:{
  marginTop:responsiveHeight(1),
  alignContent:"center",
@@ -303,7 +306,7 @@ bottom: 15
 },
   linearGradient: {
   width:responsiveWidth(90),
-  height: 180,
+  height: responsiveHeight(22),
   position: 'absolute',
   top:responsiveHeight(0),
   paddingLeft:responsiveWidth(5),
@@ -315,9 +318,9 @@ bottom: 15
   },
   linearGradient2: {
     width:responsiveWidth(43),
-    height: 180,
+    height: responsiveHeight(22),
     position: 'absolute',
-    top:responsiveHeight(0),
+    // top:responsiveHeight(0),
     paddingLeft:responsiveWidth(0),
    paddingRight:responsiveWidth(0),
    marginLeft:responsiveWidth(0),
@@ -327,32 +330,32 @@ bottom: 15
     },
   image: {
   width: responsiveWidth(90),
-  height: 180,
+  height: responsiveHeight(22),
   opacity: 1,
   paddingLeft:responsiveWidth(0),
   paddingRight:responsiveWidth(0),
-  marginLeft:20,
-  marginRight:20,
+  marginLeft:responsiveWidth(5),
+  marginRight:responsiveWidth(5),
   borderRadius:10,
   marginTop:responsiveHeight(0.5),
   }
   ,logoAbsolute:{
     position:'absolute',
-    width:70,
-    height:100,
+    width:responsiveWidth(17),
+    height:responsiveHeight(13),
     top:responsiveHeight(10),
     left:responsiveWidth(75),
   },textOverlay:{
 
     color:"#fff",
-    ...myFontStyle.largBold,
+    ...myFontStyle.UltraBold,
     position:'absolute',
     right:responsiveWidth(78),
     top:responsiveHeight(18),
   },logoAbsolute2:{
     position:'absolute',
-    width:60,
-    height:78,
+    width:responsiveWidth(15),
+    height:responsiveHeight(9),
     top:responsiveHeight(12),
     right:responsiveWidth(2),
   },textOverlay2:{
@@ -369,9 +372,10 @@ bottom: 15
     flexWrap: 'wrap',
     alignItems: 'flex-start',
     alignContent:'space-between',
-    top:responsiveHeight(25.5),
+      paddingTop:responsiveHeight(3),
     paddingRight:responsiveWidth(5),
-    paddingLeft:responsiveWidth(5), // if you want to fill rows left to right
+    paddingLeft:responsiveWidth(5),
+     // if you want to fill rows left to right
   },
   item1: {
     width: '47.5%',
@@ -387,7 +391,7 @@ bottom: 15
     // is 50% of container width
   },miniImage:{
     width:'100%',
-    height:180,
+    height:responsiveHeight(22),
     borderRadius:10,
 
   }
