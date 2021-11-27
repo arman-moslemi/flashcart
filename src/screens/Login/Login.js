@@ -117,19 +117,15 @@ return (
            // onPress={()=>navigation.navigate("Verification")}
               onPress={()=>mutLogin()}
               isLoading={isLoading}
-
              // onPress={()=>alert(number)}
              buttonContainer={styles.button}
-
              text={"ورود"}
-
-
              ></Button>
 
              <TouchableOpacity onPress={()=>  navigation.navigate("SignUp")} style={styles.footer}>
 
 <Text style={styles.forget}>ثبت نام کنید</Text>
-<Text style={styles.forget2}>حساب کاربری ندارید؟</Text>
+<Text style={styles.forget2}>حساب کاربری ندارید؟  </Text>
 </TouchableOpacity>
 </View>
         </View>

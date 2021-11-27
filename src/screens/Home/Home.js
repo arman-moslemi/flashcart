@@ -14,7 +14,7 @@ import ViewSlider from 'react-native-view-slider';
 import axios from 'axios';
 import { apiUrl ,apiAsset} from "../../commons/inFormTypes";
 import { ScrollView } from 'react-native-gesture-handler';
-
+import Pushe from "pushe-react-native";
 // create a component
  const Home = ({navigation}) => {
 const [slider1,setSlider1]=useState("");
@@ -29,7 +29,7 @@ const [load,setLoad]=useState(true);
 const drawers = useRef(null);
 I18nManager.forceRTL(true);
 useEffect(() => {
-
+Pushe.initialize();
     mutLogin();
 
 

@@ -203,7 +203,7 @@ tweenHandler={(ratio) => ({
 <TouchableOpacity onPress={()=>Edit()} style={{alignItems:'flex-end',paddingVertical:responsiveWidth(10),paddingHorizontal:responsiveWidth(2)}}>
 <LinearGradient   colors={['#FFC444', '#F36F56']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={styles.viewNext}>
 
-<Text style={{...myFontStyle.mediumBold,color:Colors.white}}>
+<Text style={{...myFontStyle.mediumBold,color:Colors.white,alignSelf:'center'}}>
 ذخیره اطلاعات</Text>
 
 </LinearGradient>
@@ -456,6 +456,7 @@ drawerStyles: { shadowColor: '#000000', shadowOpacity: 0.8, shadowRadius: 3,zInd
         height:responsiveHeight(4),
         alignItems:'center',
         borderRadius:5,
+        justifyContent:'center'
     },
     header:{flexDirection:'row',justifyContent:'space-around',marginTop:responsiveHeight(1)},
     txtTitle: {

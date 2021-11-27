@@ -370,7 +370,7 @@ tweenHandler={(ratio) => ({
 
 <View style={styles.viewBody}>
 <View style={styles.subViewBody}>
-<TouchableOpacity onPress={()=>setModal2Visible(true)} style={{marginRight:responsiveWidth(5),alignItems:'center'}}>
+<TouchableOpacity onPress={()=>setModal2Visible(true)} style={{marginRight:responsiveWidth(5),alignItems:'center',justifyContent:'center'}}>
   <Text style={styles.txtEdit}>
     خرید اشتراک
   </Text>
@@ -714,12 +714,13 @@ const styles = StyleSheet.create({
     borderWidth:1,
     alignItems:'center',
     alignContent:'center',
+    alignSelf:'center',
     width:responsiveWidth(30),
     borderColor:Colors.white,
     borderRadius:50,
     paddingVertical:3,
     // marginLeft:responsiveWidth(5),
-    paddingHorizontal:responsiveWidth(6),
+    paddingHorizontal:responsiveWidth(6.25),
     backgroundColor:Colors.yellow
 
   },
