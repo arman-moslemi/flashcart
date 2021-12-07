@@ -75,16 +75,15 @@ import { apiUrl ,apiAsset} from "../../commons/inFormTypes";
 
 </View>
 <View style={styles.customRow}>
-    <View style={{paddingLeft:20}} >
+    <View style={{paddingLeft:20,flex:1,flexDirection:'row'}} >
      <TouchableOpacity onPress={()=>drawers.current.open()}>
-     <Icon name={"notes"} size={50} color={"#fff"} style={{transform: [{rotateY: '180deg'}]}}/>
+     <Icon name={"notes"} size={responsiveHeight(7)} color={"#fff"} style={{transform: [{rotateY: '180deg'}]}}/>
 
      </TouchableOpacity>
-     </View>
-    <View style={{flex : 2,textAlign:"right"}}>
       <Text style={styles.menuTitle}>نوآوران دانش(ماهان)</Text>
-      </View>
-    <View style={{flex :0.5}}>
+     </View>
+  
+    <View >
       <TouchableOpacity onPress={()=>navigation.goBack()} style={{}}>
         <Icon name={"chevron-left"} color={"#fff"} size={30} style={{marginTop:10}}/>
       </TouchableOpacity>
@@ -125,13 +124,13 @@ import { apiUrl ,apiAsset} from "../../commons/inFormTypes";
 
     <TouchableOpacity onPress={()=>navigation.navigate("Question")} style={styles.subViewRead}>
 <View style={{flexDirection:'row',alignItems:'center'}}>
-<Text style={{...myFontStyle.mediumRegular,color:Colors.gray,marginLeft:2}}>مشاهده کارت</Text>
+<Text style={{...myFontStyle.mediumRegular,color:Colors.gray,marginRight:3}}>مشاهده کارت</Text>
 
 <Icon name="remove-red-eye" size={30} color={Colors.yellow}/>
 </View>
 
 <View style={styles.viewText}>
-<Text style={{...myFontStyle.normalRegular,color:Colors.black,width:responsiveWidth(50)}}>{item.Text?.substring(0, 20)}...</Text>
+<Text style={{...myFontStyle.normalRegular,color:Colors.black,width:responsiveWidth(27)}}>{item.Text?.substring(0, 20)}...</Text>
 
 {/* <Image source={require('../../assets/images/RectangleYellow.png')} style={{ height:responsiveHeight(8),width:5,marginRight:responsiveWidth(3),marginBottom:responsiveHeight(0.5),marginLeft:responsiveWidth(-5),}}/> */}
 </View>
@@ -160,9 +159,9 @@ const styles =StyleSheet.create({
     menuTitle:{
 ...myFontStyle.largBold,
       color:"#fff",
-      marginTop:responsiveHeight(1),
+      marginTop:responsiveHeight(2),
     },
-    viewText:{flexDirection:'row-reverse',alignItems:"center",justifyContent:'flex-end'},
+    viewText:{flexDirection:'row-reverse'},
 
     page: {
     flexDirection: 'column',
@@ -230,19 +229,20 @@ input:{
       backgroundColor:"#fff",
       borderLeftWidth:5,
       borderLeftColor:Colors.yellow,
-      elevation:5,
-      shadowOpacity:1,
-      shadowRadius:10,
-      shadowOffset:5,
+      elevation:1,
+      shadowOpacity:5,
+      shadowRadius:1,
+      shadowOffset:{width:0,height:2},
       borderRadius:5,
       margin:responsiveHeight(2),
     height:responsiveHeight(8),
-    marginTop:0,
+    // marginTop:responsiveHeight(1),
     alignItems:'center',
     flexDirection:'row-reverse',
     justifyContent:'space-between',
-    padding:responsiveWidth(5),
-    paddingBottom:responsiveHeight(2)},
+    // padding:responsiveWidth(5),
+    paddingHorizontal:responsiveHeight(1)
+  },
 
 });
 

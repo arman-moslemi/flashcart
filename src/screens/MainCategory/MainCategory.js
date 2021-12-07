@@ -54,11 +54,9 @@ const {id} = route?.params ?? {};
         {/* <Image source={require('../../assets/images/zanan.png')} style={styles.categoryColImg}/> */}
         <Image source={{uri:apiAsset+item.item.Photo}} style={styles.categoryColImg}/>
         <LinearGradient colors={['#16B2F5', '#0385BC']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={styles.bottomBox}>
-        <View>
             <Text style={styles.bottomBoxText}>
                 {item.item.Title}
             </Text>
-        </View>
   </LinearGradient>
 
         </TouchableOpacity>
@@ -93,16 +91,14 @@ tweenHandler={(ratio) => ({
 
 
           <View style={styles.customRow}>
-            <View style={{paddingLeft:20}}>
+            <View style={{paddingLeft:20,flexDirection:'row',flex:1}}>
             <TouchableOpacity  onPress={()=>drawers.current.open()}>
              <Icon name={"notes"}  size={50} color={"#fff"} style={{transform: [{rotateY: '180deg'}]}}/>
 
              </TouchableOpacity>
-             </View>
-            <View style={{flex : 2,textAlign:"right"}}>
               <Text style={styles.menuTitle}>نوآوران دانش(ماهان)</Text>
-              </View>
-            <View style={{flex :0.5}}>
+             </View>
+            <View >
               <TouchableOpacity >
                 <Icon name={"chevron-left"} color={"#fff"} size={30} style={{marginTop:10}}/>
               </TouchableOpacity>
@@ -199,9 +195,9 @@ charityList: {
 customRow:{
   flex:1, flexDirection:"row",
   position:"absolute",
-  top:responsiveHeight(2),
-  paddingRight:20,
-  paddingLeft:20,
+  top:responsiveHeight(5),
+  paddingRight:responsiveWidth(5),
+  paddingLeft:responsiveWidth(5),
 },menuTitle:{
     // fontFamily:"IRANSansBold",
     color:"#fff",
@@ -242,7 +238,8 @@ customRow:{
       height:38,
       borderBottomLeftRadius:10,
       borderBottomRightRadius:10,
-
+alignItems:'center',
+paddingTop:responsiveHeight(0.5),
       width:'95%',
       position:'absolute',
       bottom:responsiveHeight(0),

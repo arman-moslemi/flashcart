@@ -91,16 +91,15 @@ return (
 
       	</View>
         <View style={styles.customRow}>
-            <View style={{paddingLeft:0}}>
+            <View style={{paddingLeft:0,flexDirection:'row',flex:1}}>
              <TouchableOpacity onPress={()=>drawers.current.open()}>
              <Icon name={"notes"} style={styles.menuIcon} size={responsiveHeight(5)} color={"#fff"}/>
-
              </TouchableOpacity>
-             </View>
-            <View style={{flex : 2,textAlign:"right"}}>
               <Text style={styles.menuTitle}>نوآوران دانش(ماهان)</Text>
-              </View>
-            <View style={{flex :0.5}}>
+
+             </View>
+  
+            <View >
               <TouchableOpacity onPress={()=>navigation.navigate("FlashCardSearch")} style={styles.searchBTN}>
                 <Icon name={"search"} color={"#16B2F5"} size={responsiveHeight(3.5)}/>
               </TouchableOpacity>
@@ -236,9 +235,10 @@ imageSlider:
 ,
 drawerStyles: { shadowColor: '#000000', shadowOpacity: 0.8, shadowRadius: 3},
 customRow:{
-  flex:1, flexDirection:"row",
+ flexDirection:"row",
   position:"absolute",
-  top:responsiveHeight(3),
+  justifyContent:'space-between',
+  top:responsiveHeight(5),
   paddingRight:responsiveWidth(10),
   paddingLeft:responsiveWidth(10),
 },customRow2:{

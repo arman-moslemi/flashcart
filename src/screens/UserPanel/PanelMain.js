@@ -341,21 +341,19 @@ tweenHandler={(ratio) => ({
 
 
 
-<LinearGradient colors={['#16B2F5', '#007FB5']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={{height:55}}>
+<LinearGradient colors={['#16B2F5', '#007FB5']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={{height:responsiveHeight(8)}}>
 
   </LinearGradient>
 
 
 <View style={styles.customRow}>
-<View style={{paddingLeft:20}} >
+<View style={{paddingLeft:20,flexDirection:'row',flex:1}} >
  <TouchableOpacity onPress={()=>drawers.current.open()}>
- <Icon name={"notes"}  size={50} color={"#fff"} style={{transform: [{rotateY: '180deg'}]}}/>
+ <Icon name={"notes"}  size={responsiveHeight(4)} color={"#fff"} style={{transform: [{rotateY: '180deg'}]}}/>
 
  </TouchableOpacity>
- </View>
-<View style={{flex : 2,textAlign:"right"}}>
   <Text style={styles.menuTitle}>نوآوران دانش(ماهان)</Text>
-  </View>
+ </View>
 <View style={{flex :0.5}}>
   <TouchableOpacity style={{}}>
     <Icon name={"chevron-left"} color={"#fff"} size={30} style={{marginTop:10}}/>
@@ -686,7 +684,7 @@ const styles = StyleSheet.create({
     },customRow:{
       flex:1, flexDirection:"row",
       position:"absolute",
-      top:responsiveHeight(0),
+      top:responsiveHeight(3),
       paddingRight:responsiveWidth(5),
       paddingLeft:responsiveWidth(5),
     },
@@ -711,7 +709,7 @@ const styles = StyleSheet.create({
   txtEdit: {
     color: Colors.white,
     ...myFontStyle.mediumRegular,
-    borderWidth:1,
+    // borderWidth:1,
     alignItems:'center',
     alignContent:'center',
     alignSelf:'center',
@@ -747,7 +745,7 @@ const styles = StyleSheet.create({
   elevation:5,
   shadowOpacity:1,
   shadowRadius:10,
-  shadowOffset:5,
+  shadowOffset: { width: 2, height: 0},
   borderRadius:5,
   height:responsiveHeight(12)
   ,alignItems:'flex-end',
@@ -758,10 +756,10 @@ const styles = StyleSheet.create({
   paddingBottom:responsiveHeight(2)},
   subViewRead:{
     backgroundColor:"#fff",
-    elevation:5,
-    shadowOpacity:1,
-    shadowRadius:10,
-    shadowOffset:5,
+    elevation:3,
+    shadowOpacity:10,
+    shadowRadius:1,
+      shadowOffset: { width: 0, height: 2},
     borderRadius:5,
     margin:responsiveHeight(2),
   height:responsiveHeight(10)

@@ -29,13 +29,13 @@ const SplashScreen = ({ navigation }) => {
     if(state!=null && state!="" && state!="false"){
 
     console.log(state)
-      navigation.navigate('StackNavigatorsssss')
-      // navigation.navigate('Login')
+       navigation.navigate('StackNavigatorsssss')
+     // navigation.navigate('Login')
     }
     else{
 
-      navigation.navigate('Login');
-      // navigation.navigate('StackNavigatorsssss');
+       navigation.navigate('Login');
+     // navigation.navigate('StackNavigatorsssss');
       // navigation.navigate('SubCategory');
 
       // navigation.navigate('FlashCardView');
@@ -88,7 +88,7 @@ unsubscribe();
       <LinearGradient  colors={['#fff', '#fff']} start={{ x: 0, y: 0 }}  end={{ x: 1, y:1}} style={{height:responsiveHeight(100),width:responsiveWidth(100),justifyContent: 'center',
     alignItems: 'center'}}>
 
-    <Image style={{width:responsiveWidth(40),height:responsiveHeight(20)}} source={require('../../assets/images/Flashcard.png')}></Image>
+    <Image style={{width:responsiveWidth(45),height:responsiveHeight(25)}} source={require('../../assets/images/Flashcard.png')}></Image>
       </LinearGradient>
       </View>
   );

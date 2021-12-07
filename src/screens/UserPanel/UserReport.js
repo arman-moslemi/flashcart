@@ -400,7 +400,7 @@ const styles = StyleSheet.create({
   elevation:5,
   shadowOpacity:1,
   shadowRadius:10,
-  shadowOffset:5,
+  shadowOffset: { width: 2, height: 0},
   borderRadius:5,
   height:responsiveHeight(12)
   ,alignItems:'flex-end',
@@ -412,7 +412,7 @@ const styles = StyleSheet.create({
     elevation:5,
     shadowOpacity:1,
     shadowRadius:10,
-    shadowOffset:5,
+    shadowOffset: { width: 2, height: 0},
     borderRadius:5,
     margin:responsiveHeight(2),
   height:responsiveHeight(43)

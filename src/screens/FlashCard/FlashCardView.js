@@ -470,23 +470,22 @@ tweenHandler={(ratio) => ({
 
 
 
-<LinearGradient colors={['#16B2F5', '#007FB5']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={{height:55}}>
+<LinearGradient colors={['#16B2F5', '#007FB5']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={{height:responsiveHeight(8)}}>
 
   </LinearGradient>
 
 
 <View style={styles.customRow}>
-<View style={{paddingLeft:20}} >
+<View style={{paddingLeft:20,flexDirection:'row',flex:1}} >
  <TouchableOpacity onPress={()=>drawers.current.open()}>
- <Icon name={"notes"}  size={50} color={"#fff"} style={{transform: [{rotateY: '180deg'}]}}/>
+ <Icon name={"notes"}  size={responsiveHeight(4)} color={"#fff"} style={{transform: [{rotateY: '180deg'}]}}/>
 
  </TouchableOpacity>
- </View>
-<View style={{flex : 2,textAlign:"right"}}>
   <Text style={styles.menuTitle}>نوآوران دانش(ماهان)</Text>
-  </View>
-<View style={{flex :0.5}}>
-  <TouchableOpacity style={{}}>
+ </View>
+
+<View >
+  <TouchableOpacity style={{}} onPress={()=>navigation.goBack()}>
     <Icon name={"chevron-left"} color={"#fff"} size={30} style={{marginTop:10}}/>
   </TouchableOpacity>
   </View>
@@ -864,7 +863,7 @@ const styles = StyleSheet.create({
     },customRow:{
       flex:1, flexDirection:"row",
       position:"absolute",
-      top:responsiveHeight(0),
+      top:responsiveHeight(3),
       paddingRight:responsiveWidth(5),
       paddingLeft:responsiveWidth(5),
     },

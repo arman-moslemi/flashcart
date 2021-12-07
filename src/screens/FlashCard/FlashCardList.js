@@ -74,7 +74,7 @@ const _render = (item, index) => {
     </View>
 
     <View style={styles.viewText}>
-    <Text style={{...myFontStyle.normalRegular,color:Colors.black,width:responsiveWidth(50)}}>{item.item.Text?.substring(0, 20)}...</Text>
+    <Text style={{...myFontStyle.normalRegular,color:Colors.black,width:responsiveWidth(30)}}>{item.item.Text?.substring(0, 20)}...</Text>
 
     {/* <Image source={require('../../assets/images/RectangleYellow.png')} style={{ height:responsiveHeight(8),width:5,marginRight:responsiveWidth(3),marginBottom:responsiveHeight(0.5),marginLeft:responsiveWidth(-5),}}/> */}
     </View>
@@ -179,11 +179,11 @@ const styles = StyleSheet.create({
     backgroundColor:"#fff",
     borderLeftWidth:5,
     borderLeftColor:Colors.yellow,
-    elevation:5,
+    elevation:10,
     shadowOpacity:1,
-    shadowRadius:10,
-    shadowOffset:5,
-    borderRadius:5,
+    shadowRadius:2,
+     shadowOffset:{width:0,height:2},
+    borderRadius:responsiveHeight(1),
     margin:responsiveHeight(2),
   height:responsiveHeight(8),
   marginTop:0,

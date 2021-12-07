@@ -79,17 +79,17 @@ import { apiUrl ,apiAsset} from "../../commons/inFormTypes";
 
             </View> */}
 
+
             <FlatList
           numColumns={2}
           columnWrapperStyle={styles.charityList}
           keyExtractor={keyExtractor}
           data={data}
           renderItem={_render}
-          style={{marginTop:responsiveHeight(4),marginLeft:responsiveWidth(2),marginBottom:responsiveHeight(20)}}
+          style={{marginTop:responsiveHeight(4),marginLeft:responsiveWidth(2),marginBottom:responsiveHeight(0)}}
                     // ListFooterComponent={listFooter}
           // onEndReached={fetchNextCharityPage}
         />
-
             </View>
             </View>
         )
@@ -111,7 +111,8 @@ const styles = StyleSheet.create({
   pageHeader:{
       ...myFontStyle.UltraBold,
       color:'#0384BC',
-      marginLeft:responsiveWidth(3)
+      marginLeft:responsiveWidth(4),
+      textAlign:'left'
 
   }
   ,pageBody:{

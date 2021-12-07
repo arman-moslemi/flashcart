@@ -35,22 +35,20 @@ export const TopBar = ({Classes,navigation}) => {
 
 
 
-    <LinearGradient colors={['#16B2F5', '#007FB5']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={{height:55}}>
+    <LinearGradient colors={['#16B2F5', '#007FB5']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={{height:responsiveHeight(10)}}>
 
       </LinearGradient>
 
 
 <View style={styles.customRow}>
-    <View style={{paddingLeft:20}} >
+    <View style={{paddingLeft:20,flex:1,flexDirection:'row'}} >
      <TouchableOpacity onPress={()=>drawers.current.open()}>
-     <Icon name={"notes"} style={styles.menuIcon} size={50} color={"#fff"} style={{transform: [{rotateY: '180deg'}]}}/>
+     <Icon name={"notes"} style={styles.menuIcon} size={responsiveHeight(4)} color={"#fff"} style={{transform: [{rotateY: '180deg'}]}}/>
 
      </TouchableOpacity>
-     </View>
-    <View style={{flex : 2,textAlign:"right"}}>
       <Text style={styles.menuTitle}>نوآوران دانش(ماهان)</Text>
-      </View>
-    <View style={{flex :0.5}}>
+     </View>
+    <View >
       <TouchableOpacity onPress={()=>navigation.goBack()} style={{}}>
         <Icon name={"chevron-left"} color={"#fff"} size={30} style={{marginTop:10}}/>
       </TouchableOpacity>
@@ -78,7 +76,7 @@ const styles =StyleSheet.create({
   },customRow:{
     flex:1, flexDirection:"row",
     position:"absolute",
-    top:responsiveHeight(0),
+    top:responsiveHeight(4),
     paddingRight:responsiveWidth(5),
     paddingLeft:responsiveWidth(5),
   },

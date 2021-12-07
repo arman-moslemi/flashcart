@@ -142,7 +142,7 @@ const styles =StyleSheet.create({
     width: responsiveWidth(68),
     height: responsiveHeight(5),
    borderWidth: 1,
-    paddingHorizontal: 15,
+    paddingHorizontal: responsiveHeight(1),
     borderColor: Colors.appColor,
     // fontFamily:"IRANSans",
 ...myFontStyle.mediumRegular,
@@ -152,7 +152,7 @@ const styles =StyleSheet.create({
     color: '#000000',
 
     borderRadius:5,
-    paddingTop:10,
+    paddingTop:responsiveHeight(0),
     textAlign:'right'
     // backgroundColor:'#f3f3f3'
   },

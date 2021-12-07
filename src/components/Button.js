@@ -77,7 +77,7 @@ const style = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     borderRadius:5,
-    fontFamily:"IRANSansBold",
+    fontFamily:"IRANSansFaNum Bold",
 
   },
   errorContainer: {
@@ -104,7 +104,7 @@ const style = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginHorizontal: 4,
-    fontFamily:"IRANSansBold",
+    fontFamily:"IRANSansFaNum Bold",
   },
 
   callIcon: {

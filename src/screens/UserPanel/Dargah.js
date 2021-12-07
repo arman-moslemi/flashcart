@@ -132,7 +132,7 @@ const styles = StyleSheet.create({
     elevation:5,
     shadowOpacity:1,
     shadowRadius:10,
-    shadowOffset:5,
+    shadowOffset: { width: 2, height: 0},
     borderRadius:5,
     marginRight:responsiveHeight(2),
     marginLeft:responsiveHeight(2),
@@ -162,7 +162,7 @@ alignItems:'flex-end'
       elevation:5,
     shadowOpacity:1,
     shadowRadius:10,
-    shadowOffset:5,
+    shadowOffset: { width: 2, height: 0},
     justifyContent:'center',
     flexDirection:'row',
   },sortModal:{
