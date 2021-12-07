@@ -80,21 +80,19 @@ return (
 
       	</View>
         <View style={styles.customRow}>
-    <View style={{paddingLeft:20}} >
+    <View style={{paddingLeft:20,flexDirection:'row',flex:1}} >
      <TouchableOpacity onPress={()=>drawers.current.open()}>
-     <Icon name={"notes"} style={styles.menuIcon} size={50} color={"#fff"} style={{transform: [{rotateY: '180deg'}]}}/>
+     <Icon name={"notes"} style={styles.menuIcon} size={responsiveHeight(7)} color={"#fff"} style={{transform: [{rotateY: '180deg'}]}}/>
 
      </TouchableOpacity>
-     </View>
-    <View style={{flex : 2,textAlign:"right"}}>
       <Text style={styles.menuTitle}>نوآوران دانش(ماهان)</Text>
-      </View>
-    <View style={{flex :0.5}}>
+     </View>
+
+    <View style={{}}>
       <TouchableOpacity onPress={()=>navigation.goBack()} style={{}}>
         <Icon name={"chevron-left"} color={"#fff"} size={30} style={{marginTop:10}}/>
       </TouchableOpacity>
       </View>
-
 </View>
 <View style={styles.customRow2}>
        <View style={styles.logoBox}>
@@ -222,7 +220,7 @@ customRow:{
   flex:1, flexDirection:"row-reverse",
   position:"absolute",
   top:responsiveHeight(11),
-  alignSelf:'center'
+  alignSelf:'center',zIndex:20
 }
 ,questionText:{
   ...myFontStyle.normalRegular,
@@ -244,7 +242,7 @@ marginRight:10,
   ...myFontStyle.largBold,
   marginTop:responsiveHeight(1),
 },logoSize:{
-  width:responsiveWidth(25),height:responsiveHeight(12),
+  width:responsiveWidth(25),height:responsiveHeight(13)
 
 }, aboutBox:{
   backgroundColor:'#fff',

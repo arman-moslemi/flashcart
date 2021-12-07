@@ -83,20 +83,20 @@ shifting={false}
 >
 <Tab.Screen
    name="StackNavigatorsAzmoon" component={StackNavigatorsAzmoon}
-   options={{          tabBarLabel: '',    tabBarIcon: ({ color }) => (    <Icon name="person-outline" color={Colors.appColor} style={{height:responsiveHeight(10),width:responsiveWidth(8)}} size={35} />         ),           }}      />
+   options={{          tabBarLabel: '',    tabBarIcon: ({ color }) => (    <Icon name="person-outline" color={Colors.appColor} style={{height:responsiveHeight(10),width:responsiveWidth(8)}} size={30} />         ),           }}      />
 
    <Tab.Screen
    // name="home"
    name={"StackNavigatorsHome"}
    component={StackNavigatorsHome}
-   options={{          tabBarLabel: null,  tabBarIcon: ({ color }) => (            <Icon name="home" color={Colors.appColor} style={{height:responsiveHeight(10),width:responsiveWidth(8)}} size={35} />          ),        }}      />
+   options={{          tabBarLabel: null,  tabBarIcon: ({ color }) => (            <Icon name="home" color={Colors.appColor} style={{height:responsiveHeight(10),width:responsiveWidth(8)}} size={30} />          ),        }}      />
 
 <Tab.Screen
        // name="home"
        name={"LitnearBox"}
        component={LitnearBox}
 
-       options={{          tabBarLabel: '',          tabBarIcon: ({ color }) => (            <Icon name="how-to-vote" color={Colors.appColor} style={{height:responsiveHeight(10),width:responsiveWidth(8)}} size={35} />          ),        }}      />
+       options={{          tabBarLabel: '',          tabBarIcon: ({ color }) => (            <Icon name="how-to-vote" color={Colors.appColor} style={{height:responsiveHeight(10),width:responsiveWidth(8)}} size={30} />          ),        }}      />
 
 </Tab.Navigator>
   );

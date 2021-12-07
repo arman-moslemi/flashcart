@@ -1,5 +1,5 @@
 import React, { useState,useEffect } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, TextInput,Image, AsyncStorage } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, TextInput,Image } from 'react-native';
 import { myFontStyle } from "../../assets/Constance";
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
@@ -13,8 +13,9 @@ import DropDownPicker from 'react-native-dropdown-picker';
 import {Input} from '../../components/Input';
 import { Button } from '../../components/Button';
 import {TabView, SceneMap, TabBar} from 'react-native-tab-view';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 // import { BarChart, Grid ,YAxis,XAxis} from 'react-native-svg-charts'
-import * as scale from 'd3-scale'
 import { LinearGradient, Stop, Defs } from 'react-native-svg'// create a component
 import axios from 'axios';
 import { apiUrl ,apiAsset} from "../../commons/inFormTypes";

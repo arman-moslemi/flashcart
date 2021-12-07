@@ -1,5 +1,5 @@
 import React, { useState,useEffect,useRef } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, TextInput,Image, AsyncStorage,KeyboardAvoidingView,Alert } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, TextInput,Image,KeyboardAvoidingView,Alert } from 'react-native';
 import { myFontStyle } from "../../assets/Constance";
 
 import { Colors } from '../../assets/Colors';
@@ -10,6 +10,7 @@ import {Button} from '../../components/Button';
 import CodeInputMain from '../../components/CodeInput';
 import axios from 'axios';
 import { apiUrl ,apiAsset} from "../../commons/inFormTypes";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 // create a component

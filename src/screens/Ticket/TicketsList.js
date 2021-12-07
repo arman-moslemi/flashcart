@@ -1,5 +1,5 @@
 import React, { useState,useEffect,useRef } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, TextInput,Image, AsyncStorage,Alert } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, TextInput,Image,Alert } from 'react-native';
 import { myFontStyle } from "../../assets/Constance";
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
@@ -13,6 +13,7 @@ import {Input} from '../../components/Input';
 import axios from 'axios';
 import { apiUrl ,apiAsset} from "../../commons/inFormTypes";
 import DrawerContent from '../../components/drewerContent/DrawerContent';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import Drawer from 'react-native-drawer'
 
 // create a component
@@ -114,24 +115,22 @@ tweenHandler={(ratio) => ({
 
 
 
-<LinearGradient colors={['#16B2F5', '#007FB5']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={{height:55}}>
+<LinearGradient colors={['#16B2F5', '#007FB5']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={{height:responsiveHeight(10)}}>
 
   </LinearGradient>
 
 
 <View style={styles.customRow}>
-<View style={{paddingLeft:20}} >
+<View style={{paddingLeft:20,flex:1,flexDirection:'row'}} >
  <TouchableOpacity onPress={()=>drawers.current.open()}>
- <Icon name={"notes"}  size={50} color={"#fff"} style={{transform: [{rotateY: '180deg'}]}}/>
+ <Icon name={"notes"}  size={responsiveHeight(6)} color={"#fff"} style={{transform: [{rotateY: '180deg'}]}}/>
 
  </TouchableOpacity>
- </View>
-<View style={{flex : 2,textAlign:"right"}}>
   <Text style={styles.menuTitle}>نوآوران دانش(ماهان)</Text>
-  </View>
+ </View>
 <View style={{flex :0.5}}>
   <TouchableOpacity style={{}}>
-    <Icon name={"chevron-left"} color={"#fff"} size={30} style={{marginTop:10}}/>
+    <Icon name={"chevron-left"} color={"#fff"} size={30} style={{marginTop:responsiveHeight(1)}}/>
   </TouchableOpacity>
   </View>
 
@@ -147,7 +146,7 @@ tweenHandler={(ratio) => ({
     </View>
     <View>
         <TouchableOpacity style={styles.sortBtn} onPress={toggleModal}>
-        <Icon name={"add"} color={'#fff'} size={25} style={{marginTop:responsiveHeight(1),transform: [{rotateY: '180deg'}]}}></Icon>
+        <Icon name={"add"} color={'#fff'} size={responsiveHeight(3.5)} style={{marginTop:responsiveHeight(1),transform: [{rotateY: '180deg'}]}}></Icon>
           <Text style={{...myFontStyle.btnBold,color:'#fff',alignSelf:'center'}}>ایجاد تیکت
 
           </Text>
@@ -263,7 +262,7 @@ const styles = StyleSheet.create({
     },customRow:{
       flex:1, flexDirection:"row",
       position:"absolute",
-      top:responsiveHeight(0),
+      top:responsiveHeight(3),
       paddingRight:responsiveWidth(5),
       paddingLeft:responsiveWidth(5),
     },
@@ -326,7 +325,7 @@ avatar: {
     backgroundColor:"#fff",
     elevation:5,
     shadowOpacity:1,
-    shadowRadius:10,
+    shadowRadius:2,
     shadowOffset: { width: 2, height: 0},
     borderRadius:5,
     marginRight:responsiveHeight(2),
@@ -395,7 +394,7 @@ alignItems:'flex-end'
       borderRadius:50,
       elevation:5,
     shadowOpacity:1,
-    shadowRadius:10,
+    shadowRadius:5,
     shadowOffset: { width: 2, height: 0},
     justifyContent:'center',
     flexDirection:'row',

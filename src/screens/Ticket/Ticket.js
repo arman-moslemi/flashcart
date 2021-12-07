@@ -110,19 +110,17 @@ tweenHandler={(ratio) => ({
   </LinearGradient>
 
 
-<View style={styles.customRow}>
-<View style={{paddingLeft:20}} >
+  <View style={styles.customRow}>
+<View style={{paddingLeft:20,flex:1,flexDirection:'row'}} >
  <TouchableOpacity onPress={()=>drawers.current.open()}>
- <Icon name={"notes"}  size={50} color={"#fff"} style={{transform: [{rotateY: '180deg'}]}}/>
+ <Icon name={"notes"}  size={responsiveHeight(6)} color={"#fff"} style={{transform: [{rotateY: '180deg'}]}}/>
 
  </TouchableOpacity>
- </View>
-<View style={{flex : 2,textAlign:"right"}}>
   <Text style={styles.menuTitle}>نوآوران دانش(ماهان)</Text>
-  </View>
+ </View>
 <View style={{flex :0.5}}>
   <TouchableOpacity style={{}}>
-    <Icon name={"chevron-left"} color={"#fff"} size={30} style={{marginTop:10}}/>
+    <Icon name={"chevron-left"} color={"#fff"} size={30} style={{marginTop:responsiveHeight(1)}}/>
   </TouchableOpacity>
   </View>
 
@@ -244,7 +242,7 @@ const styles = StyleSheet.create({
     },customRow:{
       flex:1, flexDirection:"row",
       position:"absolute",
-      top:responsiveHeight(0),
+      top:responsiveHeight(3),
       paddingRight:responsiveWidth(5),
       paddingLeft:responsiveWidth(5),
     },
@@ -263,7 +261,7 @@ const styles = StyleSheet.create({
     textInput:{
 
         color:Colors.gray,
-        ...myFontStyle.smallRegular,
+        ...myFontStyle.mediumRegular,
 
 
     },

@@ -354,9 +354,9 @@ tweenHandler={(ratio) => ({
  </TouchableOpacity>
   <Text style={styles.menuTitle}>نوآوران دانش(ماهان)</Text>
  </View>
-<View style={{flex :0.5}}>
+<View >
   <TouchableOpacity style={{}}>
-    <Icon name={"chevron-left"} color={"#fff"} size={30} style={{marginTop:10}}/>
+    <Icon name={"chevron-left"} color={"#fff"} size={30} style={{}}/>
   </TouchableOpacity>
   </View>
 
@@ -383,9 +383,9 @@ tweenHandler={(ratio) => ({
 
                   <Text style={{...myFontStyle.normalBold,color:'#068CC5',}}>جهت تمدید اشتراک ابتدا بخش مورد نظر خود را انتخاب کنید</Text>
                 </View>
-                <View style={{flexDirection:'row',alignItems:"center",margin:5}}>
+                <View style={{zIndex:3000,flexDirection:'row',alignItems:"center",margin:5}}>
                 <Text style={{...myFontStyle.mediumBold,color:Colors.text}}>انتخاب بخش مورد نظر: </Text>
-    <View>
+    <View style={{zIndex:2000}}>
 <DropDownPicker
       open={open3}
       value={valueAc}
@@ -397,6 +397,7 @@ tweenHandler={(ratio) => ({
       style={{
         borderColor:'#F1F1F1',
         borderWidth:2,
+        ...myFontStyle.normalRegular,
         // margin:5,
         width:responsiveWidth(40),
 
@@ -584,8 +585,8 @@ onPress={
 <Text style={{...myFontStyle.largBold,color:Colors.text}}>افزودن سوال(نکته)جدید</Text>
 
 </View>
-<View style={{flexDirection:'row-reverse',alignItems:"center",justifyContent:"space-between",margin:5}}>
-<View>
+<View style={{zIndex:3000,flexDirection:'row-reverse',alignItems:"center",justifyContent:"space-between",margin:5}}>
+<View style={{zIndex:20}}>
 <DropDownPicker
   open={open}
   value={value}
@@ -615,7 +616,7 @@ onPress={
 </View>
   <Text style={{...myFontStyle.mediumBold,color:Colors.text}}>دسته بندی اصلی فلش کارت</Text>
 </View>
-<View style={{flexDirection:'row-reverse',alignItems:"center",justifyContent:"space-between",margin:5}}>
+<View style={{zIndex:2000,flexDirection:'row-reverse',alignItems:"center",justifyContent:"space-between",margin:5}}>
 <View>
 <DropDownPicker
   open={open2}
@@ -743,8 +744,8 @@ const styles = StyleSheet.create({
   viewBody:{backgroundColor:"#FAFAFB",flex:12},
   subViewBody:{backgroundColor:"#fff",
   elevation:5,
-  shadowOpacity:1,
-  shadowRadius:10,
+  shadowOpacity:0.1,
+  shadowRadius:2,
   shadowOffset: { width: 2, height: 0},
   borderRadius:5,
   height:responsiveHeight(12)
@@ -757,7 +758,7 @@ const styles = StyleSheet.create({
   subViewRead:{
     backgroundColor:"#fff",
     elevation:3,
-    shadowOpacity:10,
+    shadowOpacity:0.1,
     shadowRadius:1,
       shadowOffset: { width: 0, height: 2},
     borderRadius:5,

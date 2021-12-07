@@ -26,7 +26,10 @@ const Rules = ({navigation}) => {
   shadowOffset: { width: 2, height: 0},
   shadowRadius: 700,
   elevation: 20,}}>
+        <View style={styles.viewHeader}>
+
     <Text style={{...myFontStyle.textOnImg,color:'#0384BC'}}>قوانین و مقررات</Text>
+   </View>
     <Text style={styles.questionText}>
 لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است
 لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است
@@ -78,7 +81,8 @@ const styles = StyleSheet.create({
     lineHeight:responsiveHeight(4),
 
     paddingBottom:responsiveHeight(5),
-  }
+  },
+  viewHeader:{alignItems:'flex-start',marginTop:responsiveHeight(0),marginLeft:responsiveWidth(5)},
 
 
 });

@@ -1,5 +1,5 @@
 import React, { useState,useEffect } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, TextInput,Image, AsyncStorage,ScrollView } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, TextInput,Image,ScrollView } from 'react-native';
 import { myFontStyle } from "../../assets/Constance";
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
@@ -12,6 +12,7 @@ import axios from 'axios';
 import { apiUrl ,apiAsset} from "../../commons/inFormTypes";
 import { WebView } from 'react-native-webview';
 import {Button} from '../../components/Button';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // create a component
 const Dargah = ({navigation,route}) => {

@@ -1,5 +1,5 @@
 import React, { useState,useEffect } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, TextInput,Image, AsyncStorage } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { myFontStyle } from "../../assets/Constance";
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
@@ -11,6 +11,7 @@ import {TopBar} from '../../components/TopBar';
 import axios from 'axios';
 import { apiUrl ,apiAsset} from "../../commons/inFormTypes";
 import {clearAzmoon, getAzmoon,initAzmoon} from '../../../services/azmoonservice';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 // create a component
@@ -82,7 +83,10 @@ console.log(ss)
    const classes =()=>{
    return(
     <ScrollView style={styles.container}>
-<Text style={{...myFontStyle.UltraBold,color:Colors.appColor,marginLeft:responsiveWidth(5)}}>لیست آزمون ها</Text>
+      <View style={styles.viewHeader}>
+
+<Text style={{...myFontStyle.UltraBold,color:Colors.appColor,marginRight:responsiveWidth(5),textAlign:'right'}}>لیست آزمون ها</Text>
+      </View>
     {/* <View style={styles.viewBody}> */}
 
 {
@@ -149,6 +153,8 @@ const styles = StyleSheet.create({
     marginRight:responsiveWidth(5)
 
   },
+  viewHeader:{alignItems:'flex-start',marginTop:responsiveHeight(3),marginLeft:responsiveWidth(5)},
+
   button:{marginTop:responsiveHeight(2),width:responsiveWidth(30)
     ,height:responsiveHeight(4),backgroundColor:Colors.yellow,
   borderRadius:5,
@@ -197,7 +203,7 @@ const styles = StyleSheet.create({
     elevation:5
     ,borderLeftWidth:5,borderLeftColor:"green",
     shadowOpacity:1,
-    shadowRadius:10,
+    shadowRadius:3,
     shadowOffset:{width:0,height:2},
     borderRadius:5,
     margin:responsiveHeight(2),

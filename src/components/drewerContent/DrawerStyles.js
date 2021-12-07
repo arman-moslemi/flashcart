@@ -58,7 +58,7 @@ export const drawerStyles = StyleSheet.create({
     ...myFontStyle.mediumBold,
     borderWidth:1,
     borderColor:Colors.white,
-    borderRadius:50,
+    borderRadius:responsiveHeight(1),
     paddingVertical:3,
     paddingHorizontal:9,
   },

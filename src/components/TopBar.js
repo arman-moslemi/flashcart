@@ -50,7 +50,7 @@ export const TopBar = ({Classes,navigation}) => {
      </View>
     <View >
       <TouchableOpacity onPress={()=>navigation.goBack()} style={{}}>
-        <Icon name={"chevron-left"} color={"#fff"} size={30} style={{marginTop:10}}/>
+        <Icon name={"chevron-left"} color={"#fff"} size={30} style={{}}/>
       </TouchableOpacity>
       </View>
 

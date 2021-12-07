@@ -1,5 +1,5 @@
 import React, { useState,useEffect } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, TextInput,Image, AsyncStorage } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, TextInput,Image } from 'react-native';
 import { myFontStyle } from "../../assets/Constance";
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
@@ -11,6 +11,8 @@ import {TopBar} from '../../components/TopBar';
 import Modal from "react-native-modal";
 import axios from 'axios';
 import { apiUrl ,apiAsset} from "../../commons/inFormTypes";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 import { RadioButton } from 'react-native-paper';
 // create a component
 const Account = ({navigation}) => {
@@ -165,7 +167,7 @@ const styles = StyleSheet.create({
     backgroundColor:"#fff",
     elevation:5,
     shadowOpacity:1,
-    shadowRadius:10,
+    shadowRadius:5,
     shadowOffset: { width: 2, height: 0},
     borderRadius:5,
     marginRight:responsiveHeight(2),
