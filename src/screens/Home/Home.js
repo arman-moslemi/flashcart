@@ -20,6 +20,7 @@ import Pushe from "pushe-react-native";
 const [slider1,setSlider1]=useState("");
 const [slider2,setSlider2]=useState("");
 const [slider3,setSlider3]=useState("");
+const [slider4,setSlider4]=useState("");
 const [data,setData]=useState([]);
 const [pezeshki,setpezeshki]=useState("");
 const [board,setBoard]=useState("");
@@ -47,6 +48,7 @@ Pushe.initialize();
             setSlider1(response.data.DataSlider.Slider1)
             setSlider2(response.data.DataSlider.Slider2)
             setSlider3(response.data.DataSlider.Slider3)
+            setSlider4(response.data.DataSlider.Slider4)
             setData(response.data.DataSlider)
             setpezeshki(response.data.DataMaingroup[0].Photo)
             setBoard(response.data.DataMaingroup[1].Photo)
@@ -115,16 +117,17 @@ return (
         renderSlides = {
           <>
             <TouchableOpacity onPress={()=>Linking.openURL(data?.Link1)} style={styles.viewBox}>
-            <Image source={{uri:apiAsset+slider1}} resizeMode={"stretch"} style={styles.imageSlider}/>
+            <Image source={{uri:apiAsset + slider1}} resizeMode={"stretch"} style={styles.imageSlider}/>
             </TouchableOpacity>
             <TouchableOpacity onPress={()=>Linking.openURL(data?.Link2)} style={styles.viewBox}><Image source={{uri:apiAsset+slider2}}  resizeMode={"stretch"} style={styles.imageSlider}></Image></TouchableOpacity>
             <TouchableOpacity onPress={()=>Linking.openURL(data?.Link3)} style={styles.viewBox}><Image source={{uri:apiAsset+slider3}}  resizeMode={"stretch"} style={styles.imageSlider}></Image></TouchableOpacity>
+            <TouchableOpacity onPress={()=>Linking.openURL(data?.Link4)} style={styles.viewBox}><Image source={{uri:apiAsset+slider4}}  resizeMode={"stretch"} style={styles.imageSlider}></Image></TouchableOpacity>
 
-         </>
+            </>
       }
       style={styles.slider}     //Main slider container style
       height = {responsiveHeight(25)}    //Height of your slider
-      slideCount = {3}    //How many views you are adding to slide
+      slideCount = {4}    //How many views you are adding to slide
       dots = {true}     // Pagination dots visibility true for visibile
       dotActiveColor = '#FFCC00'     //Pagination dot active color
       dotInactiveColor = '#fff'    // Pagination do inactive color

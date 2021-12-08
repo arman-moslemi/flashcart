@@ -253,7 +253,7 @@ const Labels = ({x, y, bandwidth, data}) => (
       );
       const SecondRoute = () => (
         <View style={styles.container}>
-        <Text>second</Text>
+        <Text></Text>
                   </View>
       );
       const renderScene = SceneMap({
