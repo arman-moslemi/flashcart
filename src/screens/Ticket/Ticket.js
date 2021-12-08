@@ -160,7 +160,10 @@ tweenHandler={(ratio) => ({
         تاریخ ایجاد تیکت:{item.Date}
     </Text>
 </View>
+<ScrollView>
+
 <Text style={{...myFontStyle.mediumRegular,color:Colors.text,marginHorizontal:responsiveWidth(3)}}>{item.Text}</Text>
+</ScrollView>
 </View>
 
 </View>
@@ -179,7 +182,11 @@ tweenHandler={(ratio) => ({
         تاریخ ایجاد تیکت:{item.Date}
     </Text>
 </View>
+<ScrollView>
+
 <Text style={{...myFontStyle.mediumRegular,color:Colors.text,marginHorizontal:responsiveWidth(3)}}>{item.Text}</Text>
+
+</ScrollView>
 </View>
 
 </View>
