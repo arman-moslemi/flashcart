@@ -368,7 +368,7 @@ tweenHandler={(ratio) => ({
 
 <View style={styles.viewBody}>
 <View style={styles.subViewBody}>
-<TouchableOpacity onPress={()=>setModal2Visible(true)} style={{marginRight:responsiveWidth(5),alignItems:'center',justifyContent:'center'}}>
+<TouchableOpacity onPress={()=>setModal2Visible(true)} style={{marginRight:responsiveWidth(5),borderRadius:10,alignItems:'center',justifyContent:'center'}}>
   <Text style={styles.txtEdit}>
     خرید اشتراک
   </Text>
@@ -507,7 +507,7 @@ onPress={
           }
           <TouchableOpacity onPress={()=>navigation.navigate('EditProfile')} style={styles.viewIconEdit}>
 
-          <Icon name="create" color={Colors.white} size={20} style={{margin:5}}/>
+          <Icon name="create" color={Colors.white} size={responsiveHeight(2.5)} style={{margin:5}}/>
           </TouchableOpacity>
 
 </TouchableOpacity>
@@ -709,17 +709,17 @@ const styles = StyleSheet.create({
 
   txtEdit: {
     color: Colors.white,
-    ...myFontStyle.mediumRegular,
+    ...myFontStyle.mediumBold,
     // borderWidth:1,
     alignItems:'center',
     alignContent:'center',
     alignSelf:'center',
     width:responsiveWidth(30),
     borderColor:Colors.white,
-    borderRadius:50,
+    borderRadius:20,
     paddingVertical:3,
     // marginLeft:responsiveWidth(5),
-    paddingHorizontal:responsiveWidth(6.25),
+    paddingHorizontal:responsiveWidth(7.5),
     backgroundColor:Colors.yellow
 
   },

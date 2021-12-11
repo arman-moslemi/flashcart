@@ -52,7 +52,7 @@ import { apiUrl ,apiAsset} from "../../commons/inFormTypes";
             <View style={styles.col1Mini}>
             <TouchableOpacity onPress={()=>navigation.navigate("FlashCardList",{id:item.item.SubGroupID})} style={styles.miniTouch}>
                 <Text style={styles.innerText}>{item.item.Title}</Text>
-                <Icon name={"chevron-left"} size={35} color={'#FFC444'} style={styles.leftIcon}></Icon>
+                <Icon name={"chevron-left"} size={responsiveHeight(4)} color={'#FFC444'} style={styles.leftIcon}></Icon>
             </TouchableOpacity>
             </View>
         );

@@ -358,8 +358,8 @@ bottom: responsiveHeight(2)
   },logoAbsolute2:{
     position:'absolute',
     width:responsiveWidth(15),
-    height:responsiveHeight(9),
-    top:responsiveHeight(12),
+    height:responsiveHeight(11),
+    top:responsiveHeight(10),
     right:responsiveWidth(2),
   },textOverlay2:{
    ...myFontStyle.largBold,

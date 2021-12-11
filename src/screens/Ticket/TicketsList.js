@@ -196,7 +196,7 @@ tweenHandler={(ratio) => ({
 <TouchableOpacity style={{flexDirection:'row',alignItems:'center'}}>
 
 
-<Icon name="remove-red-eye" size={20} color={'#FFC444'}/>
+<Icon name="remove-red-eye" size={responsiveHeight(3)} color={'#FFC444'}/>
 </TouchableOpacity>
     </View>
     {
@@ -324,7 +324,7 @@ avatar: {
     borderLeftColor:'#2DDB4E',
     backgroundColor:"#fff",
     elevation:5,
-    shadowOpacity:1,
+    shadowOpacity:0.1,
     shadowRadius:2,
     shadowOffset: { width: 2, height: 0},
     borderRadius:5,
@@ -343,7 +343,7 @@ avatar: {
     borderLeftColor:'#F69D0D',
     backgroundColor:"#fff",
     elevation:5,
-    shadowOpacity:1,
+    shadowOpacity:0.1,
     shadowRadius:10,
     shadowOffset: { width: 2, height: 0},
     borderRadius:5,
@@ -362,7 +362,7 @@ avatar: {
     borderLeftColor:'#E82B63',
     backgroundColor:"#fff",
     elevation:5,
-    shadowOpacity:1,
+    shadowOpacity:0.1,
     shadowRadius:10,
     shadowOffset: { width: 2, height: 0},
     borderRadius:5,
@@ -393,7 +393,7 @@ alignItems:'flex-end'
       height:responsiveHeight(5),
       borderRadius:50,
       elevation:5,
-    shadowOpacity:1,
+    shadowOpacity:0.1,
     shadowRadius:5,
     shadowOffset: { width: 2, height: 0},
     justifyContent:'center',
@@ -436,7 +436,7 @@ alignItems:'flex-end'
        borderRadius:50,
        justifyContent:'center',
        elevation:5,
-    shadowOpacity:0.5,
+    shadowOpacity:0.1,
     shadowRadius:50,
     shadowOffset: { width: 2, height: 0},
   },

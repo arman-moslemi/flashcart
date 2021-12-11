@@ -486,7 +486,7 @@ tweenHandler={(ratio) => ({
 
 <View >
   <TouchableOpacity style={{}} onPress={()=>navigation.goBack()}>
-    <Icon name={"chevron-left"} color={"#fff"} size={30} style={{marginTop:10}}/>
+    <Icon name={"chevron-left"} color={"#fff"} size={responsiveHeight(5)} style={{marginTop:0}}/>
   </TouchableOpacity>
   </View>
 
@@ -501,7 +501,7 @@ tweenHandler={(ratio) => ({
             <View style={styles.flashCardBox}>
             <View style={styles.yellowBox}>
             <TouchableOpacity style={{flexDirection:"row",justifyContent:'center',alignItems:'center'}}  onPress={()=>toggleModal("next")}>
-                  <Icon name={"chevron-right"} color={'#fff'} size={30} ></Icon>
+                  <Icon name={"chevron-right"} color={'#fff'} size={responsiveHeight(3)} ></Icon>
                   <Text style={styles.nextBtnText}>بعدی</Text>
               </TouchableOpacity>
               <Modal isVisible={isModalVisible} onBackdropPress={closeModal} style={{justifyContent:'center',alignItems:'center'}}>
@@ -544,10 +544,10 @@ tweenHandler={(ratio) => ({
                 </View>
               </Modal>
               <TouchableOpacity style={styles.favoriteBtn} onPress={()=>favoriteInsert()}>
-                  <Icon name={"favorite-border"} size={40} color={'#ffc444'}></Icon>
+                  <Icon name={"favorite-border"} size={responsiveHeight(5)} color={'#ffc444'}></Icon>
               </TouchableOpacity>
               <TouchableOpacity style={{flexDirection:'row-reverse',alignItems:'center'}} onPress={()=>toggleModal("prev")}>
-                  <Icon name={"chevron-left"} color={'#fff'} size={30} ></Icon>
+                  <Icon name={"chevron-left"} color={'#fff'} size={responsiveHeight(4)} ></Icon>
                   <Text style={styles.nextBtnText}>قبلی</Text>
               </TouchableOpacity>
 
@@ -905,8 +905,8 @@ const styles = StyleSheet.create({
     flexDirection:'row',
     justifyContent:'space-between'
   },favoriteBtn:{
-    height:65,
-    width:65,
+    height:responsiveHeight(8),
+    width:responsiveHeight(8),
     backgroundColor:'#fff',
    borderRadius:100,
    marginTop:responsiveHeight(-2),

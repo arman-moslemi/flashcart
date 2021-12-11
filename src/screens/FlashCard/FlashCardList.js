@@ -70,7 +70,7 @@ const _render = (item, index) => {
     <View style={styles.viewSeeCard}>
     <Text style={{...myFontStyle.mediumRegular,color:Colors.gray,marginRight:3}}>مشاهده کارت</Text>
 
-    <Icon name="remove-red-eye" size={30} color={Colors.yellow}/>
+    <Icon name="remove-red-eye" size={responsiveHeight(3)} color={Colors.yellow}/>
     </View>
 
     <View style={styles.viewText}>
@@ -180,7 +180,7 @@ const styles = StyleSheet.create({
     borderLeftWidth:5,
     borderLeftColor:Colors.yellow,
     elevation:10,
-    shadowOpacity:1,
+    shadowOpacity:0.1,
     shadowRadius:2,
      shadowOffset:{width:0,height:2},
     borderRadius:responsiveHeight(1),

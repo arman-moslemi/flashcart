@@ -202,7 +202,7 @@ const styles = StyleSheet.create({
     backgroundColor:"#fff",
     elevation:5
     ,borderLeftWidth:5,borderLeftColor:"green",
-    shadowOpacity:1,
+    shadowOpacity:0.1,
     shadowRadius:3,
     shadowOffset:{width:0,height:2},
     borderRadius:5,
@@ -217,7 +217,7 @@ const styles = StyleSheet.create({
     backgroundColor:"#fff",
     elevation:5
     ,borderLeftWidth:5,borderLeftColor:"red",
-    shadowOpacity:1,
+    shadowOpacity:0.1,
     shadowRadius:10,
     shadowOffset:{width:0,height:2},
     borderRadius:5,

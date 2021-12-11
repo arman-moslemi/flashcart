@@ -157,7 +157,7 @@ const Favorite = ({navigation}) => {
 <TouchableOpacity onPress={()=>Delete(item.FlashCardID)} style={{flexDirection:'row',alignItems:'center'}}>
 
 
-<Icon name="delete" size={30} color={'#cc1111'}/>
+<Icon name="delete" size={responsiveHeight(3)} color={'#cc1111'}/>
 </TouchableOpacity>
 <View style={{flexDirection:'row',justifyContent:'flex-start',width:responsiveWidth(75)}}>
     <View>
@@ -245,7 +245,7 @@ const styles = StyleSheet.create({
     borderLeftColor:'#FFC444',
     backgroundColor:"#fff",
     elevation:5,
-    shadowOpacity:1,
+    shadowOpacity:0.1,
     shadowRadius:10,
     shadowOffset: { width: 2, height: 0},
     borderRadius:5,

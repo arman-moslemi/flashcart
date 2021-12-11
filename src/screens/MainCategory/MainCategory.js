@@ -93,14 +93,14 @@ tweenHandler={(ratio) => ({
           <View style={styles.customRow}>
             <View style={{paddingLeft:20,flexDirection:'row',flex:1}}>
             <TouchableOpacity  onPress={()=>drawers.current.open()}>
-             <Icon name={"notes"}  size={50} color={"#fff"} style={{transform: [{rotateY: '180deg'}]}}/>
+             <Icon name={"notes"}  size={responsiveHeight(5)} color={"#fff"} style={{transform: [{rotateY: '180deg'}]}}/>
 
              </TouchableOpacity>
               <Text style={styles.menuTitle}>نوآوران دانش(ماهان)</Text>
              </View>
             <View >
               <TouchableOpacity >
-                <Icon name={"chevron-left"} color={"#fff"} size={30} style={{marginTop:10}}/>
+                <Icon name={"chevron-left"} color={"#fff"} size={responsiveHeight(5)} />
               </TouchableOpacity>
               </View>
 
@@ -131,7 +131,7 @@ tweenHandler={(ratio) => ({
           keyExtractor={keyExtractor}
           data={data}
           renderItem={_render}
-          style={{marginTop:responsiveHeight(7),marginLeft:responsiveWidth(2),marginBottom:responsiveHeight(20)}}
+          style={{marginTop:responsiveHeight(10),marginLeft:responsiveWidth(2),marginBottom:responsiveHeight(20)}}
                     // ListFooterComponent={listFooter}
           // onEndReached={fetchNextCharityPage}
         />
@@ -225,7 +225,7 @@ customRow:{
     // paddingRight:20,
     // paddingLeft:20,
   },logoSize:{
-     width:responsiveWidth(24),height:responsiveHeight(16),
+     width:responsiveWidth(24),height:responsiveHeight(18),
 
   },categoryColImg:{
       width:'95%',
@@ -235,7 +235,7 @@ customRow:{
       borderBottomRightRadius:10,
       height:responsiveHeight(22),
   },bottomBox:{
-      height:38,
+      height:responsiveHeight(5),
       borderBottomLeftRadius:10,
       borderBottomRightRadius:10,
 alignItems:'center',

@@ -1,5 +1,5 @@
 import React, { useState,useEffect } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, TextInput,Image, AsyncStorage,Alert } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, TextInput,Image,Alert } from 'react-native';
 import { myFontStyle } from "../../assets/Constance";
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
@@ -15,6 +15,8 @@ import { Button } from '../../components/Button';
 import { RadioButton } from 'react-native-paper';
 import {clearAzmoon, getAzmoon,updateAzmoon} from '../../../services/azmoonservice';
 import axios from 'axios';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 import { apiUrl ,apiAsset} from "../../commons/inFormTypes";
 // create a component
 const Question = ({navigation,route}) => {
@@ -69,18 +71,19 @@ const  Submit=async()=> {
     const [isModal2Visible, setModal2Visible] = useState(false);
 
     const toggleModal2 = () => {
-     setModal2Visible(!isModal2Visible);
+      setModalVisible(false)
+     setModal2Visible(true);
     };
 
     const closeModal2=()=>{
       setModal2Visible(!isModal2Visible);
     }
     const etmam=()=>{
-      setModalVisible(true);
       setAllAnswer( getAzmoon().filter(datas => datas.CustomerAnswer != null).length);
       setAll( getAzmoon().length);
       setRight( getAzmoon().filter(datas => datas.CustomerAnswer == datas.RightAnswer).length);
       setRemain( getAzmoon().length - getAzmoon().filter(datas => datas.CustomerAnswer != null).length);
+      setModal2Visible(true);
      }
 
 
@@ -131,7 +134,7 @@ else{
                     <LinearGradient colors={['#CC1111', '#F43535'] }start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={{borderRadius:3,padding:5}}>
 
 
-                      <TouchableOpacity onPress={toggleModal2}>
+                      <TouchableOpacity onPress={()=>{setModalVisible(false); setModal2Visible(true)}}>
                         <Text style={{...myFontStyle.normalBold,color:Colors.white,textAlign:'center'}}>اتمام آزمون</Text>
                         </TouchableOpacity>
                         </LinearGradient>
