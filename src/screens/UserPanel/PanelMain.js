@@ -21,6 +21,7 @@ import { RadioButton } from 'react-native-paper';
 // import ImagePicker from 'react-native-image-picker';
 import {launchImageLibrary} from 'react-native-image-picker';
 import ImgToBase64 from 'react-native-image-base64';
+import { set } from 'react-native-reanimated';
 // create a component
 const PanelMain = ({navigation}) => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -182,27 +183,28 @@ console.log(itemsAc)
   }
   const  getAccunts=(val)=> {
      console.log(33);
-     console.log(value);
-setValueAc(val)
-    axios.post(apiUrl+'Accounts',{GroupID:valueAc})
-    .then(function (response) {
-      const message = response.data.Data;
-      const result = response.data.result;
-      console.log(22222222);
-      console.log(result);
-      console.log(message);
+     console.log(val);
+     setValueAc(val)
+     console.log(valueAc);
+  //   axios.post(apiUrl+'Accounts',{GroupID:valueAc})
+  //   .then(function (response) {
+  //     const message = response.data.Data;
+  //     const result = response.data.result;
+  //     console.log(22222222);
+  //     console.log(result);
+  //     console.log(message);
 
 
-      if(result == "true"){
-    // setGroup(response.data.Data)
-  setAccunt(response.data.Data)
-                        }else{
+  //     if(result == "true"){
+  //   // setGroup(response.data.Data)
+  // setAccunt(response.data.Data)
+  //                       }else{
 
-      }
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
+  //     }
+  //   })
+  //   .catch(function (error) {
+  //     console.log(error);
+  //   });
 
   }
   const  checkAccount=async()=> {
@@ -306,7 +308,12 @@ Alert.alert("این اشتراک برای شما هم اکنون فعال است
           // setData(response.data.Data)
           Alert.alert("",'با موفقیت اضافه شد')
           setModalVisible(false)
-                              }else{
+                              }
+                              else if(result == "duplicate"){
+                                Alert.alert("",'اشتراک این کارت خریداری نشده است')
+
+                              }
+                              else{
                                 Alert.alert("",'تمام آیتم هارا وارد نمایید')
 
             }
@@ -393,7 +400,36 @@ tweenHandler={(ratio) => ({
       setOpen={setOpen3}
       setValue={getAccunts}
       setItems={setItemsAc}
+      onChangeValue={(value) => {
+  console.log(88);
+  console.log(value);
+  axios.post(apiUrl+'Accounts',{GroupID:value})
+    .then(function (response) {
+      const message = response.data.Data;
+      const result = response.data.result;
+      console.log(22222222);
+      console.log(result);
+      console.log(message);
 
+
+      if(result == "true"){
+    // setGroup(response.data.Data)
+  setAccunt(response.data.Data)
+                        }else{
+
+      }
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+// setValueAc(value)
+}}
+//       onChangeValue={(valueff) => {
+//         // getAccunts(value)
+//         console.log(99);
+//         console.log(valueff);
+//         setValueAc(valueff);
+// }}
       style={{
         borderColor:'#F1F1F1',
         borderWidth:2,
