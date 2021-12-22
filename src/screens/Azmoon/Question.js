@@ -156,17 +156,17 @@ else{
     //  onBackdropPress={closeModal2}
       style={{justifyContent:'center',alignItems:'center'}}>
     <View style={styles.alertModal}>
-      <View style={{flexDirection:'row',padding:10,justifyContent:'center',borderBottomColor:'#f4f4f4',borderBottomWidth:2}}>
-                  <Icon name={"assignment"} color={'#cc1111'} size={30} style={{marginRight:5}}></Icon>
+      <View style={{flexDirection:'row',padding:10,justifyContent:'center',borderBottomColor:'#f4f4f4',borderBottomWidth:2,alignItems:'center'}}>
+                  <Icon name={"assignment"} color={'#cc1111'} size={responsiveHeight(4)} style={{marginRight:5}}></Icon>
                   <Text style={{...myFontStyle.normalBold,color:'#cc1111'}}>نتیجه آزمون </Text>
                 </View>
-              <View style={{borderBottomColor:'#f4f4f4',borderBottomWidth:2,paddingBottom:responsiveHeight(2)}}>
+              <View style={{borderBottomColor:'#f4f4f4',borderBottomWidth:2,paddingBottom:responsiveHeight(2),alignItems:'flex-start'}}>
 
               <Text style={styles.scoreText}>کل تعداد سوالات آزمون: {all} تا</Text>
                 <Text style={styles.scoreText}>تعداد سوالات پاسخ داده شده: {allAnswer} تا</Text>
                 <Text style={styles.scoreText}>تعداد پاسخ درست: {right} تا</Text>
               </View>
-         <View style={{flexDirection:'row',justifyContent:'space-evenly',marginTop:responsiveHeight(3)}}>
+         <View style={{flexDirection:'row',justifyContent:'space-evenly',marginTop:responsiveHeight(3),alignItems:'center'}}>
 
          <View >
          <Text style={{...myFontStyle.btnBold,color:'#0D8424',textAlign:'left',marginLeft:responsiveWidth(3)}}>نمره شما: {right}</Text>
@@ -344,6 +344,7 @@ const styles = StyleSheet.create({
       width:responsiveWidth(25),
       height:responsiveHeight(4),
       alignItems:'center',
+      justifyContent:'center',
       borderRadius:5,
   },
   viewNext:{

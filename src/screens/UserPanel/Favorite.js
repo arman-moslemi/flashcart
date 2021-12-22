@@ -150,7 +150,7 @@ const Favorite = ({navigation}) => {
     </View> */}
     </View>
 {/* <View style={styles.viewBody}> */}
-
+<ScrollView>
 {
   data?.map((item)=>(
 <TouchableOpacity onPress={()=>navigation.navigate("FlashCardView",{id:item.FlashCardID})} style={styles.subViewRead}>
@@ -174,10 +174,11 @@ const Favorite = ({navigation}) => {
 
   </TouchableOpacity>
   ))}
+  </ScrollView>
+
 </View>
    )
    }
-
 
 
 return (

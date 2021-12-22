@@ -191,6 +191,7 @@ const styles =StyleSheet.create({
     //   size: '13f',
     // },
     color: '#FF6161',
+    textAlign:'left',
     marginTop: 4,
     // width: 312,
   },
@@ -212,6 +213,7 @@ const styles =StyleSheet.create({
   },
   titleErrorStyle: {
     color: '#FF6161',
+    // textAlign:'right'
     // width: 312,
   },
 });

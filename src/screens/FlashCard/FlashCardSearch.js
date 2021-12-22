@@ -75,7 +75,7 @@ import { apiUrl ,apiAsset} from "../../commons/inFormTypes";
 
 </View>
 <View style={styles.customRow}>
-    <View style={{paddingLeft:20,flex:1,flexDirection:'row'}} >
+    <View style={{paddingLeft:responsiveWidth(1),flex:1,flexDirection:'row'}} >
      <TouchableOpacity onPress={()=>drawers.current.open()}>
      <Icon name={"notes"} size={responsiveHeight(7)} color={"#fff"} style={{transform: [{rotateY: '180deg'}]}}/>
 
@@ -209,8 +209,9 @@ alignItems:'center',
     },
 input:{
     borderWidth:0,
-    height:responsiveHeight(6),
+    height:responsiveHeight(5),
     width:responsiveWidth(90),
+    marginBottom:responsiveHeight(1),
 
     // width:"100%",
     // fontFamily:"IRANSans",

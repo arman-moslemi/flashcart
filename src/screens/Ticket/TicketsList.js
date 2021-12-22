@@ -121,7 +121,7 @@ tweenHandler={(ratio) => ({
 
 
 <View style={styles.customRow}>
-<View style={{paddingLeft:20,flex:1,flexDirection:'row'}} >
+<View style={{paddingLeft:responsiveWidth(1),flex:1,flexDirection:'row'}} >
  <TouchableOpacity onPress={()=>drawers.current.open()}>
  <Icon name={"notes"}  size={responsiveHeight(6)} color={"#fff"} style={{transform: [{rotateY: '180deg'}]}}/>
 
@@ -129,7 +129,7 @@ tweenHandler={(ratio) => ({
   <Text style={styles.menuTitle}>نوآوران دانش(ماهان)</Text>
  </View>
 <View style={{flex :0.5}}>
-  <TouchableOpacity style={{}}>
+  <TouchableOpacity onPress={()=>navigation.goBack()} style={{}}>
     <Icon name={"chevron-left"} color={"#fff"} size={30} style={{marginTop:responsiveHeight(1)}}/>
   </TouchableOpacity>
   </View>
@@ -164,14 +164,14 @@ tweenHandler={(ratio) => ({
 
 
                 </View>
-                <View style={{flexDirection:'row',paddingLeft:responsiveWidth(2),paddingTop:responsiveHeight(0)}}>
+                <View style={{flexDirection:'row',paddingLeft:responsiveWidth(2.5),paddingTop:responsiveHeight(0)}}>
                 <Text style={{...myFontStyle.normalRegular,color:Colors.text,marginTop:responsiveHeight(2),}}>متن پیام:   </Text>
-                <Input onChangeText={(ss)=>setText(ss)}   placeholder="متن پیام خود را اینجا بنویسید"  inputStyle={styles.textInputLogin2}containerStyle={{alignItems:"flex-end"}} />
+                <Input onChangeText={(ss)=>setText(ss)}   placeholder="متن پیام خود را اینجا بنویسید"  inputStyle={styles.textInputLogin2}containerStyle={{alignItems:"flex-end",marginLeft:responsiveWidth(1.3)}} />
 
 
                 </View>
              <View style={{justifyContent:'center',width:'100%',alignContent:'flex-end'}}>
-             <View style={{width:responsiveWidth(30) ,alignSelf:'flex-end',marginTop:responsiveHeight(2),marginRight:responsiveWidth(5)}}>
+             <View style={{width:responsiveWidth(30) ,alignSelf:'flex-end',marginTop:responsiveHeight(2),marginRight:responsiveWidth(9)}}>
 
 
 <TouchableOpacity onPress={()=>newSupport()} style={styles.sendBtn}>

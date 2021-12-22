@@ -205,7 +205,7 @@ if(response.data.Data[0].PhotoAnswer){
           console.log(ids)
           console.log(dd)
           console.log(type)
-
+setAnswer(false)
           await TrackPlayer.destroy();
           axios.post(apiUrl + 'ChangeFlashCard',{FlashCardID:ids,Type:dd})
           .then(function (response) {
@@ -476,7 +476,7 @@ tweenHandler={(ratio) => ({
 
 
 <View style={styles.customRow}>
-<View style={{paddingLeft:20,flexDirection:'row',flex:1}} >
+<View style={{paddingLeft:responsiveWidth(1),flexDirection:'row',flex:1}} >
  <TouchableOpacity onPress={()=>drawers.current.open()}>
  <Icon name={"notes"}  size={responsiveHeight(4)} color={"#fff"} style={{transform: [{rotateY: '180deg'}]}}/>
 

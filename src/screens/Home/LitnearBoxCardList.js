@@ -98,7 +98,7 @@ setValue(value+1)
     </View>
     <View>
         <TouchableOpacity style={styles.sortBtn} onPress={toggleModal}>
-        <Icon name={"sort"} color={'#fff'} size={35} style={{marginTop:responsiveHeight(0),transform: [{rotateY: '180deg'}]}}></Icon>
+        <Icon name={"sort"} color={'#fff'} size={responsiveHeight(4)} style={{marginTop:responsiveHeight(0),transform: [{rotateY: '180deg'}]}}></Icon>
           <Text style={{...myFontStyle.normalBold,color:'#fff',alignSelf:'center'}}>مرتب سازی
 
           </Text>
@@ -107,7 +107,7 @@ setValue(value+1)
         <Modal isVisible={isModalVisible} onBackdropPress={closeModal} style={{justifyContent:'center',alignItems:'center'}}>
                <View style={styles.sortModal}>
                 <View style={{flexDirection:'row',justifyContent:'center',borderBottomColor:'#f4f4f4',borderBottomWidth:2}}>
-                  <Icon name={"sort"} color={'#ffc444'} size={35} style={{transform: [{rotateY: '180deg'}]}}></Icon>
+                  <Icon name={"sort"} color={'#ffc444'} size={responsiveHeight(4)} style={{transform: [{rotateY: '180deg'}]}}></Icon>
                   <Text style={{...myFontStyle.largBold,color:'#000'}}>مرتب سازی بر اساس درجه سختی</Text>
                 </View>
                 <View>
@@ -157,13 +157,13 @@ setValue(value+1)
 <TouchableOpacity onPress={()=>DeleteLitnear(item.FlashCardID)} style={{flexDirection:'row',alignItems:'center'}}>
 
 
-<Icon name="delete" size={30} color={'#cc1111'}/>
+<Icon name="delete" size={responsiveHeight(3)} color={'#cc1111'}/>
 </TouchableOpacity>
 <TouchableOpacity  onPress={()=>navigation.navigate("FlashCardView",{id:item.FlashCardID})} style={{flexDirection:'row',justifyContent:'flex-start',width:responsiveWidth(75)}}>
     <View>
-    <Text style={{...myFontStyle.normalBold,color:Colors.black,flexDirection:'column'}}>{item.Text?.substring(0, 20)}...</Text>
+    <Text style={{...myFontStyle.normalBold,color:Colors.black,textAlign:'left',marginLeft:responsiveWidth(1)}}>{item.Text?.substring(0, 20)}...</Text>
     <View style={{flexDirection:'row'}}>
-    <Icon name={"alarm"} color={'#BCC0C8'} size={20}></Icon>
+    <Icon name={"alarm"} color={'#BCC0C8'} size={responsiveHeight(2.5)}></Icon>
 <Text style={{...myFontStyle.mediumRegular,textAlign:'left',color:'#BCC0C8'}}>
 
   زمان مرور دو روز دیگر
@@ -261,7 +261,7 @@ const styles = StyleSheet.create({
     borderLeftColor:'#ffb921',
     backgroundColor:"#fff",
     elevation:5,
-    shadowOpacity:1,
+    shadowOpacity:0.1,
     shadowRadius:10,
     shadowOffset: { width: 2, height: 0},
     borderRadius:5,
@@ -291,7 +291,7 @@ alignItems:'flex-end'
       height:responsiveHeight(5),
       borderRadius:5,
       elevation:5,
-    shadowOpacity:1,
+    shadowOpacity:0.1,
     shadowRadius:10,
     shadowOffset: { width: 2, height: 0},
     justifyContent:'center',

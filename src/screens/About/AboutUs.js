@@ -106,7 +106,7 @@ return (
 
   </View>
   <View style={{width:responsiveScreenWidth(25),alignItems:'center'}}>
-    <Image source={require('../../assets/images/pezeshkiLogo.png')} style={{width:responsiveWidth(20),height:responsiveHeight(14)}}></Image>
+    <Image source={require('../../assets/images/pezeshkiLogo.png')} style={{width:responsiveWidth(20),height:responsiveHeight(16)}}></Image>
     </View>
     <View style={{flex: 1, height: 2, backgroundColor: '#ECEDEF'}}>
 
@@ -126,7 +126,7 @@ return (
 
   </View>
   <View style={{width:responsiveScreenWidth(25),alignItems:'center'}}>
-    <Image source={require('../../assets/images/boardLogo.png')} style={{width:responsiveWidth(20),height:responsiveHeight(12)}}></Image>
+    <Image source={require('../../assets/images/boardLogo.png')} style={{width:responsiveWidth(24),height:responsiveHeight(16)}}></Image>
     </View>
     <View style={{flex: 1, height: 2, backgroundColor: '#ECEDEF'}}>
 
@@ -145,7 +145,7 @@ return (
 
   </View>
   <View style={{width:responsiveScreenWidth(25),alignItems:'center'}}>
-    <Image source={require('../../assets/images/dentalLogo.png')} style={{width:70,height:100}}></Image>
+    <Image source={require('../../assets/images/dentalLogo.png')} style={{width:responsiveWidth(20),height:responsiveHeight(15)}}></Image>
     </View>
     <View style={{flex: 1, height: 2, backgroundColor: '#ECEDEF'}}>
 
@@ -242,7 +242,7 @@ marginRight:10,
   ...myFontStyle.largBold,
   marginTop:responsiveHeight(1),
 },logoSize:{
-  width:responsiveWidth(25),height:responsiveHeight(13)
+  width:responsiveWidth(25),height:responsiveHeight(14)
 
 }, aboutBox:{
   backgroundColor:'#fff',

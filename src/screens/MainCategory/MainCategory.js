@@ -91,7 +91,7 @@ tweenHandler={(ratio) => ({
 
 
           <View style={styles.customRow}>
-            <View style={{paddingLeft:20,flexDirection:'row',flex:1}}>
+            <View style={{paddingLeft:responsiveWidth(1),flexDirection:'row',flex:1}}>
             <TouchableOpacity  onPress={()=>drawers.current.open()}>
              <Icon name={"notes"}  size={responsiveHeight(5)} color={"#fff"} style={{transform: [{rotateY: '180deg'}]}}/>
 
@@ -99,7 +99,7 @@ tweenHandler={(ratio) => ({
               <Text style={styles.menuTitle}>نوآوران دانش(ماهان)</Text>
              </View>
             <View >
-              <TouchableOpacity >
+              <TouchableOpacity onPress={()=>navigation.goBack()}>
                 <Icon name={"chevron-left"} color={"#fff"} size={responsiveHeight(5)} />
               </TouchableOpacity>
               </View>

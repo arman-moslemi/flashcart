@@ -111,7 +111,7 @@ tweenHandler={(ratio) => ({
 
 
   <View style={styles.customRow}>
-<View style={{paddingLeft:20,flex:1,flexDirection:'row'}} >
+<View style={{paddingLeft:responsiveWidth(1),flex:1,flexDirection:'row'}} >
  <TouchableOpacity onPress={()=>drawers.current.open()}>
  <Icon name={"notes"}  size={responsiveHeight(6)} color={"#fff"} style={{transform: [{rotateY: '180deg'}]}}/>
 

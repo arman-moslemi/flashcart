@@ -302,7 +302,11 @@ else{
 return (
   <View style={styles.container}>
         <View style={styles.pageBody}>
-        <Text style={styles.pageHeader}>لایتنر</Text>
+        {/* <Text style={styles.pageHeader}>لایتنر</Text> */}
+        <View style={styles.viewHeader}>
+
+<Text style={{...myFontStyle.UltraBold,color:Colors.appColor,marginRight:responsiveWidth(5),textAlign:'right'}}>لایتنر</Text>
+      </View>
         {data?
 
 <ScrollView style={{marginBottom:20}}>
@@ -315,7 +319,7 @@ return (
             <View style={styles.arrow} >
               <Image source={require('../../assets/images/orange.png')} style={yellow?{ position:'absolute',
   bottom:0,
-  right:responsiveWidth(wid-2)}:{width:0,height:0}}/>
+  right:responsiveWidth(wid)}:{width:0,height:0}}/>
             </View>
             <View style={styles.arrow} >
               <Image source={require('../../assets/images/Green.png')} style={green?{ position:'absolute',
@@ -325,7 +329,7 @@ return (
             <View style={styles.arrow} >
               <Image source={require('../../assets/images/lightGreen.png')} style={blue?{ position:'absolute',
   bottom:0,
-  right:responsiveWidth(wid)}:{width:0,height:0}}/>
+  right:responsiveWidth(wid+3)}:{width:0,height:0}}/>
             </View>
             </View>
           <View style={{flexDirection:'row',marginTop:-2}}>
@@ -345,7 +349,7 @@ return (
               <Box5/>
               </TouchableOpacity>
           </View>
-          <View style={{flexDirection:'row'}}>
+          <View style={{flexDirection:'row',paddingLeft:responsiveWidth(1)}}>
 
             <View style={styles.polygon}>
                 <Image source={require('../../assets/images/Polygon.png')} style={data?.LitnearLevel==1? {alignSelf:'center'} :{ opacity:0}}/>
@@ -971,7 +975,10 @@ menuTitle:{
   color:'#E82B63',
   alignSelf:'center',
   marginTop:responsiveHeight(1),
-},iconBox1:{
+},
+viewHeader:{alignItems:'flex-start',marginTop:responsiveHeight(0),marginLeft:responsiveWidth(5)},
+
+iconBox1:{
   width:25,
   height:25,
   backgroundColor:'#0D8424',

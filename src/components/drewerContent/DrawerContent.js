@@ -79,8 +79,8 @@ key={item.id}
 
       <View style={drawerStyles.subViewDetails}>
 
-      <Icon color={"#000"} name={item.icon} size={responsiveFontSize(3)} />
-        <Text style={[drawerStyles.txtHeader, { marginRight: responsiveWidth(2) }]}>{item.title}</Text>
+      <Icon color={"#000"} name={item.icon} size={responsiveHeight(3)} />
+        <Text style={[drawerStyles.txtHeader, { marginLeft: responsiveWidth(2) }]}>{item.title}</Text>
 
         {/* <Image style={drawerStyles.imgItem} source={item.icon} /> */}
 
