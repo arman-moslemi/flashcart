@@ -347,7 +347,7 @@ bottom: responsiveHeight(2)
     position:'absolute',
     width:responsiveWidth(17),
     height:responsiveHeight(13),
-    top:responsiveHeight(10),
+    top:responsiveHeight(9),
     left:responsiveWidth(75),
   },textOverlay:{
 
