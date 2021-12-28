@@ -117,34 +117,34 @@ if(result=="true"){
     setValue(val)
      console.log(value);
 
-    axios.post(apiUrl+'SubGroups',{GroupID:value})
-    .then(function (response) {
-      const message = response.data.Data;
-      const result = response.data.result;
-      console.log(888);
-      console.log(result);
-      console.log(message);
-      const charity = [];
+    // axios.post(apiUrl+'SubGroups',{GroupID:value})
+    // .then(function (response) {
+    //   const message = response.data.Data;
+    //   const result = response.data.result;
+    //   console.log(888);
+    //   console.log(result);
+    //   console.log(message);
+    //   const charity = [];
 
-      // console.log(response.data.DataSlider.Slider1);
-      // console.log(response.data.DataSlider.Slider1);
-      if(result == "true"){
-    // setGroup(response.data.Data)
-    response.data.Data.map((item, index) => (
-      charity.push({
-        label: item.Title,
-        value: item.SubGroupID
-      })
-    ))
-    setItems2(charity)
+    //   // console.log(response.data.DataSlider.Slider1);
+    //   // console.log(response.data.DataSlider.Slider1);
+    //   if(result == "true"){
+    // // setGroup(response.data.Data)
+    // response.data.Data.map((item, index) => (
+    //   charity.push({
+    //     label: item.Title,
+    //     value: item.SubGroupID
+    //   })
+    // ))
+    // setItems2(charity)
 
-                        }else{
+    //                     }else{
 
-      }
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
+    //   }
+    // })
+    // .catch(function (error) {
+    //   console.log(error);
+    // });
 
   }
   const  setValueAccunts=()=> {
@@ -632,7 +632,36 @@ onPress={
   setValue={setValueDrop}
   setItems={setItems}
   // width={100}
-  ite
+  onChangeValue={(valueess)=>{
+    axios.post(apiUrl+'SubGroups',{GroupID:valueess})
+    .then(function (response) {
+      const message = response.data.Data;
+      const result = response.data.result;
+      console.log(888);
+      console.log(result);
+      console.log(message);
+      const charity = [];
+
+      // console.log(response.data.DataSlider.Slider1);
+      // console.log(response.data.DataSlider.Slider1);
+      if(result == "true"){
+    // setGroup(response.data.Data)
+    response.data.Data.map((item, index) => (
+      charity.push({
+        label: item.Title,
+        value: item.SubGroupID
+      })
+    ))
+    setItems2(charity)
+
+                        }else{
+
+      }
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+  }}
   style={{
     borderColor:'#F1F1F1',
     borderWidth:2,
@@ -762,7 +791,7 @@ const styles = StyleSheet.create({
   modal:{
     // alignSelf: "center",
     // marginTop: responsiveHeight(30),
-     height: responsiveHeight(63),
+     height: responsiveHeight(69),
     width: responsiveWidth(90),
     // justifyContent: 'center',
     // alignItems: 'flex-start',
