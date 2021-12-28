@@ -175,7 +175,6 @@ const Favorite = ({navigation}) => {
   </TouchableOpacity>
   ))}
   </ScrollView>
-
 </View>
    )
    }

@@ -146,6 +146,7 @@ return (
   </View>
   <View style={{width:responsiveScreenWidth(25),alignItems:'center'}}>
     <Image source={require('../../assets/images/dentalLogo.png')} style={{width:responsiveWidth(20),height:responsiveHeight(15)}}></Image>
+    <Image source={require('../../assets/images/dentLogo.png')} style={{width:70,height:100}}></Image>
     </View>
     <View style={{flex: 1, height: 2, backgroundColor: '#ECEDEF'}}>
 
