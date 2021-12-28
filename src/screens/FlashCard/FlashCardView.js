@@ -262,7 +262,7 @@ else{
               const result = response.data.result;
               console.log(222);
               console.log(result);
-              console.log(message)
+              console.log(message);
 
               if(result == "true"){
                 Alert.alert("","با موفقیت اضافه شد")
@@ -270,7 +270,7 @@ else{
 
   }
                               else{
-                Alert.alert("","این کارت را قبلا به علاقه مندیها اضافه کرده بودید")
+                Alert.alert("","این کارت در لیست علاقه مندی ها وجود دارد")
 
               }
             })

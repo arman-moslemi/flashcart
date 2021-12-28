@@ -171,7 +171,8 @@ return (
       style={styles.linearGradient2}
       />
       <Text style={styles.textOverlay2}>بورد</Text>
-      <Image source={require('../../assets/images/boardHome.png')} style={styles.logoAbsolute2}/>
+      {/* <Image source={require('../../assets/images/boardHome.png')} style={styles.logoAbsolute2}/> */}
+      <Image source={require('../../assets/images/board-Logo.png')} style={styles.logoAbsolute2}/>
 
       </TouchableOpacity>
       <TouchableOpacity onPress={()=>navigation.navigate("MainCategory",{id:2})} style={styles.item2}>
@@ -188,7 +189,7 @@ return (
 
       style={styles.linearGradient2}
       />
-       <Image source={require('../../assets/images/dandanHome.png')} style={styles.logoAbsolute2}/>
+       <Image source={require('../../assets/images/dentLogo.png')} style={styles.logoAbsolute2}/>
       <Text style={styles.textOverlay2}>دندان پزشکی</Text>
       </TouchableOpacity>
 
