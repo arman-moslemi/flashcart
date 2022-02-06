@@ -189,7 +189,7 @@ return (
 
       style={styles.linearGradient2}
       />
-       <Image source={require('../../assets/images/dentLogo.png')} style={styles.logoAbsolute2}/>
+       <Image source={require('../../assets/images/dentall.png')} style={styles.logoAbsolute2}/>
       <Text style={styles.textOverlay2}>دندان پزشکی</Text>
       </TouchableOpacity>
 
