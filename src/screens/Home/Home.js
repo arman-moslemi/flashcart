@@ -199,7 +199,7 @@ return (
 
 const styles = StyleSheet.create({
 
-  container: {flex:3,backgroundColor:"#fff"},
+  container: {flex:3,backgroundColor:"#fafafb"},
   parent : {
     marginTop:responsiveHeight(-5),
     height : responsiveHeight(20),

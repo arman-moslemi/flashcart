@@ -53,6 +53,7 @@ import LitnearBoxCardList from './src/screens/Home/LitnearBoxCardList';
 import Favorite from './src/screens/UserPanel/Favorite';
 import TicketsList from './src/screens/Ticket/TicketsList';
 import Rules from './src/screens/Rules/Rules';
+import { responsiveHeight, responsiveWidth } from 'react-native-responsive-dimensions';
 //  import {store, persist} from './store/redux/stores/store';
 //  import {Provider} from 'react-redux';
 //  import {PersistGate} from 'redux-persist/integmration/react';
@@ -65,14 +66,18 @@ import Rules from './src/screens/Rules/Rules';
 
    return (
     <Tab.Navigator
-    barStyle={{backgroundColor: 'black',
-    // position: 'absolute',
+    barStyle={{backgroundColor: '#fff',
+ borderTopRightRadius:150,
+ borderTopLeftRadius:150,
+ borderBottomLeftRadius:150,
+ borderBottomRightRadius:150,
+    
     overflow: 'hidden',
-    // borderTopLeftRadius: 120,
-    borderRadius: 50,
-  height:120,
-  // top:20
-  // width:1000
+  
+padding:20,
+transform: [{ scaleY:1.5 }],
+transform: [{ scaleX:1 }],
+  
   }}
     
 initialRouteName={"StackNavigatorsHome"}
@@ -82,8 +87,9 @@ shifting={false}
 >
 
 <Tab.Screen
+ 
     name="StackNavigatorsAzmoon" component={StackNavigatorsAzmoon}
-    options={{          tabBarLabel: '',    tabBarIcon: ({ color }) => (    <Icon name="person-outline" color={Colors.appColor} size={26} />         ),           }}      />
+    options={{          width:200,tabBarLabel: '',    tabBarIcon: ({ color }) => (    <Icon name="person-outline" color={Colors.appColor} size={26}  />         ),           }}      />
 
     <Tab.Screen
     // name="home"
